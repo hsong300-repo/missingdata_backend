@@ -1041,12 +1041,13 @@ var previewCsvUrl = function( csvUrl ) {
         //     .entries(f_data);
         var missingCount = impute_count;
 
+        var not_missing_data = data.filter(function(d){return d[concat_selection];});
 
         var notMissingCount = d3.nest()
             .key(function(d){return d.Category})
             .rollup(function(v){return v.length;})
             // .filter(function(d,i){return removed_idx.includes(i);})
-            .entries(data);
+            .entries(not_missing_data);
 
         console.log("missigCount",missingCount);
         console.log("Not Missing", notMissingCount);
@@ -1123,13 +1124,13 @@ var previewCsvUrl = function( csvUrl ) {
                     temp ="age";
                 }else if(temp === "Rating"){
                     temp="rate"
-                }else if(selection === "Price"){
+                }else if(temp === "Price"){
                     temp="price"
-                 }else if(selection === "ABV"){
+                 }else if(temp === "ABV"){
                     temp="abv"
                 }
                 var concat_selection = temp.concat("_impute");
-            console.log('concat selection',concat_selection);
+                console.log('concat selection',concat_selection);
                 var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
                 console.log('filtered_data',filtered_data);
 
@@ -1142,13 +1143,55 @@ var previewCsvUrl = function( csvUrl ) {
 
                 var missingCount = impute_count;
 
-
                 var notMissingCount = d3.nest()
                     .key(function(d){return d.Category})
                     .rollup(function(v){return v.length;})
                     // .filter(function(d,i){return removed_idx.includes(i);})
                     .entries(data);
                 console.log("missingCount",missingCount);
+
+            d3.selectAll(("input[value='bar_color']")).on("change", function() {
+            console.log('onchange bar color');
+            redraw_bar_color(missingCount,notMissingCount);
+
+                });
+
+                d3.selectAll(("input[value='bar_gradient']")).on("change", function() {
+                    console.log('onchange bar gradient');
+                    //work
+                    redraw_bar_gradient(missingCount,notMissingCount);
+
+                });
+
+                d3.selectAll(("input[value='bar_error']")).on("change", function() {
+                    console.log('onchange bar error');
+                    redraw_bar_error(missingCount,avg,notMissingCount);
+                });
+
+                d3.selectAll(("input[value='bar_pattern']")).on("change", function() {
+                    console.log('onchange bar pattern count');
+                    //work
+
+                    redraw_bar_pattern(missingCount,notMissingCount);
+                });
+
+                d3.selectAll(("input[value='bar_missing']")).on("change", function() {
+                    console.log('onchange bar missing');
+
+                    redraw_bar_missing(total_missing,missingCount,notMissingCount);
+                });
+
+                d3.selectAll(("input[value='bar_sketch']")).on("change", function() {
+                    console.log('onchange bar sketch');
+
+                    redraw_bar_sketch(missingCount,notMissingCount);
+                });
+                d3.selectAll(("input[value='bar_dash']")).on("change", function() {
+                    console.log('onchange bar dash');
+
+                    redraw_bar_dash(missingCount,notMissingCount);
+                });
+
 
 
                 y.domain([0, d3.max(selectAvg, function(d){
