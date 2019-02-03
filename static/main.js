@@ -1,44 +1,3 @@
-// remove index randomly
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-
-    var removed_idx = [];
-    var remove_num = parseInt(max * 0.1);
-    console.log('how many',remove_num);
-
-    for(var i = 0; i < remove_num; i++){
-        var idx = Math.floor(Math.random() * (max - min + 1)) + min;
-        if(removed_idx.indexOf(idx) == -1){
-            removed_idx.push(idx);
-        }
-        else
-            i--;
-        //in order to removed repeated index
-
-
-    }
-    console.log('removed_idx',removed_idx);
-    return removed_idx;
-    // return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-//remove index randomly without duplication
-function generateRan(data_len){
-    var max = parseInt(data_len*0.1);
-    var random = [];
-    for(var i = 0;i<max ; i++){
-        var temp = Math.floor(Math.random()*max);
-        if(random.indexOf(temp) == -1){ //if the array does not contain that index than push
-            random.push(temp);
-        }
-        else
-            i--;
-    }
-    return random
-}
-
-
 
 // Global functions called when select elements changed
 function onXScaleChanged() {
@@ -46,20 +5,16 @@ function onXScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
 
+    console.log('select x',chartScales.x);
+
     if(typeof dots_chart === 'undefined'){ // bars
-        console.log('dotschart undefined');
     }else{
         dots_chart.remove().exit(); //remove some of the encodings
     }
     if(typeof dots_chart_line === 'undefined'){ // bars
-        console.log('dotschart undefined');
     }else{
         dots_chart_line.remove().exit();
     }
-
-
-    console.log('on xScale changed');
-
 
     // Update chart
     updateChart();
@@ -70,17 +25,17 @@ function onYScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.y = select.options[select.selectedIndex].value;
 
+    console.log('select y',chartScales.y);
+
+
     if(typeof dots_chart === 'undefined'){ // bars
-        console.log('dotschart undefined');
     }else{
         dots_chart.remove().exit(); //remove some of the encodings
     }
     if(typeof dots_chart_line === 'undefined'){ // bars
-        console.log('dotschart undefined');
     }else{
         dots_chart_line.remove().exit();
     }
-
 
     // Update chart
     updateChart();
@@ -100,7 +55,6 @@ function drawBar() {
     document.getElementById('bar_radio').style.display = "inline";
     document.getElementById('scatter_radio').style.display = "none";
     document.getElementById('scatter_view').style.display = "none";
-    // document.getElementById('bar_vis').style.display = "none";
 
 }
 
@@ -112,38 +66,9 @@ function drawScatter() {
     document.getElementById('bar_radio').style.display = "none";
     document.getElementById('bar_view').style.display = "none";
 
-    // document.getElementById('bar_vis').style.display = "none";
-
-    // alert("Your data contains "+ per + " percentage of missing values exist in your data");
 }
 
-// this is for temporary imputation
-function glob_avg(val,rand_idx){
-    var sum = 0;
-    var new_arr = [];
-
-    for(var i = 0;i < val.length; i++){
-        sum += parseFloat(val[i]);
-    }
-
-    var avg = sum/val.length;
-    console.log('glob avg',avg);
-
-    for(var i =0;i<val.length;i++){
-        if(rand_idx.includes(i)){
-            val[i] = avg;
-            new_arr.push(val[i]);
-        }else{
-            new_arr.push(val[i]);
-        }
-    }
-    return new_arr;
-}
-
-
-// var svg = d3.select('svg');
 var svg = d3.select('svg');
-// var svg = d3.select('scatter_canvas').append('svg');
 
 // Get layout parameters
 var svgWidth = +svg.attr('width');
@@ -187,10 +112,16 @@ function updateChart() {
         .duration(750) // Add transition
         .call(d3.axisLeft(yScale));
 
+    // whiskey.filter(function(d){return ChartScales.x})
+
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
         .data(whiskey);
+
+    console.log('before filter data',whiskey);
+    var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
+    console.log('filtered_data',filtered_data);
 
 
     // var dotsEnter = dots.enter()
@@ -226,9 +157,9 @@ function updateChart() {
     // dotsEnter.append('circle')
     //     .attr('r', 3);
     dotsEnter.append('circle')
-        .filter(function (d, i) {
-            return !removed_idx.includes(i)
-        })
+        // .filter(function (d, i) {
+        //     return !removed_idx.includes(i)
+        // })
         .style("fill","steelblue")
         .attr('r', 4);
 
@@ -236,8 +167,8 @@ function updateChart() {
     dotsEnter.append('text')
         .attr('y', -10)
         .text(function(d) {
-            console.log('price impute',d.price_impute);
-            return d.age_impute;
+            // console.log('price impute',d.price_impute);
+            return d.Name;
             // return d.Brand
             // return d[chartScales.x];
         });
@@ -298,7 +229,7 @@ function updateChart() {
         .selectAll("circle");
         // .data(whiskey).enter();
 
-        function redraw_color() {
+    function redraw_color() {
 
         if(typeof dots_chart === 'undefined'){ // bars
             console.log('dotschart undefined');
@@ -327,14 +258,19 @@ function updateChart() {
         //         }
         //     })
         //     .attr('r', 4);
+        // var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+
+        var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
+        console.log('filtered_data',filtered_data);
 
         dots_chart = chartG.append("g").attr('class', "Scatter")
             .selectAll("circle")
-            .data(whiskey).enter()
+            .data(filtered_data).enter()
+            // .data(whiskey).enter()
             .append('circle')
-            .filter(function (d, i) {
-                return removed_idx.includes(i);
-            })
+            // .filter(function (d, i) {
+            //     return d[chartScales.x]==="0.0";
+            // })
             .style("fill", '#87CEFA')
             .attr("cx", function (d) {
                 return xScale(d[chartScales.x]);
@@ -380,9 +316,6 @@ function updateChart() {
      //
      // dots_chart.on("mouseover", tipMouseover)
      //    .on("mouseout", tipMouseout);
-
-
-
 
     }// end of color
 
@@ -452,9 +385,9 @@ function updateChart() {
                 .data(whiskey).enter()
                 .append("line")
                 .attr("class", "error-line")
-                .filter(function (d, i) {
-                    return removed_idx.includes(i)
-                })
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
                 // // .filter()
                 .attr("x1", function (d) {
                     return xScale(d[chartScales.x]);
@@ -476,9 +409,9 @@ function updateChart() {
                 .selectAll("circle")
                 .data(whiskey).enter()
                 .append('circle')
-                .filter(function (d, i) {
-                    return removed_idx.includes(i);
-                })
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i);
+                // })
                 .style("stroke", '#87CEFA')
                 .style("stroke-width", 1)
                 .style("fill", '#fff')
@@ -526,13 +459,13 @@ function updateChart() {
                 // .data(whiskey).enter()
                 // .attr('cx',function(d){xScale(d[chartScales.x]);})
                 // .attr('cy', function(d){yScale(d[chartScales.y]);})
-                .style("fill", function (d, i) {
-                    if (removed_idx.includes(i)) {
-                        return 'steelblue'; //lightskyblue
-                    } else {
-                        return "steelblue";
-                    }
-                })
+                // .style("fill", function (d, i) {
+                //     if (removed_idx.includes(i)) {
+                //         return 'steelblue'; //lightskyblue
+                //     } else {
+                //         return "steelblue";
+                //     }
+                // })
                 .attr('r', 4);
 
             // var std = math.std(vals);
@@ -540,10 +473,10 @@ function updateChart() {
             dots_chart = chartG.append("g").selectAll("line")
             // .enter()
                 .data(whiskey).enter()
-            .filter(function(d,i){
-                // console.log('error, removed idx',removed_idx)
-                return removed_idx.includes(i)})
-            // // .filter()
+            // .filter(function(d,i){
+            //     // console.log('error, removed idx',removed_idx)
+            //     return removed_idx.includes(i)})
+            // // // .filter()
                 .append("line")
                 .attr("class", "error-line")
                 .attr("x1", function (d) {
@@ -579,7 +512,6 @@ function updateChart() {
 
             }
 
-
             var radialGradient = svg.append("defs")
                 .append("radialGradient")
                 .attr("id", "radial-gradient");
@@ -606,9 +538,9 @@ function updateChart() {
                 .selectAll("circle")
                 .data(whiskey).enter()
                 .append('circle')
-                .filter(function (d, i) {
-                    return removed_idx.includes(i)
-                })
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
                 .style("fill", 'url(#radial-gradient)')
                 .attr("cx", function (d) {
                     return xScale(d[chartScales.x]);
@@ -653,9 +585,9 @@ function updateChart() {
                 .selectAll("circle")
                 .data(whiskey).enter()
                 .append('circle')
-                .filter(function (d, i) {
-                    return removed_idx.includes(i)
-                })
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
                 // .style("fill", 'url(#circles-9)')
                 .style("fill", 'url(#diagonal-stripes)')
                 // .attr('stroke', '#000')
@@ -688,7 +620,6 @@ function updateChart() {
                 // dots_remove.remove().exit();
 
             }
-
 
             // dotsEnter.append('circle')
             //     .filter(function (d, i) {
@@ -723,9 +654,9 @@ function updateChart() {
                 .selectAll("circle")
                 .data(whiskey).enter()
                 .append('rect')
-                .filter(function (d, i) {
-                    return removed_idx.includes(i)
-                })
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
                 .style("fill", "steelblue")
                 .attr('stroke', '#000')
                 .attr('width', 6.5)
@@ -738,8 +669,6 @@ function updateChart() {
                     return yScale(d[chartScales.y])-3;
                 });
                 // .attr('r', 4);
-
-
 
         }// end of shape
 
@@ -794,10 +723,6 @@ var previewCsvUrl = function( csvUrl ) {
         // Create global variables here
         whiskey = dataset;
 
-        // removed_idx = getRandomInt(0,whiskey.length-1);
-        removed_idx = [77, 32, 255, 174, 152, 226, 18, 100, 142, 267, 10, 191, 248, 40, 97, 34, 276, 163, 83, 203, 155, 261, 14, 194, 129, 71, 145, 62];
-        // removed_idx = generateRan(whiskey.length-1);
-
 
         // Create scales and other functions here
         xScale = d3.scaleLinear()
@@ -815,19 +740,14 @@ var previewCsvUrl = function( csvUrl ) {
             });
         });
 
-
         //get the percentage of the two
         per = Math.floor(missing_count/total_count)*100;
-
-
 
         // Create global object called chartScales to keep state
         // chartScales = {x: 'Price', y: 'Age'};
         chartScales = {x: 'Price', y: 'Age'};
 
-
         updateChart();
-
 
     });
 
@@ -837,7 +757,6 @@ var previewCsvUrl = function( csvUrl ) {
     d3.csv(csvUrl, function(error, data){
 
         make_bar(data);
-        // d3.select("svg").remove();
 
     });
 
@@ -848,7 +767,6 @@ var previewCsvUrl = function( csvUrl ) {
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        // var canvas = d3.select("#bar_canvas")
         canvas = d3.select("#bar_canvas")
         // .attr("id","canvas")
             .attr("width", width + margin.left + margin.right)
@@ -863,19 +781,17 @@ var previewCsvUrl = function( csvUrl ) {
                 return ((d != "Name") & (d != "Country") & (d != "Category") & (d != "Brand"));
             });
         var selection = elements[0];
-        console.log('selection',selection);
         var temp = selection;
         if(temp === "Age"){
             temp ="age";
         }else if(temp === "Rating"){
             temp="rate"
-        }else if(selection === "Price"){
+        }else if(temp === "Price"){
             temp="price"
-         }else if(selection === "ABV"){
+         }else if(temp === "ABV"){
             temp="abv"
         }
         var concat_selection = temp.concat("_impute");
-        console.log('concat selection',concat_selection);
 
         var avg = d3.nest()
             .key(function(d){ return d.Category;})
@@ -896,21 +812,12 @@ var previewCsvUrl = function( csvUrl ) {
             .entries(data);
 
         var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
-        console.log('filtered_data',filtered_data);
 
         var impute_count = d3.nest()
             .key(function(d){ return d.Category;})
             // .key(function(d){ return d[concat_selection];})
             .rollup(function(d) { return d.length; })
             .entries(filtered_data);
-        console.log('impute_count',impute_count);
-
-        // var missingCount = d3.nest()
-        //     .key(function(d){return d.key})
-        //     .rollup(function(v){return v.length;})
-        //     // .filter(function(d,i){return removed_idx.includes(i);})
-        //     .entries(impute_count);
-
 
 
         var y = d3.scaleLinear()
@@ -999,9 +906,6 @@ var previewCsvUrl = function( csvUrl ) {
             .append("title")
             // .style("margin-left", "10px")   //space between bars
             .text(function(d){
-                // return d.Name + " : " + d[selection];
-                // return d.Category + " : " + d[selection];
-                // return d.key + " : " + d.key;
 
             });
 
@@ -1025,14 +929,8 @@ var previewCsvUrl = function( csvUrl ) {
 
         select_check = false;
 
-        // removed_idx = getRandomInt(0, data.length-1);
-        removed_idx = [77, 32, 255, 174, 152, 226, 18, 100, 142, 267, 10, 191, 248, 40, 97, 34, 276, 163, 83, 203, 155, 261, 14, 194, 129, 71, 145, 62];
 
-        total_missing = removed_idx.length;
-
-        var f_data = data.filter(function(d,i){return removed_idx.includes(i);});
-
-
+        // total_missing = removed_idx.length;
 
         // var missingCount = d3.nest()
         //     .key(function(d){return d.Category})
@@ -1046,11 +944,8 @@ var previewCsvUrl = function( csvUrl ) {
         var notMissingCount = d3.nest()
             .key(function(d){return d.Category})
             .rollup(function(v){return v.length;})
-            // .filter(function(d,i){return removed_idx.includes(i);})
             .entries(not_missing_data);
 
-        console.log("missigCount",missingCount);
-        console.log("Not Missing", notMissingCount);
 
         d3.selectAll(("input[value='bar_color']")).on("change", function() {
             console.log('onchange bar color');
@@ -1096,7 +991,6 @@ var previewCsvUrl = function( csvUrl ) {
 
 
         // var selector = d3.select("#drop")
-        // var selector = d3.select("#bar_view")
         selector = d3.selectAll("#bar_view")
             .append("select")
             .attr("id","dropdown")
@@ -1150,49 +1044,31 @@ var previewCsvUrl = function( csvUrl ) {
                     .entries(data);
                 console.log("missingCount",missingCount);
 
-            d3.selectAll(("input[value='bar_color']")).on("change", function() {
-            console.log('onchange bar color');
-            redraw_bar_color(missingCount,notMissingCount);
+                d3.selectAll(("input[value='bar_color']")).on("change", function() {
+                    redraw_bar_color(missingCount,notMissingCount);
 
                 });
 
                 d3.selectAll(("input[value='bar_gradient']")).on("change", function() {
-                    console.log('onchange bar gradient');
-                    //work
                     redraw_bar_gradient(missingCount,notMissingCount);
 
                 });
 
                 d3.selectAll(("input[value='bar_error']")).on("change", function() {
-                    console.log('onchange bar error');
                     redraw_bar_error(missingCount,avg,notMissingCount);
                 });
 
                 d3.selectAll(("input[value='bar_pattern']")).on("change", function() {
-                    console.log('onchange bar pattern count');
-                    //work
-
                     redraw_bar_pattern(missingCount,notMissingCount);
                 });
 
                 d3.selectAll(("input[value='bar_missing']")).on("change", function() {
-                    console.log('onchange bar missing');
-
                     redraw_bar_missing(total_missing,missingCount,notMissingCount);
                 });
 
-                d3.selectAll(("input[value='bar_sketch']")).on("change", function() {
-                    console.log('onchange bar sketch');
-
-                    redraw_bar_sketch(missingCount,notMissingCount);
-                });
                 d3.selectAll(("input[value='bar_dash']")).on("change", function() {
-                    console.log('onchange bar dash');
-
                     redraw_bar_dash(missingCount,notMissingCount);
                 });
-
-
 
                 y.domain([0, d3.max(selectAvg, function(d){
                 // y.domain([0,d3.max(data,function(d){
@@ -1251,9 +1127,6 @@ var previewCsvUrl = function( csvUrl ) {
             .text(function(d){
                 return d;
             });
-
-
-
 
         function redraw_bar_color(missingCount,notMissingCount){
             if(typeof missing_bar === 'undefined'){ // bars
@@ -1351,36 +1224,35 @@ var previewCsvUrl = function( csvUrl ) {
             if(typeof missing_bar === 'undefined'){ // bars
                 console.log('missing bar undefined');
             }else{
-
                 missing_bar.remove().exit();
-                // canvas.remove().exit();
             }if(typeof not_missing_bar === 'undefined'){ // bars
                 console.log('missing bar undefined');
             }else{
-
                 not_missing_bar.remove().exit();
-                // canvas.remove().exit();
             }
             if(typeof bar_unknown_text === 'undefined'){ // bars
                 console.log('text bar undefined');
             }else{
                 bar_unknown_text.remove().exit();
-                // canvas.remove().exit();
             }
             if(typeof missing_count_bar === 'undefined'){ // bars
                 console.log('text bar undefined');
             }else{
                 missing_count_bar.remove().exit();
-                // canvas.remove().exit();
             }
 
 
             var vals = avg.map(function(d){return d.value});
             console.log('avg',avg);
 
-            // var std = math.std(vals);
-            var missingCategory = ["Single Malt","Highlands","Blended","Islay","Speyside","Burbon","Rye","Corn"];
-
+            // // var std = math.std(vals);
+            // console.log('bar error impute_count',impute_count,impute_count[0],Object.values(impute_count[0])[0]);
+            var missingCategory = [];
+            for (var i = 0; i < missingCount.length; i++) {
+                missingCategory.push(Object.values(missingCount[i])[0])
+            }
+            // var missingCategory = ["Single Malt","Highlands","Blended","Islay","Speyside","Burbon","Rye","Corn"];
+            // var missingCategory = Object.keys(impute_count);
 
             not_missing_bar = canvas.selectAll("rectangle")
             // .data(data)
