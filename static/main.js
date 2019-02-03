@@ -298,7 +298,7 @@ function updateChart() {
         .selectAll("circle");
         // .data(whiskey).enter();
 
-function redraw_color() {
+        function redraw_color() {
 
         if(typeof dots_chart === 'undefined'){ // bars
             console.log('dotschart undefined');
@@ -768,12 +768,6 @@ var previewCsvUrl = function( csvUrl ) {
 
     //width =400, height 2230
     d3.csv(csvUrl,function(row) {
-            if (row['Price'] === "null" || row['Price'] ===""){
-                ++missing_count;
-                ++total_count;
-            }else{
-                ++total_count;
-            }
         return {
             'Name': row['Name'],
             'Rating': +row['Rating'],
@@ -783,10 +777,10 @@ var previewCsvUrl = function( csvUrl ) {
             'ABV': +row['ABV'],
             'Age': +row['Age'],
             'Brand': row['Brand'],
-            'price_impute': +row['price_impute'],
-            'rate_impute': +row['rate_impute'],
-            'age_impute': +row['age_impute'],
-            'abv_impute': +row['abv_impute']
+            'Price_impute': +row['Price_impute'],
+            'Rating_impute': +row['Rating_impute'],
+            'Age_impute': +row['Age_impute'],
+            'ABV_impute': +row['ABV_impute']
 
         };
     },
@@ -852,23 +846,7 @@ var previewCsvUrl = function( csvUrl ) {
 
         var margin = {top: 80, right: 180, bottom: 80, left: 180},
             width = 960 - margin.left - margin.right,
-            // height = 500 - margin.top - margin.bottom;
             height = 500 - margin.top - margin.bottom;
-
-        // var svg = d3.select("body").append("svg")
-        // var canvas = d3.select("#bar_canvas")
-        // var canvas = (typeof canvas === 'undefined') ? def_val : canvas;
-        // if(typeof canvas === 'undefined'){
-        //     // canvas = d3.select("#bar_canvas")
-        //     // // .attr("id","canvas")
-        //     //     .attr("width", width + margin.left + margin.right)
-        //     //     .attr("height", height + margin.top + margin.bottom)
-        //     //     .append("g")
-        //     //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        //     console.log('canvas undefined');
-        // }else{
-        //     canvas.exit().remove();
-        // }
 
         // var canvas = d3.select("#bar_canvas")
         canvas = d3.select("#bar_canvas")
@@ -878,14 +856,26 @@ var previewCsvUrl = function( csvUrl ) {
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // filter year
-        // var data = data.filter(function(d){return d.Year == '2012';});
+        // filter value
         // Get every column value
         var elements = Object.keys(data[0])
             .filter(function(d){
                 return ((d != "Name") & (d != "Country") & (d != "Category") & (d != "Brand"));
             });
         var selection = elements[0];
+        console.log('selection',selection);
+        var temp = selection;
+        if(temp === "Age"){
+            temp ="age";
+        }else if(temp === "Rating"){
+            temp="rate"
+        }else if(selection === "Price"){
+            temp="price"
+         }else if(selection === "ABV"){
+            temp="abv"
+        }
+        var concat_selection = temp.concat("_impute");
+        console.log('concat selection',concat_selection);
 
         var avg = d3.nest()
             .key(function(d){ return d.Category;})
@@ -898,6 +888,29 @@ var previewCsvUrl = function( csvUrl ) {
             .rollup(function(v){return d3.deviation(v,function(d){
                 return +d[selection];});})
             .entries(data);
+
+        //count number of missing values, not missing count
+        var count = d3.nest()
+            .key(function(d){ return d.Category;})
+            .rollup(function(d) { return d.length; })
+            .entries(data);
+
+        var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+        console.log('filtered_data',filtered_data);
+
+        var impute_count = d3.nest()
+            .key(function(d){ return d.Category;})
+            // .key(function(d){ return d[concat_selection];})
+            .rollup(function(d) { return d.length; })
+            .entries(filtered_data);
+        console.log('impute_count',impute_count);
+
+        // var missingCount = d3.nest()
+        //     .key(function(d){return d.key})
+        //     .rollup(function(v){return v.length;})
+        //     // .filter(function(d,i){return removed_idx.includes(i);})
+        //     .entries(impute_count);
+
 
 
         var y = d3.scaleLinear()
@@ -917,8 +930,6 @@ var previewCsvUrl = function( csvUrl ) {
         var y1Axis = d3.axisRight(y1);
 
         // text label for the y axis
-
-
         canvas.append("g")
             .attr("transform", "translate( " + width + ", 0 )")
             .attr("class", "y1 axis")
@@ -1021,11 +1032,15 @@ var previewCsvUrl = function( csvUrl ) {
 
         var f_data = data.filter(function(d,i){return removed_idx.includes(i);});
 
-        var missingCount = d3.nest()
-            .key(function(d){return d.Category})
-            .rollup(function(v){return v.length;})
-            // .filter(function(d,i){return removed_idx.includes(i);})
-            .entries(f_data);
+
+
+        // var missingCount = d3.nest()
+        //     .key(function(d){return d.Category})
+        //     .rollup(function(v){return v.length;})
+        //     // .filter(function(d,i){return removed_idx.includes(i);})
+        //     .entries(f_data);
+        var missingCount = impute_count;
+
 
         var notMissingCount = d3.nest()
             .key(function(d){return d.Category})
@@ -1100,6 +1115,42 @@ var previewCsvUrl = function( csvUrl ) {
 
                 error_avg = selectAvg;
 
+                //update missing bars
+                var temp = selection.value;
+                console.log('selection value here',selection.value);
+                // var temp = selection;
+                if(temp === "Age"){
+                    temp ="age";
+                }else if(temp === "Rating"){
+                    temp="rate"
+                }else if(selection === "Price"){
+                    temp="price"
+                 }else if(selection === "ABV"){
+                    temp="abv"
+                }
+                var concat_selection = temp.concat("_impute");
+            console.log('concat selection',concat_selection);
+                var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+                console.log('filtered_data',filtered_data);
+
+                var impute_count = d3.nest()
+                    .key(function(d){ return d.Category;})
+                    // .key(function(d){ return d[concat_selection];})
+                    .rollup(function(d) { return d.length; })
+                    .entries(filtered_data);
+                console.log('impute_count',impute_count);
+
+                var missingCount = impute_count;
+
+
+                var notMissingCount = d3.nest()
+                    .key(function(d){return d.Category})
+                    .rollup(function(v){return v.length;})
+                    // .filter(function(d,i){return removed_idx.includes(i);})
+                    .entries(data);
+                console.log("missingCount",missingCount);
+
+
                 y.domain([0, d3.max(selectAvg, function(d){
                 // y.domain([0,d3.max(data,function(d){
                 //     return +d[selection.value];
@@ -1128,7 +1179,7 @@ var previewCsvUrl = function( csvUrl ) {
                     .transition()
                     .call(yAxis);
 
-                // canvase.selectAll(".error").remove().exit();
+                // canvas.selectAll(".error").remove().exit();
                 if(typeof bar_unknown_text === 'undefined'){ // bars
                     console.log('text bar undefined');
                 }else{
@@ -1817,35 +1868,6 @@ var previewCsvUrl = function( csvUrl ) {
     // })
 };
 
-// to send request to call python function
-// function runPyScript(input){
-//         var jqXHR = $.ajax({
-//             type: "POST",
-//             url: "/global_mean.py",
-//             async: false,
-//             data: { mydata: input }
-//         });
-//
-//         return jqXHR.responseText;
-//     }
-//
-// d3.selectAll(("input[value='submit']")).on("change", function() {
-//     console.log('submit button');
-//      datatosend = 'this is my matrix';
-//      result = runPyScript(datatosend);
-//      console.log('Got back ' + result);
-//     // redraw_color();
-// });
-
-// $('#sbtbutton').click(function(){
-// $('#sbtbutton').on("change",function(){
-//         console.log('submit button');
-//         datatosend = 'this is my matrix';
-//         result = runPyScript(datatosend);
-//         console.log('Got back ' + result);
-// });
-
-
 
 d3.select("html")
     .style("height","100%");
@@ -1854,8 +1876,6 @@ data = d3.select("#cLeft")
 // data = d3.select("body")
     .style("height","100%")
     .style("font", "12px sans-serif")
-    // .style("margin-top","50px")
-    // .style("display", "block")
     .append("input")
     .attr("id", "uploadData")
     .attr("type", "file")
@@ -1863,11 +1883,6 @@ data = d3.select("#cLeft")
     .style("margin", "5px")
     .on("change", function() {
         var file = d3.event.target.files[0];
-        // this is the added part for sending
-        // datatosend = 'this is my matrix';
-        // result = runPyScript(datatosend);
-        // console.log('Got back ' + result);
-        // this is the results
         if (file) {
             var reader = new FileReader();
             reader.onloadend = function(evt) {
