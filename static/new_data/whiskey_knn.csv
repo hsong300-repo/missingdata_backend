@@ -1,4 +1,4 @@
-Name,Rating,Country,Category,Price,ABV,Age,Brand,Rating_impute,Price_impute,ABV_impute,Age_impute
+Name,Rating,Country,Category,Price,ABV,Age,Brand,rate_impute,price_impute,abv_impute,age_impute
 Tyrconnell 10 Year Old Single Malt Madeira Cask Finish Irish Whiskey,100.0,Ireland,Single Malt,72.0,46.0,10.0,Tyrconnell,0.0,0.0,0.0,0.0
 Dalmore 18 Year Old Single Highland Malt Scotch Whisky,100.0,Scotland,Highlands,165.0,43.0,18.0,Dalmore,0.0,0.0,0.0,0.0
 Powers 12 Year Old Irish Whiskey,99.0,Ireland,Blended,35.0,40.0,12.0,Powers,0.0,0.0,0.0,0.0

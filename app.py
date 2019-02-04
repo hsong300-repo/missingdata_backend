@@ -69,24 +69,32 @@ def transform_view():
     for i in range(len(temp)):
        if np.isnan(temp.at[i,'Rating']):
           temp.at[i, 'Rating'] = rate_mean
-          temp.at[i, 'Rating_impute'] = 1
+          # temp.at[i, 'Rating_impute'] = 1
+          temp.at[i, 'rate_impute'] = 1
        else:
-          temp.at[i, 'Rating_impute'] = 0
+          # temp.at[i, 'Rating_impute'] = 0
+          temp.at[i, 'rate_impute'] = 0
        if np.isnan(temp.at[i,'Price']):
           temp.at[i, 'Price'] = price_mean
-          temp.at[i, 'Price_impute'] = 1
+          # temp.at[i, 'Price_impute'] = 1
+          temp.at[i, 'price_impute'] = 1
        else:
-          temp.at[i, 'Price_impute'] = 0
+          # temp.at[i, 'Price_impute'] = 0
+          temp.at[i, 'price_impute'] = 0
        if np.isnan(temp.at[i,'ABV']):
           temp.at[i, 'ABV'] = abv_mean
-          temp.at[i, 'ABV_impute'] = 1
+          # temp.at[i, 'ABV_impute'] = 1
+          temp.at[i, 'abv_impute'] = 1
        else:
-          temp.at[i, 'ABV_impute'] = 0
+          # temp.at[i, 'ABV_impute'] = 0
+          temp.at[i, 'abv_impute'] = 0
        if np.isnan(temp.at[i,'Age']):
           temp.at[i, 'Age'] = age_mean
-          temp.at[i, 'Age_impute'] = 1
+          # temp.at[i, 'Age_impute'] = 1
+          temp.at[i, 'age_impute'] = 1
        else:
-          temp.at[i, 'Age_impute'] = 0
+          # temp.at[i, 'Age_impute'] = 0
+          temp.at[i, 'age_impute'] = 0
 
     temp.to_csv('./static/new_data/whiskey_global.csv', index=False, header=True)
 
@@ -103,10 +111,14 @@ def transform_view():
     temp_knn['Age'] = df_filled['Age']
 
     # this is adding the imputation boolean label
-    temp_knn['Rating_impute'] = temp['Rating_impute']
-    temp_knn['Price_impute'] = temp['Price_impute']
-    temp_knn['ABV_impute'] = temp['ABV_impute']
-    temp_knn['Age_impute'] = temp['Age_impute']
+    # temp_knn['Rating_impute'] = temp['Rating_impute']
+    # temp_knn['Price_impute'] = temp['Price_impute']
+    # temp_knn['ABV_impute'] = temp['ABV_impute']
+    # temp_knn['Age_impute'] = temp['Age_impute']
+    temp_knn['rate_impute'] = temp['rate_impute']
+    temp_knn['price_impute'] = temp['price_impute']
+    temp_knn['abv_impute'] = temp['abv_impute']
+    temp_knn['age_impute'] = temp['age_impute']
 
 
     temp_knn.to_csv('./static/new_data/whiskey_knn.csv', index=False, header=True)

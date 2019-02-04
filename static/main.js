@@ -120,8 +120,49 @@ function updateChart() {
         .data(whiskey);
 
     console.log('before filter data',whiskey);
-    var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
-    console.log('filtered_data',filtered_data);
+    // var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
+    // console.log('filtered_data',filtered_data);
+
+
+    var temp_x = chartScales.x;
+    var temp_y = chartScales.y;
+
+
+    if(temp_x === "Age"){
+        temp_x ="age";
+    }else if(temp_x === "Rating"){
+        temp_x="rate"
+    }else if(temp_x === "Price"){
+        temp_x="price"
+     }else if(temp_x === "ABV"){
+        temp_x="abv"
+    }
+    if(temp_y === "Age"){
+        temp_y ="age";
+    }else if(temp_y === "Rating"){
+        temp_y="rate"
+    }else if(temp_y === "Price"){
+        temp_y="price"
+     }else if(temp_y === "ABV"){
+        temp_y="abv"
+    }
+
+    var select_x = temp_x.concat("_impute");
+    var select_y = temp_y.concat("_impute");
+
+
+    var filtered_data = whiskey
+        .filter(function(d){
+            return d[select_x] ===1 || d[select_y] === 1});
+
+    // var filtered_y = whiskey
+    //     .filter(function(d){
+    //         // console.log('chartScales.x',d[concat_selection],concat_selection, d[concat_selection] === 1)
+    //         // console.log('chartScales.x',d[chartScales.x] ===1)
+    //         return d[select_y] ===1});
+    // console.log('filtered_x',filtered_x);
+    // console.log('filtered_y',filtered_y);
+    // console.log('concat',filtered_x.concat(filtered_y));
 
 
     // var dotsEnter = dots.enter()
@@ -157,25 +198,42 @@ function updateChart() {
     // dotsEnter.append('circle')
     //     .attr('r', 3);
     dotsEnter.append('circle')
-        // .filter(function (d, i) {
-        //     return !removed_idx.includes(i)
-        // })
+       // .filter(function(d){
+       //      return d[select_x] ===0 && d[select_y] === 0})
         .style("fill","steelblue")
         .attr('r', 4);
 
     // Append a text to the ENTER selection
-    dotsEnter.append('text')
-        .attr('y', -10)
-        .text(function(d) {
-            // console.log('price impute',d.price_impute);
-            return d.Name;
-            // return d.Brand
-            // return d[chartScales.x];
-        });
+    // dotsEnter.append('text')
+    //     .attr('y', -10)
+    //     .text(function(d) {
+    //         // console.log('price impute',d.price_impute);
+    //         return d.Name;
+    //         // return d.Brand
+    //         // return d[chartScales.x];
+    //     });
 
     // dots_chart = chartG.append("g").attr('class', "Scatter")
     //     .selectAll("circle")
     //     .data(whiskey).enter()
+     // Append a text to the ENTER selection
+    dotsEnter.append('text')
+        .attr('y', -10)
+        .text(function(d) {
+            if(d[select_x] === 0){
+                var x_val = "valid";
+            }else if(d[select_x] === 1){
+                var x_val = "missing";
+            }
+            if(d[select_y] === 0){
+                var y_val = "valid";
+            }else if(d[select_x] === 1){
+                var y_val = "missing";
+            }
+            return temp_x +":"+x_val +" , " + temp_y + ":" +y_val;
+        });
+
+
 
     d3.selectAll(("input[value='color']")).on("change", function() {
         console.log('onchange color');
@@ -258,10 +316,23 @@ function updateChart() {
         //         }
         //     })
         //     .attr('r', 4);
-        // var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+        // // var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+        // dotsEnter.append('text')
+        // .attr('y', -10)
+        // .text(function(d) {
+        //     if(d[select_x] === 0){
+        //         var x_val = "valid";
+        //     }else if(d[select_x] === 1){
+        //         var x_val = "missing";
+        //     }
+        //     if(d[select_y] === 0){
+        //         var y_val = "valid";
+        //     }else if(d[select_x] === 1){
+        //         var y_val = "missing";
+        //     }
+        //     return temp_x +":"+x_val +" , " + temp_y + ":" +y_val;
+        // });
 
-        var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
-        console.log('filtered_data',filtered_data);
 
         dots_chart = chartG.append("g").attr('class', "Scatter")
             .selectAll("circle")
@@ -280,42 +351,8 @@ function updateChart() {
             })
             .attr('r', 4);
 
-        // dotsEnter.append('text')
-        // .attr('y', -10)
-        // .text(function(d) {
-        //     console.log('text',d.price_impute);
-        //     return d.price_impute;
-        //     // return d.Brand
-        //     // return d[chartScales.x];
-        // });
-     //
-     //    var tooltip = dots_chart.append("div")
-     //              .attr("class", "tooltip")
-     //              .style("opacity", 0);
-     //
-     //          // tooltip mouseover event handler
-     //          var tipMouseover = function(d) {
-     //              // var color = colorScale(d.Name);
-     //              var html  =
-     //                          "<b>" + d.price_impute + "</b> sugar, <b/>" + d.abv_impute + "</b> calories";
-     //
-     //              tooltip.html(html)
-     //                  .style("left", (d3.event.pageX + 15) + "px")
-     //                  .style("top", (d3.event.pageY - 28) + "px")
-     //                .transition()
-     //                  .duration(200) // ms
-     //                  .style("opacity", .9) // started as 0!
-     //
-     //          };
-     //          // tooltip mouseout event handler
-     //          var tipMouseout = function(d) {
-     //              tooltip.transition()
-     //                  .duration(300) // ms
-     //                  .style("opacity", 0); // don't care about position!
-     //          };
-     //
-     // dots_chart.on("mouseover", tipMouseover)
-     //    .on("mouseout", tipMouseout);
+
+
 
     }// end of color
 
@@ -382,7 +419,9 @@ function updateChart() {
 
             dots_chart_line = chartG.append("g").selectAll("line")
             // .enter()
-                .data(whiskey).enter()
+            //     .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append("line")
                 .attr("class", "error-line")
                 // .filter(function (d, i) {
@@ -407,7 +446,9 @@ function updateChart() {
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
-                .data(whiskey).enter()
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append('circle')
                 // .filter(function (d, i) {
                 //     return removed_idx.includes(i);
@@ -454,29 +495,47 @@ function updateChart() {
 
             }
 
-            dots_remove = dotsEnter
+            dots_chart = chartG.append("g").attr('class', "Scatter")
+                .selectAll("circle")
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append('circle')
-                // .data(whiskey).enter()
-                // .attr('cx',function(d){xScale(d[chartScales.x]);})
-                // .attr('cy', function(d){yScale(d[chartScales.y]);})
-                // .style("fill", function (d, i) {
-                //     if (removed_idx.includes(i)) {
-                //         return 'steelblue'; //lightskyblue
-                //     } else {
-                //         return "steelblue";
-                //     }
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i);
                 // })
+                // .style("stroke", '#87CEFA')
+                // .style("stroke-width", 1)
+                .style("fill", 'steelblue')
+                .attr("cx", function (d) {
+                    return xScale(d[chartScales.x]);
+                })
+                .attr("cy", function (d) {
+                    return yScale(d[chartScales.y]);
+                })
+                // .attr('r', 4);
                 .attr('r', 4);
+
+            // dots_remove = dotsEnter
+            //     .append('circle')
+            //     // .data(whiskey).enter()
+            //     // .attr('cx',function(d){xScale(d[chartScales.x]);})
+            //     // .attr('cy', function(d){yScale(d[chartScales.y]);})
+            //     // .style("fill", function (d, i) {
+            //     //     if (removed_idx.includes(i)) {
+            //     //         return 'steelblue'; //lightskyblue
+            //     //     } else {
+            //     //         return "steelblue";
+            //     //     }
+            //     // })
+            //     .attr('r', 4);
 
             // var std = math.std(vals);
 
             dots_chart = chartG.append("g").selectAll("line")
-            // .enter()
-                .data(whiskey).enter()
-            // .filter(function(d,i){
-            //     // console.log('error, removed idx',removed_idx)
-            //     return removed_idx.includes(i)})
-            // // // .filter()
+            //     .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append("line")
                 .attr("class", "error-line")
                 .attr("x1", function (d) {
@@ -536,7 +595,9 @@ function updateChart() {
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
-                .data(whiskey).enter()
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append('circle')
                 // .filter(function (d, i) {
                 //     return removed_idx.includes(i)
@@ -583,7 +644,9 @@ function updateChart() {
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
-                .data(whiskey).enter()
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append('circle')
                 // .filter(function (d, i) {
                 //     return removed_idx.includes(i)
@@ -652,7 +715,9 @@ function updateChart() {
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
-                .data(whiskey).enter()
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
                 .append('rect')
                 // .filter(function (d, i) {
                 //     return removed_idx.includes(i)
@@ -696,6 +761,8 @@ var previewCsvUrl = function( csvUrl ) {
         height = 600 - margin.top - margin.bottom;
 
     //width =400, height 2230
+    // d3.csv(csvUrl, function(error, dataset){
+
     d3.csv(csvUrl,function(row) {
         return {
             'Name': row['Name'],
@@ -706,10 +773,10 @@ var previewCsvUrl = function( csvUrl ) {
             'ABV': +row['ABV'],
             'Age': +row['Age'],
             'Brand': row['Brand'],
-            'Price_impute': +row['Price_impute'],
-            'Rating_impute': +row['Rating_impute'],
-            'Age_impute': +row['Age_impute'],
-            'ABV_impute': +row['ABV_impute']
+            'price_impute': +row['price_impute'],
+            'rate_impute': +row['rate_impute'],
+            'age_impute': +row['age_impute'],
+            'abv_impute': +row['abv_impute']
 
         };
     },
@@ -722,6 +789,7 @@ var previewCsvUrl = function( csvUrl ) {
 
         // Create global variables here
         whiskey = dataset;
+        console.log('whiskey scatter',whiskey);
 
 
         // Create scales and other functions here
@@ -811,7 +879,11 @@ var previewCsvUrl = function( csvUrl ) {
             .rollup(function(d) { return d.length; })
             .entries(data);
 
+        console.log('data for bars',data);
+
         var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
+
+        console.log('filtered_data',filtered_data);
 
         var impute_count = d3.nest()
             .key(function(d){ return d.Category;})
@@ -1245,14 +1317,10 @@ var previewCsvUrl = function( csvUrl ) {
             var vals = avg.map(function(d){return d.value});
             console.log('avg',avg);
 
-            // // var std = math.std(vals);
-            // console.log('bar error impute_count',impute_count,impute_count[0],Object.values(impute_count[0])[0]);
             var missingCategory = [];
             for (var i = 0; i < missingCount.length; i++) {
                 missingCategory.push(Object.values(missingCount[i])[0])
             }
-            // var missingCategory = ["Single Malt","Highlands","Blended","Islay","Speyside","Burbon","Rye","Corn"];
-            // var missingCategory = Object.keys(impute_count);
 
             not_missing_bar = canvas.selectAll("rectangle")
             // .data(data)
@@ -1615,7 +1683,6 @@ var previewCsvUrl = function( csvUrl ) {
 
                 });
 
-
             missing_bar = canvas.selectAll("rectangle")
             // .data(data)
                 .data(missingCount)
@@ -1841,7 +1908,6 @@ d3.selectAll(("input[value='bar_mean']")).on("change", function() {
 
 
     }
-    console.log('bar mean');
     // result = runPyScript(datatosend);
 
     previewCsvUrl("./static/new_data/whiskey_global.csv");
@@ -1862,9 +1928,8 @@ d3.selectAll(("input[value='bar_knn']")).on("change", function() {
         dots.remove().exit();
         dotsEnter.remove().exit();
         dots_chart.remove().exit();
-
-
     }
+    console.log('call knn for bar');
     previewCsvUrl("./static/new_data/whiskey_knn.csv");
 });
 
@@ -1904,6 +1969,7 @@ d3.selectAll(("input[value='scatter_knn']")).on("change", function() {
         dotsEnter.remove().exit();
         dots_chart.remove().exit();
     }
+    console.log('call knn for scatter');
     previewCsvUrl("./static/new_data/whiskey_knn.csv");
 });
 
