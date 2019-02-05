@@ -199,3 +199,7 @@ circle {
 .not_missing{
     fill:white
 }
+
+#cLeft {
+    width: 17%;
+}

@@ -151,7 +151,7 @@ function updateChart() {
     var select_y = temp_y.concat("_impute");
 
 
-    var filtered_data = whiskey
+    filtered_data = whiskey
         .filter(function(d){
             return d[select_x] ===1 || d[select_y] === 1});
 
@@ -213,9 +213,7 @@ function updateChart() {
     //         // return d[chartScales.x];
     //     });
 
-    // dots_chart = chartG.append("g").attr('class', "Scatter")
-    //     .selectAll("circle")
-    //     .data(whiskey).enter()
+
      // Append a text to the ENTER selection
     dotsEnter.append('text')
         .attr('y', -10)
@@ -283,9 +281,22 @@ function updateChart() {
             return 'translate('+[tx, ty]+')';
         });
 
-    dots_chart = chartG.append("g").attr('class', "Scatter")
-        .selectAll("circle");
+    // dots_chart = chartG.append("g").attr('class', "Scatter")
+    //     .selectAll("circle");
         // .data(whiskey).enter();
+
+    if(typeof dots_chart === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart.remove().exit(); //remove some of the encodings
+        }
+        if(typeof dots_chart_line === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_line.remove().exit();
+            // dots_remove.remove().exit();
+
+        }
 
     function redraw_color() {
 
@@ -301,6 +312,24 @@ function updateChart() {
             // dots_remove.remove().exit();
 
         }
+
+         dots_chart = chartG.append("g").attr('class', "Scatter")
+            .selectAll("circle")
+            .data(filtered_data).enter()
+            // .data(whiskey).enter()
+            .append('circle')
+            // .filter(function (d, i) {
+            //     return d[chartScales.x]==="0.0";
+            // })
+            .style("fill", '#87CEFA')
+            .attr("cx", function (d) {
+                return xScale(d[chartScales.x]);
+            })
+            .attr("cy", function (d) {
+                return yScale(d[chartScales.y]);
+            })
+            .attr('r', 4);
+
         // dots_chart.remove().exit(); //remove some of the encodings
         // console.log('redraw color removed idx',removed_idx);
         // dotsEnter
@@ -333,27 +362,6 @@ function updateChart() {
         //     return temp_x +":"+x_val +" , " + temp_y + ":" +y_val;
         // });
 
-
-        dots_chart = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            .data(filtered_data).enter()
-            // .data(whiskey).enter()
-            .append('circle')
-            // .filter(function (d, i) {
-            //     return d[chartScales.x]==="0.0";
-            // })
-            .style("fill", '#87CEFA')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 4);
-
-
-
-
     }// end of color
 
         function redraw_local() {
@@ -374,6 +382,60 @@ function updateChart() {
             }else{
                 dots_remove.remove().exit(); //remove some of the encodings
             }
+
+            dots_chart_line = chartG.append("g").selectAll("line")
+                .data(filtered_data)
+                .enter()
+                .append("line")
+                .attr("class", "error-line")
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
+                // // .filter()
+                .attr("x1", function (d) {
+                    return xScale(d[chartScales.x]);
+                })
+                .attr("y1", function (d) {
+                    // return yScale(d[chartScales.y]+1);
+                    return yScale(0);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x]);
+                })
+                .attr("y2", function (d) {
+                    // return yScale(d[chartScales.y]-1);
+                    return yScale(0 - 0.6);
+                });
+
+            dots_chart = chartG.append("g").attr('class', "Scatter")
+                .selectAll("circle")
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
+                .append('circle')
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i);
+                // })
+                .style("stroke", '#87CEFA')
+                .style("stroke-width", 1)
+                .style("fill", '#fff')
+                .attr("cx", function (d) {
+                    return xScale(d[chartScales.x]);
+                })
+                .attr("cy", function (d) {
+                    return yScale(d[chartScales.y]);
+                })
+                // .attr('r', 4);
+                .attr('r', 4);
+
+            move = dots_chart.transition()
+                .duration(2000)
+                .attr('cx',420)
+                .transition()
+                .duration(2000)
+                .attr("cx", function (d) {
+                    return xScale(d[chartScales.x]);
+                });
 
             // add more ticks
             // dotsEnter.append('circle')
@@ -417,65 +479,6 @@ function updateChart() {
             //         return yScale(0 - 0.6);
             //     });
 
-            dots_chart_line = chartG.append("g").selectAll("line")
-            // .enter()
-            //     .data(whiskey)
-                .data(filtered_data)
-                .enter()
-                .append("line")
-                .attr("class", "error-line")
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i)
-                // })
-                // // .filter()
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("y1", function (d) {
-                    // return yScale(d[chartScales.y]+1);
-                    return yScale(0);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("y2", function (d) {
-                    // return yScale(d[chartScales.y]-1);
-                    return yScale(0 - 0.6);
-                });
-
-
-            dots_chart = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                // .data(whiskey)
-                .data(filtered_data)
-                .enter()
-                .append('circle')
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i);
-                // })
-                .style("stroke", '#87CEFA')
-                .style("stroke-width", 1)
-                .style("fill", '#fff')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                // .attr('r', 4);
-                .attr('r', 4);
-
-            move = dots_chart.transition()
-                .duration(2000)
-                .attr('cx',420)
-                .transition()
-                .duration(2000)
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                });
-
-            // dots_chart.remove().exit();
-
 
         }// end of local
 
@@ -501,11 +504,6 @@ function updateChart() {
                 .data(filtered_data)
                 .enter()
                 .append('circle')
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i);
-                // })
-                // .style("stroke", '#87CEFA')
-                // .style("stroke-width", 1)
                 .style("fill", 'steelblue')
                 .attr("cx", function (d) {
                     return xScale(d[chartScales.x]);
@@ -516,24 +514,7 @@ function updateChart() {
                 // .attr('r', 4);
                 .attr('r', 4);
 
-            // dots_remove = dotsEnter
-            //     .append('circle')
-            //     // .data(whiskey).enter()
-            //     // .attr('cx',function(d){xScale(d[chartScales.x]);})
-            //     // .attr('cy', function(d){yScale(d[chartScales.y]);})
-            //     // .style("fill", function (d, i) {
-            //     //     if (removed_idx.includes(i)) {
-            //     //         return 'steelblue'; //lightskyblue
-            //     //     } else {
-            //     //         return "steelblue";
-            //     //     }
-            //     // })
-            //     .attr('r', 4);
-
-            // var std = math.std(vals);
-
-            dots_chart = chartG.append("g").selectAll("line")
-            //     .data(whiskey)
+            dots_chart_line = chartG.append("g").selectAll("line")
                 .data(filtered_data)
                 .enter()
                 .append("line")
@@ -551,8 +532,21 @@ function updateChart() {
                     return yScale(d[chartScales.y] - 1);
                 });
 
-            // dots_chart_line.remove().exit();
+            // dots_remove = dotsEnter
+            //     .append('circle')
+            //     // .data(whiskey).enter()
+            //     // .attr('cx',function(d){xScale(d[chartScales.x]);})
+            //     // .attr('cy', function(d){yScale(d[chartScales.y]);})
+            //     // .style("fill", function (d, i) {
+            //     //     if (removed_idx.includes(i)) {
+            //     //         return 'steelblue'; //lightskyblue
+            //     //     } else {
+            //     //         return "steelblue";
+            //     //     }
+            //     // })
+            //     .attr('r', 4);
 
+            // var std = math.std(vals);
 
         }// end of scatter error
 
@@ -583,16 +577,6 @@ function updateChart() {
                 .attr("offset", "100%")
                 .attr("stop-color", "steelblue");
 
-            // dotsEnter.append('circle')
-            //     .style("fill", function (d, i) {
-            //         if (removed_idx.includes(i)) {
-            //             return 'url(#radial-gradient)'; //lightskyblue
-            //         } else {
-            //             return "steelblue";
-            //         }
-            //     })
-            //     .attr('r', 4);
-
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
                 // .data(whiskey)
@@ -610,6 +594,18 @@ function updateChart() {
                     return yScale(d[chartScales.y]);
                 })
                 .attr('r', 4);
+
+            // dotsEnter.append('circle')
+            //     .style("fill", function (d, i) {
+            //         if (removed_idx.includes(i)) {
+            //             return 'url(#radial-gradient)'; //lightskyblue
+            //         } else {
+            //             return "steelblue";
+            //         }
+            //     })
+            //     .attr('r', 4);
+
+
 
             // dots_chart_line.remove().exit();
 
@@ -629,18 +625,6 @@ function updateChart() {
                 // dots_remove.remove().exit();
 
             }
-
-
-            // dotsEnter.append('circle')
-            //     .style("fill", function (d, i) {
-            //         if (removed_idx.includes(i)) {
-            //             return 'url(#diagonal-stripes)'; //lightskyblue
-            //         } else {
-            //             return "steelblue";
-            //         }
-            //     })
-            //     .attr('r', 4);
-
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
@@ -663,13 +647,22 @@ function updateChart() {
                 })
                 .attr('r', 4);
 
-            dots_chart_line.remove().exit();
+            // dots_chart_line.remove().exit();
 
+
+            // dotsEnter.append('circle')
+            //     .style("fill", function (d, i) {
+            //         if (removed_idx.includes(i)) {
+            //             return 'url(#diagonal-stripes)'; //lightskyblue
+            //         } else {
+            //             return "steelblue";
+            //         }
+            //     })
+            //     .attr('r', 4);
 
         }// end of pattern
 
         function redraw_shape() {
-            var symbol = d3.symbol();
 
             if(typeof dots_chart === 'undefined'){ // bars
                 console.log('dotschart undefined');
@@ -683,6 +676,27 @@ function updateChart() {
                 // dots_remove.remove().exit();
 
             }
+
+            dots_chart = chartG.append("g").attr('class', "Scatter")
+                .selectAll("circle")
+                // .data(whiskey)
+                .data(filtered_data)
+                .enter()
+                .append('rect')
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
+                .style("fill", "steelblue")
+                .attr('stroke', '#000')
+                .attr('width', 6.5)
+                .attr('height', 6.5)
+                .attr('stoke-width', 1)
+                .attr("x", function (d) {
+                    return xScale(d[chartScales.x])-3;
+                })
+                .attr("y", function (d) {
+                    return yScale(d[chartScales.y])-3;
+                });
 
             // dotsEnter.append('circle')
             //     .filter(function (d, i) {
@@ -713,30 +727,8 @@ function updateChart() {
             //     .attr('height', 6)
             //     .attr('stoke-width', 1);
 
-            dots_chart = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                // .data(whiskey)
-                .data(filtered_data)
-                .enter()
-                .append('rect')
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i)
-                // })
-                .style("fill", "steelblue")
-                .attr('stroke', '#000')
-                .attr('width', 6.5)
-                .attr('height', 6.5)
-                .attr('stoke-width', 1)
-                .attr("x", function (d) {
-                    return xScale(d[chartScales.x])-3;
-                })
-                .attr("y", function (d) {
-                    return yScale(d[chartScales.y])-3;
-                });
-                // .attr('r', 4);
 
         }// end of shape
-
 
 }// end of updatechart
 
@@ -749,8 +741,6 @@ var rowToHtml = function( row ) {
     }
     return result;
 };
-
-
 
 var previewCsvUrl = function( csvUrl ) {
     //part that draws the scatter chart
@@ -789,8 +779,6 @@ var previewCsvUrl = function( csvUrl ) {
 
         // Create global variables here
         whiskey = dataset;
-        console.log('whiskey scatter',whiskey);
-
 
         // Create scales and other functions here
         xScale = d3.scaleLinear()
@@ -1854,29 +1842,29 @@ var previewCsvUrl = function( csvUrl ) {
 d3.select("html")
     .style("height","100%");
 
-data = d3.select("#cLeft")
-// data = d3.select("body")
-    .style("height","100%")
-    .style("font", "12px sans-serif")
-    .append("input")
-    .attr("id", "uploadData")
-    .attr("type", "file")
-    .attr("accept", ".csv")
-    .style("margin", "5px")
-    .on("change", function() {
-        var file = d3.event.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onloadend = function(evt) {
-                var dataUrl = evt.target.result;
-                // The following call results in an "Access denied" error in IE.
-                previewCsvUrl(dataUrl);
-
-            };
-            reader.readAsDataURL(file);
-            //reader.readAsText(file);
-        }
-    });
+// data = d3.select("#cLeft")
+// // data = d3.select("body")
+//     .style("height","100%")
+//     .style("font", "12px sans-serif")
+//     .append("input")
+//     .attr("id", "uploadData")
+//     .attr("type", "file")
+//     .attr("accept", ".csv")
+//     .style("margin", "5px")
+//     .on("change", function() {
+//         var file = d3.event.target.files[0];
+//         if (file) {
+//             var reader = new FileReader();
+//             reader.onloadend = function(evt) {
+//                 var dataUrl = evt.target.result;
+//                 // The following call results in an "Access denied" error in IE.
+//                 previewCsvUrl(dataUrl);
+//
+//             };
+//             reader.readAsDataURL(file);
+//             //reader.readAsText(file);
+//         }
+//     });
 
 // d3.select("#cLeft")
 d3.select("#cRight")
