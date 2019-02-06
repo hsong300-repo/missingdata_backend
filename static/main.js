@@ -14,7 +14,20 @@ function onXScaleChanged() {
     if(typeof dots_chart_line === 'undefined'){ // bars
     }else{
         dots_chart_line.remove().exit();
-    }
+    }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+        dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
     // Update chart
     updateChart();
@@ -35,7 +48,20 @@ function onYScaleChanged() {
     if(typeof dots_chart_line === 'undefined'){ // bars
     }else{
         dots_chart_line.remove().exit();
-    }
+    }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+        dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
     // Update chart
     updateChart();
@@ -296,6 +322,11 @@ function updateChart() {
             dots_chart_line.remove().exit();
             // dots_remove.remove().exit();
 
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+        dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
         }if(typeof dots_chart_x === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else{
@@ -391,15 +422,14 @@ function updateChart() {
                 dots_remove.remove().exit(); //remove some of the encodings
             }
 
+            // where it is missing, so if the value is imputed than it will show little lines next to it
             dots_chart_line = chartG.append("g").selectAll("line")
                 .data(filtered_data)
                 .enter()
+                .filter(function(d){
+                        return d[select_y] === 1 })
                 .append("line")
                 .attr("class", "error-line")
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i)
-                // })
-                // // .filter()
                 .attr("x1", function (d) {
                     return xScale(d[chartScales.x]);
                 })
@@ -413,6 +443,32 @@ function updateChart() {
                 .attr("y2", function (d) {
                     // return yScale(d[chartScales.y]-1);
                     return yScale(0 - 0.6);
+                });
+
+             dots_chart_line_y = chartG.append("g").selectAll("line")
+                .data(filtered_data)
+                .enter()
+                 .filter(function(d){
+                        return d[select_x] === 1 })
+                .append("line")
+                .attr("class", "error-line")
+                // .filter(function (d, i) {
+                //     return removed_idx.includes(i)
+                // })
+                // // .filter()
+                .attr("x1", function (d) {
+                    return xScale(0);
+                })
+                .attr("y1", function (d) {
+                    // return yScale(d[chartScales.y]+1);
+                    return yScale(d[chartScales.y]);
+                })
+                .attr("x2", function (d) {
+                    return xScale(-0.6);
+                })
+                .attr("y2", function (d) {
+                    // return yScale(d[chartScales.y]-1);
+                    return yScale(d[chartScales.y]);
                 });
 
             // dots_chart = chartG.append("g").attr('class', "Scatter")
