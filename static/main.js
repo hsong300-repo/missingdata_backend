@@ -17,7 +17,7 @@ function onXScaleChanged() {
     }if(typeof dots_chart_line_y === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else {
-        dots_chart_line_y.remove().exit();
+            dots_chart_line_y.remove().exit();
         // dots_remove.remove().exit();
         }if(typeof dots_chart_x === 'undefined'){ // bars
             console.log('dotschart undefined');
@@ -50,18 +50,18 @@ function onYScaleChanged() {
         dots_chart_line.remove().exit();
     }if(typeof dots_chart_line_y === 'undefined'){ // bars
             console.log('dotschart undefined');
-        }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+    }else {
+    dots_chart_line_y.remove().exit();
+    // dots_remove.remove().exit();
+    }if(typeof dots_chart_x === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_x.remove().exit(); //remove some of the encodings
+    }if(typeof dots_chart_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_y.remove().exit(); //remove some of the encodings
+    }
 
     // Update chart
     updateChart();
@@ -180,7 +180,12 @@ function updateChart() {
     filtered_data = whiskey
         .filter(function(d){
             return d[select_x] ===1 || d[select_y] === 1});
-
+    filtered_x = whiskey
+            .filter(function(d){
+                return d[select_x] ===1});
+    filtered_y = whiskey
+            .filter(function(d){
+                return d[select_y] ===1});
     // var filtered_y = whiskey
     //     .filter(function(d){
     //         // console.log('chartScales.x',d[concat_selection],concat_selection, d[concat_selection] === 1)
@@ -325,7 +330,7 @@ function updateChart() {
         }if(typeof dots_chart_line_y === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else {
-        dots_chart_line_y.remove().exit();
+            dots_chart_line_y.remove().exit();
         // dots_remove.remove().exit();
         }if(typeof dots_chart_x === 'undefined'){ // bars
             console.log('dotschart undefined');
@@ -338,19 +343,28 @@ function updateChart() {
         }
 
     function redraw_color() {
-
         if(typeof dots_chart === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart.remove().exit(); //remove some of the encodings
-        }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_line.remove().exit();
+            }else{
+                dots_chart.remove().exit(); //remove some of the encodings
+            }
+            if(typeof dots_chart_line === 'undefined'){ // bars
+            }else{
+                dots_chart_line.remove().exit();
+            }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+            }else {
+            dots_chart_line_y.remove().exit();
             // dots_remove.remove().exit();
+            }if(typeof dots_chart_x === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_x.remove().exit(); //remove some of the encodings
+            }if(typeof dots_chart_y === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_y.remove().exit(); //remove some of the encodings
+            }
 
-        }
 
          dots_chart = chartG.append("g").attr('class', "Scatter")
             .selectAll("circle")
@@ -406,21 +420,26 @@ function updateChart() {
         function redraw_local() {
 
             if(typeof dots_chart === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_line.remove().exit();
+                }else{
+                    dots_chart.remove().exit(); //remove some of the encodings
+                }
+                if(typeof dots_chart_line === 'undefined'){ // bars
+                }else{
+                    dots_chart_line.remove().exit();
+                }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                        console.log('dotschart undefined');
+                }else {
+                dots_chart_line_y.remove().exit();
                 // dots_remove.remove().exit();
-
-            } if(typeof dots_remove === 'undefined'){ // bars
-                console.log('dots_remove undefined');
-            }else{
-                dots_remove.remove().exit(); //remove some of the encodings
-            }
+                }if(typeof dots_chart_x === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_x.remove().exit(); //remove some of the encodings
+                }if(typeof dots_chart_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_y.remove().exit(); //remove some of the encodings
+                }
 
             // where it is missing, so if the value is imputed than it will show little lines next to it
             dots_chart_line = chartG.append("g").selectAll("line")
@@ -595,19 +614,34 @@ function updateChart() {
 
         function redraw_error() {
             // Add Error Line
-
-            if(typeof dots_chart === 'undefined'){ // bars
-                console.log('dotschart undefined');
+                    if(typeof dots_chart === 'undefined'){ // bars
             }else{
                 dots_chart.remove().exit(); //remove some of the encodings
             }
             if(typeof dots_chart_line === 'undefined'){ // bars
-                console.log('dotschart undefined');
             }else{
                 dots_chart_line.remove().exit();
-                // dots_remove.remove().exit();
-
+            }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+            }else {
+            dots_chart_line_y.remove().exit();
+            // dots_remove.remove().exit();
+            }if(typeof dots_chart_x === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_x.remove().exit(); //remove some of the encodings
+            }if(typeof dots_chart_y === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_y.remove().exit(); //remove some of the encodings
             }
+
+            var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+            var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
+            console.log('std_x',std_x);
+            console.log('std_y',std_y);
+
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
@@ -625,22 +659,45 @@ function updateChart() {
                 // .attr('r', 4);
                 .attr('r', 4);
 
+
             dots_chart_line = chartG.append("g").selectAll("line")
                 .data(filtered_data)
                 .enter()
+                .filter(function(d){
+                    return d[select_x] ===1})
                 .append("line")
                 .attr("class", "error-line")
                 .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]);
+                    return xScale(d[chartScales.x]-std_x );
                 })
                 .attr("y1", function (d) {
-                    return yScale(d[chartScales.y] + 1);
+                    return yScale(d[chartScales.y]);
                 })
                 .attr("x2", function (d) {
-                    return xScale(d[chartScales.x]);
+                    return xScale(d[chartScales.x] +std_x);
                 })
                 .attr("y2", function (d) {
-                    return yScale(d[chartScales.y] - 1);
+                    return yScale(d[chartScales.y]);
+                });
+
+            dots_chart_line_y = chartG.append("g").selectAll("line")
+                .data(filtered_data)
+                .enter()
+                .filter(function(d){
+                    return d[select_y] ===1})
+                .append("line")
+                .attr("class", "error-line")
+                .attr("x1", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                .attr("y1", function (d) {
+                    return yScale(d[chartScales.y]+std_y);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                .attr("y2", function (d) {
+                    return yScale(d[chartScales.y]-std_y);
                 });
 
             // dots_remove = dotsEnter
@@ -663,18 +720,28 @@ function updateChart() {
 
         function redraw_gradient() {
 
-            if(typeof dots_chart === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_line.remove().exit();
+                if(typeof dots_chart === 'undefined'){ // bars
+                }else{
+                    dots_chart.remove().exit(); //remove some of the encodings
+                }
+                if(typeof dots_chart_line === 'undefined'){ // bars
+                }else{
+                    dots_chart_line.remove().exit();
+                }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                        console.log('dotschart undefined');
+                }else {
+                dots_chart_line_y.remove().exit();
                 // dots_remove.remove().exit();
+                }if(typeof dots_chart_x === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_x.remove().exit(); //remove some of the encodings
+                }if(typeof dots_chart_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_y.remove().exit(); //remove some of the encodings
+                }
 
-            }
 
             var radialGradient = svg.append("defs")
                 .append("radialGradient")
@@ -724,18 +791,28 @@ function updateChart() {
 
         function redraw_pattern() {
 
-            if(typeof dots_chart === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_line.remove().exit();
+                if(typeof dots_chart === 'undefined'){ // bars
+                }else{
+                    dots_chart.remove().exit(); //remove some of the encodings
+                }
+                if(typeof dots_chart_line === 'undefined'){ // bars
+                }else{
+                    dots_chart_line.remove().exit();
+                }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                        console.log('dotschart undefined');
+                }else {
+                dots_chart_line_y.remove().exit();
                 // dots_remove.remove().exit();
+                }if(typeof dots_chart_x === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_x.remove().exit(); //remove some of the encodings
+                }if(typeof dots_chart_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+                }else{
+                    dots_chart_y.remove().exit(); //remove some of the encodings
+                }
 
-            }
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
@@ -776,17 +853,27 @@ function updateChart() {
         function redraw_shape() {
 
             if(typeof dots_chart === 'undefined'){ // bars
-                console.log('dotschart undefined');
             }else{
                 dots_chart.remove().exit(); //remove some of the encodings
             }
             if(typeof dots_chart_line === 'undefined'){ // bars
-                console.log('dotschart undefined');
             }else{
                 dots_chart_line.remove().exit();
-                // dots_remove.remove().exit();
-
+            }if(typeof dots_chart_line_y === 'undefined'){ // bars
+                    console.log('dotschart undefined');
+            }else {
+            dots_chart_line_y.remove().exit();
+            // dots_remove.remove().exit();
+            }if(typeof dots_chart_x === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_x.remove().exit(); //remove some of the encodings
+            }if(typeof dots_chart_y === 'undefined'){ // bars
+                console.log('dotschart undefined');
+            }else{
+                dots_chart_y.remove().exit(); //remove some of the encodings
             }
+
 
             dots_chart = chartG.append("g").attr('class', "Scatter")
                 .selectAll("circle")
