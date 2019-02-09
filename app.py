@@ -127,7 +127,6 @@ def transform_view():
 
 
     # this is for the random selction
-
     for i in range(len(temp)):
        if np.isnan(temp_random.at[i,'Rating']):
             temp_random.at[i, 'Rating'] = random.choice(temp["Rating"])

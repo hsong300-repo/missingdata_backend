@@ -169,6 +169,11 @@ circle {
     stroke-dasharray: 2,2;
 }
 
+.normal-line {
+    /*stroke: #b30059;*/
+    stroke:#000;
+}
+
 .error-cap {
     /*stroke: #b30059;*/
     stroke:#000;

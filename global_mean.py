@@ -1,7 +1,6 @@
 import csv
-import random
 import pandas as pd
-from StringIO import StringIO
+import random
 
 # random sample index
 random_index = random.sample(range(1,281),28)
@@ -19,7 +18,7 @@ print('random_index',random_index)
 #     print('processed:',line_count)
 
 
-with open('./whiskye.csv', mode='r') as csv_file:
+with open('./whiskey.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     line_count = 0
     for row in csv_reader:
@@ -33,8 +32,8 @@ with open('./whiskye.csv', mode='r') as csv_file:
 
 #  get the global mean
 # read data into pandas using csv
-df = pd.read_csv('./whiskye.csv')
-temp = pd.read_csv('./whiskye.csv')
+df = pd.read_csv('./whiskey.csv')
+temp = pd.read_csv('./whiskey.csv')
 
 new_temp = temp.drop(temp.index[random_index])
 
@@ -52,6 +51,8 @@ for i in random_index:
     temp.at[i,'Price'] = new_temp['Price'].mean()
     temp.at[i,'ABV'] = new_temp['ABV'].mean()
     temp.at[i,'Age'] = new_temp['Age'].mean()
+
+print('random choice price',random.choice(temp['Rating']))
 
 # write csv file
 # temp.to_csv('./whiskey_global.csv',index=True, header=True)
