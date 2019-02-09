@@ -1196,6 +1196,7 @@ var previewCsvUrl = function( csvUrl ) {
         //     // .filter(function(d,i){return removed_idx.includes(i);})
         //     .entries(f_data);
         var missingCount = impute_count;
+        total_missing = impute_count.length;
 
         var not_missing_data = data.filter(function(d){return d[concat_selection];});
 

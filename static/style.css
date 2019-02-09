@@ -118,6 +118,15 @@ button {
 
 }
 
+button:active {
+    border: 2px solid green;
+}
+
+button:focus {
+    border: 2px solid deepskyblue;
+}
+
+
 .rectangle {
     /*fill: steelblue;*/
 }
@@ -203,3 +212,4 @@ circle {
 #cLeft {
     width: 17%;
 }
+
