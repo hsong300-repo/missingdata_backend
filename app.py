@@ -14,6 +14,7 @@ from fancyimpute import KNN
 from sklearn.metrics import accuracy_score
 from io import StringIO
 import os
+import random
 
 PEOPLE_FOLDER = os.path.join('static', 'button_img')
 
@@ -59,6 +60,7 @@ def transform_view():
     # to track original data
     temp = df
     temp_knn = df
+    temp_random = df
     # ****transform, this is for the global mean part
     rate_mean = df["Rating"].mean()
     price_mean = df["Price"].mean()
@@ -69,34 +71,34 @@ def transform_view():
     for i in range(len(temp)):
        if np.isnan(temp.at[i,'Rating']):
           temp.at[i, 'Rating'] = rate_mean
-          # temp.at[i, 'Rating_impute'] = 1
           temp.at[i, 'rate_impute'] = 1
+
        else:
-          # temp.at[i, 'Rating_impute'] = 0
           temp.at[i, 'rate_impute'] = 0
+
        if np.isnan(temp.at[i,'Price']):
           temp.at[i, 'Price'] = price_mean
-          # temp.at[i, 'Price_impute'] = 1
           temp.at[i, 'price_impute'] = 1
+
        else:
-          # temp.at[i, 'Price_impute'] = 0
           temp.at[i, 'price_impute'] = 0
+
        if np.isnan(temp.at[i,'ABV']):
           temp.at[i, 'ABV'] = abv_mean
-          # temp.at[i, 'ABV_impute'] = 1
           temp.at[i, 'abv_impute'] = 1
        else:
-          # temp.at[i, 'ABV_impute'] = 0
           temp.at[i, 'abv_impute'] = 0
+
        if np.isnan(temp.at[i,'Age']):
           temp.at[i, 'Age'] = age_mean
-          # temp.at[i, 'Age_impute'] = 1
           temp.at[i, 'age_impute'] = 1
+
        else:
-          # temp.at[i, 'Age_impute'] = 0
           temp.at[i, 'age_impute'] = 0
 
+
     temp.to_csv('./static/new_data/whiskey_global.csv', index=False, header=True)
+
 
     # ***knn function
     df_numeric = df.select_dtypes(include=[np.float])
@@ -123,6 +125,25 @@ def transform_view():
 
     temp_knn.to_csv('./static/new_data/whiskey_knn.csv', index=False, header=True)
 
+
+    # this is for the random selction
+
+    for i in range(len(temp)):
+       if np.isnan(temp_random.at[i,'Rating']):
+            temp_random.at[i, 'Rating'] = random.choice(temp["Rating"])
+       if np.isnan(temp_random.at[i,'Price']):
+            temp_random.at[i, 'Price'] = random.choice(temp["Price"])
+       if np.isnan(temp_random.at[i,'ABV']):
+            temp_random.at[i, 'ABV'] = random.choice(temp["ABV"])
+       if np.isnan(temp_random.at[i,'Age']):
+            temp_random.at[i, 'Age'] = random.choice(temp["Age"])
+
+    temp_random['rate_impute'] = temp['rate_impute']
+    temp_random['price_impute'] = temp['price_impute']
+    temp_random['abv_impute'] = temp['abv_impute']
+    temp_random['age_impute'] = temp['age_impute']
+
+    temp_random.to_csv('./static/new_data/whiskey_random.csv', index=False, header=True)
 
     # this is for retrieving the image
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'bar.png')
