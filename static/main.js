@@ -377,6 +377,10 @@ function updateChart() {
             .attr('r', 4);
 
 
+        shape_check = false;
+
+
+
     }// end of color
 
         function redraw_local() {
@@ -468,6 +472,9 @@ function updateChart() {
                     // return yScale(d[chartScales.y]-1);
                     return yScale(d[chartScales.y]);
                 });
+
+         shape_check = false;
+
 
         }// end of local
 
@@ -725,6 +732,11 @@ function updateChart() {
             })
             .attr('r', 4);
 
+
+        shape_check = false;
+
+
+
     }// end of gradient
 
     function redraw_pattern() {
@@ -769,6 +781,9 @@ function updateChart() {
             })
             .attr('r', 4);
 
+        shape_check = false;
+
+
     }// end of pattern
 
     function redraw_shape() {
@@ -811,6 +826,9 @@ function updateChart() {
             .attr("y", function (d) {
                 return yScale(d[chartScales.y])-3;
             });
+
+        shape_check = true;
+
 
     }// end of shape
 
@@ -902,6 +920,8 @@ function updateChart() {
                     return yScale(d[chartScales.y]-std_y);
                 });
 
+
+
         }// end of scatter error
 
     function redraw_animation() {
@@ -929,6 +949,8 @@ function updateChart() {
 
             dots_chart_x = dots_chart.filter(function(d){
                         return d[select_x] ===1 });
+
+            console.log('dots_chart_x', dots_chart_x);
 
 
             // dots_chart_x = chartG.append("g").attr('class', "Scatter")
@@ -970,7 +992,8 @@ function updateChart() {
             //     })
             //     .attr('r', 4);
 
-            move_x = dots_chart_x.transition()
+            if(shape_check === false){
+                 move_x = dots_chart_x.transition()
                 .duration(2000)
                 .attr('cx',0)
                 .transition()
@@ -996,6 +1019,40 @@ function updateChart() {
                 .attr("cy", function (d) {
                     return yScale(d[chartScales.y]);
                 });
+            }else if(shape_check === true){
+                 move_x = dots_chart_x.transition()
+                .duration(2000)
+                .attr('x',0)
+                .transition()
+                .duration(2000)
+                .attr('x',420)
+                .transition()
+                .duration(2000)
+                .attr("x", function (d) {
+                    return xScale(d[chartScales.x]);
+                });
+
+            move_y = dots_chart_y.transition()
+                .filter(function(d){
+                        return d[select_y] ===1 })
+                .duration(2000)
+                // .attr('cy',420)
+                .attr('y',0)
+                .transition()
+                .duration(2000)
+                .attr('y',420)
+                .transition()
+                .duration(2000)
+                .attr("y", function (d) {
+                    return yScale(d[chartScales.y]);
+                });
+            }
+
+            shape_check = false;
+
+
+
+
 
         }// end of local
 
