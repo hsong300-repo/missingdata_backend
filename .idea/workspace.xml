@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-getting-started" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-getting-started/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-getting-started/runtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started/runtime.txt" afterDir="false" />
@@ -50,7 +49,7 @@
           <entry key="Procfile" value="21" />
           <entry key="css" value="199" />
           <entry key="html" value="294" />
-          <entry key="js" value="6087" />
+          <entry key="js" value="6128" />
           <entry key="py" value="625" />
           <entry key="txt" value="17" />
         </counts>
@@ -59,7 +58,7 @@
         <counts>
           <entry key="CSS" value="199" />
           <entry key="HTML" value="294" />
-          <entry key="JavaScript" value="6087" />
+          <entry key="JavaScript" value="6128" />
           <entry key="PLAIN_TEXT" value="38" />
           <entry key="Python" value="625" />
         </counts>
@@ -95,8 +94,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="1010" column="47" selection-start-line="1010" selection-start-column="47" selection-end-line="1010" selection-end-column="47" />
+            <state relative-caret-position="329">
+              <caret line="145" column="27" selection-start-line="145" selection-start-column="27" selection-end-line="145" selection-end-column="27" />
               <folding>
                 <element signature="e#84#1210#0" />
                 <element signature="e#1239#2314#0" />
@@ -440,8 +439,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="1010" column="47" selection-start-line="1010" selection-start-column="47" selection-end-line="1010" selection-end-column="47" />
+        <state relative-caret-position="329">
+          <caret line="145" column="27" selection-start-line="145" selection-start-column="27" selection-end-line="145" selection-end-column="27" />
           <folding>
             <element signature="e#84#1210#0" />
             <element signature="e#1239#2314#0" />

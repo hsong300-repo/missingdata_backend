@@ -134,10 +134,19 @@ function updateChart() {
 
     // whiskey.filter(function(d){return ChartScales.x})
 
-    // Create and position scatterplot circles
-    // User Enter, Update (don't need exit)
-    dots = chartG.selectAll('.dot')
-        .data(whiskey);
+    // noimpute_data = whiskey
+    //     .filter(function(d){
+    //         return d[select_x] === 0 && d[select_y] === 0});
+    //
+    // console.log('noimpute_data',noimpute_data);
+    //
+    //
+    // // Create and position scatterplot circles
+    // // User Enter, Update (don't need exit)
+    // dots = chartG.selectAll('.dot')
+    //     .data(whiskey);
+    //     // .data(noimpute_data);
+
 
     // var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
 
@@ -176,6 +185,17 @@ function updateChart() {
     filtered_y = whiskey
             .filter(function(d){
                 return d[select_y] ===1});
+
+    noimpute_data = whiskey
+        .filter(function(d){
+            return d[select_x] === 0 && d[select_y] === 0});
+
+    // Create and position scatterplot circles
+    // User Enter, Update (don't need exit)
+    dots = chartG.selectAll('.dot')
+        // .data(whiskey);
+        .data(noimpute_data);
+
     // var filtered_y = whiskey
     //     .filter(function(d){
     //         // console.log('chartScales.x',d[concat_selection],concat_selection, d[concat_selection] === 1)
