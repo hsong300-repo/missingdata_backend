@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/python-getting-started" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-getting-started/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started/Procfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python-getting-started/runtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/python-getting-started/runtime.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +49,8 @@
         <counts>
           <entry key="Procfile" value="21" />
           <entry key="css" value="199" />
-          <entry key="html" value="285" />
-          <entry key="js" value="5534" />
+          <entry key="html" value="294" />
+          <entry key="js" value="5670" />
           <entry key="py" value="625" />
           <entry key="txt" value="17" />
         </counts>
@@ -58,8 +58,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="199" />
-          <entry key="HTML" value="285" />
-          <entry key="JavaScript" value="5534" />
+          <entry key="HTML" value="294" />
+          <entry key="JavaScript" value="5670" />
           <entry key="PLAIN_TEXT" value="38" />
           <entry key="Python" value="625" />
         </counts>
@@ -92,16 +92,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2655">
-              <caret line="249" column="11" selection-start-line="249" selection-start-column="11" selection-end-line="249" selection-end-column="11" />
+            <state relative-caret-position="80">
+              <caret line="923" column="55" lean-forward="true" selection-start-line="923" selection-start-column="55" selection-end-line="923" selection-end-column="55" />
               <folding>
                 <element signature="e#84#1210#0" />
                 <element signature="e#1239#2314#0" />
                 <element signature="e#2572#2881#0" />
                 <element signature="e#2945#3277#0" />
+                <element signature="e#20501#20529#0" />
+                <element signature="e#26015#27722#0" />
+                <element signature="e#27773#29374#0" />
               </folding>
             </state>
           </provider>
@@ -153,11 +156,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="70" column="75" lean-forward="true" selection-start-line="70" selection-start-column="75" selection-end-line="70" selection-end-column="75" />
+            <state relative-caret-position="511">
+              <caret line="77" column="83" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -219,8 +222,8 @@
         <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/global_mean.py" />
         <option value="$PROJECT_DIR$/static/style.css" />
-        <option value="$PROJECT_DIR$/static/main.js" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/static/main.js" />
       </list>
     </option>
   </component>
@@ -231,9 +234,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-254" />
-    <option name="y" value="-1080" />
-    <option name="width" value="1920" />
+    <option name="x" value="2410" />
+    <option name="y" value="-180" />
+    <option name="width" value="950" />
     <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -315,7 +318,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-950" y="-575" width="950" height="1080" extended-state="0" />
+    <frame x="2410" y="-180" width="950" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49908593" visible="true" weight="0.20704846" />
@@ -425,23 +428,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="77" column="83" selection-start-line="77" selection-start-column="83" selection-end-line="77" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/static/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2655">
-          <caret line="249" column="11" selection-start-line="249" selection-start-column="11" selection-end-line="249" selection-end-column="11" />
+        <state relative-caret-position="80">
+          <caret line="923" column="55" lean-forward="true" selection-start-line="923" selection-start-column="55" selection-end-line="923" selection-end-column="55" />
           <folding>
             <element signature="e#84#1210#0" />
             <element signature="e#1239#2314#0" />
             <element signature="e#2572#2881#0" />
             <element signature="e#2945#3277#0" />
+            <element signature="e#20501#20529#0" />
+            <element signature="e#26015#27722#0" />
+            <element signature="e#27773#29374#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="70" column="75" lean-forward="true" selection-start-line="70" selection-start-column="75" selection-end-line="70" selection-end-column="75" />
         </state>
       </provider>
     </entry>
