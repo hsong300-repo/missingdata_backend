@@ -44,7 +44,6 @@
     <div class="cell" id="cRight">
         <!--bar chart-->
 
-
         <div id="scatter_view"  style="display:none;" class="answer_list" >
             <div class='row' id="scatter_radio" style="display:none;">
                 <div class='radio' >
@@ -52,22 +51,16 @@
                     <!--</label>-->
                     <!--<label class='radio-inline'>-->
                     <input type="radio" name="impute" value="scatter_knn"> knn
-                    <input type="radio" name="impute" value="scatter_random" checked>random<br>
+                    <input type="radio" name="impute" value="scatter_random" checked> random<br>
+
                     <label class='radio-inline'>
-                        Visual Encoding: <input type="radio" name="vis" value="error"> error
-                    </label>
-                    <label class='radio-inline'>
-                        <input type="radio" name="vis" value="color"> color
+                        Visual Encodings: <input type="radio" name="vis" value="color"> color
                         <!--<input type="radio" name="color" value="color" onclick='change(this.value)'> color-->
                     </label>
                     <label class='radio-inline'>
                         <input type="radio" name="vis" value="gradient" > gradient
                         <!--<input type="radio" name="gradient" value="gradient" onclick='change(this.value)'> gradient-->
                     </label>
-                    <!--<label class='radio-inline'>-->
-                        <!--<input type="radio" name="vis" value="sketch"> sketch-->
-                    <!--</label>-->
-
                     <label class='radio-inline'>
                         <input type="radio" name="vis" value="local"> local
                     </label>
@@ -77,6 +70,14 @@
                     <label class='radio-inline'>
                         <input type="radio" name="vis" value="shape"> shape
                     </label>
+                    <br>
+                    <label class='radio-inline'>
+                         Potential Values: <input type="radio" name="potential_value" value="error"> error
+                    </label>
+                     <label class='radio-inline'>
+                        <input type="radio" name="potential_value" value="animation"> animation
+                    </label>
+
 
 
                 </div>
