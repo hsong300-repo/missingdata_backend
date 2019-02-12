@@ -193,8 +193,8 @@ function updateChart() {
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
-        // .data(whiskey);
-        .data(noimpute_data);
+        .data(whiskey);
+        // .data(noimpute_data);
 
     // var filtered_y = whiskey
     //     .filter(function(d){
@@ -237,9 +237,18 @@ function updateChart() {
     // dotsEnter.append('circle')
     //     .attr('r', 3);
     dotsEnter.append('circle')
-       // .filter(function(d){
-       //      return d[select_x] ===0 && d[select_y] === 0})
+       .filter(function(d){
+            return d[select_x] ===0 && d[select_y] === 0})
+        .attr("class","no_impute")
         .style("fill","steelblue")
+        .attr('r', 4);
+
+     dotsEnter.append('circle')
+       .filter(function(d){
+            return d[select_x] ===1 || d[select_y] === 1})
+        .attr("class","impute")
+        .style("fill","steelblue")
+         .style("opacity",0)
         .attr('r', 4);
 
     // Append a text to the ENTER selection
