@@ -77,11 +77,11 @@
                      <label class='radio-inline'>
                         <input type="radio" name="potential_value" value="animation"> animation
                     </label>
-
-
-
                 </div>
             </div>
+
+{#            <label><button type="button" name ="restart" value="restart">restart</button></label>#}
+
             <!--<div style="position: absolute; top: 300px;">-->
                 <div style="margin-left: 50px;">
                     <label for="categorySelect">Y Scale:</label>
@@ -136,9 +136,7 @@
                         <!--<input type="radio" name="vis" value="bar_default" checked > default-->
                         <!--&lt;!&ndash;<input type="radio" name="default" value="default" onclick='change(this.value)' checked > default&ndash;&gt;-->
                     <!--</label>-->
-                    <label class='radio-inline'>
-                        <input type="radio" name="vis" value="bar_error"> error
-                    </label>
+
                     <label class='radio-inline'>
                         <input type="radio" name="vis" value="bar_dash"> dashed outline
                     </label>
@@ -146,14 +144,20 @@
                         <input type="radio" name="vis" value="bar_missing"> unknown missing
                     </label>
                     <!--<label class='radio-inline'>-->
+                    <br>
+                     <label class='radio-inline'>
+                        Potential Values:<input type="radio" name="potential_value" value="bar_error"> error
+                    </label>
+                    <label class='radio-inline'>
+                        <input type="radio" name="potential_value" value="bar_animation"> animation
+                    </label>
+
 
                     <!--</label>-->
                 </div>
 
 
             </div>
-
-
 
             <svg class ="charts" id = "bar_canvas">
             </svg>

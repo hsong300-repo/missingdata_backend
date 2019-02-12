@@ -310,6 +310,11 @@ function updateChart() {
         redraw_animation();
     });
 
+    d3.selectAll(("input[value='restart']")).on("change", function() {
+        console.log('restart');
+        redraw_restart();
+    });
+
 
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
     dots.merge(dotsEnter)
@@ -400,7 +405,7 @@ function updateChart() {
 
     }// end of color
 
-        function redraw_local() {
+    function redraw_local() {
 
             if(typeof dots_chart === 'undefined'){ // bars
                 }else{
@@ -1104,6 +1109,8 @@ function updateChart() {
 
             shape_check = false;
 
+
+
              // dots_chart_x = chartG.append("g").attr('class', "Scatter")
             //     .selectAll("circle")
             //     .data(whiskey)
@@ -1242,8 +1249,6 @@ var previewCsvUrl = function( csvUrl ) {
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        console.log('data here',data);
 
         // filter value
         // Get every column value
