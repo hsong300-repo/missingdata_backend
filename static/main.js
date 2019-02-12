@@ -1256,7 +1256,6 @@ var previewCsvUrl = function( csvUrl ) {
             .filter(function(d){
                 return ((d != "Name") & (d != "Country") & (d != "Category") & (d != "Brand")&(d != "rate_impute") & (d != "price_impute") & (d != "abv_impute") & (d != "age_impute"));
             });
-        console.log('elements',elements);
         var selection = elements[0];
         var temp = selection;
         if(temp === "Age"){
@@ -1276,8 +1275,6 @@ var previewCsvUrl = function( csvUrl ) {
                 return +d[selection];});})
             .entries(data);
 
-        console.log("avg bar",avg);
-
         var std = d3.nest()
             .key(function(d){ return d.Category;})
             .rollup(function(v){return d3.deviation(v,function(d){
@@ -1293,13 +1290,11 @@ var previewCsvUrl = function( csvUrl ) {
 
         var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
 
-
         var impute_count = d3.nest()
             .key(function(d){ return d.Category;})
             // .key(function(d){ return d[concat_selection];})
             .rollup(function(d) { return d.length; })
             .entries(filtered_data);
-
 
         var y = d3.scaleLinear()
             // .domain([0, d3.max(data, function(d){
@@ -1475,6 +1470,11 @@ var previewCsvUrl = function( csvUrl ) {
 
             redraw_bar_dash(missingCount,notMissingCount,avg,missingCategory);
         });
+        d3.selectAll(("input[value='bar_animation']")).on("change", function() {
+            console.log('onchange bar dash');
+
+            redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory);
+        });
 
 
         // var selector = d3.select("#drop")
@@ -1498,7 +1498,6 @@ var previewCsvUrl = function( csvUrl ) {
 
                 //update missing bars
                 var temp = selection.value;
-                console.log('selection value here',selection.value);
                 // var temp = selection;
                 if(temp === "Age"){
                     temp ="age";
@@ -1510,9 +1509,7 @@ var previewCsvUrl = function( csvUrl ) {
                     temp="abv"
                 }
                 var concat_selection = temp.concat("_impute");
-                console.log('concat selection',concat_selection);
                 var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
-                console.log('filtered_data',filtered_data);
 
                 var impute_count = d3.nest()
                     .key(function(d){ return d.Category;})
@@ -1532,7 +1529,6 @@ var previewCsvUrl = function( csvUrl ) {
                     .rollup(function(v){return v.length;})
                     // .filter(function(d,i){return removed_idx.includes(i);})
                     .entries(data);
-                console.log("missingCount",missingCount);
 
                 d3.selectAll(("input[value='bar_color']")).on("change", function() {
                     redraw_bar_color(missingCount,notMissingCount,selectAvg,missingCategory);
@@ -1559,6 +1555,13 @@ var previewCsvUrl = function( csvUrl ) {
                 d3.selectAll(("input[value='bar_dash']")).on("change", function() {
                     redraw_bar_dash(missingCount,notMissingCount,selectAvg,missingCategory);
                 });
+
+                d3.selectAll(("input[value='bar_animation']")).on("change", function() {
+                    console.log('onchange bar dash');
+
+                    redraw_bar_animation(missingCount,notMissingCount,selectAvg,missingCategory);
+                });
+
 
                 y.domain([0, d3.max(selectAvg, function(d){
                 // y.domain([0,d3.max(data,function(d){
@@ -1681,7 +1684,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -1707,7 +1711,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -1726,6 +1731,120 @@ var previewCsvUrl = function( csvUrl ) {
                 .text(function(d){
 
                 });
+
+            bar_error_line.remove().exit();
+            bar_error_top.remove().exit();
+            bar_error_down.remove().exit();
+
+        }// end of bar color
+
+        function redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory){
+            if(typeof missing_bar === 'undefined'){ // bars
+                console.log('missing bar undefined');
+            }else{
+
+                missing_bar.remove().exit();
+                // canvas.remove().exit();
+            }if(typeof not_missing_bar === 'undefined'){ // bars
+                console.log('missing bar undefined');
+            }else{
+
+                not_missing_bar.remove().exit();
+                // canvas.remove().exit();
+            }
+            if(typeof bar_unknown_text === 'undefined'){ // bars
+                console.log('text bar undefined');
+            }else{
+                bar_unknown_text.remove().exit();
+                // canvas.remove().exit();
+            }
+            if(typeof missing_count_bar === 'undefined'){ // bars
+                console.log('text bar undefined');
+            }else{
+                missing_count_bar.remove().exit();
+                // canvas.remove().exit();
+            }
+
+            // var bar = d3.selectAll(".rectangle").data(avg).filter(function (d, i) {
+            //         return missingCategory.includes(d.key);
+            //     });
+            //
+            //     bar.enter().append('rect')
+            //         .attr('class','bar')
+            //         .attr("x",function(d){return x(d.key);})
+            //         .attr('y',function(d){return y(d.value);})
+            //         .attr("fill","#87CEFA")
+            //         .attr('height',function(d){return height - y(d.value);})
+            //         .attr("width",x.bandwidth());
+            //
+            //     //remove data
+            //     bar.exit().remove();
+            //
+            //     bar.attr("y", function(d){return y(d.value);})
+            //         .attr('height',function(d){return height -y(d.value);});
+
+
+            // vis_bar = canvas.selectAll("rectangle")
+            // // .data(data)
+            //     .data(avg)
+            //     .enter()
+            //       .filter(function (d, i) {
+            //         return missingCategory.includes(d.key);
+            //     })
+            //     .append("rect")
+            //     .attr("class","rectangle")
+            //     // .attr("width", width/data.length-5)
+            //     .attr("width", x.bandwidth())
+            //     .attr("height", function(d){
+            //         return height -y(d.value);
+            //     })
+            //     .attr("x", function(d, i){
+            //         return x(d.key);
+            //     })
+            //     .attr("y", function(d){
+            //         return y(d.value);
+            //     })
+            //     .attr("stroke","#87CEFA")
+            //     .attr("fill","#87CEFA")
+            //     // .attr("fill","url(#gradient)")
+            //     .append("title")
+            //     .text(function(d){
+            //
+            //     });
+            // vis_bar.remove().exit();
+
+
+            var transition = d3.selectAll(".rectangle")
+                .filter(function (d, i) {
+                    return missingCategory.includes(d.key);
+                })
+                .transition().duration(2000);
+
+            // transition.attr("y", function(d){
+            //         return height-y(d.value);
+            //     }).attr("height",0)
+            //     .transition().duration(2000)
+            //     .attr("y", 0)
+            //     .attr("height",function(d){
+            //         return height -y(d.value);
+            //     });
+
+            transition
+                .attr("y" ,function(d){
+                    return height -y(d.value);
+                })
+                .attr("height",function(d){
+                    return y(d.value);
+                }).transition().duration(2000)
+                .attr("y",function(d){
+                    return y(d.value);
+                }).attr("height", function(d){
+                    return height-y(d.value);
+                });
+
+
+
+
 
             bar_error_line.remove().exit();
             bar_error_top.remove().exit();
@@ -1770,7 +1889,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -1795,7 +1915,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -1947,7 +2068,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -1972,7 +2094,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -2083,7 +2206,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -2107,7 +2231,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -2186,7 +2311,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
                     return height -y1(d.value);
@@ -2209,7 +2335,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -2264,7 +2391,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(notMissingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
@@ -2290,7 +2418,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .data(missingCount)
                 .enter()
                 .append("rect")
-                .attr("class","rectangle")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
                 // .attr("width", width/data.length-5)
                 .attr("width", x.bandwidth()/2)
                 .attr("height", function(d){
