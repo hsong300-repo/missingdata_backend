@@ -149,9 +149,9 @@ function updateChart() {
 
 
     // var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
-
-    var temp_x = chartScales.x;
-    var temp_y = chartScales.y;
+    // these were declared as local initially
+    temp_x = chartScales.x;
+    temp_y = chartScales.y;
 
     if(temp_x === "Age"){
         temp_x ="age";
@@ -179,12 +179,16 @@ function updateChart() {
         .filter(function(d){
             return d[select_x] === 1 || d[select_y] === 1});
 
+
     filtered_x = whiskey
             .filter(function(d){
                 return d[select_x] ===1});
+
+    console.log("filtered_x",filtered_x);
     filtered_y = whiskey
             .filter(function(d){
                 return d[select_y] ===1});
+    console.log("filtered_y",filtered_y);
 
     noimpute_data = whiskey
         .filter(function(d){
@@ -205,6 +209,9 @@ function updateChart() {
     // console.log('filtered_y',filtered_y);
     // console.log('concat',filtered_x.concat(filtered_y));
 
+    // Define the div for the tooltip
+    var div = d3.select("body").append("div")
+        .attr("class", "tooltip");
 
     // var dotsEnter = dots.enter()
     dotsEnter = dots.enter()
@@ -213,24 +220,42 @@ function updateChart() {
         .attr("fill","steelblue")
         .on('mouseover', function(d){ // Add hover start event binding
             // Select the hovered g.dot
-            var hovered = d3.select(this);
-            // Show the text, otherwise hidden
-            hovered.select('text')
-                .style('visibility', 'visible');
-            // Add stroke to circle to highlight it
-            hovered.select('circle')
-                .style('stroke-width', 2)
-                .style('stroke', '#333');
+            x_val = "exists";
+            if(d[select_x] === 1){
+                x_val = "imputed";
+            }
+            y_val = "exists";
+            if(d[select_y] === 1){
+                y_val = "imputed";
+            }
+            div.transition()
+                .duration(200)
+                .style("opacity", .9);
+            div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+
+            // var hovered = d3.select(this);
+            // // Show the text, otherwise hidden
+            // hovered.select('text')
+            //     .style('visibility', 'visible');
+            // // Add stroke to circle to highlight it
+            // hovered.select('circle')
+            //     .style('stroke-width', 2)
+            //     .style('stroke', '#333');
         })
         .on('mouseout', function(d){ // Add hover end event binding
             // Select the hovered g.dot
-            var hovered = d3.select(this);
-            // Remove the highlighting we did in mouseover
-            hovered.select('text')
-                .style('visibility', 'hidden');
-            hovered.select('circle')
-                .style('stroke-width', 0)
-                .style('stroke', 'none');
+            // var hovered = d3.select(this);
+            // // Remove the highlighting we did in mouseover
+            // hovered.select('text')
+            //     .style('visibility', 'hidden');
+            // hovered.select('circle')
+            //     .style('stroke-width', 0)
+            //     .style('stroke', 'none');
+            div.transition()
+                .duration(500)
+                .style("opacity", 0);
         });
 
     // Append a circle to the ENTER selection
@@ -248,8 +273,45 @@ function updateChart() {
             return d[select_x] ===1 || d[select_y] === 1})
         .attr("class","impute")
         .style("fill","steelblue")
-         .style("opacity",0)
+         .style("opacity",0.1)
         .attr('r', 4);
+
+    dotsEnter.append('rect')
+        .filter(function(d){
+            return d[select_x] ===1 || d[select_y] === 1})
+        .attr("class","rect_impute")
+        .style("fill","steelblue")
+        .style("opacity",0)
+        .attr('stroke', '#000')
+        .attr('width', 6.5)
+        .attr('height', 6.5)
+        .attr('stoke-width', 1)
+        .attr("x",-3)
+        .attr("y",-3);
+
+    var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+    var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
+    dotsEnter.append("line")
+        .filter(function(d){
+            return d[select_x] ===1})
+        .attr("class", "error-line")
+        .attr("x1", -std_x )
+        .attr("y1", 0)
+        .attr("x2", +std_x)
+        .style("opacity",0)
+        .attr("y2", 0);
+
+    // this is for y
+    dotsEnter.append("line")
+        .filter(function(d){
+            return d[select_y] ===1})
+        .attr("class", "error-line")
+        .attr("x1", 0)
+        .attr("y1",std_y)
+        .attr("x2", 0)
+        .style("opacity",0)
+        .attr("y2", -std_y);
 
     // Append a text to the ENTER selection
     // dotsEnter.append('text')
@@ -262,31 +324,34 @@ function updateChart() {
     //     });
 
      // Append a text to the ENTER selection
-    dotsEnter.append('text')
-        .attr('y', -10)
-        .text(function(d) {
-            if(d[select_x] === 0){
-                var x_val = "valid";
-            }else if(d[select_x] === 1){
-                var x_val = "missing";
-            }
-            if(d[select_y] === 0){
-                var y_val = "valid";
-            }else if(d[select_x] === 1){
-                var y_val = "missing";
-            }
-            return temp_x +":"+x_val +" , " + temp_y + ":" +y_val;
-        });
+    // dotsEnter.append('text')
+    //     // .attr('y', -10)
+    //     .attr('y', -10)
+    //     .style("font-size", "15px")
+    //     .text(function(d) {
+    //         if(d[select_x] === 0){
+    //             var x_val = "valid";
+    //         }else if(d[select_x] === 1){
+    //             var x_val = "missing";
+    //         }
+    //         if(d[select_y] === 0){
+    //             var y_val = "valid";
+    //         }else if(d[select_x] === 1){
+    //             var y_val = "missing";
+    //         }
+    //         return temp_x +":"+x_val + '\n'+ temp_y + ":" +y_val;
+    //     });
 
 
-    d3.selectAll(("input[value='color']")).on("change", function() {
-        console.log('onchange color');
-        redraw_color();
-    });
 
     d3.selectAll(("input[value='gradient']")).on("change", function() {
         console.log('onchange gradient');
         redraw_gradient();
+    });
+
+    d3.selectAll(("input[value='color']")).on("change", function() {
+        console.log('onchange color');
+        redraw_color();
     });
 
     d3.selectAll(("input[value='error']")).on("change", function() {
@@ -299,9 +364,9 @@ function updateChart() {
         redraw_pattern();
     });
 
-    d3.selectAll(("input[value='local']")).on("change", function() {
-        console.log('onchange local');
-        redraw_local();
+    d3.selectAll(("input[value='unfilled']")).on("change", function() {
+        console.log('onchange unfilled');
+        redraw_unfilled();
     });
 
     d3.selectAll(("input[value='sketch']")).on("change", function() {
@@ -319,9 +384,19 @@ function updateChart() {
         redraw_animation();
     });
 
-    d3.selectAll(("input[value='restart']")).on("change", function() {
-        console.log('restart');
-        redraw_restart();
+    d3.selectAll(("input[value='none']")).on("change", function() {
+        console.log('none');
+        redraw_none();
+    });
+
+    d3.selectAll(("input[value='ticks_on']")).on("change", function() {
+        console.log('ticks_on');
+        redraw_ticks_on();
+    });
+
+    d3.selectAll(("input[value='ticks_off']")).on("change", function() {
+        console.log('ticks_off');
+        redraw_ticks_off();
     });
 
 
@@ -390,22 +465,31 @@ function updateChart() {
                 dots_chart_y.remove().exit(); //remove some of the encodings
             }
 
-         dots_chart = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            .data(filtered_data).enter()
-            // .data(whiskey).enter()
-            .append('circle')
-            // .filter(function (d, i) {
-            //     return d[chartScales.x]==="0.0";
-            // })
-            .style("fill", '#87CEFA')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 4);
+         // dots_chart = chartG.append("g").attr('class', "Scatter")
+         //    .selectAll("circle")
+         //    .data(filtered_data).enter()
+         //    // .data(whiskey).enter()
+         //    .append('circle')
+         //    // .filter(function (d, i) {
+         //    //     return d[chartScales.x]==="0.0";
+         //    // })
+         //    .style("fill", '#87CEFA')
+         //    .attr("cx", function (d) {
+         //        return xScale(d[chartScales.x]);
+         //    })
+         //    .attr("cy", function (d) {
+         //        return yScale(d[chartScales.y]);
+         //    })
+         //    .attr('r', 4);
+
+        d3.selectAll(".impute")
+            .style("fill", '#87CEFA').style("opacity",1);
+
+        d3.selectAll(".rect_impute")
+            .style("opacity",0);
+
+        // d3.selectAll(".impute")
+        //     .style("fill", '#87CEFA').style("opacity",1);
 
 
         shape_check = false;
@@ -414,12 +498,12 @@ function updateChart() {
 
     }// end of color
 
-    function redraw_local() {
+    function redraw_unfilled() {
 
-            if(typeof dots_chart === 'undefined'){ // bars
-                }else{
-                    dots_chart.remove().exit(); //remove some of the encodings
-                }
+            // if(typeof dots_chart === 'undefined'){ // bars
+            //     }else{
+            //         dots_chart.remove().exit(); //remove some of the encodings
+            //     }
                 if(typeof dots_chart_line === 'undefined'){ // bars
                 }else{
                     dots_chart_line.remove().exit();
@@ -438,26 +522,34 @@ function updateChart() {
                     dots_chart_y.remove().exit(); //remove some of the encodings
                 }
 
-            dots_chart = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                // .data(whiskey)
-                .data(filtered_data)
-                .enter()
-                .append('circle')
-                // .filter(function (d, i) {
-                //     return removed_idx.includes(i);
-                // })
-                .style("stroke", '#87CEFA')
-                .style("stroke-width", 1)
-                .style("fill", '#fff')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                // .attr('r', 4);
-                .attr('r', 4);
+            // dots_chart = chartG.append("g").attr('class', "Scatter")
+            //     .selectAll("circle")
+            //     // .data(whiskey)
+            //     .data(filtered_data)
+            //     .enter()
+            //     .append('circle')
+            //     // .filter(function (d, i) {
+            //     //     return removed_idx.includes(i);
+            //     // })
+            //     .style("stroke", '#87CEFA')
+            //     .style("stroke-width", 1)
+            //     .style("fill", '#fff')
+            //     .attr("cx", function (d) {
+            //         return xScale(d[chartScales.x]);
+            //     })
+            //     .attr("cy", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     // .attr('r', 4);
+            //     .attr('r', 4);
+
+            d3.selectAll(".impute")
+            .style("stroke", 'steelblue')
+            .style("stroke-width", 1)
+            .style("fill", '#fff').style("opacity",1);
+
+            d3.selectAll(".rect_impute")
+                .style("opacity",0);
 
             // where it is missing, so if the value is imputed than it will show little lines next to it
             dots_chart_line = chartG.append("g").selectAll("line")
@@ -707,7 +799,6 @@ function updateChart() {
     //
     //     }// end of local
 
-
     function redraw_gradient() {
 
             if(typeof dots_chart === 'undefined'){ // bars
@@ -745,23 +836,29 @@ function updateChart() {
             .attr("offset", "100%")
             .attr("stop-color", "steelblue");
 
-        dots_chart = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            // .data(whiskey)
-            .data(filtered_data)
-            .enter()
-            .append('circle')
-            // .filter(function (d, i) {
-            //     return removed_idx.includes(i)
-            // })
-            .style("fill", 'url(#radial-gradient)')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 4);
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     // .data(whiskey)
+        //     .data(filtered_data)
+        //     .enter()
+        //     .append('circle')
+        //     // .filter(function (d, i) {
+        //     //     return removed_idx.includes(i)
+        //     // })
+        //     .style("fill", 'url(#radial-gradient)')
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr('r', 4);
+
+        d3.selectAll(".impute")
+            .style("fill", 'url(#radial-gradient)').style("opacity",1);
+
+        d3.selectAll(".rect_impute")
+            .style("opacity",0);
 
 
         shape_check = false;
@@ -795,22 +892,29 @@ function updateChart() {
             }
 
 
-        dots_chart = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            // .data(whiskey)
-            .data(filtered_data)
-            .enter()
-            .append('circle')
-            .style("fill", 'url(#diagonal-stripes)')
-            // .attr('stroke', '#000')
-            // .attr('stroke-width', 1)
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 4);
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     // .data(whiskey)
+        //     .data(filtered_data)
+        //     .enter()
+        //     .append('circle')
+        //     .style("fill", 'url(#diagonal-stripes)')
+        //     // .attr('stroke', '#000')
+        //     // .attr('stroke-width', 1)
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr('r', 4);
+
+        d3.selectAll(".impute")
+            .style("fill", 'url(#diagonal-stripes)').style("opacity",1);
+
+        d3.selectAll(".rect_impute")
+            .style("opacity",0);
+
 
         shape_check = false;
 
@@ -840,23 +944,43 @@ function updateChart() {
             dots_chart_y.remove().exit(); //remove some of the encodings
         }
 
-        dots_chart = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            // .data(whiskey)
-            .data(filtered_data)
-            .enter()
-            .append('rect')
-            .style("fill", "steelblue")
-            .attr('stroke', '#000')
-            .attr('width', 6.5)
-            .attr('height', 6.5)
-            .attr('stoke-width', 1)
-            .attr("x", function (d) {
-                return xScale(d[chartScales.x])-3;
-            })
-            .attr("y", function (d) {
-                return yScale(d[chartScales.y])-3;
-            });
+        d3.selectAll(".rect_impute").style("opacity",1);
+
+        d3.selectAll(".impute")
+            .style("opacity",0);
+        // dots_chart =
+        //     // chartG.append("g")
+        //     // .attr('class', "Scatter")
+        //     // .selectAll("circle")
+        //     chartG.append("g").selectAll(".impute")
+        //     // .data(whiskey)
+        //     .data(filtered_data)
+        //     .enter()
+        //     .append('rect')
+        //     .style("fill", "steelblue")
+        //     .attr('stroke', '#000')
+        //     .attr('width', 6.5)
+        //     .attr('height', 6.5)
+        //     .attr('stoke-width', 1)
+        //     .attr("x", function (d) {
+        //         return xScale(d[chartScales.x])-3;
+        //     })
+        //     .attr("y", function (d) {
+        //         return yScale(d[chartScales.y])-3;
+        //     });
+
+        // d3.selectAll(".impute").append('rect')
+        //     .attr('stroke', '#000')
+        //     .attr('width', 6.5)
+        //     .attr('height', 6.5)
+        //     .attr('stoke-width', 1)
+        //     .style("fill", 'steelblue').style("opacity",1)
+        //     .attr("x", function (d) {
+        //         return xScale(d[chartScales.x])-3;
+        //     })
+        //     .attr("y", function (d) {
+        //         return yScale(d[chartScales.y])-3;
+        //     });
 
         shape_check = true;
 
@@ -890,107 +1014,108 @@ function updateChart() {
             var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
             var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-            console.log('std_x',std_x);
-            console.log('std_y',std_y);
 
-            if(typeof dots_chart === 'undefined'){ // bars
-                 dots_chart = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                // .data(whiskey)
-                .data(filtered_data)
-                .enter()
-                .append('circle')
-                .style("fill", 'steelblue')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                // .attr('r', 4);
-                .attr('r', 4);
+            // if(typeof dots_chart === 'undefined'){ // bars
+            //      dots_chart = chartG.append("g").attr('class', "Scatter")
+            //     .selectAll("circle")
+            //     // .data(whiskey)
+            //     .data(filtered_data)
+            //     .enter()
+            //     .append('circle')
+            //     .style("fill", 'steelblue')
+            //     .attr("cx", function (d) {
+            //         return xScale(d[chartScales.x]);
+            //     })
+            //     .attr("cy", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     // .attr('r', 4);
+            //     .attr('r', 4);
+            //
+            //      dots_chart_line = chartG.append("g").selectAll("line")
+            //     .data(filtered_data)
+            //     .enter()
+            //     .filter(function(d){
+            //         return d[select_x] ===1})
+            //     .append("line")
+            //     .attr("class", "error-line")
+            //     .attr("x1", function (d) {
+            //         return xScale(d[chartScales.x]-std_x );
+            //     })
+            //     .attr("y1", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     .attr("x2", function (d) {
+            //         return xScale(d[chartScales.x] +std_x);
+            //     })
+            //     .attr("y2", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     });
+            //
+            // dots_chart_line_y = chartG.append("g").selectAll("line")
+            //     .data(filtered_data)
+            //     .enter()
+            //     .filter(function(d){
+            //         return d[select_y] ===1})
+            //     .append("line")
+            //     .attr("class", "error-line")
+            //     .attr("x1", function (d) {
+            //         return xScale(d[chartScales.x] );
+            //     })
+            //     .attr("y1", function (d) {
+            //         return yScale(d[chartScales.y]+std_y);
+            //     })
+            //     .attr("x2", function (d) {
+            //         return xScale(d[chartScales.x] );
+            //     })
+            //     .attr("y2", function (d) {
+            //         return yScale(d[chartScales.y]-std_y);
+            //     });
+            // }else{
+            //     // dots_chart.remove().exit(); //remove some of the encodings
+            //     dots_chart_line = chartG.append("g").selectAll("line")
+            //     .data(filtered_data)
+            //     .enter()
+            //     .filter(function(d){
+            //         return d[select_x] ===1})
+            //     .append("line")
+            //     .attr("class", "error-line")
+            //     .attr("x1", function (d) {
+            //         return xScale(d[chartScales.x]-std_x );
+            //     })
+            //     .attr("y1", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     .attr("x2", function (d) {
+            //         return xScale(d[chartScales.x] +std_x);
+            //     })
+            //     .attr("y2", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     });
+            //
+            // dots_chart_line_y = chartG.append("g").selectAll("line")
+            //     .data(filtered_data)
+            //     .enter()
+            //     .filter(function(d){
+            //         return d[select_y] ===1})
+            //     .append("line")
+            //     .attr("class", "error-line")
+            //     .attr("x1", function (d) {
+            //         return xScale(d[chartScales.x] );
+            //     })
+            //     .attr("y1", function (d) {
+            //         return yScale(d[chartScales.y]+std_y);
+            //     })
+            //     .attr("x2", function (d) {
+            //         return xScale(d[chartScales.x] );
+            //     })
+            //     .attr("y2", function (d) {
+            //         return yScale(d[chartScales.y]-std_y);
+            //     });
+            // }
 
-                 dots_chart_line = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                .filter(function(d){
-                    return d[select_x] ===1})
-                .append("line")
-                .attr("class", "error-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]-std_x );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] +std_x);
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]);
-                });
-
-            dots_chart_line_y = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                .filter(function(d){
-                    return d[select_y] ===1})
-                .append("line")
-                .attr("class", "error-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]+std_y);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]-std_y);
-                });
-            }else{
-                // dots_chart.remove().exit(); //remove some of the encodings
-                dots_chart_line = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                .filter(function(d){
-                    return d[select_x] ===1})
-                .append("line")
-                .attr("class", "error-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]-std_x );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] +std_x);
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]);
-                });
-
-            dots_chart_line_y = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                .filter(function(d){
-                    return d[select_y] ===1})
-                .append("line")
-                .attr("class", "error-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]+std_y);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]-std_y);
-                });
-            }
+        // this is for x
+        d3.selectAll(".error-line").style("opacity",1);
 
         }// end of scatter error
 
@@ -1014,107 +1139,182 @@ function updateChart() {
                 dots_chart_y.remove().exit(); //remove some of the encodings
             }
 
-            if(typeof dots_chart === 'undefined'){ // bars
-                 dots_chart_x = chartG.append("g").attr('class', "Scatter")
-                    .selectAll("circle")
-                    .data(whiskey)
-                    .enter()
-                    .append('circle')
-                    .filter(function(d){
-                            return d[select_x] ===1 })
-                    .style("stroke", 'steelblue')
-                    // .style("stroke-width", 1)
-                    .style("fill", 'steelblue')
-                    .attr("cx", function (d) {
-                        return xScale(d[chartScales.x]);
-                    })
-                    .attr("cy", function (d) {
-                        return yScale(d[chartScales.y]);
-                    })
-                    .attr('r', 4);
+            // if(typeof dots_chart === 'undefined'){ // bars
+            //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
+            //         .selectAll("circle")
+            //         .data(whiskey)
+            //         .enter()
+            //         .append('circle')
+            //         .filter(function(d){
+            //                 return d[select_x] ===1 })
+            //         .style("stroke", 'steelblue')
+            //         // .style("stroke-width", 1)
+            //         .style("fill", 'steelblue')
+            //         .attr("cx", function (d) {
+            //             return xScale(d[chartScales.x]);
+            //         })
+            //         .attr("cy", function (d) {
+            //             return yScale(d[chartScales.y]);
+            //         })
+            //         .attr('r', 4);
+            //
+            //     dots_chart_y = chartG.append("g").attr('class', "Scatter")
+            //         .selectAll("circle")
+            //         .data(whiskey)
+            //         .enter()
+            //         .append('circle')
+            //         .filter(function(d){
+            //                 return d[select_y] ===1 })
+            //         .style("stroke", 'steelblue')
+            //         // .style("stroke-width", 1)
+            //         .style("fill", 'steelblue')
+            //         .attr("cx", function (d) {
+            //             return xScale(d[chartScales.x]);
+            //         })
+            //         .attr("cy", function (d) {
+            //             return yScale(d[chartScales.y]);
+            //         })
+            //         .attr('r', 4);
+            //     shape_check = false;
+            // }else{
+            //       dots_chart_x = dots_chart.filter(function(d){
+            //             return d[select_x] ===1 });
+            //       dots_chart_y = dots_chart.filter(function(d){
+            //             return d[select_y] ===1 });
+            // }
+            //
+            //
+            //
+            // if(shape_check === false){
+            //      move_x = dots_chart_x.transition()
+            //         .duration(2000)
+            //         .attr('cx',0)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr('cx',420)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr("cx", function (d) {
+            //             return xScale(d[chartScales.x]);
+            //         });
+            //
+            //     move_y = dots_chart_y.transition()
+            //         .filter(function(d){
+            //                 return d[select_y] ===1 })
+            //         .duration(2000)
+            //         // .attr('cy',420)
+            //         .attr('cy',0)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr('cy',420)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr("cy", function (d) {
+            //             return yScale(d[chartScales.y]);
+            //         });
+            // }else if(shape_check === true){
+            //      move_x = dots_chart_x.transition()
+            //         .duration(2000)
+            //         .attr('x',0)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr('x',420)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr("x", function (d) {
+            //             return xScale(d[chartScales.x]);
+            //         });
+            //
+            //     move_y = dots_chart_y.transition()
+            //         .filter(function(d){
+            //                 return d[select_y] ===1 })
+            //         .duration(2000)
+            //         // .attr('cy',420)
+            //         .attr('y',0)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr('y',420)
+            //         .transition()
+            //         .duration(2000)
+            //         .attr("y", function (d) {
+            //             return yScale(d[chartScales.y]);
+            //         });
+            // }
 
-                dots_chart_y = chartG.append("g").attr('class', "Scatter")
-                    .selectAll("circle")
-                    .data(whiskey)
-                    .enter()
-                    .append('circle')
-                    .filter(function(d){
-                            return d[select_y] ===1 })
-                    .style("stroke", 'steelblue')
-                    // .style("stroke-width", 1)
-                    .style("fill", 'steelblue')
-                    .attr("cx", function (d) {
-                        return xScale(d[chartScales.x]);
-                    })
-                    .attr("cy", function (d) {
-                        return yScale(d[chartScales.y]);
-                    })
-                    .attr('r', 4);
-                shape_check = false;
-            }else{
-                  dots_chart_x = dots_chart.filter(function(d){
-                        return d[select_x] ===1 });
-                  dots_chart_y = dots_chart.filter(function(d){
-                        return d[select_y] ===1 });
-            }
 
 
+        if(shape_check == false){
+            transition_x = d3.selectAll(".impute")
+                .filter(function(d){
+                    return d[select_x] ===1 });
+            // .transition().duration(2000);
 
-            if(shape_check === false){
-                 move_x = dots_chart_x.transition()
-                    .duration(2000)
-                    .attr('cx',0)
-                    .transition()
-                    .duration(2000)
-                    .attr('cx',420)
-                    .transition()
-                    .duration(2000)
-                    .attr("cx", function (d) {
-                        return xScale(d[chartScales.x]);
-                    });
+            transition_y= d3.selectAll(".impute")
+                .filter(function(d){
+                    return d[select_y] ===1 });
 
-                move_y = dots_chart_y.transition()
-                    .filter(function(d){
-                            return d[select_y] ===1 })
-                    .duration(2000)
-                    // .attr('cy',420)
-                    .attr('cy',0)
-                    .transition()
-                    .duration(2000)
-                    .attr('cy',420)
-                    .transition()
-                    .duration(2000)
-                    .attr("cy", function (d) {
-                        return yScale(d[chartScales.y]);
-                    });
-            }else if(shape_check === true){
-                 move_x = dots_chart_x.transition()
-                    .duration(2000)
-                    .attr('x',0)
-                    .transition()
-                    .duration(2000)
-                    .attr('x',420)
-                    .transition()
-                    .duration(2000)
-                    .attr("x", function (d) {
-                        return xScale(d[chartScales.x]);
-                    });
+            transition_x.transition()
+                .duration(2000)
+                .attr('cx',0)
+                .transition()
+                .duration(2000)
+                .attr('cx',350)
+                .transition()
+                .duration(2000)
+                .attr("cx", 0);
+            transition_y.transition()
+                .duration(2000)
+                // .attr('cy',420)
+                .attr('cy',0)
+                .transition()
+                .duration(2000)
+                .attr('cy',350)
+                .transition()
+                .duration(2000)
+                .attr("cy",0);
+        }else{
+            transition_x = d3.selectAll(".rect_impute")
+                .filter(function(d){
+                    return d[select_x] ===1 });
+            // .transition().duration(2000);
 
-                move_y = dots_chart_y.transition()
-                    .filter(function(d){
-                            return d[select_y] ===1 })
-                    .duration(2000)
-                    // .attr('cy',420)
-                    .attr('y',0)
-                    .transition()
-                    .duration(2000)
-                    .attr('y',420)
-                    .transition()
-                    .duration(2000)
-                    .attr("y", function (d) {
-                        return yScale(d[chartScales.y]);
-                    });
-            }
+            transition_y= d3.selectAll(".rect_impute")
+                .filter(function(d){
+                    return d[select_y] ===1 });
+
+            transition_x.transition()
+                .duration(2000)
+                .attr('x',0)
+                .transition()
+                .duration(2000)
+                .attr('x',350)
+                .transition()
+                .duration(2000)
+                .attr("x", 0);
+
+            transition_y.transition()
+                .duration(2000)
+                // .attr('cy',420)
+                .attr('y',0)
+                .transition()
+                .duration(2000)
+                .attr('y',350)
+                .transition()
+                .duration(2000)
+                .attr("y",0);
+        }
+
+
+                // .transition().duration(2000);
+
+            // transition.attr("y", function(d){
+            //         return height-y(d.value);
+            //     }).attr("height",0)
+            //     .transition().duration(2000)
+            //     .attr("y", 0)
+            //     .attr("height",function(d){
+            //         return height -y(d.value);
+            //     });
 
             shape_check = false;
 
@@ -1156,6 +1356,17 @@ function updateChart() {
             //     })
             //     .attr('r', 4);
         }// end of local
+
+    function redraw_none() {
+
+        d3.selectAll(".error-line")
+            .style("opacity",0);
+
+
+
+
+    }// end of pattern
+
 
 }// end of updatechart for Scatterplots
 

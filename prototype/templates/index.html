@@ -54,7 +54,7 @@
                     <input type="radio" name="impute" value="scatter_random" checked> random<br>
 
                     <label class='radio-inline'>
-                        Encodings: <input type="radio" name="vis" value="color"> color
+                        Encodings: <input type="radio" name="vis" value="color" checked> color
                         <!--<input type="radio" name="color" value="color" onclick='change(this.value)'> color-->
                     </label>
                     <label class='radio-inline'>
@@ -62,7 +62,7 @@
                         <!--<input type="radio" name="gradient" value="gradient" onclick='change(this.value)'> gradient-->
                     </label>
                     <label class='radio-inline'>
-                        <input type="radio" name="vis" value="local"> local
+                        <input type="radio" name="vis" value="unfilled"> unfilled
                     </label>
                     <label class='radio-inline'>
                         <input type="radio" name="vis" value="pattern"> pattern
@@ -72,10 +72,19 @@
                     </label>
                     <br>
                     <label class='radio-inline'>
-                         Range: <input type="radio" name="potential_value" value="error"> error
+                         Range: <input type="radio" name="range" value="error"> error
                     </label>
                      <label class='radio-inline'>
-                        <input type="radio" name="potential_value" value="animation"> animation
+                        <input type="radio" name="range" value="animation"> animation
+                    </label>
+                    <label class='radio-inline'>
+                        <input type="radio" name="range" value="none" checked> none
+                    </label><br>
+                    <label class='radio-inline'>
+                        Ticks: <input type="radio" name="ticks" value="ticks_on"> on
+                    </label>
+                    <label class='radio-inline'>
+                        <input type="radio" name="ticks" value="ticks_off" checked> off
                     </label>
                 </div>
             </div>
@@ -146,10 +155,20 @@
                     <!--<label class='radio-inline'>-->
                     <br>
                      <label class='radio-inline'>
-                        Range:<input type="radio" name="potential_value" value="bar_error"> error
+                        Range:<input type="radio" name="range" value="bar_error"> error
                     </label>
                     <label class='radio-inline'>
-                        <input type="radio" name="potential_value" value="bar_animation"> animation
+                        <input type="radio" name="range" value="bar_animation"> animation
+                    </label>
+                    <label class='radio-inline'>
+                        <input type="radio" name="range" value="none"> none
+                    </label>
+                    <br>
+                    <label class='radio-inline'>
+                        Counts:<input type="radio" name="counts" value="counts_on"> on
+                    </label>
+                    <label class='radio-inline'>
+                        <input type="radio" name="counts" value="counts_off"> off
                     </label>
 
 
