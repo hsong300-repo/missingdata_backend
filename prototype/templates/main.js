@@ -1779,6 +1779,8 @@ var previewCsvUrl = function( csvUrl ) {
                         return +d[selection.value];});})
                     .entries(data);
 
+                console.log("selection here dropdown");
+
 
                 error_avg = selectAvg;
 
@@ -1817,11 +1819,12 @@ var previewCsvUrl = function( csvUrl ) {
                     .entries(data);
 
                 d3.selectAll(("input[value='bar_color']")).on("change", function() {
+                    console.log('color dropdown');
                     redraw_bar_color(missingCount,notMissingCount,selectAvg,missingCategory);
-
                 });
 
                 d3.selectAll(("input[value='bar_gradient']")).on("change", function() {
+                    console.log("gradient dropdown");
                     redraw_bar_gradient(missingCount,notMissingCount,selectAvg,missingCategory);
 
                 });
@@ -1876,6 +1879,7 @@ var previewCsvUrl = function( csvUrl ) {
 
                 bar.enter().append('rect')
                     .attr('class','bar')
+                    // .attr('class','rectangle')
                     .attr("x",function(d){return x(d.key);})
                     .attr('y',function(d){return y(d.value);})
                     .attr('height',function(d){return height - y(d.value);})
@@ -1890,14 +1894,6 @@ var previewCsvUrl = function( csvUrl ) {
                 d3.selectAll("g.y.axis")
                     .transition()
                     .call(yAxis);
-
-                // canvas.selectAll(".error").remove().exit();
-                if(typeof bar_unknown_text === 'undefined'){ // bars
-                    console.log('text bar undefined');
-                }else{
-                    bar_unknown_text.remove().exit();
-                    // canvas.remove().exit();
-                }
 
 
             });
@@ -1922,39 +1918,22 @@ var previewCsvUrl = function( csvUrl ) {
         }// end of bar color
 
         function redraw_bar_color(missingCount,notMissingCount,avg,missingCategory){
-            if(typeof missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-
-                missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }if(typeof not_missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-
-                not_missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof bar_unknown_text === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                bar_unknown_text.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof missing_count_bar === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                missing_count_bar.remove().exit();
-                // canvas.remove().exit();
-            }
-
 
             // vis_bar = canvas.selectAll("rectangle")
 
             d3.selectAll(".rectangle").filter(function (d, i) {
-                return missingCategory.includes(d.key);
-            }).attr("stroke","#87CEFA")
+                return missingCategory.includes(d.key);})
+                .attr("stroke","#87CEFA")
+                .style("stroke-dasharray", ("0, 0"))
                 .attr("fill","#87CEFA");
+
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return !missingCategory.includes(d.key);})
+                .attr("stroke","steelblue")
+                .style("stroke-dasharray", ("0, 0"))
+                .attr("fill","steelblue");
+
+
 
 
         }// end of bar none
@@ -2167,91 +2146,22 @@ var previewCsvUrl = function( csvUrl ) {
 
         function redraw_bar_dash(missingCount,notMissingCount,avg,missingCategory){
 
-            if(typeof missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-
-                missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }if(typeof not_missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-
-                not_missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof bar_unknown_text === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                bar_unknown_text.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof missing_count_bar === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                missing_count_bar.remove().exit();
-                // canvas.remove().exit();
-            }
-
-            vis_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(avg)
-                .enter()
-                  .filter(function (d, i) {
-                    return missingCategory.includes(d.key);
-                })
-                .append("rect")
-                .attr("class","rectangle")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth())
-                .attr("height", function(d){
-                    return height -y(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y(d.value);
-                })
-               .attr("fill","white")
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return missingCategory.includes(d.key);
+            }).attr("fill","white")
                 .attr('stroke','steelblue')
-                .style("stroke-dasharray", ("3, 3"))
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
+                .style("stroke-dasharray", ("3, 3"));
 
-                });
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return !missingCategory.includes(d.key);})
+                .attr("stroke","steelblue")
+                .style("stroke-dasharray", ("0, 0"))
+                .attr("fill","steelblue");
 
-            vis_bar.remove().exit();
 
         }// end of bar dash
 
         function redraw_bar_gradient(missingCount,notMissingCount,avg,missingCategory){
-
-            if(typeof missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-                missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }if(typeof not_missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-
-                not_missing_bar.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof bar_unknown_text === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                bar_unknown_text.remove().exit();
-                // canvas.remove().exit();
-            }
-            if(typeof missing_count_bar === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                missing_count_bar.remove().exit();
-                // canvas.remove().exit();
-            }
 
             var gradient_bar = canvas.append("defs")
                 .append('linearGradient')
@@ -2275,88 +2185,96 @@ var previewCsvUrl = function( csvUrl ) {
                 .attr("stop-opacity", 1);
 
 
-             vis_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(avg)
-                .enter()
-                  .filter(function (d, i) {
-                    return missingCategory.includes(d.key);
-                })
-                .append("rect")
-                .attr("class","rectangle")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth())
-                .attr("height", function(d){
-                    return height -y(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y(d.value);
-                })
-                .attr("fill","url(#svgGradient)")
-                .attr('stroke','url(#svgGradient)')
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
+            //  vis_bar = canvas.selectAll("rectangle")
+            // // .data(data)
+            //     .data(avg)
+            //     .enter()
+            //       .filter(function (d, i) {
+            //         return missingCategory.includes(d.key);
+            //     })
+            //     .append("rect")
+            //     .attr("class","rectangle")
+            //     // .attr("width", width/data.length-5)
+            //     .attr("width", x.bandwidth())
+            //     .attr("height", function(d){
+            //         return height -y(d.value);
+            //     })
+            //     .attr("x", function(d, i){
+            //         return x(d.key);
+            //     })
+            //     .attr("y", function(d){
+            //         return y(d.value);
+            //     })
+            //     .attr("fill","url(#svgGradient)")
+            //     .attr('stroke','url(#svgGradient)')
+            //     // .attr("fill","url(#gradient)")
+            //     .append("title")
+            //     .text(function(d){
+            //
+            //     });
+            //
+            // vis_bar.remove().exit();
 
-                });
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return !missingCategory.includes(d.key);})
+                .attr("stroke","steelblue")
+                .style("stroke-dasharray", ("0, 0"))
+                .attr("fill","steelblue");
 
-            vis_bar.remove().exit();
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return missingCategory.includes(d.key);})
+                .attr("stroke","url(#svgGradient)")
+                .style("stroke-dasharray", ("0, 0"))
+                .attr("fill","url(#svgGradient)");
+
 
         }// end of bar gradient
 
         function redraw_bar_pattern(missingCount,notMissingCount,avg,missingCategory){
-            if(typeof missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-                missing_bar.remove().exit();
-            }if(typeof not_missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-                not_missing_bar.remove().exit();
-            }
-            if(typeof bar_unknown_text === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                bar_unknown_text.remove().exit();
-            }
-            if(typeof missing_count_bar === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                missing_count_bar.remove().exit();
-            }
 
-            vis_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(avg)
-                .enter()
-                  .filter(function (d, i) {
-                    return missingCategory.includes(d.key);
-                })
-                .append("rect")
-                .attr("class","rectangle")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth())
-                .attr("height", function(d){
-                    return height -y(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y(d.value);
-                })
-                 .attr("stroke","url(#diagonal-stripes)")
+
+            // vis_bar = canvas.selectAll("rectangle")
+            // // .data(data)
+            //     .data(avg)
+            //     .enter()
+            //       .filter(function (d, i) {
+            //         return missingCategory.includes(d.key);
+            //     })
+            //     .append("rect")
+            //     .attr("class","rectangle")
+            //     // .attr("width", width/data.length-5)
+            //     .attr("width", x.bandwidth())
+            //     .attr("height", function(d){
+            //         return height -y(d.value);
+            //     })
+            //     .attr("x", function(d, i){
+            //         return x(d.key);
+            //     })
+            //     .attr("y", function(d){
+            //         return y(d.value);
+            //     })
+            //      .attr("stroke","url(#diagonal-stripes)")
+            //     .attr("fill","url(#diagonal-stripes)")
+            //     // .attr("fill","url(#gradient)")
+            //     .append("title")
+            //     .text(function(d){
+            //
+            //     });
+            //
+            // vis_bar.remove().exit();
+
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return missingCategory.includes(d.key);})
+                .attr("stroke","url(#diagonal-stripes)")
                 .attr("fill","url(#diagonal-stripes)")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
+                .style("stroke-dasharray", ("0, 0"));
 
-                });
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return !missingCategory.includes(d.key);})
+                .attr("stroke","steelblue")
+                .style("stroke-dasharray", ("0, 0"))
+                .attr("fill","steelblue");
 
-            vis_bar.remove().exit();
 
         }// end of bar pattern
 
