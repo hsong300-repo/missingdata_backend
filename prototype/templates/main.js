@@ -6,10 +6,7 @@ function onXScaleChanged() {
 
     console.log('select x',chartScales.x);
 
-    if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
+
     if(typeof dots_chart_line === 'undefined'){ // bars
     }else{
         dots_chart_line.remove().exit();
@@ -37,10 +34,7 @@ function onYScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.y = select.options[select.selectedIndex].value;
 
-    if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
+
     if(typeof dots_chart_line === 'undefined'){ // bars
     }else{
         dots_chart_line.remove().exit();
@@ -132,23 +126,6 @@ function updateChart() {
         .duration(750) // Add transition
         .call(d3.axisLeft(yScale));
 
-    // whiskey.filter(function(d){return ChartScales.x})
-
-    // noimpute_data = whiskey
-    //     .filter(function(d){
-    //         return d[select_x] === 0 && d[select_y] === 0});
-    //
-    // console.log('noimpute_data',noimpute_data);
-    //
-    //
-    // // Create and position scatterplot circles
-    // // User Enter, Update (don't need exit)
-    // dots = chartG.selectAll('.dot')
-    //     .data(whiskey);
-    //     // .data(noimpute_data);
-
-
-    // var filtered_data = whiskey.filter(function(d){return d[chartScales.x] ==="1.0"});
     // these were declared as local initially
     temp_x = chartScales.x;
     temp_y = chartScales.y;
@@ -179,6 +156,12 @@ function updateChart() {
         .filter(function(d){
             return d[select_x] === 1 || d[select_y] === 1});
 
+    filtered_data_xy = whiskey
+        .filter(function(d){
+            return d[select_x] === 1 && d[select_y] === 1});
+
+    console.log("filtered_data_xy",filtered_data_xy);
+
 
     filtered_x = whiskey
             .filter(function(d){
@@ -199,15 +182,6 @@ function updateChart() {
     dots = chartG.selectAll('.dot')
         .data(whiskey);
         // .data(noimpute_data);
-
-    // var filtered_y = whiskey
-    //     .filter(function(d){
-    //         // console.log('chartScales.x',d[concat_selection],concat_selection, d[concat_selection] === 1)
-    //         // console.log('chartScales.x',d[chartScales.x] ===1)
-    //         return d[select_y] ===1});
-    // console.log('filtered_x',filtered_x);
-    // console.log('filtered_y',filtered_y);
-    // console.log('concat',filtered_x.concat(filtered_y));
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
@@ -313,6 +287,40 @@ function updateChart() {
         .style("opacity",0)
         .attr("y2", -std_y);
 
+    dotsEnter.append("line")
+        .filter(function(d){
+            return d[select_y] === 1 })
+        .attr("class", "normal-line")
+        .style("opacity",1)
+        .attr("x1", function (d) {
+            return xScale(d[chartScales.x]);
+        })
+        .attr("y1", function (d) {
+            // return yScale(d[chartScales.y]+1);
+            return yScale(0);
+        })
+        .attr("x2", function (d) {
+            return xScale(d[chartScales.x]);
+        })
+        .attr("y2", function (d) {
+            // return yScale(d[chartScales.y]-1);
+            return yScale(0 - 0.6);
+        });
+
+    // dotsEnter.append("line")
+    //     .filter(function(d){
+    //         return d[select_x] === 1 })
+    //     .attr("class", "normal-line")
+    //     .style("opacity",1)
+    //     .attr("x1", function (d) {
+    //     return xScale(0);
+    // })
+    //     .attr("y1",0)
+    //     .attr("x2", function (d) {
+    //         return xScale(-10);
+    //     })
+    //     .attr("y2", 0);
+
     // Append a text to the ENTER selection
     // dotsEnter.append('text')
     //     .attr('y', -10)
@@ -369,10 +377,6 @@ function updateChart() {
         redraw_unfilled();
     });
 
-    d3.selectAll(("input[value='sketch']")).on("change", function() {
-        console.log('onchange sketch');
-        redraw_sketch();
-    });
 
     d3.selectAll(("input[value='shape']")).on("change", function() {
         console.log('onchange shape');
@@ -399,7 +403,6 @@ function updateChart() {
         redraw_ticks_off();
     });
 
-
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
     dots.merge(dotsEnter)
         .transition() // Add transition - this will interpolate the translate() on any changes
@@ -411,10 +414,6 @@ function updateChart() {
             var ty = yScale(d[chartScales.y]);
             return 'translate('+[tx, ty]+')';
         });
-
-    // dots_chart = chartG.append("g").attr('class', "Scatter")
-    //     .selectAll("circle");
-        // .data(whiskey).enter();
 
     if(typeof dots_chart === 'undefined'){ // bars
             console.log('dotschart undefined');
@@ -551,55 +550,95 @@ function updateChart() {
             d3.selectAll(".rect_impute")
                 .style("opacity",0);
 
-            // where it is missing, so if the value is imputed than it will show little lines next to it
-            dots_chart_line = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                .filter(function(d){
-                        return d[select_y] === 1 })
-                .append("line")
-                .attr("class", "normal-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("y1", function (d) {
-                    // return yScale(d[chartScales.y]+1);
-                    return yScale(0);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("y2", function (d) {
-                    // return yScale(d[chartScales.y]-1);
-                    return yScale(0 - 0.6);
-                });
-
-             dots_chart_line_y = chartG.append("g").selectAll("line")
-                .data(filtered_data)
-                .enter()
-                 .filter(function(d){
-                        return d[select_x] === 1 })
-                .append("line")
-                .attr("class", "normal-line")
-                .attr("x1", function (d) {
-                    return xScale(0);
-                })
-                .attr("y1", function (d) {
-                    // return yScale(d[chartScales.y]+1);
-                    return yScale(d[chartScales.y]);
-                })
-                .attr("x2", function (d) {
-                    return xScale(-0.6);
-                })
-                .attr("y2", function (d) {
-                    // return yScale(d[chartScales.y]-1);
-                    return yScale(d[chartScales.y]);
-                });
-
          shape_check = false;
 
+        }// end of unfilled
 
-        }// end of local
+    function redraw_ticks_on() {
+
+
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_chart_line_y.remove().exit();
+            // dots_remove.remove().exit();
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
+
+        // where it is missing, so if the value is imputed than it will show little lines next to it
+        dots_chart_line = chartG.append("g").selectAll("line")
+            .data(filtered_data)
+            .enter()
+            .filter(function(d){
+                return d[select_y] === 1 })
+            .append("line")
+            .attr("class", "normal-line")
+            .attr("x1", function (d) {
+                return xScale(d[chartScales.x]);
+            })
+            .attr("y1", function (d) {
+                // return yScale(d[chartScales.y]+1);
+                return yScale(0);
+            })
+            .attr("x2", function (d) {
+                return xScale(d[chartScales.x]);
+            })
+            .attr("y2", function (d) {
+                // return yScale(d[chartScales.y]-1);
+                return yScale(-0.6);
+            });
+
+        dots_chart_line_y = chartG.append("g").selectAll("line")
+            .data(filtered_data)
+            .enter()
+            .filter(function(d){
+                return d[select_x] === 1 })
+            .append("line")
+            .attr("class", "normal-line")
+            .attr("x1", function (d) {
+                return xScale(0);
+            })
+            .attr("y1", function (d) {
+                // return yScale(d[chartScales.y]+1);
+                return yScale(d[chartScales.y]);
+            })
+            .attr("x2", function (d) {
+                return xScale(-0.6);
+            })
+            .attr("y2", function (d) {
+                // return yScale(d[chartScales.y]-1);
+                return yScale(d[chartScales.y]);
+            });
+
+        shape_check = false;
+
+
+    }// end of unfilled
+
+    function redraw_ticks_off() {
+
+
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart line undefined');
+        }else {
+            dots_chart_line_y.remove().exit();
+        }
+
+    }// end of local
+
 
     // function redraw_local() {
     //
@@ -1362,9 +1401,6 @@ function updateChart() {
         d3.selectAll(".error-line")
             .style("opacity",0);
 
-
-
-
     }// end of pattern
 
 
@@ -1416,9 +1452,6 @@ var previewCsvUrl = function( csvUrl ) {
 
         // Create global variables here
         whiskey = dataset;
-
-        console.log('here they should be converted to numbers');
-        console.log('whiskey',whiskey);
 
         // Create scales and other functions here
         xScale = d3.scaleLinear()
@@ -1507,7 +1540,6 @@ var previewCsvUrl = function( csvUrl ) {
             .rollup(function(d) { return d.length; })
             .entries(data);
 
-
         var filtered_data = data.filter(function(d){return d[concat_selection] ==="1.0"});
 
         var impute_count = d3.nest()
@@ -1535,13 +1567,15 @@ var previewCsvUrl = function( csvUrl ) {
         // text label for the y axis
         canvas.append("g")
             .attr("transform", "translate( " + width + ", 0 )")
-            .attr("class", "y1 axis")
+            .attr("class", "y1-axis")
+            .attr("opacity",0)
             .call(y1Axis);
 
         // end of y1-axis
         canvas.append("text")
         // .attr("class","unknown label")
             .attr("class","unknown")
+            .attr("opacity",0)
             .text("Count")
             // .attr("transform", "rotate(-90)")
             .attr("x",width+50+15)
@@ -1604,28 +1638,47 @@ var previewCsvUrl = function( csvUrl ) {
 
             });
 
+        //legneds for count
         canvas.append("rect")
+            .attr("class","count-legend")
             .attr("x", width +50)
             .attr("y", 0)
             .attr("width", 10)
             .attr("height", 10)
+            .attr("opacity",0)
             .style("fill", "silver");
+
+        canvas.append("rect")
+            .attr("class","count-legend")
+            .attr("x", width +50)
+            .attr("y", 20)
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("opacity",0)
+            .style("fill", "orange");
 
         canvas.append("text")
         // .attr("class","unknown label")
-            .attr("class","legend")
+            .attr("class","count-legend")
             .text("Not Missing")
-            // .attr("transform", "rotate(-90)")
             .attr("x",width+50+15)
             .attr("y",8)
             .attr("font-size","11px")
+            .attr("opacity",0)
             .attr("fill","black");
             // .attr("text-anchor","middle");
 
+        canvas.append("text")
+            .attr("class","count-legend")
+            .text("Missing")
+            .attr("x",width+50+15)
+            .attr("y",28)
+            .attr("font-size","11px")
+            .attr("opacity",0)
+            .attr("fill","black");
+
         select_check = false;
 
-
-        // total_missing = removed_idx.length;
 
         // var missingCount = d3.nest()
         //     .key(function(d){return d.Category})
@@ -1647,7 +1700,6 @@ var previewCsvUrl = function( csvUrl ) {
             for (var i = 0; i < missingCount.length; i++) {
                 missingCategory.push(Object.values(missingCount[i])[0])
             }
-
 
         d3.selectAll(("input[value='bar_color']")).on("change", function() {
             console.log('onchange bar color');
@@ -1695,7 +1747,14 @@ var previewCsvUrl = function( csvUrl ) {
 
             redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory);
         });
-
+        d3.selectAll(("input[value='counts_on']")).on("change", function() {
+            console.log('counts on');
+            redraw_bar_counts_on(missingCount,notMissingCount,avg,missingCategory);
+        });
+        d3.selectAll(("input[value='counts_off']")).on("change", function() {
+            console.log('counts off');
+            redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory);
+        });
 
         // var selector = d3.select("#drop")
         selector = d3.selectAll("#bar_view")
@@ -1712,7 +1771,6 @@ var previewCsvUrl = function( csvUrl ) {
                         return +d[selection.value];});})
                     .entries(data);
 
-                console.log('selection',selectAvg);
 
                 error_avg = selectAvg;
 
@@ -1778,9 +1836,18 @@ var previewCsvUrl = function( csvUrl ) {
 
                 d3.selectAll(("input[value='bar_animation']")).on("change", function() {
                     console.log('onchange bar dash');
-
                     redraw_bar_animation(missingCount,notMissingCount,selectAvg,missingCategory);
                 });
+
+                d3.selectAll(("input[value='counts_on']")).on("change", function() {
+                    console.log('counts on');
+                    redraw_bar_counts_on(missingCount,notMissingCount,selectAvg,missingCategory);
+                });
+                d3.selectAll(("input[value='counts_off']")).on("change", function() {
+                    console.log('counts off');
+                    redraw_bar_counts_off(missingCount,notMissingCount,selectAvg,missingCategory);
+                });
+
 
 
                 y.domain([0, d3.max(selectAvg, function(d){
@@ -1899,62 +1966,6 @@ var previewCsvUrl = function( csvUrl ) {
 
             vis_bar.remove().exit();
 
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","no_impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
-
-            missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","orange")
-                .attr("fill","orange")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            bar_error_line.remove().exit();
-            bar_error_top.remove().exit();
-            bar_error_down.remove().exit();
 
         }// end of bar color
 
@@ -2062,14 +2073,6 @@ var previewCsvUrl = function( csvUrl ) {
                     return height-y(d.value);
                 });
 
-
-
-
-
-            bar_error_line.remove().exit();
-            bar_error_top.remove().exit();
-            bar_error_down.remove().exit();
-
         }// end of bar color
 
         function redraw_bar_error(missingCount,notMissingCount,avg,missingCategory){
@@ -2103,59 +2106,6 @@ var previewCsvUrl = function( csvUrl ) {
             for (var i = 0; i < missingCount.length; i++) {
                 missingCategory.push(Object.values(missingCount[i])[0])
             }
-
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","no_impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            missing_bar =canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","#87CEFA")
-                .attr("fill","#87CEFA")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
 
             // Add Error Line
             // canvas.append("g").selectAll("line")
@@ -2283,63 +2233,6 @@ var previewCsvUrl = function( csvUrl ) {
 
             vis_bar.remove().exit();
 
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","no_impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("fill","orange")
-                .attr('stroke','orange')
-                // .style("stroke-dasharray", ("3, 3"))
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            bar_error_line.remove().exit();
-            bar_error_top.remove().exit();
-            bar_error_down.remove().exit();
-
         }// end of bar dash
 
         function redraw_bar_gradient(missingCount,notMissingCount,avg,missingCategory){
@@ -2421,58 +2314,6 @@ var previewCsvUrl = function( csvUrl ) {
 
             vis_bar.remove().exit();
 
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","no_impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","orange")
-                .attr("fill","orange")
-                .append("title")
-                .text(function(d){
-
-                });
-
-
-
         }// end of bar gradient
 
         function redraw_bar_pattern(missingCount,notMissingCount,avg,missingCategory){
@@ -2526,59 +2367,6 @@ var previewCsvUrl = function( csvUrl ) {
 
             vis_bar.remove().exit();
 
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                .append("title")
-                .text(function(d){
-
-                });
-
-            missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","orange")
-                .attr("fill","orange")
-                .append("title")
-                .text(function(d){
-                });
-
-            bar_error_line.remove().exit();
-            bar_error_top.remove().exit();
-            bar_error_down.remove().exit();
-
-
         }// end of bar pattern
 
         function redraw_bar_missing(total_missing,missingCount,notMissingCount,avg,missingCategory){
@@ -2606,59 +2394,7 @@ var previewCsvUrl = function( csvUrl ) {
 
             var dataset = [total_missing];
 
-            not_missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(notMissingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","no_impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                .attr("stroke","silver")
-                .attr("fill","silver")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
 
-                });
-
-            //fill rect in steelblue to hide
-            missing_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(missingCount)
-                .enter()
-                .append("rect")
-                // .attr("class","rectangle")
-                .attr("class","impute_bar")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth()/2)
-                .attr("height", function(d){
-                    return height -y1(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y1(d.value);
-                })
-                // .attr("fill","url(#diagonal-stripe-2) #4682B4")
-                .attr("stroke","orange")
-                .attr("fill","orange")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-
-                });// fill it like this to hide
 
             missing_count_bar = canvas.selectAll("rectangle")
             // .data(data)
@@ -2695,11 +2431,113 @@ var previewCsvUrl = function( csvUrl ) {
                 .attr("fill","black")
                 .attr("text-anchor","middle");
 
-            bar_error_line.remove().exit();
-            bar_error_top.remove().exit();
-            bar_error_down.remove().exit();
 
         }// end of bar missing
+
+        function redraw_bar_counts_on(missingCount,notMissingCount,avg,missingCategory){
+            if(typeof missing_bar === 'undefined'){ // bars
+                console.log('missing bar undefined');
+            }else{
+
+                missing_bar.remove().exit();
+                // canvas.remove().exit();
+            }if(typeof not_missing_bar === 'undefined'){ // bars
+                console.log('missing bar undefined');
+            }else{
+
+                not_missing_bar.remove().exit();
+                // canvas.remove().exit();
+            }
+            if(typeof bar_unknown_text === 'undefined'){ // bars
+                console.log('text bar undefined');
+            }else{
+                bar_unknown_text.remove().exit();
+                // canvas.remove().exit();
+            }
+            if(typeof missing_count_bar === 'undefined'){ // bars
+                console.log('text bar undefined');
+            }else{
+                missing_count_bar.remove().exit();
+                // canvas.remove().exit();
+            }
+
+            not_missing_bar = canvas.selectAll("rectangle")
+            // .data(data)
+                .data(notMissingCount)
+                .enter()
+                .append("rect")
+                // .attr("class","rectangle")
+                .attr("class","no_impute_bar")
+                // .attr("width", width/data.length-5)
+                .attr("width", x.bandwidth()/2)
+                .attr("height", function(d){
+                    return height -y1(d.value);
+                })
+                .attr("x", function(d, i){
+                    return x(d.key);
+                })
+                .attr("y", function(d){
+                    return y1(d.value);
+                })
+                .attr("stroke","silver")
+                .attr("fill","silver")
+                // .attr("fill","url(#gradient)")
+                .append("title")
+                .text(function(d){
+
+                });
+
+            missing_bar = canvas.selectAll("rectangle")
+            // .data(data)
+                .data(missingCount)
+                .enter()
+                .append("rect")
+                // .attr("class","rectangle")
+                .attr("class","impute_bar")
+                // .attr("width", width/data.length-5)
+                .attr("width", x.bandwidth()/2)
+                .attr("height", function(d){
+                    return height -y1(d.value);
+                })
+                .attr("x", function(d, i){
+                    return x(d.key);
+                })
+                .attr("y", function(d){
+                    return y1(d.value);
+                })
+                .attr("stroke","orange")
+                .attr("fill","orange")
+                // .attr("fill","url(#gradient)")
+                .append("title")
+                .text(function(d){
+
+                });
+
+            d3.selectAll(".y1-axis").attr("opacity",1);
+            d3.selectAll(".count-legend").attr("opacity",1);
+            d3.selectAll(".unknown").attr("opacity",1);
+
+
+
+
+        }// end of bar counts on
+
+        function redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory){
+
+            d3.selectAll(".impute_bar").attr("opacity",0);
+            d3.selectAll(".no_impute_bar").attr("opacity",0);
+            d3.selectAll(".y1-axis").attr("opacity",0);
+            d3.selectAll(".count-legend").attr("opacity",0);
+            d3.selectAll(".unknown").attr("opacity",0);
+
+
+
+        }// end of bar counts off
+
+
+
+
+
 
     }// end of the make_bar function
 
