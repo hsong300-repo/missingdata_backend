@@ -1401,7 +1401,7 @@ function updateChart() {
         d3.selectAll(".error-line")
             .style("opacity",0);
 
-    }// end of pattern
+    }// end of none
 
 
 }// end of updatechart for Scatterplots
@@ -1747,6 +1747,12 @@ var previewCsvUrl = function( csvUrl ) {
 
             redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory);
         });
+
+        d3.selectAll(("input[value='bar_none']")).on("change", function() {
+            console.log('bar none');
+            redraw_bar_none();
+        });
+
         d3.selectAll(("input[value='counts_on']")).on("change", function() {
             console.log('counts on');
             redraw_bar_counts_on(missingCount,notMissingCount,avg,missingCategory);
@@ -1755,6 +1761,8 @@ var previewCsvUrl = function( csvUrl ) {
             console.log('counts off');
             redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory);
         });
+
+
 
         // var selector = d3.select("#drop")
         selector = d3.selectAll("#bar_view")
@@ -1848,6 +1856,11 @@ var previewCsvUrl = function( csvUrl ) {
                     redraw_bar_counts_off(missingCount,notMissingCount,selectAvg,missingCategory);
                 });
 
+                d3.selectAll(("input[value='bar_none']")).on("change", function() {
+                    console.log('bar none');
+                    redraw_bar_none();
+                });
+
 
 
                 y.domain([0, d3.max(selectAvg, function(d){
@@ -1885,16 +1898,7 @@ var previewCsvUrl = function( csvUrl ) {
                     bar_unknown_text.remove().exit();
                     // canvas.remove().exit();
                 }
-                if(typeof missing_count_bar === 'undefined'){ // bars
-                    console.log('text bar undefined');
-                }else{
-                    missing_count_bar.remove().exit();
-                    // canvas.remove().exit();
-                }
 
-                bar_error_line.remove().exit();
-                bar_error_top.remove().exit();
-                bar_error_down.remove().exit();
 
             });
 
@@ -1907,6 +1911,15 @@ var previewCsvUrl = function( csvUrl ) {
             .text(function(d){
                 return d;
             });
+
+        function redraw_bar_none(){
+
+
+            d3.selectAll(".error-line").attr("opacity",0);
+            d3.selectAll(".error-cap").attr("opacity",0);
+
+
+        }// end of bar color
 
         function redraw_bar_color(missingCount,notMissingCount,avg,missingCategory){
             if(typeof missing_bar === 'undefined'){ // bars
@@ -1936,38 +1949,16 @@ var previewCsvUrl = function( csvUrl ) {
             }
 
 
-            vis_bar = canvas.selectAll("rectangle")
-            // .data(data)
-                .data(avg)
-                .enter()
-                  .filter(function (d, i) {
-                    return missingCategory.includes(d.key);
-                })
-                .append("rect")
-                .attr("class","rectangle")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth())
-                .attr("height", function(d){
-                    return height -y(d.value);
-                })
-                .attr("x", function(d, i){
-                    return x(d.key);
-                })
-                .attr("y", function(d){
-                    return y(d.value);
-                })
-                .attr("stroke","#87CEFA")
-                .attr("fill","#87CEFA")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
+            // vis_bar = canvas.selectAll("rectangle")
 
-                });
-
-            vis_bar.remove().exit();
+            d3.selectAll(".rectangle").filter(function (d, i) {
+                return missingCategory.includes(d.key);
+            }).attr("stroke","#87CEFA")
+                .attr("fill","#87CEFA");
 
 
-        }// end of bar color
+        }// end of bar none
+
 
         function redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory){
             if(typeof missing_bar === 'undefined'){ // bars
