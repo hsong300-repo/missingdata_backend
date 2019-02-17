@@ -4,8 +4,6 @@ function onXScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
 
-    console.log('select x',chartScales.x);
-
 
     if(typeof dots_chart_line === 'undefined'){ // bars
     }else{
@@ -103,7 +101,9 @@ var xAxisG = chartG.append('g')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-    .attr('class', 'y axis');
+    // .attr('class', 'y axis');
+    .attr('class', 'y-axis'); //there was a overlap in class name for bar and scatter
+
 
 var transitionScale = d3.transition()
     .duration(600)
@@ -152,6 +152,9 @@ function updateChart() {
     var select_x = temp_x.concat("_impute");
     var select_y = temp_y.concat("_impute");
 
+    console.log('select_x',select_x);
+    console.log('select_y', select_y);
+
     filtered_data = whiskey
         .filter(function(d){
             return d[select_x] === 1 || d[select_y] === 1});
@@ -194,18 +197,27 @@ function updateChart() {
         .attr("fill","steelblue")
         .on('mouseover', function(d){ // Add hover start event binding
             // Select the hovered g.dot
-            x_val = "exists";
             if(d[select_x] === 1){
                 x_val = "imputed";
+            }else if(d[select_x] === 0){
+                x_val = "exists";
+
+            }else{
+                console.log('d[select_x}',d[select_x]);
             }
-            y_val = "exists";
+            // y_val = "exists";
             if(d[select_y] === 1){
                 y_val = "imputed";
+            }else if(d[select_y] === 0){
+                y_val = "imputed";
+            }else{
+                console.log('d[select_y}',d[select_y]);
             }
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
-            div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val)
+            // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
+            div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
 
@@ -237,7 +249,7 @@ function updateChart() {
     //     .attr('r', 3);
     dotsEnter.append('circle')
        .filter(function(d){
-            return d[select_x] ===0 && d[select_y] === 0})
+            return d[select_x] === 0 && d[select_y] === 0})
         .attr("class","no_impute")
         .style("fill","steelblue")
         .attr('r', 4);
@@ -249,6 +261,7 @@ function updateChart() {
         .style("fill","steelblue")
          .style("opacity",0.1)
         .attr('r', 4);
+
 
     dotsEnter.append('rect')
         .filter(function(d){
@@ -262,6 +275,8 @@ function updateChart() {
         .attr('stoke-width', 1)
         .attr("x",-3)
         .attr("y",-3);
+
+
 
     var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
@@ -472,7 +487,7 @@ function updateChart() {
          //    // .filter(function (d, i) {
          //    //     return d[chartScales.x]==="0.0";
          //    // })
-         //    .style("fill", '#87CEFA')
+         //    .style("fill", 'red')
          //    .attr("cx", function (d) {
          //        return xScale(d[chartScales.x]);
          //    })
@@ -483,6 +498,9 @@ function updateChart() {
 
         d3.selectAll(".impute")
             .style("fill", '#87CEFA').style("opacity",1);
+
+        d3.selectAll(".no_impute")
+            .style("fill", 'steelblue').style("opacity",1);
 
         d3.selectAll(".rect_impute")
             .style("opacity",0);
@@ -546,6 +564,9 @@ function updateChart() {
             .style("stroke", 'steelblue')
             .style("stroke-width", 1)
             .style("fill", '#fff').style("opacity",1);
+
+        d3.selectAll(".no_impute")
+            .style("fill", 'steelblue').style("opacity",1);
 
             d3.selectAll(".rect_impute")
                 .style("opacity",0);
@@ -626,8 +647,6 @@ function updateChart() {
     }// end of unfilled
 
     function redraw_ticks_off() {
-
-
         if(typeof dots_chart_line === 'undefined'){ // bars
         }else{
             dots_chart_line.remove().exit();
@@ -896,6 +915,9 @@ function updateChart() {
         d3.selectAll(".impute")
             .style("fill", 'url(#radial-gradient)').style("opacity",1);
 
+        d3.selectAll(".no_impute")
+            .style("fill", 'steelblue').style("opacity",1);
+
         d3.selectAll(".rect_impute")
             .style("opacity",0);
 
@@ -951,6 +973,9 @@ function updateChart() {
         d3.selectAll(".impute")
             .style("fill", 'url(#diagonal-stripes)').style("opacity",1);
 
+        d3.selectAll(".no_impute")
+            .style("fill", 'steelblue').style("opacity",1);
+
         d3.selectAll(".rect_impute")
             .style("opacity",0);
 
@@ -962,10 +987,6 @@ function updateChart() {
 
     function redraw_shape() {
 
-        if(typeof dots_chart === 'undefined'){ // bars
-        }else{
-            dots_chart.remove().exit(); //remove some of the encodings
-        }
         if(typeof dots_chart_line === 'undefined'){ // bars
         }else{
             dots_chart_line.remove().exit();
@@ -1280,17 +1301,13 @@ function updateChart() {
             //         });
             // }
 
-
-
-        if(shape_check == false){
+        if(shape_check === false){
             transition_x = d3.selectAll(".impute")
                 .filter(function(d){
                     return d[select_x] ===1 });
             // .transition().duration(2000);
 
-            transition_y= d3.selectAll(".impute")
-                .filter(function(d){
-                    return d[select_y] ===1 });
+            console.log('transition x', transition_x);
 
             transition_x.transition()
                 .duration(2000)
@@ -1301,6 +1318,13 @@ function updateChart() {
                 .transition()
                 .duration(2000)
                 .attr("cx", 0);
+
+            transition_y= d3.selectAll(".impute")
+                .filter(function(d){
+                    return d[select_y] ===1 });
+
+            console.log('transition y', transition_y);
+
             transition_y.transition()
                 .duration(2000)
                 // .attr('cy',420)
@@ -1311,16 +1335,12 @@ function updateChart() {
                 .transition()
                 .duration(2000)
                 .attr("cy",0);
+
         }else{
             transition_x = d3.selectAll(".rect_impute")
                 .filter(function(d){
                     return d[select_x] ===1 });
             // .transition().duration(2000);
-
-            transition_y= d3.selectAll(".rect_impute")
-                .filter(function(d){
-                    return d[select_y] ===1 });
-
             transition_x.transition()
                 .duration(2000)
                 .attr('x',0)
@@ -1330,6 +1350,10 @@ function updateChart() {
                 .transition()
                 .duration(2000)
                 .attr("x", 0);
+
+            transition_y= d3.selectAll(".rect_impute")
+                .filter(function(d){
+                    return d[select_y] ===1 });
 
             transition_y.transition()
                 .duration(2000)
@@ -1341,6 +1365,10 @@ function updateChart() {
                 .transition()
                 .duration(2000)
                 .attr("y",0);
+
+
+
+
         }
 
 
@@ -1489,8 +1517,22 @@ var previewCsvUrl = function( csvUrl ) {
 
     });
 
+    //    previewCsvUrl("./new_data/whiskey_random.csv");
+    // d3.csv("./new_data/whiskey_random.csv", function(error, random_data){
+    //     d3.csv("./new_data/whiskey_global.csv", function(error, global__data){
+    //         d3.csv("./new_data/whiskey_knn.csv", function(error, knn_data){
+    //
+    //             // make_bar(data);
+    //             make_bar(random_data,global__data, knn_data);
+    //
+    //
+    //         });
+    //     });
+    // });
+
     //make the bar function
-    function make_bar(data){
+    // function make_bar(random_data,global_data, knn_data){
+        function make_bar(data){
 
         var margin = {top: 80, right: 180, bottom: 80, left: 180},
             width = 960 - margin.left - margin.right,
@@ -1502,6 +1544,10 @@ var previewCsvUrl = function( csvUrl ) {
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // data = random_data; // preselected value
+
+
 
         // filter value
         // Get every column value
@@ -1522,7 +1568,31 @@ var previewCsvUrl = function( csvUrl ) {
         }
         var concat_selection = temp.concat("_impute");
 
+        d3.select("#bar_knn")
+            .on("click",function(d){
+                console.log('bar knn');
+                data = knn_data;
+
+            });
+
+        d3.select("#bar_mean")
+            .on("click",function(d){
+                console.log('bar global');
+                data = global_data;
+
+
+            });
+
+        d3.select("#bar_random")
+            .on("click",function(d){
+                console.log('bar random');
+                data = random_data;
+
+
+            });
+
         var avg = d3.nest()
+        // var avg = d3.nest()
             .key(function(d){ return d.Category;})
             .rollup(function(v){return d3.mean(v,function(d){
                 return +d[selection];});})
