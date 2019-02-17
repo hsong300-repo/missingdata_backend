@@ -5,23 +5,23 @@ function onXScaleChanged() {
     chartScales.x = select.options[select.selectedIndex].value;
 
 
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+    // if(typeof dots_chart_line === 'undefined'){ // bars
+    // }else{
+    //     dots_chart_line.remove().exit();
+    // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+    //         console.log('dotschart undefined');
+    //     }else {
+    //         dots_chart_line_y.remove().exit();
+    //     // dots_remove.remove().exit();
+    //     }if(typeof dots_chart_x === 'undefined'){ // bars
+    //         console.log('dotschart undefined');
+    //     }else{
+    //         dots_chart_x.remove().exit(); //remove some of the encodings
+    //     }if(typeof dots_chart_y === 'undefined'){ // bars
+    //         console.log('dotschart undefined');
+    //     }else{
+    //         dots_chart_y.remove().exit(); //remove some of the encodings
+    //     }
 
     // Update chart
     updateChart();
@@ -33,23 +33,23 @@ function onYScaleChanged() {
     chartScales.y = select.options[select.selectedIndex].value;
 
 
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-    }else {
-    dots_chart_line_y.remove().exit();
-    // dots_remove.remove().exit();
-    }if(typeof dots_chart_x === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_x.remove().exit(); //remove some of the encodings
-    }if(typeof dots_chart_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_y.remove().exit(); //remove some of the encodings
-    }
+    // if(typeof dots_chart_line === 'undefined'){ // bars
+    // }else{
+    //     dots_chart_line.remove().exit();
+    // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+    //         console.log('dotschart undefined');
+    // }else {
+    // dots_chart_line_y.remove().exit();
+    // // dots_remove.remove().exit();
+    // }if(typeof dots_chart_x === 'undefined'){ // bars
+    //     console.log('dotschart undefined');
+    // }else{
+    //     dots_chart_x.remove().exit(); //remove some of the encodings
+    // }if(typeof dots_chart_y === 'undefined'){ // bars
+    //     console.log('dotschart undefined');
+    // }else{
+    //     dots_chart_y.remove().exit(); //remove some of the encodings
+    // }
 
     // Update chart
     updateChart();
@@ -102,7 +102,7 @@ var xAxisG = chartG.append('g')
 
 var yAxisG = chartG.append('g')
     // .attr('class', 'y axis');
-    .attr('class', 'y-axis'); //there was a overlap in class name for bar and scatter
+    .attr('class', 'y-axis'); //there was a overlap in class name for bar
 
 
 var transitionScale = d3.transition()
@@ -163,7 +163,6 @@ function updateChart() {
         .filter(function(d){
             return d[select_x] === 1 && d[select_y] === 1});
 
-    console.log("filtered_data_xy",filtered_data_xy);
 
 
     filtered_x = whiskey
@@ -185,6 +184,7 @@ function updateChart() {
     dots = chartG.selectAll('.dot')
         .data(whiskey);
         // .data(noimpute_data);
+
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
@@ -262,6 +262,30 @@ function updateChart() {
          .style("opacity",0.1)
         .attr('r', 4);
 
+    dotsEnter.append('circle')
+        .filter(function(d){
+            return d[select_x] ===1 })
+        .style("fill","steelblue")
+        .attr("class","impute_x")
+        .style("opacity",0.1)
+        .attr('r', 4);
+
+    dotsEnter.append('circle')
+        .filter(function(d){
+            return d[select_y] === 1})
+        .style("fill","steelblue")
+        .attr("class","impute_y")
+        .style("opacity",0.1)
+        .attr('r', 4);
+    //
+    // dotsEnter.append('circle')
+    //     .filter(function(d){
+    //         return d[select_x] ===1 && d[select_y] === 1})
+    //     .attr("class","impute")
+    //     .style("fill","pink")
+    //     .style("opacity",1)
+    //     .attr('r', 4);
+
 
     dotsEnter.append('rect')
         .filter(function(d){
@@ -276,10 +300,38 @@ function updateChart() {
         .attr("x",-3)
         .attr("y",-3);
 
+    dotsEnter.append('rect')
+        .filter(function(d){
+            return d[select_x] ===1})
+        .attr("class","rect_impute_x")
+        .style("fill","steelblue")
+        .style("opacity",0)
+        .attr('stroke', '#000')
+        .attr('width', 6.5)
+        .attr('height', 6.5)
+        .attr('stoke-width', 1)
+        .attr("x",-3)
+        .attr("y",-3);
+
+    dotsEnter.append('rect')
+        .filter(function(d){
+            return  d[select_y] === 1})
+        .attr("class","rect_impute_y")
+        .style("fill","steelblue")
+        .style("opacity",0)
+        .attr('stroke', '#000')
+        .attr('width', 6.5)
+        .attr('height', 6.5)
+        .attr('stoke-width', 1)
+        .attr("x",-3)
+        .attr("y",-3);
+
+    shape_check = false;
 
 
-    var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
+    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
     dotsEnter.append("line")
         .filter(function(d){
@@ -301,26 +353,26 @@ function updateChart() {
         .attr("x2", 0)
         .style("opacity",0)
         .attr("y2", -std_y);
-
-    dotsEnter.append("line")
-        .filter(function(d){
-            return d[select_y] === 1 })
-        .attr("class", "normal-line")
-        .style("opacity",1)
-        .attr("x1", function (d) {
-            return xScale(d[chartScales.x]);
-        })
-        .attr("y1", function (d) {
-            // return yScale(d[chartScales.y]+1);
-            return yScale(0);
-        })
-        .attr("x2", function (d) {
-            return xScale(d[chartScales.x]);
-        })
-        .attr("y2", function (d) {
-            // return yScale(d[chartScales.y]-1);
-            return yScale(0 - 0.6);
-        });
+    //
+    // dotsEnter.append("line")
+    //     .filter(function(d){
+    //         return d[select_y] === 1 })
+    //     .attr("class", "normal-line")
+    //     .style("opacity",1)
+    //     .attr("x1", function (d) {
+    //         return xScale(d[chartScales.x]);
+    //     })
+    //     .attr("y1", function (d) {
+    //         // return yScale(d[chartScales.y]+1);
+    //         return yScale(0);
+    //     })
+    //     .attr("x2", function (d) {
+    //         return xScale(d[chartScales.x]);
+    //     })
+    //     .attr("y2", function (d) {
+    //         // return yScale(d[chartScales.y]-1);
+    //         return yScale(0 - 0.6);
+    //     });
 
     // dotsEnter.append("line")
     //     .filter(function(d){
@@ -496,14 +548,21 @@ function updateChart() {
          //    })
          //    .attr('r', 4);
 
-        d3.selectAll(".impute")
+        d3.selectAll(".impute_x")
+            .style("fill", '#87CEFA').style("opacity",1);
+
+        d3.selectAll(".impute_y")
             .style("fill", '#87CEFA').style("opacity",1);
 
         d3.selectAll(".no_impute")
-            .style("fill", 'steelblue').style("opacity",1);
+            .style("fill", 'steelblue').style("opacity",0.8);
 
         d3.selectAll(".rect_impute")
             .style("opacity",0);
+
+        d3.selectAll(".rect_impute_x").style("opacity",0);
+
+        d3.selectAll(".rect_impute_y").style("opacity",0);
 
         // d3.selectAll(".impute")
         //     .style("fill", '#87CEFA').style("opacity",1);
@@ -560,16 +619,30 @@ function updateChart() {
             //     // .attr('r', 4);
             //     .attr('r', 4);
 
-            d3.selectAll(".impute")
+        // d3.selectAll(".impute")
+        //     .style("stroke", 'steelblue')
+        //     .style("stroke-width", 1)
+        //     .style("fill", '#fff').style("opacity",1);
+
+        d3.selectAll(".impute_x")
+            .style("stroke", 'steelblue')
+            .style("stroke-width", 1)
+            .style("fill", '#fff').style("opacity",1);
+
+        d3.selectAll(".impute_y")
             .style("stroke", 'steelblue')
             .style("stroke-width", 1)
             .style("fill", '#fff').style("opacity",1);
 
         d3.selectAll(".no_impute")
-            .style("fill", 'steelblue').style("opacity",1);
+            .style("fill", 'steelblue').style("opacity",0.8);
 
             d3.selectAll(".rect_impute")
                 .style("opacity",0);
+
+        d3.selectAll(".rect_impute_x").style("opacity",0);
+
+        d3.selectAll(".rect_impute_y").style("opacity",0);
 
          shape_check = false;
 
@@ -597,13 +670,14 @@ function updateChart() {
         }
 
         // where it is missing, so if the value is imputed than it will show little lines next to it
-        dots_chart_line = chartG.append("g").selectAll("line")
+
+        dots_chart_line_x = chartG.append("g").selectAll("line")
             .data(filtered_data)
             .enter()
             .filter(function(d){
                 return d[select_y] === 1 })
             .append("line")
-            .attr("class", "normal-line")
+            .attr("class", "normal-line-x")
             .attr("x1", function (d) {
                 return xScale(d[chartScales.x]);
             })
@@ -619,27 +693,30 @@ function updateChart() {
                 return yScale(-0.6);
             });
 
+
         dots_chart_line_y = chartG.append("g").selectAll("line")
             .data(filtered_data)
             .enter()
             .filter(function(d){
                 return d[select_x] === 1 })
             .append("line")
-            .attr("class", "normal-line")
+            .attr("class", "normal-line-y")
             .attr("x1", function (d) {
-                return xScale(0);
+                return xScale(-0.6);
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
                 return yScale(d[chartScales.y]);
             })
             .attr("x2", function (d) {
-                return xScale(-0.6);
+                return xScale(0);
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
                 return yScale(d[chartScales.y]);
             });
+
+
 
         shape_check = false;
 
@@ -647,14 +724,18 @@ function updateChart() {
     }// end of unfilled
 
     function redraw_ticks_off() {
-        if(typeof dots_chart_line === 'undefined'){ // bars
+        if(typeof dots_chart_line_x === 'undefined'){ // bars
         }else{
-            dots_chart_line.remove().exit();
+            dots_chart_line_x.remove().exit();
         }if(typeof dots_chart_line_y === 'undefined'){ // bars
             console.log('dotschart line undefined');
         }else {
             dots_chart_line_y.remove().exit();
         }
+
+        // d3.selectAll(".normal-line-x").attr("opacity",0);
+        // d3.selectAll(".normal-line-y").attr("opacity",0);
+
 
     }// end of local
 
@@ -912,14 +993,26 @@ function updateChart() {
         //     })
         //     .attr('r', 4);
 
-        d3.selectAll(".impute")
+        // d3.selectAll(".impute")
+        //     .style("fill", 'url(#radial-gradient)').style("opacity",1);
+
+        d3.selectAll(".impute_x")
             .style("fill", 'url(#radial-gradient)').style("opacity",1);
 
+
+        d3.selectAll(".impute_y")
+            .style("fill", 'url(#radial-gradient)').style("opacity",1);
+
+
         d3.selectAll(".no_impute")
-            .style("fill", 'steelblue').style("opacity",1);
+            .style("fill", 'steelblue').style("opacity",0.8);
 
         d3.selectAll(".rect_impute")
             .style("opacity",0);
+
+        d3.selectAll(".rect_impute_x").style("opacity",0);
+
+        d3.selectAll(".rect_impute_y").style("opacity",0);
 
 
         shape_check = false;
@@ -970,14 +1063,26 @@ function updateChart() {
         //     })
         //     .attr('r', 4);
 
-        d3.selectAll(".impute")
+        // d3.selectAll(".impute")
+        //     .style("fill", 'url(#diagonal-stripes)').style("opacity",1);
+
+        d3.selectAll(".impute_x")
             .style("fill", 'url(#diagonal-stripes)').style("opacity",1);
+
+
+        d3.selectAll(".impute_y")
+            .style("fill", 'url(#diagonal-stripes)').style("opacity",1);
+
 
         d3.selectAll(".no_impute")
             .style("fill", 'steelblue').style("opacity",1);
 
         d3.selectAll(".rect_impute")
             .style("opacity",0);
+
+        d3.selectAll(".rect_impute_x").style("opacity",0);
+
+        d3.selectAll(".rect_impute_y").style("opacity",0);
 
 
         shape_check = false;
@@ -1004,10 +1109,23 @@ function updateChart() {
             dots_chart_y.remove().exit(); //remove some of the encodings
         }
 
-        d3.selectAll(".rect_impute").style("opacity",1);
+        // d3.selectAll(".rect_impute").style("opacity",1);
+
+        d3.selectAll(".rect_impute_x").style("opacity",1);
+
+        d3.selectAll(".rect_impute_y").style("opacity",1);
+
+
 
         d3.selectAll(".impute")
             .style("opacity",0);
+
+        d3.selectAll(".impute_x")
+            .style("opacity",0);
+
+        d3.selectAll(".impute_y")
+            .style("opacity",0);
+
         // dots_chart =
         //     // chartG.append("g")
         //     // .attr('class', "Scatter")
@@ -1181,23 +1299,23 @@ function updateChart() {
 
     function redraw_animation() {
 
-            if(typeof dots_chart_line === 'undefined'){ // bars
-            }else{
-                dots_chart_line.remove().exit();
-            }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-            }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-            }if(typeof dots_chart_x === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_x.remove().exit(); //remove some of the encodings
-            }if(typeof dots_chart_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_y.remove().exit(); //remove some of the encodings
-            }
+            // if(typeof dots_chart_line === 'undefined'){ // bars
+            // }else{
+            //     dots_chart_line.remove().exit();
+            // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            //         console.log('dotschart undefined');
+            // }else {
+            // dots_chart_line_y.remove().exit();
+            // // dots_remove.remove().exit();
+            // }if(typeof dots_chart_x === 'undefined'){ // bars
+            //     console.log('dotschart undefined');
+            // }else{
+            //     dots_chart_x.remove().exit(); //remove some of the encodings
+            // }if(typeof dots_chart_y === 'undefined'){ // bars
+            //     console.log('dotschart undefined');
+            // }else{
+            //     dots_chart_y.remove().exit(); //remove some of the encodings
+            // }
 
             // if(typeof dots_chart === 'undefined'){ // bars
             //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
@@ -1301,73 +1419,120 @@ function updateChart() {
             //         });
             // }
 
+        // var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+        // var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
         if(shape_check === false){
-            transition_x = d3.selectAll(".impute")
-                .filter(function(d){
-                    return d[select_x] ===1 });
+
             // .transition().duration(2000);
 
-            console.log('transition x', transition_x);
+            var transition_x = d3.selectAll(".impute_x");
 
-            transition_x.transition()
-                .duration(2000)
-                .attr('cx',0)
-                .transition()
-                .duration(2000)
-                .attr('cx',350)
-                .transition()
-                .duration(2000)
-                .attr("cx", 0);
+            function repeat_x(){
+                transition_x.transition()
+                    .duration(1000)
+                    // .attr('x',-std_x)
+                    .attr('cx',-std_x)
+                    .transition()
+                    .duration(1000)
+                    .attr('cx',std_x)
+                    .transition()
+                    .duration(1000)
+                    .attr("cx", 0);
+            }
 
-            transition_y= d3.selectAll(".impute")
-                .filter(function(d){
-                    return d[select_y] ===1 });
+            var transition_y = d3.selectAll(".impute_y");
+            // var transition_y = d3.selectAll(".impute")
+            //     .filter(function(d){
+            //         return d[select_y] ===1 });
 
-            console.log('transition y', transition_y);
 
-            transition_y.transition()
-                .duration(2000)
-                // .attr('cy',420)
-                .attr('cy',0)
-                .transition()
-                .duration(2000)
-                .attr('cy',350)
-                .transition()
-                .duration(2000)
-                .attr("cy",0);
+            function repeat_y(){
+                transition_y.transition()
+                    .duration(1000)
+                    .attr('cy',-std_y)
+                    .transition()
+                    .duration(1000)
+                    .attr('cy',std_y)
+                    .transition()
+                    .duration(1000)
+                    .attr("cy", 0);
+            }
+
+
+
+            // transition_y.transition()
+            //     .duration(2000)
+            //     // .attr('cy',420)
+            //     .attr('cy',0)
+            //     // .transition()
+            //     // .duration(2000)
+            //     // .attr('cy',-100)
+            //     .transition()
+            //     .duration(2000)
+            //     .attr("cy",-350);
+
+            // transition_xy = d3.selectAll(".impute")
+            //     .filter(function(d){
+            //         return d[select_x] === 1 && d[select_y] === 1;
+            //     });
+            //
+            // transition_xy.transition()
+            //     .duration(2000)
+            //     .attr('cx',350)
+            //     // .transition()
+            //     // .duration(2000)
+            //     .attr('cx',0)
+            //     .transition()
+            //     .duration(2000)
+            //     .attr("cx", 0)
+            //     .duration(2000)
+            // // .attr('cy',420)
+            //     .attr('cy',-350)
+            //     // .transition()
+            //     // .duration(2000)
+            //     // .attr('cy',-100)
+            //     .transition()
+            //     .duration(2000)
+            //     .attr("cy",0);
+
+            repeat_x();
+            repeat_y();
 
         }else{
-            transition_x = d3.selectAll(".rect_impute")
-                .filter(function(d){
-                    return d[select_x] ===1 });
+            var transition_x = d3.selectAll(".rect_impute_x");
+
             // .transition().duration(2000);
-            transition_x.transition()
-                .duration(2000)
-                .attr('x',0)
-                .transition()
-                .duration(2000)
-                .attr('x',350)
-                .transition()
-                .duration(2000)
-                .attr("x", 0);
-
-            transition_y= d3.selectAll(".rect_impute")
-                .filter(function(d){
-                    return d[select_y] ===1 });
-
-            transition_y.transition()
-                .duration(2000)
-                // .attr('cy',420)
-                .attr('y',0)
-                .transition()
-                .duration(2000)
-                .attr('y',350)
-                .transition()
-                .duration(2000)
-                .attr("y",0);
+            function repeat_x(){
+                transition_x.transition()
+                    .duration(1000)
+                    // .attr('x',-std_x)
+                    .attr('x',-std_x)
+                    .transition()
+                    .duration(1000)
+                    .attr('x',std_x)
+                    .transition()
+                    .duration(1000)
+                    .attr("x", 0);
+            }
 
 
+            var transition_y= d3.selectAll(".rect_impute_y");
 
+            function repeat_y(){
+                transition_y.transition()
+                    .duration(1000)
+                    .attr('y',-std_y)
+                    .transition()
+                    .duration(1000)
+                    .attr('y',std_y)
+                    .transition()
+                    .duration(1000)
+                    .attr("y", 0);
+            }
+
+            repeat_x();
+            repeat_y();
 
         }
 
@@ -1422,7 +1587,21 @@ function updateChart() {
             //         return yScale(d[chartScales.y]);
             //     })
             //     .attr('r', 4);
-        }// end of local
+
+
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+
+
+    }// end of animation
 
     function redraw_none() {
 

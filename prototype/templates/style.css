@@ -186,6 +186,16 @@ circle {
     stroke-dasharray: 2,2;
 }
 
+.normal-line-x{
+    /*stroke: #b30059;*/
+    stroke:#000;
+}
+
+.normal-line-y {
+    /*stroke: #b30059;*/
+    stroke:#000;
+}
+
 .normal-line {
     /*stroke: #b30059;*/
     stroke:#000;
