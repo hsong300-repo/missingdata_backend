@@ -69,6 +69,18 @@ select {
     shape-rendering: crispEdges;
 }
 
+line.x {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+line.y {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
 /*this part added to partition into two columns*/
 * {
     box-sizing: border-box;
@@ -189,11 +201,15 @@ circle {
 .normal-line-x{
     /*stroke: #b30059;*/
     stroke:#000;
+    stroke-dasharray: 2,2;
+
 }
 
 .normal-line-y {
     /*stroke: #b30059;*/
     stroke:#000;
+    stroke-dasharray: 2,2;
+
 }
 
 .normal-line {

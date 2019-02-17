@@ -353,6 +353,14 @@ function updateChart() {
         .attr("x2", 0)
         .style("opacity",0)
         .attr("y2", -std_y);
+
+
+
+
+
+
+
+
     //
     // dotsEnter.append("line")
     //     .filter(function(d){
@@ -649,35 +657,140 @@ function updateChart() {
         }// end of unfilled
 
     function redraw_ticks_on() {
-
-
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
         // where it is missing, so if the value is imputed than it will show little lines next to it
 
-        dots_chart_line_x = chartG.append("g").selectAll("line")
-            .data(filtered_data)
+        // dots_chart_line_x = chartG.append("g").selectAll("line")
+        //     // .data(filtered_x)
+        //     .data(filtered_data_xy)
+        //     // .data(filtered_data)
+        //     .enter()
+        //     // .filter(function(d){
+        //     //     return d[select_x] === 1 })
+        //     .append("line")
+        //     .attr("class", "normal-line-x")
+        //     .attr("x1", function (d) {
+        //         return xScale(0);
+        //     })
+        //     .attr("y1", function (d) {
+        //         // return yScale(d[chartScales.y]+1);
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(0.6);
+        //     })
+        //     .attr("y2", function (d) {
+        //         // return yScale(d[chartScales.y]-1);
+        //         return yScale(d[chartScales.y]);
+        //     });
+        //
+        // console.log('filtered_x', filtered_x);
+        //
+        // dots_chart_line_y = chartG.append("g").selectAll("line")
+        //     // .data(filtered_data)
+        //     // .data(filtered_y)
+        //     .data(filtered_y)
+        //     .enter()
+        //     // .filter(function(d){
+        //     //     return d[select_y] === 1 })
+        //     .append("line")
+        //     .attr("class", "normal-line-y")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("y1", function (d) {
+        //         // return yScale(d[chartScales.y]+1);
+        //         return yScale(0);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("y2", function (d) {
+        //         // return yScale(d[chartScales.y]-1);
+        //         return yScale(0.6);
+        //     });
+        //
+        // console.log('filtered_y', filtered_y);
+
+        // d3.selectAll(".impute_x").
+        // var impute_x = d3.selectAll(".impute_x").each(function(d){
+        //     console.log("impute_x each here");
+        //     console.log(d);
+        //
+        // });
+        //
+        // impute_x.enter().append("line")
+        //     .attr("opacity",1)
+        //     .attr("class", "normal-line-x")
+        //     .attr("x1", function (d) {
+        //         return xScale(-0.6);
+        //     })
+        //     .attr("y1", function (d) {
+        //         // return yScale(d[chartScales.y]+1);
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(0.6);
+        //     })
+        //     .attr("y2", function (d) {
+        //         // return yScale(d[chartScales.y]-1);
+        //         return yScale(d[chartScales.y]);
+        //     });
+
+        dots_chart_line_x = chartG.append("g")
+            .selectAll("line.x")
+        // .data(filtered_x)
+            .data(filtered_x)
+            // .data(filtered_data)
             .enter()
-            .filter(function(d){
-                return d[select_y] === 1 })
+            // .filter(function(d){
+            //     return d[select_x] === 1 })
             .append("line")
+            .attr("opacity",1)
             .attr("class", "normal-line-x")
+            .attr("x1", function (d) {
+                return xScale(-0.6);
+            })
+            .attr("y1", function (d) {
+                // return yScale(d[chartScales.y]+1);
+                return yScale(d[chartScales.y]);
+            })
+            .attr("x2", function (d) {
+                return xScale(0.6);
+            })
+            .attr("y2", function (d) {
+                // return yScale(d[chartScales.y]-1);
+                return yScale(d[chartScales.y]);
+            });
+
+        dots_chart_line_y = chartG.append("g")
+            .selectAll("line.y")
+        // .data(filtered_data)
+        // .data(filtered_y)
+            .data(filtered_y)
+            .enter()
+            // .filter(function(d){
+            //     return d[select_y] === 1 })
+            .append("line")
+            .attr("opacity",1)
+            .attr("class", "normal-line-y")
             .attr("x1", function (d) {
                 return xScale(d[chartScales.x]);
             })
@@ -690,36 +803,10 @@ function updateChart() {
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
-                return yScale(-0.6);
+                return yScale(0.6);
             });
-
-
-        dots_chart_line_y = chartG.append("g").selectAll("line")
-            .data(filtered_data)
-            .enter()
-            .filter(function(d){
-                return d[select_x] === 1 })
-            .append("line")
-            .attr("class", "normal-line-y")
-            .attr("x1", function (d) {
-                return xScale(-0.6);
-            })
-            .attr("y1", function (d) {
-                // return yScale(d[chartScales.y]+1);
-                return yScale(d[chartScales.y]);
-            })
-            .attr("x2", function (d) {
-                return xScale(0);
-            })
-            .attr("y2", function (d) {
-                // return yScale(d[chartScales.y]-1);
-                return yScale(d[chartScales.y]);
-            });
-
-
 
         shape_check = false;
-
 
     }// end of unfilled
 
@@ -1696,7 +1783,6 @@ var previewCsvUrl = function( csvUrl ) {
 
     });
 
-    //    previewCsvUrl("./new_data/whiskey_random.csv");
     // d3.csv("./new_data/whiskey_random.csv", function(error, random_data){
     //     d3.csv("./new_data/whiskey_global.csv", function(error, global__data){
     //         d3.csv("./new_data/whiskey_knn.csv", function(error, knn_data){
@@ -1747,28 +1833,7 @@ var previewCsvUrl = function( csvUrl ) {
         }
         var concat_selection = temp.concat("_impute");
 
-        d3.select("#bar_knn")
-            .on("click",function(d){
-                console.log('bar knn');
-                data = knn_data;
 
-            });
-
-        d3.select("#bar_mean")
-            .on("click",function(d){
-                console.log('bar global');
-                data = global_data;
-
-
-            });
-
-        d3.select("#bar_random")
-            .on("click",function(d){
-                console.log('bar random');
-                data = random_data;
-
-
-            });
 
         var avg = d3.nest()
         // var avg = d3.nest()
@@ -1845,7 +1910,7 @@ var previewCsvUrl = function( csvUrl ) {
         var yAxis = d3.axisLeft(y);
 
         canvas.append("g")
-            .attr("class", "x axis")
+                .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .selectAll("text")
@@ -1856,7 +1921,7 @@ var previewCsvUrl = function( csvUrl ) {
             .attr("transform", "rotate(-90)" );
 
         canvas.append("g")
-            .attr("class", "y axis")
+                .attr("class", "y axis")
             .call(yAxis);
 
         canvas.selectAll("rectangle")
@@ -2010,6 +2075,87 @@ var previewCsvUrl = function( csvUrl ) {
             console.log('counts off');
             redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory);
         });
+
+        // d3.select("#bar_knn")
+        //     .on("click",function(d){
+        //         console.log('bar knn');
+        //         var data = knn_data;
+        //
+        //         var selectAvg = d3.nest()
+        //             .key(function(d){ return d.Category;})
+        //             .rollup(function(v){return d3.mean(v,function(d){
+        //                 return +d[selection];});})
+        //             .entries(data);
+        //
+        //         console.log('bar knn', selectAvg);
+        //
+        //         var random_avg = d3.nest()
+        //             .key(function(d){ return d.Category;})
+        //             .rollup(function(v){return d3.mean(v,function(d){
+        //                 return +d[selection];});})
+        //             .entries(random_data);
+        //
+        //         console.log('bar random',random_avg);
+        //
+        //         var global_avg = d3.nest()
+        //             .key(function(d){ return d.Category;})
+        //             .rollup(function(v){return d3.mean(v,function(d){
+        //                 return +d[selection];});})
+        //             .entries(global_data);
+        //
+        //         console.log('bar random',global_avg);
+        //
+        //
+        //         y.domain([0, d3.max(selectAvg, function(d){
+        //             // y.domain([0,d3.max(data,function(d){
+        //             //     return +d[selection.value];
+        //             return +d.value;
+        //         })]);
+        //
+        //         yAxis.scale(y);
+        //
+        //         // this part added for transition
+        //         var bar = d3.selectAll(".rectangle").data(selectAvg);
+        //
+        //         bar.enter().append('rect')
+        //             .attr('class','bar')
+        //             // .transition()
+        //             // .duration(1000)
+        //             // .ease("linear")
+        //             .attr("fill","teal")
+        //             // .attr('class','rectangle')
+        //             .attr("x",function(d){return x(d.key);})
+        //             .attr('y',function(d){return y(d.value);})
+        //             .attr('height',function(d){return height - y(d.value);})
+        //             .attr("width",x.bandwidth());
+        //
+        //         //remove data
+        //         bar.exit().remove();
+        //
+        //         bar.attr("y", function(d){return y(d.value);})
+        //             .attr('height',function(d){return height -y(d.value);});
+        //
+        //         d3.selectAll("g.y.axis")
+        //             .transition()
+        //             .call(yAxis);
+        //
+        //     });
+
+        // d3.select("#bar_mean")
+        //     .on("click",function(d){
+        //         console.log('bar global');
+        //         data = global_data;
+        //
+        //
+        //     });
+        //
+        // d3.select("#bar_random")
+        //     .on("click",function(d){
+        //         console.log('bar random');
+        //         data = random_data;
+        //
+        //
+        //     });
 
 
 
@@ -2751,8 +2897,12 @@ d3.selectAll(("input[value='bar_mean']")).on("change", function() {
         console.log('canvas undefined');
     }else{
         console.log('canvas defined');
-        selector.remove().exit();
+        // selector.remove().exit();
         canvas.remove().exit();
+    }if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
     if(typeof dots === 'undefined'){  //scatter
         console.log('canvas undefined');
@@ -2796,6 +2946,10 @@ d3.selectAll(("input[value='bar_knn']")).on("change", function() {
         console.log('canvas defined');
         selector.remove().exit();
         canvas.remove().exit();
+    } if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
     if(typeof dots === 'undefined'){  //scatter
         console.log('canvas undefined');
@@ -2832,9 +2986,14 @@ d3.selectAll(("input[value='bar_random']")).on("change", function() {
     if(typeof canvas === 'undefined'){
         console.log('canvas undefined');
     }else{
-        selector.remove().exit();
+        // selector.remove().exit();
         canvas.remove().exit();
+    }if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
+
     if(typeof dots === 'undefined'){  //scatter
         console.log('canvas undefined');
     }else{
@@ -2870,8 +3029,12 @@ d3.selectAll(("input[value='scatter_mean']")).on("change", function() {
         console.log('canvas undefined');
     }else{
         console.log('canvas defined');
-        selector.remove().exit();
+        // selector.remove().exit();
         canvas.remove().exit();
+    }if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
     if(typeof dots === 'undefined'){  //scatter
         console.log('canvas undefined');
@@ -2909,8 +3072,12 @@ d3.selectAll(("input[value='scatter_knn']")).on("change", function() {
         console.log('canvas undefined');
     }else{
         console.log('canvas defined');
-        selector.remove().exit();
+        // selector.remove().exit();
         canvas.remove().exit();
+    }if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
 
     if(typeof dots === 'undefined'){  //scatter
@@ -2951,8 +3118,12 @@ d3.selectAll(("input[value='scatter_random']")).on("change", function() {
         console.log('canvas undefined');
     }else{
         console.log('canvas defined');
-        selector.remove().exit();
+        // selector.remove().exit();
         canvas.remove().exit();
+    }if(typeof selector === 'undefined'){
+        console.log('canvas undefined');
+    }else{
+        selector.remove().exit();
     }
 
     if(typeof dots === 'undefined'){  //scatter
