@@ -1784,11 +1784,11 @@ var previewCsvUrl = function( csvUrl ) {
     // });
 
     d3.csv("./new_data/whiskey_random.csv", function(error, random_data){
-        d3.csv("./new_data/whiskey_global.csv", function(error, global__data){
+        d3.csv("./new_data/whiskey_global.csv", function(error, global_data){
             d3.csv("./new_data/whiskey_knn.csv", function(error, knn_data){
 
                 // make_bar(data);
-                make_bar(random_data,global__data, knn_data);
+                make_bar(random_data,global_data, knn_data);
 
 
 
