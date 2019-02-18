@@ -1791,6 +1791,9 @@ var previewCsvUrl = function( csvUrl ) {
                 make_bar(random_data,global__data, knn_data);
 
 
+
+
+
             });
         });
     });
@@ -1815,6 +1818,7 @@ var previewCsvUrl = function( csvUrl ) {
         knn_flag = false;
         random_flag = false;
         mean_flag = false;
+        select_flag = false;
 
         if(knn_flag === true){
             data = knn_data;
@@ -2093,12 +2097,19 @@ var previewCsvUrl = function( csvUrl ) {
                 console.log('bar knn');
                 data = knn_data;
 
-                var selectAvg = d3.nest()
-                    .key(function(d){ return d.Category;})
-                    .rollup(function(v){return d3.mean(v,function(d){
-                        return +d[selection];});})
-                    .entries(data);
-
+                if(select_flag === false){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection];});})
+                        .entries(data);
+                }else if(select_flag === true){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection.value];});})
+                        .entries(data);
+                }
 
                 y.domain([0, d3.max(selectAvg, function(d){
                     // y.domain([0,d3.max(data,function(d){
@@ -2111,13 +2122,12 @@ var previewCsvUrl = function( csvUrl ) {
                 console.log('here');
 
                 // this part added for transition
-
                 var bar = d3.selectAll(".rectangle").data(selectAvg);
 
                 console.log('here after');
 
                 bar.enter().append('rect')
-                    .attr('class','bar')
+                    // .attr('class','bar_knn')
                     // .transition()
                     // .duration(1000)
                     // .ease("linear")
@@ -2156,7 +2166,7 @@ var previewCsvUrl = function( csvUrl ) {
 
 
             });
-
+        //
         d3.select("#bar_mean")
             .on("click",function(d){
                 console.log('bar global');
@@ -2164,11 +2174,19 @@ var previewCsvUrl = function( csvUrl ) {
 
                 console.log('bar mean');
 
-                var selectAvg = d3.nest()
-                    .key(function(d){ return d.Category;})
-                    .rollup(function(v){return d3.mean(v,function(d){
-                        return +d[selection];});})
-                    .entries(data);
+                if(select_flag === false){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection];});})
+                        .entries(data);
+                }else if(select_flag === true){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection.value];});})
+                        .entries(data);
+                }
 
                 y.domain([0, d3.max(selectAvg, function(d){
                     // y.domain([0,d3.max(data,function(d){
@@ -2217,12 +2235,19 @@ var previewCsvUrl = function( csvUrl ) {
 
                 console.log('bar random');
 
-                var selectAvg = d3.nest()
-                    .key(function(d){ return d.Category;})
-                    .rollup(function(v){return d3.mean(v,function(d){
-                        return +d[selection];});})
-                    .entries(data);
-
+                if(select_flag === false){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection];});})
+                        .entries(data);
+                }else if(select_flag === true){
+                    var selectAvg = d3.nest()
+                        .key(function(d){ return d.Category;})
+                        .rollup(function(v){return d3.mean(v,function(d){
+                            return +d[selection.value];});})
+                        .entries(data);
+                }
 
                 y.domain([0, d3.max(selectAvg, function(d){
                     // y.domain([0,d3.max(data,function(d){
@@ -2274,6 +2299,10 @@ var previewCsvUrl = function( csvUrl ) {
                 select_check = true;
                 selection = document.getElementById("dropdown");
 
+                if(knn_flag === true){
+                    data = knn_data;
+                }
+
 
 
                 var selectAvg = d3.nest()
@@ -2320,9 +2349,6 @@ var previewCsvUrl = function( csvUrl ) {
                     .rollup(function(v){return v.length;})
                     // .filter(function(d,i){return removed_idx.includes(i);})
                     .entries(data);
-
-                console.log("here 1");
-
 
                 d3.selectAll(("input[value='bar_color']")).on("change", function() {
                     console.log('color dropdown');
@@ -2383,7 +2409,9 @@ var previewCsvUrl = function( csvUrl ) {
                 yAxis.scale(y);
 
                 // this part added for transition
+
                 var bar = d3.selectAll(".rectangle").data(selectAvg);
+
 
                 bar.enter().append('rect')
                     .attr('class','bar')
@@ -2406,9 +2434,6 @@ var previewCsvUrl = function( csvUrl ) {
                 console.log("here 3");
 
                 select_flag = true;
-                select_avg = selectAvg;
-
-
 
             });
 
@@ -2451,7 +2476,6 @@ var previewCsvUrl = function( csvUrl ) {
 
 
         }// end of bar none
-
 
         function redraw_bar_animation(missingCount,notMissingCount,avg,missingCategory){
             if(typeof missing_bar === 'undefined'){ // bars

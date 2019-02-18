@@ -128,18 +128,18 @@
                     <input type="radio" name="impute_bar" id ="bar_random" value="bar_random" checked> random<br>
 
                     <label class='radio-inline'>
-                        Encodings: <input type="radio" name="vis" value="bar_color"> color
+                        Encodings: <input type="radio" name="vis_bar" value="bar_color" checked> color
                         <!--<input type="radio" name="color" value="color" onclick='change(this.value)'> color-->
                     </label>
                     <label class='radio-inline'>
-                        <input type="radio" name="vis" value="bar_gradient" > gradient
+                        <input type="radio" name="vis_bar" value="bar_gradient" > gradient
                         <!--<input type="radio" name="gradient" value="gradient" onclick='change(this.value)'> gradient-->
                     </label>
                     <!--<label class='radio-inline'>-->
                         <!--<input type="radio" name="vis" value="bar_sketch"> sketch-->
                     <!--</label>-->
                     <label class='radio-inline'>
-                        <input type="radio" name="vis" value="bar_pattern"> pattern
+                        <input type="radio" name="vis_bar" value="bar_pattern"> pattern
                     </label>
                     <!--<label class='radio-inline'>-->
                         <!--<input type="radio" name="vis" value="bar_default" checked > default-->
@@ -147,11 +147,9 @@
                     <!--</label>-->
 
                     <label class='radio-inline'>
-                        <input type="radio" name="vis" value="bar_dash"> dashed outline
+                        <input type="radio" name="vis_bar" value="bar_dash"> dashed outline
                     </label>
-                    <label class='radio-inline'>
-                        <input type="radio" name="vis" value="bar_missing"> unknown missing
-                    </label>
+
                     <!--<label class='radio-inline'>-->
                     <br>
                      <label class='radio-inline'>
@@ -223,8 +221,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
-<script src="./main.js"></script>
-<!--<script src="./view.js"></script>-->
+<!--<script src="./main.js"></script>-->
+<script src="./view.js"></script>
 
 <!--<script src= "{{ url_for('static', filename = 'main.js') }}"></script>-->
 

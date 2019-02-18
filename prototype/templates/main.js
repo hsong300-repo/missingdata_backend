@@ -173,7 +173,6 @@ function updateChart() {
     filtered_y = whiskey
             .filter(function(d){
                 return d[select_y] ===1});
-    console.log("filtered_y",filtered_y);
 
     noimpute_data = whiskey
         .filter(function(d){
@@ -213,35 +212,35 @@ function updateChart() {
             }else{
                 console.log('d[select_y}',d[select_y]);
             }
-            div.transition()
-                .duration(200)
-                .style("opacity", .9);
-            // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
-            div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
-                .style("left", (d3.event.pageX+14) + "px")
-                .style("top", (d3.event.pageY-28) + "px");
+            // div.transition()
+            //     .duration(200)
+            //     .style("opacity", .9);
+            // // // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
+            // // div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
+            // //     .style("left", (d3.event.pageX+14) + "px")
+            // //     .style("top", (d3.event.pageY-28) + "px");
 
-            // var hovered = d3.select(this);
-            // // Show the text, otherwise hidden
-            // hovered.select('text')
-            //     .style('visibility', 'visible');
-            // // Add stroke to circle to highlight it
-            // hovered.select('circle')
-            //     .style('stroke-width', 2)
-            //     .style('stroke', '#333');
+            var hovered = d3.select(this);
+            // Show the text, otherwise hidden
+            hovered.select('text')
+                .style('visibility', 'visible');
+            // Add stroke to circle to highlight it
+            hovered.select('circle')
+                .style('stroke-width', 2)
+                .style('stroke', '#333');
         })
         .on('mouseout', function(d){ // Add hover end event binding
             // Select the hovered g.dot
-            // var hovered = d3.select(this);
-            // // Remove the highlighting we did in mouseover
-            // hovered.select('text')
-            //     .style('visibility', 'hidden');
-            // hovered.select('circle')
-            //     .style('stroke-width', 0)
-            //     .style('stroke', 'none');
-            div.transition()
-                .duration(500)
-                .style("opacity", 0);
+            var hovered = d3.select(this);
+            // Remove the highlighting we did in mouseover
+            hovered.select('text')
+                .style('visibility', 'hidden');
+            hovered.select('circle')
+                .style('stroke-width', 0)
+                .style('stroke', 'none');
+            // div.transition()
+            //     .duration(500)
+            //     .style("opacity", 0);
         });
 
     // Append a circle to the ENTER selection
@@ -366,8 +365,28 @@ function updateChart() {
     //     });
 
      // Append a text to the ENTER selection
+    dotsEnter.append('text')
+        // .attr('y', -10)
+        .attr('y', -10)
+        .style("font-size", "15px")
+        .text(function(d) {
+            if(d[select_x] === 0){
+                var x_val = "valid";
+            }else if(d[select_x] === 1){
+                var x_val = "missing";
+            }
+            if(d[select_y] === 0){
+                var y_val = "valid";
+            }else if(d[select_x] === 1){
+                var y_val = "missing";
+            }
+            return  temp_x +":"+x_val + ' '+ temp_y + ":" +y_val + " " + d.Name;
+        });
+
+
+
     // dotsEnter.append('text')
-    //     // .attr('y', -10)
+    // // .attr('y', -10)
     //     .attr('y', -10)
     //     .style("font-size", "15px")
     //     .text(function(d) {
@@ -1526,14 +1545,35 @@ var previewCsvUrl = function( csvUrl ) {
                 return y(d.value);
             })
             .attr("fill","steelblue")
-            // .attr("fill","url(#svgGradient)")
             .append("title")
             // .style("margin-left", "10px")   //space between bars
             .text(function(d){
 
             });
 
-        //legneds for count
+        var missingCount = impute_count;
+        total_missing = impute_count.length;
+
+        var not_missing_data = data.filter(function(d){return d[concat_selection];});
+
+        var notMissingCount = d3.nest()
+            .key(function(d){return d.Category})
+            .rollup(function(v){return v.length;})
+            .entries(not_missing_data);
+
+
+        var missingCategory = [];
+        for (var i = 0; i < missingCount.length; i++) {
+            missingCategory.push(Object.values(missingCount[i])[0])
+        }
+
+        d3.selectAll(".rectangle").filter(function (d, i) {
+            return missingCategory.includes(d.key);})
+            .attr("stroke","#87CEFA")
+            .style("stroke-dasharray", ("0, 0"))
+            .attr("fill","#87CEFA");
+
+            //legneds for count
         canvas.append("rect")
             .attr("class","count-legend")
             .attr("x", width +50)
@@ -1580,21 +1620,9 @@ var previewCsvUrl = function( csvUrl ) {
         //     .rollup(function(v){return v.length;})
         //     // .filter(function(d,i){return removed_idx.includes(i);})
         //     .entries(f_data);
-        var missingCount = impute_count;
-        total_missing = impute_count.length;
-
-        var not_missing_data = data.filter(function(d){return d[concat_selection];});
-
-        var notMissingCount = d3.nest()
-            .key(function(d){return d.Category})
-            .rollup(function(v){return v.length;})
-            .entries(not_missing_data);
 
 
-        var missingCategory = [];
-            for (var i = 0; i < missingCount.length; i++) {
-                missingCategory.push(Object.values(missingCount[i])[0])
-            }
+
 
         d3.selectAll(("input[value='bar_color']")).on("change", function() {
             console.log('onchange bar color');
@@ -1616,16 +1644,10 @@ var previewCsvUrl = function( csvUrl ) {
 
         d3.selectAll(("input[value='bar_pattern']")).on("change", function() {
             console.log('onchange bar pattern count');
-            //work
-
             redraw_bar_pattern(missingCount,notMissingCount,avg,missingCategory);
         });
 
-        d3.selectAll(("input[value='bar_missing']")).on("change", function() {
-            console.log('onchange bar missing');
 
-            redraw_bar_missing(total_missing,missingCount,notMissingCount,filtered_data,avg,missingCategory);
-        });
 
         d3.selectAll(("input[value='bar_sketch']")).on("change", function() {
             console.log('onchange bar sketch');
@@ -1657,86 +1679,6 @@ var previewCsvUrl = function( csvUrl ) {
             redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory);
         });
 
-        // d3.select("#bar_knn")
-        //     .on("click",function(d){
-        //         console.log('bar knn');
-        //         var data = knn_data;
-        //
-        //         var selectAvg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(data);
-        //
-        //         console.log('bar knn', selectAvg);
-        //
-        //         var random_avg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(random_data);
-        //
-        //         console.log('bar random',random_avg);
-        //
-        //         var global_avg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(global_data);
-        //
-        //         console.log('bar random',global_avg);
-        //
-        //
-        //         y.domain([0, d3.max(selectAvg, function(d){
-        //             // y.domain([0,d3.max(data,function(d){
-        //             //     return +d[selection.value];
-        //             return +d.value;
-        //         })]);
-        //
-        //         yAxis.scale(y);
-        //
-        //         // this part added for transition
-        //         var bar = d3.selectAll(".rectangle").data(selectAvg);
-        //
-        //         bar.enter().append('rect')
-        //             .attr('class','bar')
-        //             // .transition()
-        //             // .duration(1000)
-        //             // .ease("linear")
-        //             .attr("fill","teal")
-        //             // .attr('class','rectangle')
-        //             .attr("x",function(d){return x(d.key);})
-        //             .attr('y',function(d){return y(d.value);})
-        //             .attr('height',function(d){return height - y(d.value);})
-        //             .attr("width",x.bandwidth());
-        //
-        //         //remove data
-        //         bar.exit().remove();
-        //
-        //         bar.attr("y", function(d){return y(d.value);})
-        //             .attr('height',function(d){return height -y(d.value);});
-        //
-        //         d3.selectAll("g.y.axis")
-        //             .transition()
-        //             .call(yAxis);
-        //
-        //     });
-
-        // d3.select("#bar_mean")
-        //     .on("click",function(d){
-        //         console.log('bar global');
-        //         data = global_data;
-        //
-        //
-        //     });
-        //
-        // d3.select("#bar_random")
-        //     .on("click",function(d){
-        //         console.log('bar random');
-        //         data = random_data;
-        //
-        //
-        //     });
 
 
 
@@ -1811,10 +1753,6 @@ var previewCsvUrl = function( csvUrl ) {
 
                 d3.selectAll(("input[value='bar_pattern']")).on("change", function() {
                     redraw_bar_pattern(missingCount,notMissingCount,selectAvg,missingCategory);
-                });
-
-                d3.selectAll(("input[value='bar_missing']")).on("change", function() {
-                    redraw_bar_missing(total_missing,missingCount,notMissingCount,selectAvg,missingCategory);
                 });
 
                 d3.selectAll(("input[value='bar_dash']")).on("change", function() {
@@ -2254,71 +2192,6 @@ var previewCsvUrl = function( csvUrl ) {
 
         }// end of bar pattern
 
-        function redraw_bar_missing(total_missing,missingCount,notMissingCount,avg,missingCategory){
-
-            if(typeof missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-                missing_bar.remove().exit();
-            }if(typeof not_missing_bar === 'undefined'){ // bars
-                console.log('missing bar undefined');
-            }else{
-                not_missing_bar.remove().exit();
-            }
-            if(typeof bar_unknown_text === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                bar_unknown_text.remove().exit();
-            }
-            if(typeof missing_count_bar === 'undefined'){ // bars
-                console.log('text bar undefined');
-            }else{
-                missing_count_bar.remove().exit();
-            }
-
-
-            var dataset = [total_missing];
-
-
-
-            missing_count_bar = canvas.selectAll("rectangle")
-            // .data(data)
-            //     .data(missingCount)
-                .data(dataset)
-                .enter()
-                .append("rect")
-                .attr("class","rectangle")
-                // .attr("width", width/data.length-5)
-                .attr("width", x.bandwidth())
-                .attr("height", function(d){
-                    return total_missing;
-                    // total_missing;
-                })
-                .attr("x", width+30)
-                // .attr("y", function(d){return d.value;})
-                .attr("y", height-total_missing)
-                .attr("fill","orange")
-                // .attr("fill","url(#gradient)")
-                .append("title")
-                .text(function(d){
-                    return "unknown";
-
-                });
-
-            // add text
-            bar_unknown_text = canvas.append("text")
-                // .attr("class","unknown label")
-                .attr("class","unknown")
-                .text("unknown")
-                .attr("x",width+x.bandwidth()+15)
-                .attr("y",height+10)
-                .attr("font-size","11px")
-                .attr("fill","black")
-                .attr("text-anchor","middle");
-
-
-        }// end of bar missing
-
         function redraw_bar_counts_on(missingCount,notMissingCount,avg,missingCategory){
             if(typeof missing_bar === 'undefined'){ // bars
                 console.log('missing bar undefined');
@@ -2426,11 +2299,6 @@ var previewCsvUrl = function( csvUrl ) {
 
     }// end of the make_bar function
 
-    // this is the preview part, that shows the preview of the data
-    // d3.csv( csvUrl, function( rows ) {
-    //     d3.select("div#preview").html(
-    //         "<b>First row:</b><br/>" + rowToHtml( rows[0] ));
-    // })
 };
 
 
