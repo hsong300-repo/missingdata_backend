@@ -259,7 +259,7 @@ function updateChart() {
             return d[select_x] ===1 || d[select_y] === 1})
         .attr("class","impute")
         .style("fill","#87CEFA")
-         // .style("opacity",0.1)
+         .style("opacity",0)
         .attr('r', 4);
 
     dotsEnter.append('circle')
