@@ -258,24 +258,24 @@ function updateChart() {
        .filter(function(d){
             return d[select_x] ===1 || d[select_y] === 1})
         .attr("class","impute")
-        .style("fill","steelblue")
-         .style("opacity",0.1)
+        .style("fill","#87CEFA")
+         // .style("opacity",0.1)
         .attr('r', 4);
 
     dotsEnter.append('circle')
         .filter(function(d){
             return d[select_x] ===1 })
-        .style("fill","steelblue")
+        .style("fill","#87CEFA")
         .attr("class","impute_x")
-        .style("opacity",0.1)
+        // .style("opacity",0.1)
         .attr('r', 4);
 
     dotsEnter.append('circle')
         .filter(function(d){
             return d[select_y] === 1})
-        .style("fill","steelblue")
+        .style("fill","#87CEFA")
         .attr("class","impute_y")
-        .style("opacity",0.1)
+        // .style("opacity",0.1)
         .attr('r', 4);
     //
     // dotsEnter.append('circle')
@@ -354,47 +354,6 @@ function updateChart() {
         .style("opacity",0)
         .attr("y2", -std_y);
 
-
-
-
-
-
-
-
-    //
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_y] === 1 })
-    //     .attr("class", "normal-line")
-    //     .style("opacity",1)
-    //     .attr("x1", function (d) {
-    //         return xScale(d[chartScales.x]);
-    //     })
-    //     .attr("y1", function (d) {
-    //         // return yScale(d[chartScales.y]+1);
-    //         return yScale(0);
-    //     })
-    //     .attr("x2", function (d) {
-    //         return xScale(d[chartScales.x]);
-    //     })
-    //     .attr("y2", function (d) {
-    //         // return yScale(d[chartScales.y]-1);
-    //         return yScale(0 - 0.6);
-    //     });
-
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_x] === 1 })
-    //     .attr("class", "normal-line")
-    //     .style("opacity",1)
-    //     .attr("x1", function (d) {
-    //     return xScale(0);
-    // })
-    //     .attr("y1",0)
-    //     .attr("x2", function (d) {
-    //         return xScale(-10);
-    //     })
-    //     .attr("y2", 0);
 
     // Append a text to the ENTER selection
     // dotsEnter.append('text')
