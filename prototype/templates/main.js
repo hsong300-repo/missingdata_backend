@@ -542,31 +542,55 @@ function updateChart() {
         //     dots_chart_y.remove().exit(); //remove some of the encodings
         // }
 
-        // dots_chart = chartG.append("g").attr('class', "Scatter")
-        //    .selectAll("circle")
-        //    .data(filtered_data).enter()
-        //    // .data(whiskey).enter()
-        //    .append('circle')
-        //    // .filter(function (d, i) {
-        //    //     return d[chartScales.x]==="0.0";
-        //    // })
-        //    .style("fill", 'red')
-        //    .attr("cx", function (d) {
-        //        return xScale(d[chartScales.x]);
-        //    })
-        //    .attr("cy", function (d) {
-        //        return yScale(d[chartScales.y]);
-        //    })
-        //    .attr('r', 4);
+        dots_chart = chartG.append("g").attr('class', "Scatter")
+           .selectAll("circle")
+           .data(filtered_data).enter()
+           // .data(whiskey).enter()
+           .append('circle')
+           // .filter(function (d, i) {
+           //     return d[chartScales.x]==="0.0";
+           // })
+           .style("fill", 'red')
+           .attr("cx", function (d) {
+               return xScale(d[chartScales.x]);
+           })
+           .attr("cy", function (d) {
+               return yScale(d[chartScales.y]);
+           })
+           .attr('r', 4);
 
-        d3.selectAll(".impute_x")
-            .style("fill", '#87CEFA').style("opacity",1);
 
-        d3.selectAll(".impute_y")
-            .style("fill", '#87CEFA').style("opacity",1);
+        // dotsEnter.append('circle')
+        //     .filter(function(d){
+        //         return d[select_x] === 0 && d[select_y] === 0})
+        //     .attr("class","no_impute")
+        //     .style("fill","steelblue")
+        //     .attr('r', 4);
+        //
+        // dotsEnter.append('circle')
+        //     .filter(function(d){
+        //         return d[select_x] ===1 || d[select_y] === 1})
+        //     .attr("class","impute")
+        //     .style("fill","steelblue")
+        //     .style("opacity",0)
+        //     .attr('r', 4);
+        //
 
-        d3.selectAll(".no_impute")
-            .style("fill", 'steelblue').style("opacity",0.8);
+
+        d3.selectAll(".impute")
+            .style("fill", '#87CEFA').style("opacity",0);
+
+        // d3.selectAll(".no_impute")
+        //     .style("fill", 'steelblue').style("opacity",0);
+
+        // d3.selectAll(".impute_x")
+        //     .style("fill", '#87CEFA').style("opacity",1);
+        //
+        // d3.selectAll(".impute_y")
+        //     .style("fill", '#87CEFA').style("opacity",1);
+
+        // d3.selectAll(".no_impute")
+        //     .style("fill", 'steelblue').style("opacity",0.8);
 
         d3.selectAll(".rect_impute")
             .style("opacity",0);
@@ -815,18 +839,18 @@ function updateChart() {
             .attr("opacity",1)
             .attr("class", "normal-line")
             .attr("x1", function (d) {
-                return xScale(-5);
+                return xScale(-3.5);
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
-                return yScale(d[chartScales.x]);
+                return yScale(d[chartScales.y]);
             })
             .attr("x2", function (d) {
                 return xScale(0);
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
-                return yScale(d[chartScales.x]);
+                return yScale(d[chartScales.y]);
             });
 
         shape_check = false;
