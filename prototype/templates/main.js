@@ -5,15 +5,17 @@ function onXScaleChanged() {
     chartScales.x = select.options[select.selectedIndex].value;
 
 
-    // if(typeof dots_chart_line === 'undefined'){ // bars
-    // }else{
-    //     dots_chart_line.remove().exit();
-    // }if(typeof dots_chart_line_y === 'undefined'){ // bars
-    //         console.log('dotschart undefined');
-    //     }else {
-    //         dots_chart_line_y.remove().exit();
-    //     // dots_remove.remove().exit();
-    //     }if(typeof dots_chart_x === 'undefined'){ // bars
+
+    if(typeof dots_chart_line_x === 'undefined'){ // bars
+    }else{
+        dots_chart_line_x.remove().exit();
+    }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
+        }
+        // if(typeof dots_chart_x === 'undefined'){ // bars
     //         console.log('dotschart undefined');
     //     }else{
     //         dots_chart_x.remove().exit(); //remove some of the encodings
@@ -33,6 +35,15 @@ function onYScaleChanged() {
     chartScales.y = select.options[select.selectedIndex].value;
 
 
+    if(typeof dots_chart_line_x === 'undefined'){ // bars
+    }else{
+        dots_chart_line_x.remove().exit();
+    }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else {
+        dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
+    }
     // if(typeof dots_chart_line === 'undefined'){ // bars
     // }else{
     //     dots_chart_line.remove().exit();
@@ -162,7 +173,6 @@ function updateChart() {
     filtered_data_xy = whiskey
         .filter(function(d){
             return d[select_x] === 1 && d[select_y] === 1});
-
 
 
     filtered_x = whiskey
@@ -747,8 +757,28 @@ function updateChart() {
         //         return yScale(d[chartScales.y]);
         //     });
 
+        // dots_chart_line = chartG.append("g").selectAll("line")
+        //     .data(filtered_data)
+        //     .enter()
+        //     .filter(function(d){
+        //         return d[select_x] ===1})
+        //     .append("line")
+        //     .attr("class", "error-line")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x]-std_x );
+        //     })
+        //     .attr("y1", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x] +std_x);
+        //     })
+        //     .attr("y2", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     });
+
         dots_chart_line_x = chartG.append("g")
-            .selectAll("line.x")
+            .selectAll("line")
             // .data(filtered_x)
             .data(filtered_x)
             // .data(filtered_data)
@@ -757,33 +787,7 @@ function updateChart() {
             //     return d[select_x] === 1 })
             .append("line")
             .attr("opacity",1)
-            .attr("class", "normal-line-x")
-            .attr("x1", function (d) {
-                return xScale(-0.6);
-            })
-            .attr("y1", function (d) {
-                // return yScale(d[chartScales.y]+1);
-                return yScale(d[chartScales.y]);
-            })
-            .attr("x2", function (d) {
-                return xScale(0.6);
-            })
-            .attr("y2", function (d) {
-                // return yScale(d[chartScales.y]-1);
-                return yScale(d[chartScales.y]);
-            });
-
-        dots_chart_line_y = chartG.append("g")
-            .selectAll("line.y")
-            // .data(filtered_data)
-            // .data(filtered_y)
-            .data(filtered_y)
-            .enter()
-            // .filter(function(d){
-            //     return d[select_y] === 1 })
-            .append("line")
-            .attr("opacity",1)
-            .attr("class", "normal-line-y")
+            .attr("class", "normal-line")
             .attr("x1", function (d) {
                 return xScale(d[chartScales.x]);
             })
@@ -799,9 +803,37 @@ function updateChart() {
                 return yScale(-0.6);
             });
 
+        dots_chart_line_y = chartG.append("g")
+            .selectAll("line")
+            // .data(filtered_data)
+            // .data(filtered_y)
+            .data(filtered_y)
+            .enter()
+            // .filter(function(d){
+            //     return d[select_y] === 1 })
+            .append("line")
+            .attr("opacity",1)
+            .attr("class", "normal-line")
+            .attr("x1", function (d) {
+                return xScale(-5);
+            })
+            .attr("y1", function (d) {
+                // return yScale(d[chartScales.y]+1);
+                return yScale(d[chartScales.x]);
+            })
+            .attr("x2", function (d) {
+                return xScale(0);
+            })
+            .attr("y2", function (d) {
+                // return yScale(d[chartScales.y]-1);
+                return yScale(d[chartScales.x]);
+            });
+
         shape_check = false;
 
     }// end of unfilled
+
+
 
     function redraw_ticks_off() {
         if(typeof dots_chart_line_x === 'undefined'){ // bars
