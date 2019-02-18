@@ -773,7 +773,7 @@ function updateChart() {
                 return yScale(d[chartScales.y]);
             })
             .attr("x2", function (d) {
-                return xScale(0.6);
+                return xScale(0);
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
@@ -803,7 +803,7 @@ function updateChart() {
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
-                return yScale(0.6);
+                return yScale(-0.6);
             });
 
         shape_check = false;
@@ -1404,111 +1404,6 @@ function updateChart() {
             //     dots_chart_y.remove().exit(); //remove some of the encodings
             // }
 
-            // if(typeof dots_chart === 'undefined'){ // bars
-            //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
-            //         .selectAll("circle")
-            //         .data(whiskey)
-            //         .enter()
-            //         .append('circle')
-            //         .filter(function(d){
-            //                 return d[select_x] ===1 })
-            //         .style("stroke", 'steelblue')
-            //         // .style("stroke-width", 1)
-            //         .style("fill", 'steelblue')
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         })
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         })
-            //         .attr('r', 4);
-            //
-            //     dots_chart_y = chartG.append("g").attr('class', "Scatter")
-            //         .selectAll("circle")
-            //         .data(whiskey)
-            //         .enter()
-            //         .append('circle')
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .style("stroke", 'steelblue')
-            //         // .style("stroke-width", 1)
-            //         .style("fill", 'steelblue')
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         })
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         })
-            //         .attr('r', 4);
-            //     shape_check = false;
-            // }else{
-            //       dots_chart_x = dots_chart.filter(function(d){
-            //             return d[select_x] ===1 });
-            //       dots_chart_y = dots_chart.filter(function(d){
-            //             return d[select_y] ===1 });
-            // }
-            //
-            //
-            //
-            // if(shape_check === false){
-            //      move_x = dots_chart_x.transition()
-            //         .duration(2000)
-            //         .attr('cx',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('cx',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         });
-            //
-            //     move_y = dots_chart_y.transition()
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .duration(2000)
-            //         // .attr('cy',420)
-            //         .attr('cy',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('cy',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         });
-            // }else if(shape_check === true){
-            //      move_x = dots_chart_x.transition()
-            //         .duration(2000)
-            //         .attr('x',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('x',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("x", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         });
-            //
-            //     move_y = dots_chart_y.transition()
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .duration(2000)
-            //         // .attr('cy',420)
-            //         .attr('y',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('y',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("y", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         });
-            // }
-
-        // var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-        // var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
-
         if(shape_check === false){
 
             // .transition().duration(2000);
@@ -1545,43 +1440,6 @@ function updateChart() {
                     .duration(1000)
                     .attr("cy", 0);
             }
-
-
-
-            // transition_y.transition()
-            //     .duration(2000)
-            //     // .attr('cy',420)
-            //     .attr('cy',0)
-            //     // .transition()
-            //     // .duration(2000)
-            //     // .attr('cy',-100)
-            //     .transition()
-            //     .duration(2000)
-            //     .attr("cy",-350);
-
-            // transition_xy = d3.selectAll(".impute")
-            //     .filter(function(d){
-            //         return d[select_x] === 1 && d[select_y] === 1;
-            //     });
-            //
-            // transition_xy.transition()
-            //     .duration(2000)
-            //     .attr('cx',350)
-            //     // .transition()
-            //     // .duration(2000)
-            //     .attr('cx',0)
-            //     .transition()
-            //     .duration(2000)
-            //     .attr("cx", 0)
-            //     .duration(2000)
-            // // .attr('cy',420)
-            //     .attr('cy',-350)
-            //     // .transition()
-            //     // .duration(2000)
-            //     // .attr('cy',-100)
-            //     .transition()
-            //     .duration(2000)
-            //     .attr("cy",0);
 
             repeat_x();
             repeat_y();
