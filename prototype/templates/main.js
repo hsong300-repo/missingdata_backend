@@ -871,8 +871,6 @@ function updateChart() {
 
     }// end of unfilled
 
-
-
     function redraw_ticks_off() {
         if(typeof dots_chart_line_x === 'undefined'){ // bars
         }else{
@@ -2427,16 +2425,15 @@ var previewCsvUrl = function( csvUrl ) {
                 });
 
                 d3.selectAll(("input[value='bar_error']")).on("change", function() {
-                    redraw_bar_error(missingCount,avg,notMissingCount,selectAvg,missingCategory);
+                    redraw_bar_error(missingCount,notMissingCount,avg,missingCategory);
+
+                    // redraw_bar_error(missingCount,avg,notMissingCount,selectAvg,missingCategory);
                 });
 
                 d3.selectAll(("input[value='bar_pattern']")).on("change", function() {
                     redraw_bar_pattern(missingCount,notMissingCount,selectAvg,missingCategory);
                 });
 
-                d3.selectAll(("input[value='bar_missing']")).on("change", function() {
-                    redraw_bar_missing(total_missing,missingCount,notMissingCount,selectAvg,missingCategory);
-                });
 
                 d3.selectAll(("input[value='bar_dash']")).on("change", function() {
                     redraw_bar_dash(missingCount,notMissingCount,selectAvg,missingCategory);
@@ -2617,6 +2614,9 @@ var previewCsvUrl = function( csvUrl ) {
             //     });
             // vis_bar.remove().exit();
 
+            d3.selectAll(".error-line").attr("opacity",0);
+            d3.selectAll(".error-cap").attr("opacity",0);
+
 
             var transition = d3.selectAll(".rectangle")
                 .filter(function (d, i) {
@@ -2653,7 +2653,6 @@ var previewCsvUrl = function( csvUrl ) {
             if(select_check  === true){
                 avg = error_avg;
             }
-
             if(typeof missing_bar === 'undefined'){ // bars
                 console.log('missing bar undefined');
             }else{
