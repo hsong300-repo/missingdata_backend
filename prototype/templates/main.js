@@ -259,23 +259,23 @@ function updateChart() {
             return d[select_x] ===1 || d[select_y] === 1})
         .attr("class","impute")
         .style("fill","steelblue")
-        .style("opacity",0.1)
+        .style("opacity",0)
         .attr('r', 4);
 
     dotsEnter.append('circle')
         .filter(function(d){
             return d[select_x] ===1 })
-        .style("fill","steelblue")
+        .style("fill","#87CEFA")
         .attr("class","impute_x")
-        .style("opacity",0.1)
+        .style("opacity",1)
         .attr('r', 4);
 
     dotsEnter.append('circle')
         .filter(function(d){
             return d[select_y] === 1})
-        .style("fill","steelblue")
+        .style("fill","#87CEFA")
         .attr("class","impute_y")
-        .style("opacity",0.1)
+        .style("opacity",1)
         .attr('r', 4);
     //
     // dotsEnter.append('circle')
@@ -353,13 +353,6 @@ function updateChart() {
         .attr("x2", 0)
         .style("opacity",0)
         .attr("y2", -std_y);
-
-
-
-
-
-
-
 
     //
     // dotsEnter.append("line")
@@ -517,27 +510,27 @@ function updateChart() {
     }
 
     function redraw_color() {
-        if(typeof dots_chart === 'undefined'){ // bars
-        }else{
-            dots_chart.remove().exit(); //remove some of the encodings
-        }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        // }else{
+        //     dots_chart.remove().exit(); //remove some of the encodings
+        // }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
         // dots_chart = chartG.append("g").attr('class', "Scatter")
         //    .selectAll("circle")
@@ -588,23 +581,23 @@ function updateChart() {
         //     }else{
         //         dots_chart.remove().exit(); //remove some of the encodings
         //     }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
         // dots_chart = chartG.append("g").attr('class', "Scatter")
         //     .selectAll("circle")
@@ -1027,27 +1020,27 @@ function updateChart() {
 
     function redraw_gradient() {
 
-        if(typeof dots_chart === 'undefined'){ // bars
-        }else{
-            dots_chart.remove().exit(); //remove some of the encodings
-        }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        // }else{
+        //     dots_chart.remove().exit(); //remove some of the encodings
+        // }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
 
         var radialGradient = svg.append("defs")
@@ -1110,27 +1103,27 @@ function updateChart() {
 
     function redraw_pattern() {
 
-        if(typeof dots_chart === 'undefined'){ // bars
-        }else{
-            dots_chart.remove().exit(); //remove some of the encodings
-        }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        // }else{
+        //     dots_chart.remove().exit(); //remove some of the encodings
+        // }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
 
         // dots_chart = chartG.append("g").attr('class', "Scatter")
@@ -1179,22 +1172,22 @@ function updateChart() {
 
     function redraw_shape() {
 
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
         // d3.selectAll(".rect_impute").style("opacity",1);
 
@@ -1258,23 +1251,23 @@ function updateChart() {
         // }else{
         //     dots_chart.remove().exit(); //remove some of the encodings
         // }
-        if(typeof dots_chart_line === 'undefined'){ // bars
-        }else{
-            dots_chart_line.remove().exit();
-        }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else {
+        //     dots_chart_line_y.remove().exit();
+        //     // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
