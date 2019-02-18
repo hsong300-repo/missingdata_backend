@@ -160,8 +160,8 @@ function updateChart() {
         temp_y="abv"
     }
 
-    var select_x = temp_x.concat("_impute");
-    var select_y = temp_y.concat("_impute");
+    select_x = temp_x.concat("_impute");
+    select_y = temp_y.concat("_impute");
 
     console.log('select_x',select_x);
     console.log('select_y', select_y);
@@ -493,6 +493,7 @@ function updateChart() {
             return 'translate('+[tx, ty]+')';
         });
 
+
     if(typeof dots_chart === 'undefined'){ // bars
         console.log('dotschart undefined');
     }else{
@@ -542,22 +543,22 @@ function updateChart() {
         //     dots_chart_y.remove().exit(); //remove some of the encodings
         // }
 
-        dots_chart = chartG.append("g").attr('class', "Scatter")
-           .selectAll("circle")
-           .data(filtered_data).enter()
-           // .data(whiskey).enter()
-           .append('circle')
-           // .filter(function (d, i) {
-           //     return d[chartScales.x]==="0.0";
-           // })
-           .style("fill", 'red')
-           .attr("cx", function (d) {
-               return xScale(d[chartScales.x]);
-           })
-           .attr("cy", function (d) {
-               return yScale(d[chartScales.y]);
-           })
-           .attr('r', 4);
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //    .selectAll("circle")
+        //    .data(filtered_data).enter()
+        //    // .data(whiskey).enter()
+        //    .append('circle')
+        //    // .filter(function (d, i) {
+        //    //     return d[chartScales.x]==="0.0";
+        //    // })
+        //    .style("fill", 'red')
+        //    .attr("cx", function (d) {
+        //        return xScale(d[chartScales.x]);
+        //    })
+        //    .attr("cy", function (d) {
+        //        return yScale(d[chartScales.y]);
+        //    })
+        //    .attr('r', 4);
 
 
         // dotsEnter.append('circle')
@@ -576,18 +577,31 @@ function updateChart() {
         //     .attr('r', 4);
         //
 
+        // d3.selectAll("circle").data(whiskey)
+        //     .filter(function(d){
+        //                 return d[select_x] ===1 || d[select_y] === 1})
+        //     .transition().duration(1000)
+        //     .attr("cx", function (d) {
+        //     return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     }).attr('r', 4);
 
-        d3.selectAll(".impute")
-            .style("fill", '#87CEFA').style("opacity",0);
+
+
+
+        // d3.selectAll(".impute")
+        //     .style("fill", '#87CEFA').style("opacity",0);
 
         // d3.selectAll(".no_impute")
         //     .style("fill", 'steelblue').style("opacity",0);
 
-        // d3.selectAll(".impute_x")
-        //     .style("fill", '#87CEFA').style("opacity",1);
-        //
-        // d3.selectAll(".impute_y")
-        //     .style("fill", '#87CEFA').style("opacity",1);
+        d3.selectAll(".impute_x")
+            .style("fill", '#87CEFA').style("opacity",1);
+
+        d3.selectAll(".impute_y")
+            .style("fill", '#87CEFA').style("opacity",1);
 
         // d3.selectAll(".no_impute")
         //     .style("fill", 'steelblue').style("opacity",0.8);
@@ -2007,13 +2021,42 @@ var previewCsvUrl = function( csvUrl ) {
                 // return y(+d[selection]);
                 return y(d.value);
             })
-            .attr("fill","steelblue")
+            // .attr("fill","steelblue")
+            .attr("fill","#87CEFA")
             // .attr("fill","url(#svgGradient)")
             .append("title")
             // .style("margin-left", "10px")   //space between bars
             .text(function(d){
 
             });
+
+        var missingCount = impute_count;
+        total_missing = impute_count.length;
+
+        var not_missing_data = data.filter(function(d){return d[concat_selection];});
+
+        var notMissingCount = d3.nest()
+            .key(function(d){return d.Category})
+            .rollup(function(v){return v.length;})
+            .entries(not_missing_data);
+
+
+        var missingCategory = [];
+        for (var i = 0; i < missingCount.length; i++) {
+            missingCategory.push(Object.values(missingCount[i])[0])
+        }
+
+        d3.selectAll(".rectangle").filter(function (d, i) {
+            return missingCategory.includes(d.key);})
+            .attr("stroke","#87CEFA")
+            .style("stroke-dasharray", ("0, 0"))
+            .attr("fill","#87CEFA");
+
+        d3.selectAll(".rectangle").filter(function (d, i) {
+            return !missingCategory.includes(d.key);})
+            .attr("stroke","steelblue")
+            .style("stroke-dasharray", ("0, 0"))
+            .attr("fill","steelblue");
 
         //legneds for count
         canvas.append("rect")
@@ -2062,21 +2105,7 @@ var previewCsvUrl = function( csvUrl ) {
         //     .rollup(function(v){return v.length;})
         //     // .filter(function(d,i){return removed_idx.includes(i);})
         //     .entries(f_data);
-        var missingCount = impute_count;
-        total_missing = impute_count.length;
 
-        var not_missing_data = data.filter(function(d){return d[concat_selection];});
-
-        var notMissingCount = d3.nest()
-            .key(function(d){return d.Category})
-            .rollup(function(v){return v.length;})
-            .entries(not_missing_data);
-
-
-        var missingCategory = [];
-        for (var i = 0; i < missingCount.length; i++) {
-            missingCategory.push(Object.values(missingCount[i])[0])
-        }
 
         d3.selectAll(("input[value='bar_color']")).on("change", function() {
             console.log('onchange bar color');
