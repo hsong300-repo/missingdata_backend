@@ -101,7 +101,7 @@ var xAxisG = chartG.append('g')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-    // .attr('class', 'y axis');
+// .attr('class', 'y axis');
     .attr('class', 'y-axis'); //there was a overlap in class name for bar
 
 
@@ -136,7 +136,7 @@ function updateChart() {
         temp_x="rate"
     }else if(temp_x === "Price"){
         temp_x="price"
-     }else if(temp_x === "ABV"){
+    }else if(temp_x === "ABV"){
         temp_x="abv"
     }
     if(temp_y === "Age"){
@@ -145,7 +145,7 @@ function updateChart() {
         temp_y="rate"
     }else if(temp_y === "Price"){
         temp_y="price"
-     }else if(temp_y === "ABV"){
+    }else if(temp_y === "ABV"){
         temp_y="abv"
     }
 
@@ -166,13 +166,13 @@ function updateChart() {
 
 
     filtered_x = whiskey
-            .filter(function(d){
-                return d[select_x] ===1});
+        .filter(function(d){
+            return d[select_x] ===1});
 
     console.log("filtered_x",filtered_x);
     filtered_y = whiskey
-            .filter(function(d){
-                return d[select_y] ===1});
+        .filter(function(d){
+            return d[select_y] ===1});
     console.log("filtered_y",filtered_y);
 
     noimpute_data = whiskey
@@ -183,7 +183,7 @@ function updateChart() {
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
         .data(whiskey);
-        // .data(noimpute_data);
+    // .data(noimpute_data);
 
 
     // Define the div for the tooltip
@@ -248,18 +248,18 @@ function updateChart() {
     // dotsEnter.append('circle')
     //     .attr('r', 3);
     dotsEnter.append('circle')
-       .filter(function(d){
+        .filter(function(d){
             return d[select_x] === 0 && d[select_y] === 0})
         .attr("class","no_impute")
         .style("fill","steelblue")
         .attr('r', 4);
 
-     dotsEnter.append('circle')
-       .filter(function(d){
+    dotsEnter.append('circle')
+        .filter(function(d){
             return d[select_x] ===1 || d[select_y] === 1})
         .attr("class","impute")
         .style("fill","steelblue")
-         .style("opacity",0.1)
+        .style("opacity",0.1)
         .attr('r', 4);
 
     dotsEnter.append('circle')
@@ -406,7 +406,7 @@ function updateChart() {
     //         // return d[chartScales.x];
     //     });
 
-     // Append a text to the ENTER selection
+    // Append a text to the ENTER selection
     // dotsEnter.append('text')
     //     // .attr('y', -10)
     //     .attr('y', -10)
@@ -491,21 +491,44 @@ function updateChart() {
         });
 
     if(typeof dots_chart === 'undefined'){ // bars
-            console.log('dotschart undefined');
+        console.log('dotschart undefined');
+    }else{
+        dots_chart.remove().exit(); //remove some of the encodings
+    }
+    if(typeof dots_chart_line === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_line.remove().exit();
+        // dots_remove.remove().exit();
+
+    }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else {
+        dots_chart_line_y.remove().exit();
+        // dots_remove.remove().exit();
+    }if(typeof dots_chart_x === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_x.remove().exit(); //remove some of the encodings
+    }if(typeof dots_chart_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_y.remove().exit(); //remove some of the encodings
+    }
+
+    function redraw_color() {
+        if(typeof dots_chart === 'undefined'){ // bars
         }else{
             dots_chart.remove().exit(); //remove some of the encodings
         }
         if(typeof dots_chart_line === 'undefined'){ // bars
-            console.log('dotschart undefined');
         }else{
             dots_chart_line.remove().exit();
-            // dots_remove.remove().exit();
-
         }if(typeof dots_chart_line_y === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else {
             dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
+            // dots_remove.remove().exit();
         }if(typeof dots_chart_x === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else{
@@ -516,45 +539,22 @@ function updateChart() {
             dots_chart_y.remove().exit(); //remove some of the encodings
         }
 
-    function redraw_color() {
-        if(typeof dots_chart === 'undefined'){ // bars
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-            }else{
-                dots_chart_line.remove().exit();
-            }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-            }else {
-            dots_chart_line_y.remove().exit();
-            // dots_remove.remove().exit();
-            }if(typeof dots_chart_x === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_x.remove().exit(); //remove some of the encodings
-            }if(typeof dots_chart_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_y.remove().exit(); //remove some of the encodings
-            }
-
-         // dots_chart = chartG.append("g").attr('class', "Scatter")
-         //    .selectAll("circle")
-         //    .data(filtered_data).enter()
-         //    // .data(whiskey).enter()
-         //    .append('circle')
-         //    // .filter(function (d, i) {
-         //    //     return d[chartScales.x]==="0.0";
-         //    // })
-         //    .style("fill", 'red')
-         //    .attr("cx", function (d) {
-         //        return xScale(d[chartScales.x]);
-         //    })
-         //    .attr("cy", function (d) {
-         //        return yScale(d[chartScales.y]);
-         //    })
-         //    .attr('r', 4);
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //    .selectAll("circle")
+        //    .data(filtered_data).enter()
+        //    // .data(whiskey).enter()
+        //    .append('circle')
+        //    // .filter(function (d, i) {
+        //    //     return d[chartScales.x]==="0.0";
+        //    // })
+        //    .style("fill", 'red')
+        //    .attr("cx", function (d) {
+        //        return xScale(d[chartScales.x]);
+        //    })
+        //    .attr("cy", function (d) {
+        //        return yScale(d[chartScales.y]);
+        //    })
+        //    .attr('r', 4);
 
         d3.selectAll(".impute_x")
             .style("fill", '#87CEFA').style("opacity",1);
@@ -584,48 +584,48 @@ function updateChart() {
 
     function redraw_unfilled() {
 
-            // if(typeof dots_chart === 'undefined'){ // bars
-            //     }else{
-            //         dots_chart.remove().exit(); //remove some of the encodings
-            //     }
-                if(typeof dots_chart_line === 'undefined'){ // bars
-                }else{
-                    dots_chart_line.remove().exit();
-                }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                        console.log('dotschart undefined');
-                }else {
-                dots_chart_line_y.remove().exit();
-                // dots_remove.remove().exit();
-                }if(typeof dots_chart_x === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-                }else{
-                    dots_chart_x.remove().exit(); //remove some of the encodings
-                }if(typeof dots_chart_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-                }else{
-                    dots_chart_y.remove().exit(); //remove some of the encodings
-                }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        //     }else{
+        //         dots_chart.remove().exit(); //remove some of the encodings
+        //     }
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_chart_line_y.remove().exit();
+            // dots_remove.remove().exit();
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
-            // dots_chart = chartG.append("g").attr('class', "Scatter")
-            //     .selectAll("circle")
-            //     // .data(whiskey)
-            //     .data(filtered_data)
-            //     .enter()
-            //     .append('circle')
-            //     // .filter(function (d, i) {
-            //     //     return removed_idx.includes(i);
-            //     // })
-            //     .style("stroke", '#87CEFA')
-            //     .style("stroke-width", 1)
-            //     .style("fill", '#fff')
-            //     .attr("cx", function (d) {
-            //         return xScale(d[chartScales.x]);
-            //     })
-            //     .attr("cy", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     // .attr('r', 4);
-            //     .attr('r', 4);
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     // .data(whiskey)
+        //     .data(filtered_data)
+        //     .enter()
+        //     .append('circle')
+        //     // .filter(function (d, i) {
+        //     //     return removed_idx.includes(i);
+        //     // })
+        //     .style("stroke", '#87CEFA')
+        //     .style("stroke-width", 1)
+        //     .style("fill", '#fff')
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     // .attr('r', 4);
+        //     .attr('r', 4);
 
         // d3.selectAll(".impute")
         //     .style("stroke", 'steelblue')
@@ -645,16 +645,16 @@ function updateChart() {
         d3.selectAll(".no_impute")
             .style("fill", 'steelblue').style("opacity",0.8);
 
-            d3.selectAll(".rect_impute")
-                .style("opacity",0);
+        d3.selectAll(".rect_impute")
+            .style("opacity",0);
 
         d3.selectAll(".rect_impute_x").style("opacity",0);
 
         d3.selectAll(".rect_impute_y").style("opacity",0);
 
-         shape_check = false;
+        shape_check = false;
 
-        }// end of unfilled
+    }// end of unfilled
 
     function redraw_ticks_on() {
         // if(typeof dots_chart_line === 'undefined'){ // bars
@@ -756,7 +756,7 @@ function updateChart() {
 
         dots_chart_line_x = chartG.append("g")
             .selectAll("line.x")
-        // .data(filtered_x)
+            // .data(filtered_x)
             .data(filtered_x)
             // .data(filtered_data)
             .enter()
@@ -782,8 +782,8 @@ function updateChart() {
 
         dots_chart_line_y = chartG.append("g")
             .selectAll("line.y")
-        // .data(filtered_data)
-        // .data(filtered_y)
+            // .data(filtered_data)
+            // .data(filtered_y)
             .data(filtered_y)
             .enter()
             // .filter(function(d){
@@ -1027,27 +1027,27 @@ function updateChart() {
 
     function redraw_gradient() {
 
-            if(typeof dots_chart === 'undefined'){ // bars
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-            }else{
-                dots_chart_line.remove().exit();
-            }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-            }else {
+        if(typeof dots_chart === 'undefined'){ // bars
+        }else{
+            dots_chart.remove().exit(); //remove some of the encodings
+        }
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
             dots_chart_line_y.remove().exit();
             // dots_remove.remove().exit();
-            }if(typeof dots_chart_x === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_x.remove().exit(); //remove some of the encodings
-            }if(typeof dots_chart_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_y.remove().exit(); //remove some of the encodings
-            }
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
 
         var radialGradient = svg.append("defs")
@@ -1110,27 +1110,27 @@ function updateChart() {
 
     function redraw_pattern() {
 
-            if(typeof dots_chart === 'undefined'){ // bars
-            }else{
-                dots_chart.remove().exit(); //remove some of the encodings
-            }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-            }else{
-                dots_chart_line.remove().exit();
-            }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-            }else {
+        if(typeof dots_chart === 'undefined'){ // bars
+        }else{
+            dots_chart.remove().exit(); //remove some of the encodings
+        }
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
             dots_chart_line_y.remove().exit();
             // dots_remove.remove().exit();
-            }if(typeof dots_chart_x === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_x.remove().exit(); //remove some of the encodings
-            }if(typeof dots_chart_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_y.remove().exit(); //remove some of the encodings
-            }
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
 
         // dots_chart = chartG.append("g").attr('class', "Scatter")
@@ -1183,9 +1183,9 @@ function updateChart() {
         }else{
             dots_chart_line.remove().exit();
         }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
+            console.log('dotschart undefined');
         }else {
-        dots_chart_line_y.remove().exit();
+            dots_chart_line_y.remove().exit();
         }if(typeof dots_chart_x === 'undefined'){ // bars
             console.log('dotschart undefined');
         }else{
@@ -1253,258 +1253,258 @@ function updateChart() {
     }// end of shape
 
     function redraw_error() {
-            // Add Error Line
-            // if(typeof dots_chart === 'undefined'){ // bars
-            // }else{
-            //     dots_chart.remove().exit(); //remove some of the encodings
-            // }
-            if(typeof dots_chart_line === 'undefined'){ // bars
-            }else{
-                dots_chart_line.remove().exit();
-            }if(typeof dots_chart_line_y === 'undefined'){ // bars
-                    console.log('dotschart undefined');
-            }else {
+        // Add Error Line
+        // if(typeof dots_chart === 'undefined'){ // bars
+        // }else{
+        //     dots_chart.remove().exit(); //remove some of the encodings
+        // }
+        if(typeof dots_chart_line === 'undefined'){ // bars
+        }else{
+            dots_chart_line.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
             dots_chart_line_y.remove().exit();
             // dots_remove.remove().exit();
-            }if(typeof dots_chart_x === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_x.remove().exit(); //remove some of the encodings
-            }if(typeof dots_chart_y === 'undefined'){ // bars
-                console.log('dotschart undefined');
-            }else{
-                dots_chart_y.remove().exit(); //remove some of the encodings
-            }
+        }if(typeof dots_chart_x === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_x.remove().exit(); //remove some of the encodings
+        }if(typeof dots_chart_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else{
+            dots_chart_y.remove().exit(); //remove some of the encodings
+        }
 
-            var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-            var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+        var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+        var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
 
-            // if(typeof dots_chart === 'undefined'){ // bars
-            //      dots_chart = chartG.append("g").attr('class', "Scatter")
-            //     .selectAll("circle")
-            //     // .data(whiskey)
-            //     .data(filtered_data)
-            //     .enter()
-            //     .append('circle')
-            //     .style("fill", 'steelblue')
-            //     .attr("cx", function (d) {
-            //         return xScale(d[chartScales.x]);
-            //     })
-            //     .attr("cy", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     // .attr('r', 4);
-            //     .attr('r', 4);
-            //
-            //      dots_chart_line = chartG.append("g").selectAll("line")
-            //     .data(filtered_data)
-            //     .enter()
-            //     .filter(function(d){
-            //         return d[select_x] ===1})
-            //     .append("line")
-            //     .attr("class", "error-line")
-            //     .attr("x1", function (d) {
-            //         return xScale(d[chartScales.x]-std_x );
-            //     })
-            //     .attr("y1", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     .attr("x2", function (d) {
-            //         return xScale(d[chartScales.x] +std_x);
-            //     })
-            //     .attr("y2", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     });
-            //
-            // dots_chart_line_y = chartG.append("g").selectAll("line")
-            //     .data(filtered_data)
-            //     .enter()
-            //     .filter(function(d){
-            //         return d[select_y] ===1})
-            //     .append("line")
-            //     .attr("class", "error-line")
-            //     .attr("x1", function (d) {
-            //         return xScale(d[chartScales.x] );
-            //     })
-            //     .attr("y1", function (d) {
-            //         return yScale(d[chartScales.y]+std_y);
-            //     })
-            //     .attr("x2", function (d) {
-            //         return xScale(d[chartScales.x] );
-            //     })
-            //     .attr("y2", function (d) {
-            //         return yScale(d[chartScales.y]-std_y);
-            //     });
-            // }else{
-            //     // dots_chart.remove().exit(); //remove some of the encodings
-            //     dots_chart_line = chartG.append("g").selectAll("line")
-            //     .data(filtered_data)
-            //     .enter()
-            //     .filter(function(d){
-            //         return d[select_x] ===1})
-            //     .append("line")
-            //     .attr("class", "error-line")
-            //     .attr("x1", function (d) {
-            //         return xScale(d[chartScales.x]-std_x );
-            //     })
-            //     .attr("y1", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     .attr("x2", function (d) {
-            //         return xScale(d[chartScales.x] +std_x);
-            //     })
-            //     .attr("y2", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     });
-            //
-            // dots_chart_line_y = chartG.append("g").selectAll("line")
-            //     .data(filtered_data)
-            //     .enter()
-            //     .filter(function(d){
-            //         return d[select_y] ===1})
-            //     .append("line")
-            //     .attr("class", "error-line")
-            //     .attr("x1", function (d) {
-            //         return xScale(d[chartScales.x] );
-            //     })
-            //     .attr("y1", function (d) {
-            //         return yScale(d[chartScales.y]+std_y);
-            //     })
-            //     .attr("x2", function (d) {
-            //         return xScale(d[chartScales.x] );
-            //     })
-            //     .attr("y2", function (d) {
-            //         return yScale(d[chartScales.y]-std_y);
-            //     });
-            // }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        //      dots_chart = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     // .data(whiskey)
+        //     .data(filtered_data)
+        //     .enter()
+        //     .append('circle')
+        //     .style("fill", 'steelblue')
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     // .attr('r', 4);
+        //     .attr('r', 4);
+        //
+        //      dots_chart_line = chartG.append("g").selectAll("line")
+        //     .data(filtered_data)
+        //     .enter()
+        //     .filter(function(d){
+        //         return d[select_x] ===1})
+        //     .append("line")
+        //     .attr("class", "error-line")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x]-std_x );
+        //     })
+        //     .attr("y1", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x] +std_x);
+        //     })
+        //     .attr("y2", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     });
+        //
+        // dots_chart_line_y = chartG.append("g").selectAll("line")
+        //     .data(filtered_data)
+        //     .enter()
+        //     .filter(function(d){
+        //         return d[select_y] ===1})
+        //     .append("line")
+        //     .attr("class", "error-line")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x] );
+        //     })
+        //     .attr("y1", function (d) {
+        //         return yScale(d[chartScales.y]+std_y);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x] );
+        //     })
+        //     .attr("y2", function (d) {
+        //         return yScale(d[chartScales.y]-std_y);
+        //     });
+        // }else{
+        //     // dots_chart.remove().exit(); //remove some of the encodings
+        //     dots_chart_line = chartG.append("g").selectAll("line")
+        //     .data(filtered_data)
+        //     .enter()
+        //     .filter(function(d){
+        //         return d[select_x] ===1})
+        //     .append("line")
+        //     .attr("class", "error-line")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x]-std_x );
+        //     })
+        //     .attr("y1", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x] +std_x);
+        //     })
+        //     .attr("y2", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     });
+        //
+        // dots_chart_line_y = chartG.append("g").selectAll("line")
+        //     .data(filtered_data)
+        //     .enter()
+        //     .filter(function(d){
+        //         return d[select_y] ===1})
+        //     .append("line")
+        //     .attr("class", "error-line")
+        //     .attr("x1", function (d) {
+        //         return xScale(d[chartScales.x] );
+        //     })
+        //     .attr("y1", function (d) {
+        //         return yScale(d[chartScales.y]+std_y);
+        //     })
+        //     .attr("x2", function (d) {
+        //         return xScale(d[chartScales.x] );
+        //     })
+        //     .attr("y2", function (d) {
+        //         return yScale(d[chartScales.y]-std_y);
+        //     });
+        // }
 
         // this is for x
         d3.selectAll(".error-line").style("opacity",1);
 
-        }// end of scatter error
+    }// end of scatter error
 
     function redraw_animation() {
 
-            // if(typeof dots_chart_line === 'undefined'){ // bars
-            // }else{
-            //     dots_chart_line.remove().exit();
-            // }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            //         console.log('dotschart undefined');
-            // }else {
-            // dots_chart_line_y.remove().exit();
-            // // dots_remove.remove().exit();
-            // }if(typeof dots_chart_x === 'undefined'){ // bars
-            //     console.log('dotschart undefined');
-            // }else{
-            //     dots_chart_x.remove().exit(); //remove some of the encodings
-            // }if(typeof dots_chart_y === 'undefined'){ // bars
-            //     console.log('dotschart undefined');
-            // }else{
-            //     dots_chart_y.remove().exit(); //remove some of the encodings
-            // }
+        // if(typeof dots_chart_line === 'undefined'){ // bars
+        // }else{
+        //     dots_chart_line.remove().exit();
+        // }if(typeof dots_chart_line_y === 'undefined'){ // bars
+        //         console.log('dotschart undefined');
+        // }else {
+        // dots_chart_line_y.remove().exit();
+        // // dots_remove.remove().exit();
+        // }if(typeof dots_chart_x === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_x.remove().exit(); //remove some of the encodings
+        // }if(typeof dots_chart_y === 'undefined'){ // bars
+        //     console.log('dotschart undefined');
+        // }else{
+        //     dots_chart_y.remove().exit(); //remove some of the encodings
+        // }
 
-            // if(typeof dots_chart === 'undefined'){ // bars
-            //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
-            //         .selectAll("circle")
-            //         .data(whiskey)
-            //         .enter()
-            //         .append('circle')
-            //         .filter(function(d){
-            //                 return d[select_x] ===1 })
-            //         .style("stroke", 'steelblue')
-            //         // .style("stroke-width", 1)
-            //         .style("fill", 'steelblue')
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         })
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         })
-            //         .attr('r', 4);
-            //
-            //     dots_chart_y = chartG.append("g").attr('class', "Scatter")
-            //         .selectAll("circle")
-            //         .data(whiskey)
-            //         .enter()
-            //         .append('circle')
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .style("stroke", 'steelblue')
-            //         // .style("stroke-width", 1)
-            //         .style("fill", 'steelblue')
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         })
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         })
-            //         .attr('r', 4);
-            //     shape_check = false;
-            // }else{
-            //       dots_chart_x = dots_chart.filter(function(d){
-            //             return d[select_x] ===1 });
-            //       dots_chart_y = dots_chart.filter(function(d){
-            //             return d[select_y] ===1 });
-            // }
-            //
-            //
-            //
-            // if(shape_check === false){
-            //      move_x = dots_chart_x.transition()
-            //         .duration(2000)
-            //         .attr('cx',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('cx',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("cx", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         });
-            //
-            //     move_y = dots_chart_y.transition()
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .duration(2000)
-            //         // .attr('cy',420)
-            //         .attr('cy',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('cy',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("cy", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         });
-            // }else if(shape_check === true){
-            //      move_x = dots_chart_x.transition()
-            //         .duration(2000)
-            //         .attr('x',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('x',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("x", function (d) {
-            //             return xScale(d[chartScales.x]);
-            //         });
-            //
-            //     move_y = dots_chart_y.transition()
-            //         .filter(function(d){
-            //                 return d[select_y] ===1 })
-            //         .duration(2000)
-            //         // .attr('cy',420)
-            //         .attr('y',0)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr('y',420)
-            //         .transition()
-            //         .duration(2000)
-            //         .attr("y", function (d) {
-            //             return yScale(d[chartScales.y]);
-            //         });
-            // }
+        // if(typeof dots_chart === 'undefined'){ // bars
+        //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
+        //         .selectAll("circle")
+        //         .data(whiskey)
+        //         .enter()
+        //         .append('circle')
+        //         .filter(function(d){
+        //                 return d[select_x] ===1 })
+        //         .style("stroke", 'steelblue')
+        //         // .style("stroke-width", 1)
+        //         .style("fill", 'steelblue')
+        //         .attr("cx", function (d) {
+        //             return xScale(d[chartScales.x]);
+        //         })
+        //         .attr("cy", function (d) {
+        //             return yScale(d[chartScales.y]);
+        //         })
+        //         .attr('r', 4);
+        //
+        //     dots_chart_y = chartG.append("g").attr('class', "Scatter")
+        //         .selectAll("circle")
+        //         .data(whiskey)
+        //         .enter()
+        //         .append('circle')
+        //         .filter(function(d){
+        //                 return d[select_y] ===1 })
+        //         .style("stroke", 'steelblue')
+        //         // .style("stroke-width", 1)
+        //         .style("fill", 'steelblue')
+        //         .attr("cx", function (d) {
+        //             return xScale(d[chartScales.x]);
+        //         })
+        //         .attr("cy", function (d) {
+        //             return yScale(d[chartScales.y]);
+        //         })
+        //         .attr('r', 4);
+        //     shape_check = false;
+        // }else{
+        //       dots_chart_x = dots_chart.filter(function(d){
+        //             return d[select_x] ===1 });
+        //       dots_chart_y = dots_chart.filter(function(d){
+        //             return d[select_y] ===1 });
+        // }
+        //
+        //
+        //
+        // if(shape_check === false){
+        //      move_x = dots_chart_x.transition()
+        //         .duration(2000)
+        //         .attr('cx',0)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr('cx',420)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr("cx", function (d) {
+        //             return xScale(d[chartScales.x]);
+        //         });
+        //
+        //     move_y = dots_chart_y.transition()
+        //         .filter(function(d){
+        //                 return d[select_y] ===1 })
+        //         .duration(2000)
+        //         // .attr('cy',420)
+        //         .attr('cy',0)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr('cy',420)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr("cy", function (d) {
+        //             return yScale(d[chartScales.y]);
+        //         });
+        // }else if(shape_check === true){
+        //      move_x = dots_chart_x.transition()
+        //         .duration(2000)
+        //         .attr('x',0)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr('x',420)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr("x", function (d) {
+        //             return xScale(d[chartScales.x]);
+        //         });
+        //
+        //     move_y = dots_chart_y.transition()
+        //         .filter(function(d){
+        //                 return d[select_y] ===1 })
+        //         .duration(2000)
+        //         // .attr('cy',420)
+        //         .attr('y',0)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr('y',420)
+        //         .transition()
+        //         .duration(2000)
+        //         .attr("y", function (d) {
+        //             return yScale(d[chartScales.y]);
+        //         });
+        // }
 
         // var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         // var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
@@ -1624,64 +1624,68 @@ function updateChart() {
         }
 
 
-                // .transition().duration(2000);
+        // .transition().duration(2000);
 
-            // transition.attr("y", function(d){
-            //         return height-y(d.value);
-            //     }).attr("height",0)
-            //     .transition().duration(2000)
-            //     .attr("y", 0)
-            //     .attr("height",function(d){
-            //         return height -y(d.value);
-            //     });
+        // transition.attr("y", function(d){
+        //         return height-y(d.value);
+        //     }).attr("height",0)
+        //     .transition().duration(2000)
+        //     .attr("y", 0)
+        //     .attr("height",function(d){
+        //         return height -y(d.value);
+        //     });
 
-            shape_check = false;
+        shape_check = false;
 
 
 
-             // dots_chart_x = chartG.append("g").attr('class', "Scatter")
-            //     .selectAll("circle")
-            //     .data(whiskey)
-            //     .enter()
-            //     .append('circle')
-            //     .filter(function(d){
-            //             return d[select_x] ===1 })
-            //     .style("stroke", '#87CEFA')
-            //     .style("stroke-width", 1)
-            //     .style("fill", '#fff')
-            //     .attr("cx", function (d) {
-            //         return xScale(d[chartScales.x]);
-            //     })
-            //     .attr("cy", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     .attr('r', 4);
+        // dots_chart_x = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     .data(whiskey)
+        //     .enter()
+        //     .append('circle')
+        //     .filter(function(d){
+        //             return d[select_x] ===1 })
+        //     .style("stroke", '#87CEFA')
+        //     .style("stroke-width", 1)
+        //     .style("fill", '#fff')
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr('r', 4);
 
-            // dots_chart_y = chartG.append("g").attr('class', "Scatter")
-            //     .selectAll("circle")
-            //     .data(whiskey)
-            //     .enter()
-            //     .append('circle')
-            //     .filter(function(d){
-            //             return d[select_y] ===1 })
-            //     .style("stroke", '#87CEFA')
-            //     .style("stroke-width", 1)
-            //     .style("fill", '#fff')
-            //     .attr("cx", function (d) {
-            //         return xScale(d[chartScales.x]);
-            //     })
-            //     .attr("cy", function (d) {
-            //         return yScale(d[chartScales.y]);
-            //     })
-            //     .attr('r', 4);
+        // dots_chart_y = chartG.append("g").attr('class', "Scatter")
+        //     .selectAll("circle")
+        //     .data(whiskey)
+        //     .enter()
+        //     .append('circle')
+        //     .filter(function(d){
+        //             return d[select_y] ===1 })
+        //     .style("stroke", '#87CEFA')
+        //     .style("stroke-width", 1)
+        //     .style("fill", '#fff')
+        //     .attr("cx", function (d) {
+        //         return xScale(d[chartScales.x]);
+        //     })
+        //     .attr("cy", function (d) {
+        //         return yScale(d[chartScales.y]);
+        //     })
+        //     .attr('r', 4);
 
 
         repeat_x();
         repeat_y();
-
-
-        d3.selectAll(".error-line")
-            .style("opacity",0);
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
+        repeat_x();
+        repeat_y();
 
 
     }// end of animation
@@ -1717,83 +1721,83 @@ var previewCsvUrl = function( csvUrl ) {
     //width =400, height 2230
     // d3.csv(csvUrl, function(error, dataset){
     d3.csv(csvUrl,function(row) {
-        return {
-            'Name': row['Name'],
-            'Rating': +row['Rating'],
-            'Country': row['Country'],
-            'Category': row['Category'],
-            'Price': +row['Price'],
-            'ABV': +row['ABV'],
-            'Age': +row['Age'],
-            'Brand': row['Brand'],
-            'price_impute': +row['price_impute'],
-            'rate_impute': +row['rate_impute'],
-            'age_impute': +row['age_impute'],
-            'abv_impute': +row['abv_impute']
+            return {
+                'Name': row['Name'],
+                'Rating': +row['Rating'],
+                'Country': row['Country'],
+                'Category': row['Category'],
+                'Price': +row['Price'],
+                'ABV': +row['ABV'],
+                'Age': +row['Age'],
+                'Brand': row['Brand'],
+                'price_impute': +row['price_impute'],
+                'rate_impute': +row['rate_impute'],
+                'age_impute': +row['age_impute'],
+                'abv_impute': +row['abv_impute']
 
-        };
-    },
-    function(error, dataset) {
-        // Log and return from an error
-        if(error) {
-            console.error(error);
-            return;
-        }
+            };
+        },
+        function(error, dataset) {
+            // Log and return from an error
+            if(error) {
+                console.error(error);
+                return;
+            }
 
-        // Create global variables here
-        whiskey = dataset;
+            // Create global variables here
+            whiskey = dataset;
 
-        // Create scales and other functions here
-        xScale = d3.scaleLinear()
-            .range([0, chartWidth]);
-        yScale = d3.scaleLinear()
-            .range([chartHeight, 0]);
+            // Create scales and other functions here
+            xScale = d3.scaleLinear()
+                .range([0, chartWidth]);
+            yScale = d3.scaleLinear()
+                .range([chartHeight, 0]);
 
-        // Get min, max here for all dataset columns
-        // Fun tip, dataset.columns includes an array of the columns
-        domainMap = {};
+            // Get min, max here for all dataset columns
+            // Fun tip, dataset.columns includes an array of the columns
+            domainMap = {};
 
-        dataset.columns.forEach(function(column) {
-            domainMap[column] = d3.extent(dataset, function(data_element){
-                return data_element[column];
+            dataset.columns.forEach(function(column) {
+                domainMap[column] = d3.extent(dataset, function(data_element){
+                    return data_element[column];
+                });
             });
+
+            //get the percentage of the two
+            per = Math.floor(missing_count/total_count)*100;
+
+            // Create global object called chartScales to keep state
+            // chartScales = {x: 'Price', y: 'Age'};
+            chartScales = {x: 'Price', y: 'Age'};
+
+            updateChart();
+
         });
-
-        //get the percentage of the two
-        per = Math.floor(missing_count/total_count)*100;
-
-        // Create global object called chartScales to keep state
-        // chartScales = {x: 'Price', y: 'Age'};
-        chartScales = {x: 'Price', y: 'Age'};
-
-        updateChart();
-
-    });
 
     //*********BAR CHART*******
     //this part is for bar chart
     // d3.csv("./whiskey-test.csv", function(error, data){
-    d3.csv(csvUrl, function(error, data){
-
-        make_bar(data);
-
-    });
-
-    // d3.csv("./new_data/whiskey_random.csv", function(error, random_data){
-    //     d3.csv("./new_data/whiskey_global.csv", function(error, global__data){
-    //         d3.csv("./new_data/whiskey_knn.csv", function(error, knn_data){
+    // d3.csv(csvUrl, function(error, data){
     //
-    //             // make_bar(data);
-    //             make_bar(random_data,global__data, knn_data);
+    //     make_bar(data);
     //
-    //
-    //         });
-    //     });
     // });
 
+    d3.csv("./new_data/whiskey_random.csv", function(error, random_data){
+        d3.csv("./new_data/whiskey_global.csv", function(error, global__data){
+            d3.csv("./new_data/whiskey_knn.csv", function(error, knn_data){
+
+                // make_bar(data);
+                make_bar(random_data,global__data, knn_data);
+
+
+            });
+        });
+    });
+
     //make the bar function
-    // function make_bar(random_data,global_data, knn_data){
-        function make_bar(data){
+    function make_bar(random_data,global_data, knn_data){
+    // function make_bar(data){
 
         var margin = {top: 80, right: 180, bottom: 80, left: 180},
             width = 960 - margin.left - margin.right,
@@ -1806,7 +1810,19 @@ var previewCsvUrl = function( csvUrl ) {
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // data = random_data; // preselected value
+        data = random_data; // preselected value
+
+        knn_flag = false;
+        random_flag = false;
+        mean_flag = false;
+
+        if(knn_flag === true){
+            data = knn_data;
+        }else if(random_flag === true){
+            data = random_data;
+        }else if(mean_flag === true){
+            data = global_data;
+        }
 
 
 
@@ -1824,7 +1840,7 @@ var previewCsvUrl = function( csvUrl ) {
             temp="rate"
         }else if(temp === "Price"){
             temp="price"
-         }else if(temp === "ABV"){
+        }else if(temp === "ABV"){
             temp="abv"
         }
         var concat_selection = temp.concat("_impute");
@@ -1859,8 +1875,8 @@ var previewCsvUrl = function( csvUrl ) {
             .entries(filtered_data);
 
         var y = d3.scaleLinear()
-            // .domain([0, d3.max(data, function(d){
-            //     return +d[selection];
+        // .domain([0, d3.max(data, function(d){
+        //     return +d[selection];
             .domain([0,d3.max(avg,function(d){
                 return d.value;
             })])
@@ -1906,7 +1922,7 @@ var previewCsvUrl = function( csvUrl ) {
         var yAxis = d3.axisLeft(y);
 
         canvas.append("g")
-                .attr("class", "x axis")
+            .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .selectAll("text")
@@ -1917,11 +1933,11 @@ var previewCsvUrl = function( csvUrl ) {
             .attr("transform", "rotate(-90)" );
 
         canvas.append("g")
-                .attr("class", "y axis")
+            .attr("class", "y axis")
             .call(yAxis);
 
         canvas.selectAll("rectangle")
-            // .data(data)
+        // .data(data)
             .data(avg)
             .enter()
             .append("rect")
@@ -1976,7 +1992,7 @@ var previewCsvUrl = function( csvUrl ) {
             .attr("font-size","11px")
             .attr("opacity",0)
             .attr("fill","black");
-            // .attr("text-anchor","middle");
+        // .attr("text-anchor","middle");
 
         canvas.append("text")
             .attr("class","count-legend")
@@ -2007,9 +2023,9 @@ var previewCsvUrl = function( csvUrl ) {
 
 
         var missingCategory = [];
-            for (var i = 0; i < missingCount.length; i++) {
-                missingCategory.push(Object.values(missingCount[i])[0])
-            }
+        for (var i = 0; i < missingCount.length; i++) {
+            missingCategory.push(Object.values(missingCount[i])[0])
+        }
 
         d3.selectAll(("input[value='bar_color']")).on("change", function() {
             console.log('onchange bar color');
@@ -2072,86 +2088,180 @@ var previewCsvUrl = function( csvUrl ) {
             redraw_bar_counts_off(missingCount,notMissingCount,avg,missingCategory);
         });
 
-        // d3.select("#bar_knn")
-        //     .on("click",function(d){
-        //         console.log('bar knn');
-        //         var data = knn_data;
-        //
-        //         var selectAvg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(data);
-        //
-        //         console.log('bar knn', selectAvg);
-        //
-        //         var random_avg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(random_data);
-        //
-        //         console.log('bar random',random_avg);
-        //
-        //         var global_avg = d3.nest()
-        //             .key(function(d){ return d.Category;})
-        //             .rollup(function(v){return d3.mean(v,function(d){
-        //                 return +d[selection];});})
-        //             .entries(global_data);
-        //
-        //         console.log('bar random',global_avg);
-        //
-        //
-        //         y.domain([0, d3.max(selectAvg, function(d){
-        //             // y.domain([0,d3.max(data,function(d){
-        //             //     return +d[selection.value];
-        //             return +d.value;
-        //         })]);
-        //
-        //         yAxis.scale(y);
-        //
-        //         // this part added for transition
-        //         var bar = d3.selectAll(".rectangle").data(selectAvg);
-        //
-        //         bar.enter().append('rect')
-        //             .attr('class','bar')
-        //             // .transition()
-        //             // .duration(1000)
-        //             // .ease("linear")
-        //             .attr("fill","teal")
-        //             // .attr('class','rectangle')
-        //             .attr("x",function(d){return x(d.key);})
-        //             .attr('y',function(d){return y(d.value);})
-        //             .attr('height',function(d){return height - y(d.value);})
-        //             .attr("width",x.bandwidth());
-        //
-        //         //remove data
-        //         bar.exit().remove();
-        //
-        //         bar.attr("y", function(d){return y(d.value);})
-        //             .attr('height',function(d){return height -y(d.value);});
-        //
-        //         d3.selectAll("g.y.axis")
-        //             .transition()
-        //             .call(yAxis);
-        //
-        //     });
+        d3.select("#bar_knn")
+            .on("click",function(d){
+                console.log('bar knn');
+                data = knn_data;
 
-        // d3.select("#bar_mean")
-        //     .on("click",function(d){
-        //         console.log('bar global');
-        //         data = global_data;
-        //
-        //
-        //     });
-        //
-        // d3.select("#bar_random")
-        //     .on("click",function(d){
-        //         console.log('bar random');
-        //         data = random_data;
-        //
-        //
-        //     });
+                var selectAvg = d3.nest()
+                    .key(function(d){ return d.Category;})
+                    .rollup(function(v){return d3.mean(v,function(d){
+                        return +d[selection];});})
+                    .entries(data);
+
+
+                y.domain([0, d3.max(selectAvg, function(d){
+                    // y.domain([0,d3.max(data,function(d){
+                    //     return +d[selection.value];
+                    return +d.value;
+                })]);
+
+                yAxis.scale(y);
+
+                console.log('here');
+
+                // this part added for transition
+
+                var bar = d3.selectAll(".rectangle").data(selectAvg);
+
+                console.log('here after');
+
+                bar.enter().append('rect')
+                    .attr('class','bar')
+                    // .transition()
+                    // .duration(1000)
+                    // .ease("linear")
+                    .attr("fill","teal")
+                    // .attr('class','rectangle')
+                    .attr("x",function(d){return x(d.key);})
+                    .attr('y',function(d){return y(d.value);})
+                    .attr('height',function(d){return height - y(d.value);})
+                    .attr("width",x.bandwidth());
+
+                console.log('again');
+
+
+                //remove data
+                bar.exit().remove();
+
+                console.log('again 1');
+
+
+                bar.attr("y", function(d){return y(d.value);})
+                    .attr('height',function(d){return height -y(d.value);});
+
+                console.log('again 2');
+
+
+                d3.selectAll("g.y.axis")
+                    .transition()
+                    .call(yAxis);
+
+                console.log('again 2');
+
+
+                knn_flag = true;
+                mean_flag = false;
+                random_flag = false;
+
+
+            });
+
+        d3.select("#bar_mean")
+            .on("click",function(d){
+                console.log('bar global');
+                data = global_data;
+
+                console.log('bar mean');
+
+                var selectAvg = d3.nest()
+                    .key(function(d){ return d.Category;})
+                    .rollup(function(v){return d3.mean(v,function(d){
+                        return +d[selection];});})
+                    .entries(data);
+
+                y.domain([0, d3.max(selectAvg, function(d){
+                    // y.domain([0,d3.max(data,function(d){
+                    //     return +d[selection.value];
+                    return +d.value;
+                })]);
+
+                yAxis.scale(y);
+
+                // this part added for transition
+                var bar = d3.selectAll(".rectangle").data(selectAvg);
+
+                bar.enter().append('rect')
+                    .attr('class','bar')
+                    // .transition()
+                    // .duration(1000)
+                    // .ease("linear")
+                    .attr("fill","teal")
+                    // .attr('class','rectangle')
+                    .attr("x",function(d){return x(d.key);})
+                    .attr('y',function(d){return y(d.value);})
+                    .attr('height',function(d){return height - y(d.value);})
+                    .attr("width",x.bandwidth());
+
+                //remove data
+                bar.exit().remove();
+
+                bar.attr("y", function(d){return y(d.value);})
+                    .attr('height',function(d){return height -y(d.value);});
+
+                d3.selectAll("g.y.axis")
+                    .transition()
+                    .call(yAxis);
+
+                mean_flag = true;
+                knn_flag = false;
+                random_flag = false;
+
+
+            });
+
+        d3.select("#bar_random")
+            .on("click",function(d){
+                console.log('bar random');
+                data = random_data;
+
+                console.log('bar random');
+
+                var selectAvg = d3.nest()
+                    .key(function(d){ return d.Category;})
+                    .rollup(function(v){return d3.mean(v,function(d){
+                        return +d[selection];});})
+                    .entries(data);
+
+
+                y.domain([0, d3.max(selectAvg, function(d){
+                    // y.domain([0,d3.max(data,function(d){
+                    //     return +d[selection.value];
+                    return +d.value;
+                })]);
+
+                yAxis.scale(y);
+
+                // this part added for transition
+                var bar = d3.selectAll(".rectangle").data(selectAvg);
+
+                bar.enter().append('rect')
+                    .attr('class','bar')
+                    // .transition()
+                    // .duration(1000)
+                    // .ease("linear")
+                    .attr("fill","teal")
+                    // .attr('class','rectangle')
+                    .attr("x",function(d){return x(d.key);})
+                    .attr('y',function(d){return y(d.value);})
+                    .attr('height',function(d){return height - y(d.value);})
+                    .attr("width",x.bandwidth());
+
+                //remove data
+                bar.exit().remove();
+
+                bar.attr("y", function(d){return y(d.value);})
+                    .attr('height',function(d){return height -y(d.value);});
+
+                d3.selectAll("g.y.axis")
+                    .transition()
+                    .call(yAxis);
+
+                random_flag = true;
+                mean_flag = false;
+                knn_flag = false;
+
+            });
 
 
 
@@ -2163,6 +2273,8 @@ var previewCsvUrl = function( csvUrl ) {
 
                 select_check = true;
                 selection = document.getElementById("dropdown");
+
+
 
                 var selectAvg = d3.nest()
                     .key(function(d){ return d.Category;})
@@ -2184,7 +2296,7 @@ var previewCsvUrl = function( csvUrl ) {
                     temp="rate"
                 }else if(temp === "Price"){
                     temp="price"
-                 }else if(temp === "ABV"){
+                }else if(temp === "ABV"){
                     temp="abv"
                 }
                 var concat_selection = temp.concat("_impute");
@@ -2208,6 +2320,9 @@ var previewCsvUrl = function( csvUrl ) {
                     .rollup(function(v){return v.length;})
                     // .filter(function(d,i){return removed_idx.includes(i);})
                     .entries(data);
+
+                console.log("here 1");
+
 
                 d3.selectAll(("input[value='bar_color']")).on("change", function() {
                     console.log('color dropdown');
@@ -2255,17 +2370,19 @@ var previewCsvUrl = function( csvUrl ) {
                     redraw_bar_none();
                 });
 
+                console.log("here 2");
+
 
 
                 y.domain([0, d3.max(selectAvg, function(d){
-                // y.domain([0,d3.max(data,function(d){
-                //     return +d[selection.value];
+                    // y.domain([0,d3.max(data,function(d){
+                    //     return +d[selection.value];
                     return +d.value;
                 })]);
 
                 yAxis.scale(y);
 
-               // this part added for transition
+                // this part added for transition
                 var bar = d3.selectAll(".rectangle").data(selectAvg);
 
                 bar.enter().append('rect')
@@ -2285,6 +2402,12 @@ var previewCsvUrl = function( csvUrl ) {
                 d3.selectAll("g.y.axis")
                     .transition()
                     .call(yAxis);
+
+                console.log("here 3");
+
+                select_flag = true;
+                select_avg = selectAvg;
+
 
 
             });
@@ -2431,8 +2554,8 @@ var previewCsvUrl = function( csvUrl ) {
                 .attr("y",function(d){
                     return y(d.value);
                 }).attr("height", function(d){
-                    return height-y(d.value);
-                });
+                return height-y(d.value);
+            });
 
         }// end of bar color
 
@@ -2722,7 +2845,7 @@ var previewCsvUrl = function( csvUrl ) {
 
             // add text
             bar_unknown_text = canvas.append("text")
-                // .attr("class","unknown label")
+            // .attr("class","unknown label")
                 .attr("class","unknown")
                 .text("unknown")
                 .attr("x",width+x.bandwidth()+15)
@@ -2888,137 +3011,137 @@ d3.select("#cRight")
 // Initialize with csv file from server, this is the deafult
 // previewCsvUrl("./whiskey.csv");
 
-d3.selectAll(("input[value='bar_mean']")).on("change", function() {
-    if(typeof canvas === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        // selector.remove().exit();
-        canvas.remove().exit();
-    }if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-
-
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
-    // result = runPyScript(datatosend);
-
-    previewCsvUrl("./new_data/whiskey_global.csv");
-});
-
-d3.selectAll(("input[value='bar_knn']")).on("change", function() {
-    if(typeof canvas === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        selector.remove().exit();
-        canvas.remove().exit();
-    } if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
-    previewCsvUrl("./new_data/whiskey_knn.csv");
-});
-
-d3.selectAll(("input[value='bar_random']")).on("change", function() {
-    if(typeof canvas === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        // selector.remove().exit();
-        canvas.remove().exit();
-    }if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
-    previewCsvUrl("./new_data/whiskey_random.csv");
-});
+// d3.selectAll(("input[value='bar_mean']")).on("change", function() {
+//     if(typeof canvas === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         console.log('canvas defined');
+//         // selector.remove().exit();
+//         canvas.remove().exit();
+//     }if(typeof selector === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         selector.remove().exit();
+//     }
+//     if(typeof dots === 'undefined'){  //scatter
+//         console.log('canvas undefined');
+//     }else{
+//         console.log('canvas defined');
+//         dots.remove().exit();
+//         dotsEnter.remove().exit();
+//         // dots_chart.remove().exit();
+//
+//
+//     }if(typeof dots_chart === 'undefined'){ // bars
+//     }else{
+//         dots_chart.remove().exit(); //remove some of the encodings
+//     }
+//     if(typeof dots_chart_line === 'undefined'){ // bars
+//     }else{
+//         dots_chart_line.remove().exit();
+//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else {
+//         dots_chart_line_y.remove().exit();
+//         // dots_remove.remove().exit();
+//     }if(typeof dots_chart_x === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_x.remove().exit(); //remove some of the encodings
+//     }if(typeof dots_chart_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_y.remove().exit(); //remove some of the encodings
+//     }
+//     // result = runPyScript(datatosend);
+//
+//     previewCsvUrl("./new_data/whiskey_global.csv");
+// });
+//
+// d3.selectAll(("input[value='bar_knn']")).on("change", function() {
+//     if(typeof canvas === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         console.log('canvas defined');
+//         selector.remove().exit();
+//         canvas.remove().exit();
+//     } if(typeof selector === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         selector.remove().exit();
+//     }
+//     if(typeof dots === 'undefined'){  //scatter
+//         console.log('canvas undefined');
+//     }else{
+//         console.log('canvas defined');
+//         dots.remove().exit();
+//         dotsEnter.remove().exit();
+//         // dots_chart.remove().exit();
+//     }if(typeof dots_chart === 'undefined'){ // bars
+//     }else{
+//         dots_chart.remove().exit(); //remove some of the encodings
+//     }
+//     if(typeof dots_chart_line === 'undefined'){ // bars
+//     }else{
+//         dots_chart_line.remove().exit();
+//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else {
+//         dots_chart_line_y.remove().exit();
+//         // dots_remove.remove().exit();
+//     }if(typeof dots_chart_x === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_x.remove().exit(); //remove some of the encodings
+//     }if(typeof dots_chart_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_y.remove().exit(); //remove some of the encodings
+//     }
+//     previewCsvUrl("./new_data/whiskey_knn.csv");
+// });
+//
+// d3.selectAll(("input[value='bar_random']")).on("change", function() {
+//     if(typeof canvas === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         // selector.remove().exit();
+//         canvas.remove().exit();
+//     }if(typeof selector === 'undefined'){
+//         console.log('canvas undefined');
+//     }else{
+//         selector.remove().exit();
+//     }
+//
+//     if(typeof dots === 'undefined'){  //scatter
+//         console.log('canvas undefined');
+//     }else{
+//         dots.remove().exit();
+//         dotsEnter.remove().exit();
+//         // dots_chart.remove().exit();
+//     }if(typeof dots_chart === 'undefined'){ // bars
+//     }else{
+//         dots_chart.remove().exit(); //remove some of the encodings
+//     }
+//     if(typeof dots_chart_line === 'undefined'){ // bars
+//     }else{
+//         dots_chart_line.remove().exit();
+//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else {
+//         dots_chart_line_y.remove().exit();
+//         // dots_remove.remove().exit();
+//     }if(typeof dots_chart_x === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_x.remove().exit(); //remove some of the encodings
+//     }if(typeof dots_chart_y === 'undefined'){ // bars
+//         console.log('dotschart undefined');
+//     }else{
+//         dots_chart_y.remove().exit(); //remove some of the encodings
+//     }
+//     previewCsvUrl("./new_data/whiskey_random.csv");
+// });
 
 d3.selectAll(("input[value='scatter_mean']")).on("change", function() {
     if(typeof canvas === 'undefined'){
@@ -3047,19 +3170,19 @@ d3.selectAll(("input[value='scatter_mean']")).on("change", function() {
     }else{
         dots_chart_line.remove().exit();
     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
+        console.log('dotschart undefined');
+    }else {
+        dots_chart_line_y.remove().exit();
         // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+    }if(typeof dots_chart_x === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_x.remove().exit(); //remove some of the encodings
+    }if(typeof dots_chart_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_y.remove().exit(); //remove some of the encodings
+    }
     previewCsvUrl("./new_data/whiskey_global.csv");
 });
 
@@ -3091,19 +3214,19 @@ d3.selectAll(("input[value='scatter_knn']")).on("change", function() {
     }else{
         dots_chart_line.remove().exit();
     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
+        console.log('dotschart undefined');
+    }else {
+        dots_chart_line_y.remove().exit();
         // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+    }if(typeof dots_chart_x === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_x.remove().exit(); //remove some of the encodings
+    }if(typeof dots_chart_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_y.remove().exit(); //remove some of the encodings
+    }
 
     console.log('call knn for scatter');
     previewCsvUrl("./new_data/whiskey_knn.csv");
@@ -3137,19 +3260,19 @@ d3.selectAll(("input[value='scatter_random']")).on("change", function() {
     }else{
         dots_chart_line.remove().exit();
     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dots_chart_line_y.remove().exit();
+        console.log('dotschart undefined');
+    }else {
+        dots_chart_line_y.remove().exit();
         // dots_remove.remove().exit();
-        }if(typeof dots_chart_x === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_x.remove().exit(); //remove some of the encodings
-        }if(typeof dots_chart_y === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else{
-            dots_chart_y.remove().exit(); //remove some of the encodings
-        }
+    }if(typeof dots_chart_x === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_x.remove().exit(); //remove some of the encodings
+    }if(typeof dots_chart_y === 'undefined'){ // bars
+        console.log('dotschart undefined');
+    }else{
+        dots_chart_y.remove().exit(); //remove some of the encodings
+    }
 
     previewCsvUrl("./new_data/whiskey_random.csv");
 });
