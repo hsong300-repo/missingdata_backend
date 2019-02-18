@@ -218,8 +218,8 @@ function updateChart() {
                 .style("opacity", .9);
             // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
             div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
+                .style("left", (d3.event.pageX+14) + "px")
+                .style("top", (d3.event.pageY-28) + "px");
 
             // var hovered = d3.select(this);
             // // Show the text, otherwise hidden
