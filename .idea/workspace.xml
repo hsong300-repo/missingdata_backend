@@ -52,8 +52,8 @@
         <counts>
           <entry key="Procfile" value="22" />
           <entry key="css" value="297" />
-          <entry key="html" value="902" />
-          <entry key="js" value="14080" />
+          <entry key="html" value="939" />
+          <entry key="js" value="14096" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
@@ -61,8 +61,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="297" />
-          <entry key="HTML" value="902" />
-          <entry key="JavaScript" value="14080" />
+          <entry key="HTML" value="939" />
+          <entry key="JavaScript" value="14096" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -125,23 +125,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Encoding/animation/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="371">
+              <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Encoding/animation/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="794" column="13" selection-start-line="794" selection-start-column="13" selection-end-line="794" selection-end-column="13" />
+            <state relative-caret-position="252">
+              <caret line="838" column="40" selection-start-line="838" selection-start-column="40" selection-end-line="838" selection-end-column="40" />
               <folding>
                 <element signature="e#40488#42723#0" />
                 <element signature="e#50264#60392#0" />
@@ -351,18 +348,17 @@
       <workItem from="1550863732676" duration="12000" />
       <workItem from="1551470925657" duration="709000" />
       <workItem from="1551842765498" duration="376000" />
-      <workItem from="1553461445423" duration="1908000" />
+      <workItem from="1553461445423" duration="2196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67825000" />
+    <option name="totallyTimeSpent" value="68113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.16208598" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.16208598" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -376,7 +372,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13975903" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13975903" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -582,23 +578,20 @@
     <entry file="file://$PROJECT_DIR$/Encoding/animation/app.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation/main.js">
+    <entry file="file://$PROJECT_DIR$/Encoding/animation/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="794" column="13" selection-start-line="794" selection-start-column="13" selection-end-line="794" selection-end-column="13" />
-          <folding>
-            <element signature="e#40488#42723#0" />
-            <element signature="e#50264#60392#0" />
-          </folding>
+        <state relative-caret-position="371">
+          <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation/index.html">
+    <entry file="file://$PROJECT_DIR$/Encoding/animation/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+        <state relative-caret-position="252">
+          <caret line="838" column="40" selection-start-line="838" selection-start-column="40" selection-end-line="838" selection-end-column="40" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#40488#42723#0" />
+            <element signature="e#50264#60392#0" />
           </folding>
         </state>
       </provider>

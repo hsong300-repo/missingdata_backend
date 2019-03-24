@@ -836,7 +836,7 @@ function updateChart() {
         d3.selectAll(".error-line")
             .style("opacity",0);
 
-        document.getElementById('restart').checked = false;
+        setTimeout(function(){document.getElementById('restart').checked = false;}, 1000);
 
 
 
