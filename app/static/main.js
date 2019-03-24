@@ -2503,29 +2503,29 @@ var previewCsvUrl = function( csvUrl ) {
 d3.select("html")
     .style("height","100%");
 
-// data = d3.select("#cLeft")
-// // data = d3.select("body")
-//     .style("height","100%")
-//     .style("font", "12px sans-serif")
-//     .append("input")
-//     .attr("id", "uploadData")
-//     .attr("type", "file")
-//     .attr("accept", ".csv")
-//     .style("margin", "5px")
-//     .on("change", function() {
-//         var file = d3.event.target.files[0];
-//         if (file) {
-//             var reader = new FileReader();
-//             reader.onloadend = function(evt) {
-//                 var dataUrl = evt.target.result;
-//                 // The following call results in an "Access denied" error in IE.
-//                 previewCsvUrl(dataUrl);
-//
-//             };
-//             reader.readAsDataURL(file);
-//             //reader.readAsText(file);
-//         }
-//     });
+data = d3.select("#cLeft")
+// data = d3.select("body")
+    .style("height","100%")
+    .style("font", "12px sans-serif")
+    .append("input")
+    .attr("id", "uploadData")
+    .attr("type", "file")
+    .attr("accept", ".csv")
+    .style("margin", "5px")
+    .on("change", function() {
+        var file = d3.event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onloadend = function(evt) {
+                var dataUrl = evt.target.result;
+                // The following call results in an "Access denied" error in IE.
+                previewCsvUrl(dataUrl);
+
+            };
+            reader.readAsDataURL(file);
+            //reader.readAsText(file);
+        }
+    });
 
 // d3.select("#cLeft")
 d3.select("#cRight")

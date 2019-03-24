@@ -59,6 +59,7 @@ def transform_view():
     # print("pd_input",df.describe())
     # to track original data
     temp = df
+    temp_mean = df
     temp_knn = df
     temp_random = df
     # ****transform, this is for the global mean part
@@ -67,37 +68,44 @@ def transform_view():
     abv_mean = df["ABV"].mean()
     age_mean = df["Age"].mean()
 
+    print("temp_mean before", temp_mean.describe())
+
+
     # part where the transform works
     for i in range(len(temp)):
        if np.isnan(temp.at[i,'Rating']):
-          temp.at[i, 'Rating'] = rate_mean
-          temp.at[i, 'rate_impute'] = 1
+          temp_mean.at[i, 'Rating'] = rate_mean
+          temp_mean.at[i, 'rate_impute'] = 1
 
        else:
-          temp.at[i, 'rate_impute'] = 0
+          temp_mean.at[i, 'rate_impute'] = 0
 
        if np.isnan(temp.at[i,'Price']):
-          temp.at[i, 'Price'] = price_mean
-          temp.at[i, 'price_impute'] = 1
+          temp_mean.at[i, 'Price'] = price_mean
+          temp_mean.at[i, 'price_impute'] = 1
 
        else:
-          temp.at[i, 'price_impute'] = 0
+          temp_mean.at[i, 'price_impute'] = 0
 
        if np.isnan(temp.at[i,'ABV']):
-          temp.at[i, 'ABV'] = abv_mean
-          temp.at[i, 'abv_impute'] = 1
+          temp_mean.at[i, 'ABV'] = abv_mean
+          temp_mean.at[i, 'abv_impute'] = 1
        else:
-          temp.at[i, 'abv_impute'] = 0
+          temp_mean.at[i, 'abv_impute'] = 0
 
        if np.isnan(temp.at[i,'Age']):
-          temp.at[i, 'Age'] = age_mean
-          temp.at[i, 'age_impute'] = 1
+          temp_mean.at[i, 'Age'] = age_mean
+          temp_mean.at[i, 'age_impute'] = 1
 
        else:
-          temp.at[i, 'age_impute'] = 0
+          temp_mean.at[i, 'age_impute'] = 0
+
+    print('check if changed', temp['Rating'], temp_mean['Rating'],df['Rating'])
+
+    print("temp_mean after", temp_mean.describe())
 
 
-    temp.to_csv('./static/new_data/whiskey_global.csv', index=False, header=True)
+    temp_mean.to_csv('./static/new_data/whiskey_global.csv', index=False, header=True)
 
 
     # ***knn function
@@ -106,6 +114,8 @@ def transform_view():
     df_filled = pd.DataFrame(KNN(3).fit_transform(df_numeric))
     df_filled.columns = df_numeric.columns
     df_filled.index = df_numeric.index
+
+
 
     temp_knn['Rating'] = df_filled['Rating']
     temp_knn['Price'] = df_filled['Price']
@@ -117,10 +127,13 @@ def transform_view():
     # temp_knn['Price_impute'] = temp['Price_impute']
     # temp_knn['ABV_impute'] = temp['ABV_impute']
     # temp_knn['Age_impute'] = temp['Age_impute']
-    temp_knn['rate_impute'] = temp['rate_impute']
-    temp_knn['price_impute'] = temp['price_impute']
-    temp_knn['abv_impute'] = temp['abv_impute']
-    temp_knn['age_impute'] = temp['age_impute']
+    temp_knn['rate_impute'] = temp_mean['rate_impute']
+    temp_knn['price_impute'] = temp_mean['price_impute']
+    temp_knn['abv_impute'] = temp_mean['abv_impute']
+    temp_knn['age_impute'] = temp_mean['age_impute']
+
+    print("temp_knn", temp_knn.describe())
+
 
 
     temp_knn.to_csv('./static/new_data/whiskey_knn.csv', index=False, header=True)
@@ -137,10 +150,15 @@ def transform_view():
        if np.isnan(temp_random.at[i,'Age']):
             temp_random.at[i, 'Age'] = random.choice(temp["Age"])
 
+    print("temp_knn", temp_random.describe())
+
+
     temp_random['rate_impute'] = temp['rate_impute']
     temp_random['price_impute'] = temp['price_impute']
     temp_random['abv_impute'] = temp['abv_impute']
     temp_random['age_impute'] = temp['age_impute']
+
+
 
     temp_random.to_csv('./static/new_data/whiskey_random.csv', index=False, header=True)
 
