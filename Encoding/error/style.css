@@ -193,6 +193,18 @@ circle {
 
 /*error bar cap and encodings add*/
 .error-line {
+     /*stroke: #b30059;*/
+     stroke:#000;
+     stroke-dasharray: 2,2;
+ }
+
+.error-line-x {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+}
+
+.error-line-y {
     /*stroke: #b30059;*/
     stroke:#000;
     stroke-dasharray: 2,2;
