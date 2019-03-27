@@ -66,6 +66,50 @@ function onYScaleChanged() {
     updateChart();
 }
 
+function restart_animation(){
+    var transition_x = d3.selectAll(".impute_x");
+
+    function repeat_x(){
+        transition_x.transition()
+            .duration(1000)
+            // .attr('x',-std_x)
+            .attr('cx',-std_x)
+            .transition()
+            .duration(1000)
+            .attr('cx',std_x)
+            .transition()
+            .duration(1000)
+            .attr("cx", 0);
+    }
+
+    var transition_y = d3.selectAll(".impute_y");
+    // var transition_y = d3.selectAll(".impute")
+    //     .filter(function(d){
+    //         return d[select_y] ===1 });
+
+
+    function repeat_y(){
+        transition_y.transition()
+            .duration(1000)
+            .attr('cy',-std_y)
+            .transition()
+            .duration(1000)
+            .attr('cy',std_y)
+            .transition()
+            .duration(1000)
+            .attr("cy", 0);
+    }
+
+    repeat_x();
+    repeat_y();
+
+    d3.selectAll(".error-line")
+        .style("opacity",0);
+
+
+}
+
+
 // Also, declare global variables for missing amount, total amount, and percentage
 missing_count = 0;
 total_count = 0;
@@ -207,48 +251,48 @@ function updateChart() {
         .attr("fill","steelblue")
         .on('mouseover', function(d){ // Add hover start event binding
             // Select the hovered g.dot
-            if(d[select_x] === 1){
-                x_val = "imputed";
-            }else if(d[select_x] === 0){
-                x_val = "exists";
+            // if(d[select_x] === 1){
+            //     x_val = "imputed";
+            // }else if(d[select_x] === 0){
+            //     x_val = "exists";
+            //
+            // }else{
+            //     console.log('d[select_x}',d[select_x]);
+            // }
+            // // y_val = "exists";
+            // if(d[select_y] === 1){
+            //     y_val = "imputed";
+            // }else if(d[select_y] === 0){
+            //     y_val = "imputed";
+            // }else{
+            //     console.log('d[select_y}',d[select_y]);
+            // }
+            // div.transition()
+            //     .duration(200)
+            //     .style("opacity", .9);
+            // // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
+            // div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
+            //     .style("left", (d3.event.pageX + 14) + "px")
+            //     .style("top", (d3.event.pageY - 28) + "px");
 
-            }else{
-                console.log('d[select_x}',d[select_x]);
-            }
-            // y_val = "exists";
-            if(d[select_y] === 1){
-                y_val = "imputed";
-            }else if(d[select_y] === 0){
-                y_val = "imputed";
-            }else{
-                console.log('d[select_y}',d[select_y]);
-            }
-            div.transition()
-                .duration(200)
-                .style("opacity", .9);
-            // div	.html(temp_x +":"+x_val + "<br/>"  +temp_y +":"+ y_val + "<br/>"  +chartScales.x +":"+ d[chartScales.x] +"|" + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +"|"+ y_val)
-            div	.html(chartScales.x +":"+ d[chartScales.x] +" | " + x_val +"<br/>"  +chartScales.y +":"+ d[chartScales.y] +" | "+ y_val)
-                .style("left", (d3.event.pageX + 14) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
-
-            // var hovered = d3.select(this);
-            // // Show the text, otherwise hidden
-            // hovered.select('text')
-            //     .style('visibility', 'visible');
-            // // Add stroke to circle to highlight it
-            // hovered.select('circle')
-            //     .style('stroke-width', 2)
-            //     .style('stroke', '#333');
+            var hovered = d3.select(this);
+            // Show the text, otherwise hidden
+            hovered.select('text')
+                .style('visibility', 'visible');
+            // Add stroke to circle to highlight it
+            hovered.select('circle')
+                .style('stroke-width', 2)
+                .style('stroke', '#333');
         })
         .on('mouseout', function(d){ // Add hover end event binding
             // Select the hovered g.dot
-            // var hovered = d3.select(this);
-            // // Remove the highlighting we did in mouseover
-            // hovered.select('text')
-            //     .style('visibility', 'hidden');
-            // hovered.select('circle')
-            //     .style('stroke-width', 0)
-            //     .style('stroke', 'none');
+            var hovered = d3.select(this);
+            // Remove the highlighting we did in mouseover
+            hovered.select('text')
+                .style('visibility', 'hidden');
+            hovered.select('circle')
+                .style('stroke-width', 0)
+                .style('stroke', 'none');
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -363,6 +407,15 @@ function updateChart() {
         .attr("x2", 0)
         .style("opacity",0)
         .attr("y2", -std_y);
+
+    dotsEnter.append('text')
+        .attr('y', -10)
+        .text(function(d) {
+            // console.log('price impute',d.price_impute);
+            return d.Name;
+            // return d.Brand
+            // return d[chartScales.x];
+        });
 
     d3.selectAll(("input[value='animation']")).on("change", function() {
         console.log('onchange animation');
@@ -791,57 +844,6 @@ function updateChart() {
 
 
     }// end of animation
-
-    function redraw_restart() {
-
-
-            // .transition().duration(2000);
-
-            var transition_x = d3.selectAll(".impute_x");
-
-            function repeat_x(){
-                transition_x.transition()
-                    .duration(1000)
-                    // .attr('x',-std_x)
-                    .attr('cx',-std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr('cx',std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr("cx", 0);
-            }
-
-            var transition_y = d3.selectAll(".impute_y");
-            // var transition_y = d3.selectAll(".impute")
-            //     .filter(function(d){
-            //         return d[select_y] ===1 });
-
-
-            function repeat_y(){
-                transition_y.transition()
-                    .duration(1000)
-                    .attr('cy',-std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr('cy',std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr("cy", 0);
-            }
-
-            repeat_x();
-            repeat_y();
-
-        d3.selectAll(".error-line")
-            .style("opacity",0);
-
-        setTimeout(function(){document.getElementById('restart').checked = false;}, 1000);
-
-
-
-    }// end of animation
-
 
     function redraw_none() {
 
@@ -2396,7 +2398,7 @@ d3.selectAll(("input[value='scatter_random']")).on("change", function() {
 });
 
 // previewCsvUrl("./static/new_data/whiskey_random.csv");
-previewCsvUrl("./new_data/whiskey_random.csv");
+previewCsvUrl("./new_data/whiskey_knn_customized.csv");
 
 
 //previewCsvUrl("./whiskey_global.csv");

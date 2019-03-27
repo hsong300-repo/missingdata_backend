@@ -194,7 +194,7 @@ circle {
 /*error bar cap and encodings add*/
 .error-line {
      /*stroke: #b30059;*/
-     stroke:#000;
+     stroke:#b30059;
      stroke-dasharray: 2,2;
  }
 

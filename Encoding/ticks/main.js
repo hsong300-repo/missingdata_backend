@@ -3156,7 +3156,7 @@ d3.selectAll(("input[value='scatter_random']")).on("change", function() {
 });
 
 // previewCsvUrl("./static/new_data/whiskey_random.csv");
-previewCsvUrl("./new_data/whiskey_random.csv");
+previewCsvUrl("./new_data/whiskey_knn_customized.csv");
 
 
 //previewCsvUrl("./whiskey_global.csv");
