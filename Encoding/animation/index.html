@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <!--<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">-->
 
 </head>
 <body>
@@ -16,27 +15,14 @@
     <div class="cell" id ="cLeft" style="background-color:#bbb;"  >
         <div class="inner" >
             <div class = 'parent'>
-                <!--<form action = "http://localhost:5000/uploader" method = "POST"-->
-                     <!--enctype = "multipart/form-data">-->
-                     <!--<input type = "file" name = "file" />-->
-                     <!--<input id="sbtbutton" value="submit" type = "submit"/>-->
-              <!--</form>-->
-
-<!--{#                 <form action="/transform" method="post" enctype="multipart/form-data" height="100%">#}-->
-<!--{#                    <input type="file" name="data_file" />#}-->
-<!--{#                    <input type="submit" />#}-->
                 </form>
                 <div class='child inline-block-child'>
                     <button onClick="drawBar();" id="bar" style="position:absolute;top:50px;left:-30px"><img src="./button_img/bar.png" width="66" height="66" ></button>
                     <button onClick="drawScatter();" id="scatter" style="position:absolute;top:50px;left:80px"><img src="./button_img/scatter.png" width="66" height="66"></button>
-                    <!--<button onClick="drawBar();" id="bar" style="position:absolute;top:50px;left:-30px"><img src="{{ user_image }}" width="66" height="66" ></button>-->
-                    <!--<button onClick="drawScatter();" id="scatter" style="position:absolute;top:50px;left:80px"><img src={{ scatter_image }} width="66" height="66"></button>-->
                 </div>
 
             </div>
-            <!--<div id="vis">-->
-                <!--<button onClick="drawVis();">Visualizations</button>-->
-            <!--</div>-->
+
         </div>
     </div>
     <!--COLUMN RIGHT-->
@@ -47,46 +33,12 @@
         <div id="scatter_view"  style="display:none;" class="answer_list" >
             <div class='row' id="scatter_radio" style="display:none;">
                 <div class='radio' >
-                    <!--<br>Imputation: <input type="radio" name="impute" value="scatter_mean"> global mean-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                    <!--Imputation<input type="radio" name="impute" value="scatter_knn"> knn<br>-->
-                    <!--<input type="radio" name="impute" value="scatter_random" checked> random<br>-->
-
-                    <!--<label class='radio-inline'>-->
-                        <!--Encodings: <input type="radio" name="vis" value="color" checked> color-->
-                        <!--&lt;!&ndash;<input type="radio" name="color" value="color" onclick='change(this.value)'> color&ndash;&gt;-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                        <!--<input type="radio" name="vis" value="gradient" > gradient-->
-                        <!--&lt;!&ndash;<input type="radio" name="gradient" value="gradient" onclick='change(this.value)'> gradient&ndash;&gt;-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                        <!--<input type="radio" name="vis" value="unfilled"> unfilled-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                        <!--Encodings:<input type="radio" name="vis" value="pattern"> pattern-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                        <!--<input type="radio" name="vis" value="shape"> shape-->
-                    <!--</label>-->
-
                      <label class='radio-inline'>
                         Encodings: <input type="radio" name="range" value="animation"> animation
                     </label>
-                    <!--<button onClick="restart();" id="restart">restart</button>-->
-
-
-                    <!--<label class='radio-inline'>-->
-                        <!--Ticks: <input type="radio" name="ticks" value="ticks_on"> on-->
-                    <!--</label>-->
-                    <!--<label class='radio-inline'>-->
-                        <!--<input type="radio" name="ticks" value="ticks_off" checked> off-->
-                    <!--</label>-->
                     <label><button type="button" name ="restart" value="restart" onclick="restart_animation()">restart</button></label>
                 </div>
             </div>
-
 
             <!--<div style="position: absolute; top: 300px;">-->
                 <div style="margin-left: 50px;">
@@ -208,10 +160,6 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
 
-
-
-
-
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -219,9 +167,9 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 <script src="./main.js"></script>
-<!--<script src="./view.js"></script>-->
+<script src="./scatter.js"></script>
 
-<!--<script src= "{{ url_for('static', filename = 'main.js') }}"></script>-->
+
 
 
 </html>
