@@ -3,6 +3,8 @@ function onXScaleChanged() {
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
+
+    console.log('XScale change')
     // Update chart
     updateChart();
 }
@@ -17,43 +19,29 @@ function onYScaleChanged() {
 }
 
 function restart_animation(){
-    var transition_x = d3.selectAll(".impute_x");
+    var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
 
-    function repeat_x(){
-        transition_x.transition()
-            .duration(1000)
-            // .attr('x',-std_x)
-            .attr('cx',-std_x)
-            .transition()
-            .duration(1000)
-            .attr('cx',std_x)
-            .transition()
-            .duration(1000)
-            .attr("cx", 0);
-    }
+    transition_x.transition()
+        .duration(1000)
+        .attr('cx',-std_x)
+        .transition()
+        .duration(1000)
+        .attr('cx',std_x)
+        .transition()
+        .duration(1000)
+        .attr("cx", 0);
 
-    var transition_y = d3.selectAll(".impute_y");
-    // var transition_y = d3.selectAll(".impute")
-    //     .filter(function(d){
-    //         return d[select_y] ===1 });
+    var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
 
-    function repeat_y(){
-        transition_y.transition()
-            .duration(1000)
-            .attr('cy',-std_y)
-            .transition()
-            .duration(1000)
-            .attr('cy',std_y)
-            .transition()
-            .duration(1000)
-            .attr("cy", 0);
-    }
-
-    repeat_x();
-    repeat_y();
-
-    d3.selectAll(".error-line")
-        .style("opacity",0);
+    transition_y.transition()
+        .duration(1000)
+        .attr('cy',-std_y)
+        .transition()
+        .duration(1000)
+        .attr('cy',std_y)
+        .transition()
+        .duration(1000)
+        .attr("cy", 0);
 
 }
 
@@ -178,11 +166,16 @@ function updateChart() {
         .filter(function(d){
             return d[select_x] === 0 && d[select_y] === 0});
 
+    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
         .data(whiskey);
     // .data(noimpute_data);
+
+    // dots.exit().remove();
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
@@ -192,7 +185,8 @@ function updateChart() {
     dotsEnter = dots.enter()
         .append('g')
         .attr('class', 'dot')
-        .attr("fill","steelblue")
+        // .attr("id","id_"+i)
+        // .attr("fill","steelblue")
         .on('mouseover', function(d){ // Add hover start event binding
             var hovered = d3.select(this);
             // Show the text, otherwise hidden
@@ -219,35 +213,82 @@ function updateChart() {
 
     // Append a circle to the ENTER selection
     dotsEnter.append('circle')
-        .filter(function(d){
-            return d[select_x] === 0 && d[select_y] === 0})
         .attr("class","no_impute")
-        .style("fill","steelblue")
-        .attr('r', 4);
+        .style("fill",function(d){
+            if(d[select_x] ===1 || d[select_y] === 1){return "#87CEFA";}
+            else{return "steelblue";}
+        })
+        .attr('r', 5);
 
-    dotsEnter.append('circle')
-        .filter(function(d){
-            return d[select_x] ===1 || d[select_y] === 1})
-        .attr("class","impute")
-        .style("fill","steelblue")
-        .style("opacity",0)
-        .attr('r', 4);
+    dotsEnter.append('text')
+        .attr('y', -10)
+        .text(function(d) {
+            // console.log('price impute',d.price_impute);
+            return d.Name;
+        });
 
-    dotsEnter.append('circle')
-        .filter(function(d){
-            return d[select_x] ===1 })
-        .style("fill","#87CEFA")
-        .attr("class","impute_x")
-        .style("opacity",1)
-        .attr('r', 4);
+    d3.selectAll(("input[value='animation']")).on("change", function() {
+        console.log('onchange animation');
+        redraw_animation();
+    });
 
-    dotsEnter.append('circle')
-        .filter(function(d){
-            return d[select_y] === 1})
-        .style("fill","#87CEFA")
-        .attr("class","impute_y")
-        .style("opacity",1)
-        .attr('r', 4);
+    // ENTER + UPDATE selections - bindings that happen on all updateChart calls
+    dots.merge(dotsEnter)
+    // dots.merge(dotsEnter)
+        .transition() // Add transition - this will interpolate the translate() on any changes
+        .duration(750)
+        .attr('transform', function(d) {
+            console.log('this gets called merge');
+            // Transform the group based on x and y property
+            var tx = xScale(d[chartScales.x]);
+            var ty = yScale(d[chartScales.y]);
+            return 'translate('+[tx, ty]+')';
+        });
+
+    d3.selectAll("circle")
+        .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
+        .style("fill","#87CEFA");
+
+    d3.selectAll("circle")
+        .filter(function(d){return d[select_x] ===0 && d[select_y] ===0})
+        .style("fill","steelblue");
+
+
+
+    //*** here default start
+    // dotsEnter.append('circle')
+    //     .filter(function(d){
+    //         return d[select_x] === 0 && d[select_y] === 0})
+    //     .attr("class","no_impute")
+    //     .style("fill","steelblue")
+    //     .attr('r', 4);
+    //
+    // dotsEnter.append('circle')
+    //     .filter(function(d){
+    //         return d[select_x] ===1 || d[select_y] === 1})
+    //     .attr("class","impute")
+    //     .style("fill","#87CEFA")
+    //     .style("opacity",0)
+    //     .attr('r', 4);
+    //
+    // dotsEnter.append('circle')
+    //     .filter(function(d){
+    //         return d[select_x] === 1 })
+    //     .style("fill","#87CEFA")
+    //     .attr("class","impute_x")
+    //     .style("opacity",1)
+    //     .attr('r', 4);
+    //
+    // dotsEnter.append('circle')
+    //     .filter(function(d){
+    //         return d[select_y] === 1})
+    //     .style("fill","#87CEFA")
+    //     .attr("class","impute_y")
+    //     .style("opacity",1)
+    //     .attr('r', 4);
+    // *** here end of default
+
+
     //
     // dotsEnter.append('circle')
     //     .filter(function(d){
@@ -258,34 +299,8 @@ function updateChart() {
     //     .attr('r', 4);
 
 
-    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-    dotsEnter.append('text')
-        .attr('y', -10)
-        .text(function(d) {
-            // console.log('price impute',d.price_impute);
-            return d.Name;
-            // return d.Brand
-            // return d[chartScales.x];
-        });
 
-    d3.selectAll(("input[value='animation']")).on("change", function() {
-        console.log('onchange animation');
-        redraw_animation();
-    });
-
-    // ENTER + UPDATE selections - bindings that happen on all updateChart calls
-    dots.merge(dotsEnter)
-        .transition() // Add transition - this will interpolate the translate() on any changes
-        .duration(750)
-        .attr('transform', function(d) {
-            console.log('this gets called merge');
-            // Transform the group based on x and y property
-            var tx = xScale(d[chartScales.x]);
-            var ty = yScale(d[chartScales.y]);
-            return 'translate('+[tx, ty]+')';
-        });
 
 
     if(typeof dots_chart === 'undefined'){ // bars
@@ -404,239 +419,80 @@ function updateChart() {
         // }
 
         // if(typeof dots_chart === 'undefined'){ // bars
-        //      dots_chart_x = chartG.append("g").attr('class', "Scatter")
-        //         .selectAll("circle")
-        //         .data(whiskey)
-        //         .enter()
-        //         .append('circle')
-        //         .filter(function(d){
-        //                 return d[select_x] ===1 })
-        //         .style("stroke", 'steelblue')
-        //         // .style("stroke-width", 1)
-        //         .style("fill", 'steelblue')
-        //         .attr("cx", function (d) {
-        //             return xScale(d[chartScales.x]);
-        //         })
-        //         .attr("cy", function (d) {
-        //             return yScale(d[chartScales.y]);
-        //         })
-        //         .attr('r', 4);
-        //
-        //     dots_chart_y = chartG.append("g").attr('class', "Scatter")
-        //         .selectAll("circle")
-        //         .data(whiskey)
-        //         .enter()
-        //         .append('circle')
-        //         .filter(function(d){
-        //                 return d[select_y] ===1 })
-        //         .style("stroke", 'steelblue')
-        //         // .style("stroke-width", 1)
-        //         .style("fill", 'steelblue')
-        //         .attr("cx", function (d) {
-        //             return xScale(d[chartScales.x]);
-        //         })
-        //         .attr("cy", function (d) {
-        //             return yScale(d[chartScales.y]);
-        //         })
-        //         .attr('r', 4);
-        //     shape_check = false;
-        // }else{
-        //       dots_chart_x = dots_chart.filter(function(d){
-        //             return d[select_x] ===1 });
-        //       dots_chart_y = dots_chart.filter(function(d){
-        //             return d[select_y] ===1 });
-        // }
-        //
-        //
-        //
-        // if(shape_check === false){
-        //      move_x = dots_chart_x.transition()
-        //         .duration(2000)
-        //         .attr('cx',0)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr('cx',420)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr("cx", function (d) {
-        //             return xScale(d[chartScales.x]);
-        //         });
-        //
-        //     move_y = dots_chart_y.transition()
-        //         .filter(function(d){
-        //                 return d[select_y] ===1 })
-        //         .duration(2000)
-        //         // .attr('cy',420)
-        //         .attr('cy',0)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr('cy',420)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr("cy", function (d) {
-        //             return yScale(d[chartScales.y]);
-        //         });
-        // }else if(shape_check === true){
-        //      move_x = dots_chart_x.transition()
-        //         .duration(2000)
-        //         .attr('x',0)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr('x',420)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr("x", function (d) {
-        //             return xScale(d[chartScales.x]);
-        //         });
-        //
-        //     move_y = dots_chart_y.transition()
-        //         .filter(function(d){
-        //                 return d[select_y] ===1 })
-        //         .duration(2000)
-        //         // .attr('cy',420)
-        //         .attr('y',0)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr('y',420)
-        //         .transition()
-        //         .duration(2000)
-        //         .attr("y", function (d) {
-        //             return yScale(d[chartScales.y]);
-        //         });
-        // }
 
-        // var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-        // var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+            //  dots_chart_x = chartG.append("g").attr('class', "Scatter")
+            //     .selectAll("circle")
+            //     .data(whiskey)
+            //     .enter()
+            //     .append('circle')
+            //     .filter(function(d){
+            //             return d[select_x] ===1 })
+            //     .style("stroke", 'red')
+            //     // .style("stroke-width", 1)
+            //     .style("fill", 'steelblue')
+            //     .attr("cx", function (d) {
+            //         return xScale(d[chartScales.x]);
+            //     })
+            //     .attr("cy", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     .attr('r', 4);
+            //
+            // dots_chart_y = chartG.append("g").attr('class', "Scatter")
+            //     .selectAll("circle")
+            //     .data(whiskey)
+            //     .enter()
+            //     .append('circle')
+            //     .filter(function(d){
+            //             return d[select_y] ===1 })
+            //     .style("stroke", 'red')
+            //     // .style("stroke-width", 1)
+            //     .style("fill", 'steelblue')
+            //     .attr("cx", function (d) {
+            //         return xScale(d[chartScales.x]);
+            //     })
+            //     .attr("cy", function (d) {
+            //         return yScale(d[chartScales.y]);
+            //     })
+            //     .attr('r', 5);
 
-        if(shape_check === false){
-            var transition_x = d3.selectAll(".impute_x");
 
-            function repeat_x(){
-                transition_x.transition()
-                    .duration(1000)
-                    // .attr('x',-std_x)
-                    .attr('cx',-std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr('cx',std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr("cx", 0);
-            }
+        var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+        var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-            var transition_y = d3.selectAll(".impute_y");
+            // var transition_x = d3.selectAll(".impute_x");
+        var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
+
+        transition_x.transition()
+                .duration(1000)
+                // .attr('x',-std_x)
+                .attr('cx',-std_x)
+                .transition()
+                .duration(1000)
+                .attr('cx',std_x)
+                .transition()
+                .duration(1000)
+                .attr("cx", 0);
+
+        var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
+        // var transition_y = d3.selectAll(".impute_y");
             // var transition_y = d3.selectAll(".impute")
             //     .filter(function(d){
             //         return d[select_y] ===1 });
 
-            function repeat_y(){
-                transition_y.transition()
-                    .duration(1000)
-                    .attr('cy',-std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr('cy',std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr("cy", 0);
-            }
-
-            repeat_x();
-            repeat_y();
-
-        }else{
-            var transition_x = d3.selectAll(".rect_impute_x");
-
-            // .transition().duration(2000);
-            function repeat_x(){
-                transition_x.transition()
-                    .duration(1000)
-                    // .attr('x',-std_x)
-                    .attr('x',-std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr('x',std_x)
-                    .transition()
-                    .duration(1000)
-                    .attr("x", 0);
-            }
+            transition_y.transition()
+                .duration(1000)
+                .attr('cy',-std_y)
+                .transition()
+                .duration(1000)
+                .attr('cy',std_y)
+                .transition()
+                .duration(1000)
+                .attr("cy", 0);
 
 
-            var transition_y= d3.selectAll(".rect_impute_y");
-
-            function repeat_y(){
-                transition_y.transition()
-                    .duration(1000)
-                    .attr('y',-std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr('y',std_y)
-                    .transition()
-                    .duration(1000)
-                    .attr("y", 0);
-            }
-
-            repeat_x();
-            repeat_y();
-
-        }
 
 
-        // .transition().duration(2000);
-
-        // transition.attr("y", function(d){
-        //         return height-y(d.value);
-        //     }).attr("height",0)
-        //     .transition().duration(2000)
-        //     .attr("y", 0)
-        //     .attr("height",function(d){
-        //         return height -y(d.value);
-        //     });
-
-        shape_check = false;
-
-        // dots_chart_x = chartG.append("g").attr('class', "Scatter")
-        //     .selectAll("circle")
-        //     .data(whiskey)
-        //     .enter()
-        //     .append('circle')
-        //     .filter(function(d){
-        //             return d[select_x] ===1 })
-        //     .style("stroke", '#87CEFA')
-        //     .style("stroke-width", 1)
-        //     .style("fill", '#fff')
-        //     .attr("cx", function (d) {
-        //         return xScale(d[chartScales.x]);
-        //     })
-        //     .attr("cy", function (d) {
-        //         return yScale(d[chartScales.y]);
-        //     })
-        //     .attr('r', 4);
-
-        // dots_chart_y = chartG.append("g").attr('class', "Scatter")
-        //     .selectAll("circle")
-        //     .data(whiskey)
-        //     .enter()
-        //     .append('circle')
-        //     .filter(function(d){
-        //             return d[select_y] ===1 })
-        //     .style("stroke", '#87CEFA')
-        //     .style("stroke-width", 1)
-        //     .style("fill", '#fff')
-        //     .attr("cx", function (d) {
-        //         return xScale(d[chartScales.x]);
-        //     })
-        //     .attr("cy", function (d) {
-        //         return yScale(d[chartScales.y]);
-        //     })
-        //     .attr('r', 4);
-
-
-        repeat_x();
-        repeat_y();
-
-        d3.selectAll(".error-line")
-            .style("opacity",0);
 
     }// end of animation
 
