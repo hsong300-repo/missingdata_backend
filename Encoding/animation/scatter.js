@@ -228,8 +228,15 @@ function updateChart() {
         });
 
     d3.selectAll(("input[value='animation']")).on("change", function() {
-        console.log('onchange animation');
         redraw_animation();
+    });
+
+    d3.selectAll(("input[value='impute']")).on("change", function() {
+        filter_impute();
+    });
+
+    d3.selectAll(("input[value='no_impute']")).on("change", function() {
+        filter_no_impute();
     });
 
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
@@ -289,6 +296,17 @@ function updateChart() {
                 .attr("cy", 0);
 
     }// end of animation
+
+    function filter_impute() {
+
+        // var transition_x = d3.selectAll(".impute_x");
+        // d3.selectAll("circle")
+        //     .filter(function(d){return d[select_x] ===0 &&  d[select_y] === 0; })
+        //     .style("opacity",0);
+
+    }// end of animation
+
+
 
 
 
