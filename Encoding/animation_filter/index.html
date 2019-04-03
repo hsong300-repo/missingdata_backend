@@ -38,7 +38,12 @@
                     </label>
                     <label><button type="button" name ="restart" value="restart" onclick="restart_animation()">restart</button></label>
                     <br>
-
+                    <!--<label class='radio-inline'>-->
+                        <!--Filter: <input type="radio" name="range" value="impute"> imputed data points-->
+                    <!--</label>-->
+                    <!--<label class='radio-inline'>-->
+                        <!--<input type="radio" name="range" value="no_impute"> not imputed data points-->
+                    <!--</label>-->
                 </div>
             </div>
 
@@ -52,6 +57,12 @@
                         <option selected value="Age">Age</option>
                     </select>
                 </div>
+            <!--<h2>Range</h2>-->
+            <div class="row align-items-center">
+                <div class="col-sm-2"><p id="value-range"></p></div>
+                <div class="col-sm"><div id="slider-range"></div></div>
+            </div>
+
             <div style="margin-left: 200px;">
                 <!--it was 600 600-->
                 <svg class ="charts" id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
@@ -168,8 +179,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+<script src="https://unpkg.com/d3-simple-slider"></script>
+<link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous"
+/>
 <script src="./main.js"></script>
 <script src="./scatter.js"></script>
+<script src="./slider.js"></script>
+
 
 
 
