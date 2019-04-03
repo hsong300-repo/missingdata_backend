@@ -19,30 +19,6 @@ function onYScaleChanged() {
 }
 
 function restart_animation(){
-    // var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
-    //
-    // transition_x.transition()
-    //     .duration(1000)
-    //     .attr('cx',-std_x)
-    //     .transition()
-    //     .duration(1000)
-    //     .attr('cx',std_x)
-    //     .transition()
-    //     .duration(1000)
-    //     .attr("cx", 0);
-    //
-    // var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
-    //
-    // transition_y.transition()
-    //     .duration(1000)
-    //     .attr('cy',-std_y)
-    //     .transition()
-    //     .duration(1000)
-    //     .attr('cy',std_y)
-    //     .transition()
-    //     .duration(1000)
-    //     .attr("cy", 0);
-
     var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
@@ -341,6 +317,8 @@ function updateChart() {
     }else if(both_flag === true){
         filter_both();
     }
+
+    restart_animation();
 
     function redraw_animation() {
 
