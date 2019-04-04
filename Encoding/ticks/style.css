@@ -41,7 +41,7 @@ body {
 }
 
 label {
-    font-size: 13px;
+    font-size: 16px;
 }
 
 #main {
@@ -90,7 +90,7 @@ line.y {
 .column {
     float: left;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 260px; /* Should be removed. Only for demonstration */
 }
 
 .left {
@@ -180,7 +180,8 @@ button:focus {
 
 /*radio buttons*/
 .radio{
-    text-align: center;
+    text-align: left;
+    margin-left: 400px;
 }
 .row{
     text-align: center;

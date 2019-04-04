@@ -5,15 +5,7 @@ function onXScaleChanged() {
     chartScales.x = select.options[select.selectedIndex].value;
 
     console.log('XScale change');
-    if(typeof dots_line_x === 'undefined'){ // bars
-    }else{
-        dots_line_x.remove().exit();
-    }if(typeof dots_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }
+
     // Update chart
     updateChart();
 }
@@ -23,15 +15,7 @@ function onYScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.y = select.options[select.selectedIndex].value;
 
-    if(typeof dots_line_x === 'undefined'){ // bars
-    }else{
-        dots_line_x.remove().exit();
-    }if(typeof dots_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }
+
 
     // Update chart
     updateChart();
@@ -41,6 +25,10 @@ function onYScaleChanged() {
 missing_count = 0;
 total_count = 0;
 per = 0;
+impute_flag = false;
+no_impute_flag = false;
+both_flag = false;
+
 
 // the work flow is like when click on a button it will remove the other one
 //or this button is to remove
@@ -221,42 +209,21 @@ function updateChart() {
     std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-    // dotsEnter.append("line")
-    // .filter(function(d){
-    //     return d[select_x] ===1})
-    //     .attr("class", "normal-line")
-    //     .attr("x1", function(d){return -xScale(d[chartScales.x])-10})
-    //     .attr("y1", 0)
-    //     .attr("x2", function(d){return -xScale(d[chartScales.x])})
-    //     // .attr("x2", function(d){retur})
-    //     .style("opacity",0)
-    //     .attr("y2", 0);
-    //
-    // // this is for y
-    // dotsEnter.append("line")
-    // .filter(function(d){
-    //     return d[select_y] === 1})
-    //     .attr("class", "normal-line")
-    //     .attr("x1", 0)
-    //     .attr("y1",function(d){return 520-yScale(d[chartScales.y])})
-    //     .attr("x2", 0)
-    //     .style("opacity",0)
-    //     .attr("y2", function(d){return 520-yScale(d[chartScales.y])+10});
-
-    // d3.selectAll(".error-line-x").style("opacity",1);
-    // d3.selectAll(".error-line-y").style("opacity",1);
-
-    // d3.selectAll("line")
-    //     .filter(function(d){return d[select_x] === 1 || d[select_y] === 1})
-    //     .style("opacity","1");
-    //
-    // d3.selectAll("line")
-    //     .filter(function(d){return d[select_x] === 0 && d[select_y] === 0})
-    //     .style("opacity","0");
-
     d3.selectAll(("input[value='ticks_on']")).on("change", function() {
         console.log('ticks_on');
         redraw_ticks_on();
+    });
+
+    d3.selectAll(("input[value='impute']")).on("change", function() {
+        filter_impute();
+    });
+
+    d3.selectAll(("input[value='no_impute']")).on("change", function() {
+        filter_no_impute();
+    });
+
+    d3.selectAll(("input[value='both']")).on("change", function() {
+        filter_both();
     });
 
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
@@ -280,112 +247,28 @@ function updateChart() {
         .filter(function(d){return d[select_x] ===0 && d[select_y] === 0})
         .style("fill","steelblue");
 
+    if(impute_flag === true){
+        filter_impute();
+    }else if(no_impute_flag === true){
+        filter_no_impute();
+    }else if(both_flag === true){
+        filter_both();
+    }
+
     redraw_ticks_on();
 
 
-    // std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    // std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
-    //
-    // dotsEnter.append("line")
-    //     // .filter(function(d){
-    //     //     return d[select_x] ===1})
-    //     .attr("class", "error-line-x")
-    //     .attr("x1", 0 )
-    //     .attr("y1", 0)
-    //     .attr("x2", -std_x)
-    //     .style("opacity",0)
-    //     .attr("y2", 0);
-    //
-    // // this is for y
-    // dotsEnter.append("line")
-    //     // .filter(function(d){
-    //     //     return d[select_y] === 1})
-    //     .attr("class", "error-line-y")
-    //     .attr("x1", 0)
-    //     .attr("y1",0)
-    //     .attr("x2", 0)
-    //     .style("opacity",0)
-    //     .attr("y2", -std_y);
-    //
-    // d3.selectAll("line")
-    //     .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
-    //     .style("opacity","1");
-    //
-    // d3.selectAll("line")
-    //     .filter(function(d){return d[select_x] ===0 && d[select_y] ===0})
-    //     .style("opacity","0");
-
-
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_x] ===1})
-    //     .attr("class", "error-line")
-    //     .attr("x1", -std_x )
-    //     .attr("y1", 0)
-    //     .attr("x2", +std_x)
-    //     .style("opacity",0)
-    //     .attr("y2", 0);
-    //
-    // // this is for y
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_y] ===1})
-    //     .attr("class", "error-line")
-    //     .attr("x1", 0)
-    //     .attr("y1",std_y)
-    //     .attr("x2", 0)
-    //     .style("opacity",0)
-    //     .attr("y2", -std_y);
-
-    //
-
-
-
-
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_x] === 1 })
-    //     .attr("class", "normal-line")
-    //     .style("opacity",1)
-    //     .attr("x1", function (d) {
-    //         return xScale(0);
-    //     })
-    //     .attr("y1", function (d) {
-    //         // return yScale(d[chartScales.y]+1);
-    //         return yScale(-d[chartScales.y]);
-    //     })
-    //     .attr("x2", function (d) {
-    //         return xScale(0);
-    //     })
-    //     .attr("y2", function (d) {
-    //         // return yScale(d[chartScales.y]-1);
-    //         return yScale(-d[chartScales.y]-0.6);
-    //     });
-    //
-    // dotsEnter.append("line")
-    //     .filter(function(d){
-    //         return d[select_y] === 1 })
-    //     .attr("class", "normal-line")
-    //     .style("opacity",1)
-    //     .attr("x1", function (d) {
-    //         return xScale(-d[chartScales.x]);
-    //     })
-    //     .attr("y1", function (d) {
-    //         // return yScale(d[chartScales.y]+1);
-    //         return yScale(0);
-    //     })
-    //     .attr("x2", function (d) {
-    //         return xScale(-d[chartScales.x]-0.6);
-    //     })
-    //     .attr("y2", function (d) {
-    //         // return yScale(d[chartScales.y]-1);
-    //         return yScale(0);
-    //     });
-
     function redraw_ticks_on() {
 
-
-
+        if(typeof dots_line_x === 'undefined'){ // bars
+        }else{
+            dots_line_x.remove().exit();
+        }if(typeof dots_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_line_y.remove().exit();
+            // dots_remove.remove().exit();
+        }
         // where it is missing, so if the value is imputed than it will show little lines next to it
         dots_line_x = chartG.append("g")
             .selectAll("line")
@@ -440,5 +323,94 @@ function updateChart() {
             });
 
     }// end of ticks
+
+    function filter_impute() {
+
+        d3.selectAll("circle")
+            .style("fill",function(d){
+                if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
+                else{return "steelblue";}
+            })
+            .style("opacity",function(d){
+                if(d[select_x] ===1 || d[select_y] === 1){return 0.8;}
+                else{return 0;}
+            });
+
+        impute_flag = true;
+        no_impute_flag = false;
+        both_flag = false;
+
+        // d3.selectAll("circle")
+        //     .filter(function(d){return d[select_x] ===1 })
+        //     .style('fill',)
+        //     .style("opacity",1);
+        //
+        // d3.selectAll("circle")
+        //     .filter(function(d){return d[select_y] ===1 })
+        //     .style("opacity",1);
+
+        redraw_ticks_on();
+
+    }// end of imputed filter
+
+    function filter_no_impute() {
+
+        if(typeof dots_line_x === 'undefined'){ // bars
+        }else{
+            dots_line_x.remove().exit();
+        }if(typeof dots_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_line_y.remove().exit();
+            // dots_remove.remove().exit();
+        }
+
+
+
+        d3.selectAll("circle")
+            .style("fill",function(d){
+                if(d[select_x] ===0 && d[select_y] === 0){return "steelblue";}
+                else{return "steelblue";}
+            })
+            .style("opacity",function(d){
+                if(d[select_x] ===0 && d[select_y] === 0){return 0.8;}
+                else{return 0;}
+            });
+
+        impute_flag = false;
+        no_impute_flag = true;
+        both_flag = false;
+
+
+    }// end of no filter
+
+    function filter_both() {
+
+        // d3.selectAll("circle")
+        //     .style("fill",function(d){
+        //         if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
+        //         else{return "steelblue";}
+        //     })
+        //     .style("opacity",0.8);
+
+        d3.selectAll("circle")
+            .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
+            .style("fill","url(#diagonal-stripes)")
+            .style("opacity",0.8);
+
+        d3.selectAll("circle")
+            .filter(function(d){return d[select_x] ===0 && d[select_y] ===0})
+            .style("fill","steelblue")
+            .style("opacity",0.8);
+
+
+        impute_flag = false;
+        no_impute_flag = false;
+        both_flag = true;
+
+        redraw_ticks_on();
+
+
+    }// end of imputed filter
 
 }// end of updatechart for Scatterplots
