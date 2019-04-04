@@ -1,113 +1,19 @@
-// Global functions called when select elements changed
-function onXScaleChanged() {
-    var select = d3.select('#xScaleSelect').node();
-    // Get current value of select element, save to global chartScales
-    chartScales.x = select.options[select.selectedIndex].value;
+function xRangeChanged(){
+    var min = 0;
+    var max = 20;
 
-    console.log('XScale change');
-    // Update chart
-    // xRangeChanged();
-
-    updateChart();
+    filterChart(min,max);
 }
 
-function onYScaleChanged() {
-    var select = d3.select('#yScaleSelect').node();
-    // Get current value of select element, save to global chartScales
-    chartScales.y = select.options[select.selectedIndex].value;
-
-    // xRangeChanged();
-    // Update chart
-    updateChart();
-}
-
-function restart_animation(){
-    var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
-
-    transition_x.transition()
-        .duration(1000)
-        .attr('cx',-std_x)
-        .transition()
-        .duration(1000)
-        .attr('cx',std_x)
-        .transition()
-        .duration(1000)
-        .attr("cx", 0);
-
-    var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
-
-    transition_y.transition()
-        .duration(1000)
-        .attr('cy',-std_y)
-        .transition()
-        .duration(1000)
-        .attr('cy',std_y)
-        .transition()
-        .duration(1000)
-        .attr("cy", 0);
-
-}
-
-// Also, declare global variables for missing amount, total amount, and percentage
-missing_count = 0;
-total_count = 0;
-per = 0;
-
-
-// the work flow is like when click on a button it will remove the other one
-//or this button is to remove
-function drawBar() {
-    document.getElementById('bar_view').style.display = "inline";
-    document.getElementById('bar_radio').style.display = "inline";
-    document.getElementById('scatter_radio').style.display = "none";
-    document.getElementById('scatter_view').style.display = "none";
-}
-
-//show scatter when after click button
-function drawScatter() {
-    document.getElementById('scatter_view').style.display = "inline";
-    document.getElementById('scatter_radio').style.display = "inline";
-    document.getElementById('bar_radio').style.display = "none";
-    document.getElementById('bar_view').style.display = "none";
-}
-
-var svg = d3.select('svg');
-
-// Get layout parameters
-var svgWidth = +svg.attr('width');
-var svgHeight = +svg.attr('height');
-
-var padding = {t: 40, r: 40, b: 40, l: 40};
-
-// Compute chart dimensions
-var chartWidth = svgWidth - padding.l - padding.r;
-var chartHeight = svgHeight - padding.t - padding.b;
-
-// Create a group element for appending chart elements
-var chartG = svg.append('g')
-    .attr('transform', 'translate('+[padding.l, padding.t]+')');
-
-var xAxisG = chartG.append('g')
-    .attr('class', 'x axis')
-    .attr('transform', 'translate('+[0, chartHeight]+')');
-
-var yAxisG = chartG.append('g')
-// .attr('class', 'y axis');
-    .attr('class', 'y-axis'); //there was a overlap in class name for bar
-
-
-var transitionScale = d3.transition()
-    .duration(600)
-    .ease(d3.easeLinear);
-
-//****scatter plot
-function updateChart() {
-
+function filterChart(min,max) {
     // console.log('upatechart');
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
-    yScale.domain(domainMap[chartScales.y]).nice();
-    xScale.domain(domainMap[chartScales.x]).nice();
+    yScale.domain([min,max]).nice();
+    // yScale.domain(domainMap[chartScales.y]).nice();
+    xScale.domain([min,max]).nice();
+
+    // xScale.domain(domainMap[chartScales.x]).nice();
 
     // Update the axes here first
     xAxisG.transition()
@@ -147,6 +53,8 @@ function updateChart() {
     console.log('select_y', select_y);
 
     filtered_data = whiskey
+        // .filter(function(d){
+        //     return d[chartScales.y] >= min && d[chartScales.y] <= max});
         .filter(function(d){
             return d[select_x] === 1 || d[select_y] === 1});
 
@@ -176,7 +84,7 @@ function updateChart() {
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
         .data(whiskey);
-    // .data(noimpute_data);
+
 
     // dots.exit().remove();
 
@@ -216,6 +124,8 @@ function updateChart() {
 
     // Append a circle to the ENTER selection
     dotsEnter.append('circle')
+        .filter(function(d){
+            return d[chartScales.y] >= min && d[chartScales.y] <= max})
         .attr("class","no_impute")
         .style("fill",function(d){
             if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
@@ -268,35 +178,35 @@ function updateChart() {
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-            // var transition_x = d3.selectAll(".impute_x");
+        // var transition_x = d3.selectAll(".impute_x");
         var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
 
         transition_x.transition()
-                .duration(1000)
-                // .attr('x',-std_x)
-                .attr('cx',-std_x)
-                .transition()
-                .duration(1000)
-                .attr('cx',std_x)
-                .transition()
-                .duration(1000)
-                .attr("cx", 0);
+            .duration(1000)
+            // .attr('x',-std_x)
+            .attr('cx',-std_x)
+            .transition()
+            .duration(1000)
+            .attr('cx',std_x)
+            .transition()
+            .duration(1000)
+            .attr("cx", 0);
 
         var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
         // var transition_y = d3.selectAll(".impute_y");
-            // var transition_y = d3.selectAll(".impute")
-            //     .filter(function(d){
-            //         return d[select_y] ===1 });
+        // var transition_y = d3.selectAll(".impute")
+        //     .filter(function(d){
+        //         return d[select_y] ===1 });
 
-            transition_y.transition()
-                .duration(1000)
-                .attr('cy',-std_y)
-                .transition()
-                .duration(1000)
-                .attr('cy',std_y)
-                .transition()
-                .duration(1000)
-                .attr("cy", 0);
+        transition_y.transition()
+            .duration(1000)
+            .attr('cy',-std_y)
+            .transition()
+            .duration(1000)
+            .attr('cy',std_y)
+            .transition()
+            .duration(1000)
+            .attr("cy", 0);
 
     }// end of animation
 

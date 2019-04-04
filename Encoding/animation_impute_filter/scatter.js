@@ -257,8 +257,18 @@ function updateChart() {
         });
 
     // Append a circle to the ENTER selection
+    // dotsEnter.append('circle')
+    //     .attr("class","no_impute")
+    //     .style("fill",function(d){
+    //         if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
+    //         else{return "steelblue";}
+    //     })
+    //     .attr('r', 5);
+
     dotsEnter.append('circle')
         .attr("class","no_impute")
+        // .attr("cx", function (d) { return d[chartScales.x]; } )
+        // .attr("cy", function (d) { return d[chartScales.y]; } )
         .style("fill",function(d){
             if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
             else{return "steelblue";}
@@ -318,15 +328,20 @@ function updateChart() {
         filter_both();
     }
 
-    restart_animation();
+    // restart_animation();
+    redraw_animation();
+
 
     function redraw_animation() {
 
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
+        console.log('std_x std_y',std_x,std_y);
+
             // var transition_x = d3.selectAll(".impute_x");
         var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
+
 
         function repeat_x(){
             transition_x.transition()
@@ -339,6 +354,7 @@ function updateChart() {
                 .transition()
                 .duration(1000)
                 .attr("cx", 0);
+
         }
 
         var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });

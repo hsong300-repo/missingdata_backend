@@ -37,7 +37,6 @@
                         Encodings: <input type="radio" name="range" value="animation"> animation
                     </label>
                     <label><button type="button" name ="restart" value="restart" onclick="restart_animation()">restart</button></label>
-                    <br>
                     <!--<label class='radio-inline'>-->
                         <!--Filter: <input type="radio" name="range" value="impute"> imputed data points-->
                     <!--</label>-->
@@ -48,22 +47,25 @@
             </div>
 
             <!--<div style="position: absolute; top: 300px;">-->
-                <div style="margin-left: 50px;">
+            <div class="col-sm"><div id="slider-range" style = "width:100px;"></div></div>
+            <div style="margin-left: 50px;" >
                     <label for="categorySelect">Y Scale:</label>
-                    <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
+                    <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()" style = "width:100px;">
                         <option value="Rating">Rating</option>
                         <option value="Price">Price</option>
                         <option value="ABV">ABV</option>
                         <option selected value="Age">Age</option>
                     </select>
+                    <!--<div class="col-sm-2"><p id="value-range"></p></div>-->
                 </div>
+                <!--<div class="row align-items-center" width="66">-->
+                    <!--<div class="col-sm-2"><p id="value-range"></p></div>-->
+                    <!--<div class="col-sm"><div id="slider-range"></div></div>-->
+                <!--</div>-->
             <!--<h2>Range</h2>-->
-            <div class="row align-items-center">
-                <div class="col-sm-2"><p id="value-range"></p></div>
-                <div class="col-sm"><div id="slider-range"></div></div>
-            </div>
 
-            <div style="margin-left: 200px;">
+
+            <div style="margin-left: 250px;">
                 <!--it was 600 600-->
                 <svg class ="charts" id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
                 </svg>
@@ -78,6 +80,7 @@
                     <option value="Age">Age</option>
                 </select>
             </div>
+
         </div>
 
         <div id='bar_view' style="display:none;">
@@ -189,6 +192,8 @@
 <script src="./main.js"></script>
 <script src="./scatter.js"></script>
 <script src="./slider.js"></script>
+<script src="./rangeFilter.js"></script>
+
 
 
 

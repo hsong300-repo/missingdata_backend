@@ -6,9 +6,9 @@ var sliderRange = d3
     .min(d3.min(data))
     .max(d3.max(data))
     .width(300)
-    .tickFormat(d3.format('.2%'))
+    // .tickFormat(d3.format('.2%'))
     .ticks(5)
-    .default([0.015, 0.02])
+    .default([0, ])
     .fill('#2196f3')
     .on('onchange', val => {
         d3.select('p#value-range').text(val.map(d3.format('.2%')).join('-'));

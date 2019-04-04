@@ -68,6 +68,8 @@ var svg = d3.select('svg');
 var svgWidth = +svg.attr('width');
 var svgHeight = +svg.attr('height');
 
+// console.log()
+
 var padding = {t: 40, r: 40, b: 40, l: 40};
 
 // Compute chart dimensions
@@ -106,6 +108,11 @@ function updateChart() {
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
+
+    console.log('yscale min',yScale.domain()[0],yScale.domain().slice(-1)[0]);
+
+    yScaleMax =yScale.domain().slice(-1)[0];
+
 
     // Update the axes here first
     xAxisG.transition()
@@ -238,11 +245,35 @@ function updateChart() {
         redraw_error();
     });
 
+    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
+    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+
+    // dotsEnter.append("line")
+    // // .filter(function(d){
+    // //     return d[select_x] ===1})
+    //     .attr("class", "normal-line")
+    //     .attr("x1", -(std_x/2) )
+    //     .attr("y1", 0)
+    //     .attr("x2", +(std_x/2))
+    //     .style("opacity",0)
+    //     .attr("y2", 0);
+    //
+    // // this is for y
+    // dotsEnter.append("line")
+    // // .filter(function(d){
+    // //     return d[select_y] === 1})
+    //     .attr("class", "normal-line")
+    //     .attr("x1", 0)
+    //     .attr("y1",(std_y/2))
+    //     .attr("x2", 0)
+    //     .style("opacity",0)
+    //     .attr("y2", -(std_y/2));
 
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
     dots.merge(dotsEnter)
-        .transition() // Add transition - this will interpolate the translate() on any changes
-        .duration(750)
+        // .transition() // Add transition - this will interpolate the translate() on any changes
+        // .duration(750)
+        // .duration(500)
         .attr('transform', function(d) {
             console.log('this gets called merge');
             // Transform the group based on x and y property
@@ -251,30 +282,7 @@ function updateChart() {
             return 'translate('+[tx, ty]+')';
         });
 
-    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
-
-    dotsEnter.append("line")
-    // .filter(function(d){
-    //     return d[select_x] ===1})
-        .attr("class", "normal-line")
-        .attr("x1", -(std_x/2) )
-        .attr("y1", 0)
-        .attr("x2", +(std_x/2))
-        .style("opacity",0)
-        .attr("y2", 0);
-
-    // this is for y
-    dotsEnter.append("line")
-    // .filter(function(d){
-    //     return d[select_y] === 1})
-        .attr("class", "normal-line")
-        .attr("x1", 0)
-        .attr("y1",(std_y/2))
-        .attr("x2", 0)
-        .style("opacity",0)
-        .attr("y2", -(std_y/2));
-
+    console.log('std x std y',std_x,std_y);
     // d3.selectAll(".error-line-x").style("opacity",1);
     // d3.selectAll(".error-line-y").style("opacity",1);
 
@@ -294,6 +302,10 @@ function updateChart() {
     d3.selectAll("circle")
         .filter(function(d){return d[select_x] ===0 && d[select_y] === 0})
         .style("fill","steelblue");
+
+    redraw_error();
+    // setInterval(function(){},1000);
+
 
     // d3.selectAll("line")
     //     .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
@@ -326,11 +338,6 @@ function updateChart() {
     //
     // d3.selectAll(".error-line-x").style("opacity",1);
     // d3.selectAll(".error-line-y").style("opacity",1);
-
-
-
-    //*** can be removed later
-
 
 
 
@@ -398,45 +405,64 @@ function updateChart() {
         //     });
         // }else{
         //     // dots_chart.remove().exit(); //remove some of the encodings
-        //     dots_chart_line = chartG.append("g").selectAll("line")
-        //     .data(filtered_data)
-        //     .enter()
-        //     .filter(function(d){
-        //         return d[select_x] ===1})
-        //     .append("line")
-        //     .attr("class", "error-line")
-        //     .attr("x1", function (d) {
-        //         return xScale(d[chartScales.x]-std_x/2 );
-        //     })
-        //     .attr("y1", function (d) {
-        //         return yScale(d[chartScales.y]);
-        //     })
-        //     .attr("x2", function (d) {
-        //         return xScale(d[chartScales.x] +std_x/2);
-        //     })
-        //     .attr("y2", function (d) {
-        //         return yScale(d[chartScales.y]);
-        //     });
-        //
-        // dots_chart_line_y = chartG.append("g").selectAll("line")
-        //     .data(filtered_data)
-        //     .enter()
-        //     .filter(function(d){
-        //         return d[select_y] ===1})
-        //     .append("line")
-        //     .attr("class", "error-line")
-        //     .attr("x1", function (d) {
-        //         return xScale(d[chartScales.x] );
-        //     })
-        //     .attr("y1", function (d) {
-        //         return yScale(d[chartScales.y]+std_y/2);
-        //     })
-        //     .attr("x2", function (d) {
-        //         return xScale(d[chartScales.x] );
-        //     })
-        //     .attr("y2", function (d) {
-        //         return yScale(d[chartScales.y]-std_y/2);
-        //     });
+        function error_x(){
+            dots_chart_line_x = chartG.append("g").selectAll("line")
+                .data(whiskey)
+                .enter()
+                .filter(function(d){
+                    return d[select_x] ===1})
+                .append("line")
+                // .transition() // Add transition - this will interpolate the translate() on any changes
+                .attr("class", "normal-line")
+                .attr("x1", function (d) {
+                    return xScale(d[chartScales.x]-std_x/2 );
+                })
+                .attr("y1", function (d) {
+                    return yScale(d[chartScales.y]);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x] +std_x/2);
+                })
+                .attr("y2", function (d) {
+                    return yScale(d[chartScales.y]);
+                })
+                .style("opacity",function(d){
+                    if(xScale(d[chartScales.x]-std_x/2 < 0)){return 0;}
+                    else{return 1;}
+                });
+        }
+
+        function error_y(){
+            dots_chart_line_y = chartG.append("g").selectAll("line")
+                .data(whiskey)
+                .enter()
+                .filter(function(d){
+                    return d[select_y] ===1})
+                .append("line")
+                .attr("class", "normal-line")
+                .attr("x1", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                .attr("y1", function (d) {
+                    return yScale(d[chartScales.y]-std_y/2);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                .attr("y2", function (d) {
+                    return yScale(d[chartScales.y]+std_y/2);
+                });
+                // .style("opacity",function(d){
+                //     console.log(d[chartScales.y]-std_y/2,d[chartScales.y],std_y/2);
+                //     if(yScale(d[chartScales.y]-std_y/2 < yScaleMax)){return 0;}
+                //     else{return 1;}
+                // })
+        }
+
+        setTimeout(error_x(),1000);
+        setTimeout(error_y(),1000);
+
+
         // }
         //*****upto this part****
 
@@ -445,8 +471,8 @@ function updateChart() {
 
         // d3.selectAll(".error-line").style("opacity",1);
 
-        d3.selectAll(".error-line-x").style("opacity",1);
-        d3.selectAll(".error-line-y").style("opacity",1);
+        // d3.selectAll(".error-line-x").style("opacity",1);
+        // d3.selectAll(".error-line-y").style("opacity",1);
 
 
 
