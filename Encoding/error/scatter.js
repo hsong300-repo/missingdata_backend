@@ -4,15 +4,6 @@ function onXScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
 
-    if(typeof dots_chart_line_x === 'undefined'){ // bars
-    }else{
-        dots_chart_line_x.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }
 
     // Update chart
     updateChart();
@@ -23,15 +14,7 @@ function onYScaleChanged() {
     // Get current value of select element, save to global chartScales
     chartScales.y = select.options[select.selectedIndex].value;
 
-    if(typeof dots_chart_line_x === 'undefined'){ // bars
-    }else{
-        dots_chart_line_x.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }
+
 
     // Update chart
     updateChart();
@@ -110,6 +93,8 @@ function updateChart() {
     xScale.domain(domainMap[chartScales.x]).nice();
 
     console.log('yscale min',yScale.domain()[0],yScale.domain().slice(-1)[0]);
+    var xScaleMin = xScale.domain()[0];
+    console.log('xScaleMin',xScaleMin,xScale(xScaleMin));
 
     yScaleMax =yScale.domain().slice(-1)[0];
 
@@ -271,9 +256,9 @@ function updateChart() {
 
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
     dots.merge(dotsEnter)
-        // .transition() // Add transition - this will interpolate the translate() on any changes
+        .transition() // Add transition - this will interpolate the translate() on any changes
+        .duration(500)
         // .duration(750)
-        // .duration(500)
         .attr('transform', function(d) {
             console.log('this gets called merge');
             // Transform the group based on x and y property
@@ -346,6 +331,85 @@ function updateChart() {
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
+        if(typeof dots_chart_line_x === 'undefined'){ // bars
+        }else{
+            dots_chart_line_x.remove().exit();
+        }if(typeof dots_chart_line_y === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dots_chart_line_y.remove().exit();
+            // dots_remove.remove().exit();
+        }
+
+        function error_x(){
+            dots_chart_line_x = chartG.append("g").selectAll("line")
+                .data(whiskey)
+                .enter()
+                .filter(function(d){
+                    return d[select_x] ===1})
+                .append("line")
+                // .transition() // Add transition - this will interpolate the translate() on any changes
+                .attr("class", "normal-line")
+                // .attr("x1", function (d) {
+                //     console.log("log data x scale",xScale(d[chartScales.x]),d[chartScales.x],xScale(d[chartScales.x]+std_y/2),d[chartScales.x]+std_y/2);
+                //     return xScale(d[chartScales.x]-std_x/2 );
+                // })
+                .attr("x1", function (d) {
+                    if(xScale(d[chartScales.x]-std_x/2) <= 0){
+                        console.log('minus',xScale(d[chartScales.x]-std_x/2),xScale(d[chartScales.x]),d[chartScales.x]-std_x/2,d[chartScales.x]);
+                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2));
+                    }else{
+                        return xScale(d[chartScales.x]-std_x/2);
+                    }
+                })
+                .attr("y1", function (d) {
+                    return yScale(d[chartScales.y]);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x] +std_x/2);
+                })
+                .attr("y2", function (d) {
+                    return yScale(d[chartScales.y]);
+                });
+                // .style("opacity",function(d){
+                //     if(xScale(d[chartScales.x]-std_x/2 < 0)){return 0;}
+                //     else{return 1;}
+                // });
+        }
+
+        function error_y(){
+            dots_chart_line_y = chartG.append("g").selectAll("line")
+                .data(whiskey)
+                .enter()
+                .filter(function(d){
+                    return d[select_y] ===1})
+                .append("line")
+                .attr("class", "normal-line")
+                .attr("x1", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                .attr("y1", function (d) {
+                    return yScale(d[chartScales.y]-std_y/2);
+                })
+                .attr("x2", function (d) {
+                    return xScale(d[chartScales.x] );
+                })
+                // .attr("y2", function (d) {
+                //     return yScale(d[chartScales.y]+std_y/2);
+                // });
+                .attr("y2", function (d) {
+                    // console.log("log data y scale",yScale(d[chartScales.y]),d[chartScales.y],yScale(d[chartScales.y]+std_y/2),d[chartScales.y]+std_y/2);
+                    return yScale(d[chartScales.y]+std_y/2);
+                });
+                // .style("opacity",function(d){
+                //     console.log(d[chartScales.y]-std_y/2,d[chartScales.y],std_y/2);
+                //     if(yScale(d[chartScales.y]-std_y/2 < yScaleMax)){return 0;}
+                //     else{return 1;}
+                // })
+        }
+
+        setTimeout(error_x(),2000);
+        setTimeout(error_y(),2000);
 
         // if(typeof dots_chart === 'undefined'){ // bars
         //      dots_chart = chartG.append("g").attr('class', "Scatter")
@@ -405,62 +469,6 @@ function updateChart() {
         //     });
         // }else{
         //     // dots_chart.remove().exit(); //remove some of the encodings
-        function error_x(){
-            dots_chart_line_x = chartG.append("g").selectAll("line")
-                .data(whiskey)
-                .enter()
-                .filter(function(d){
-                    return d[select_x] ===1})
-                .append("line")
-                // .transition() // Add transition - this will interpolate the translate() on any changes
-                .attr("class", "normal-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x]-std_x/2 );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] +std_x/2);
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .style("opacity",function(d){
-                    if(xScale(d[chartScales.x]-std_x/2 < 0)){return 0;}
-                    else{return 1;}
-                });
-        }
-
-        function error_y(){
-            dots_chart_line_y = chartG.append("g").selectAll("line")
-                .data(whiskey)
-                .enter()
-                .filter(function(d){
-                    return d[select_y] ===1})
-                .append("line")
-                .attr("class", "normal-line")
-                .attr("x1", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]-std_y/2);
-                })
-                .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
-                .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]+std_y/2);
-                });
-                // .style("opacity",function(d){
-                //     console.log(d[chartScales.y]-std_y/2,d[chartScales.y],std_y/2);
-                //     if(yScale(d[chartScales.y]-std_y/2 < yScaleMax)){return 0;}
-                //     else{return 1;}
-                // })
-        }
-
-        setTimeout(error_x(),1000);
-        setTimeout(error_y(),1000);
 
 
         // }
