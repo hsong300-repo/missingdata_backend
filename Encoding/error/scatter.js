@@ -96,7 +96,12 @@ function updateChart() {
     var xScaleMin = xScale.domain()[0];
     console.log('xScaleMin',xScaleMin,xScale(xScaleMin));
 
-    yScaleMax =yScale.domain().slice(-1)[0];
+    var yScaleMax =yScale.domain().slice(-1)[0];
+    var yScaleMin =yScale.domain()[0];
+
+    console.log('yScaleMax',yScaleMax,yScale(yScaleMax));
+    console.log('yScaleMin',yScaleMin,yScale(yScaleMin));
+
 
 
     // Update the axes here first
@@ -356,8 +361,7 @@ function updateChart() {
                 // })
                 .attr("x1", function (d) {
                     if(xScale(d[chartScales.x]-std_x/2) <= 0){
-                        console.log('minus',xScale(d[chartScales.x]-std_x/2),xScale(d[chartScales.x]),d[chartScales.x]-std_x/2,d[chartScales.x]);
-                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2));
+                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
                     }else{
                         return xScale(d[chartScales.x]-std_x/2);
                     }
@@ -371,10 +375,7 @@ function updateChart() {
                 .attr("y2", function (d) {
                     return yScale(d[chartScales.y]);
                 });
-                // .style("opacity",function(d){
-                //     if(xScale(d[chartScales.x]-std_x/2 < 0)){return 0;}
-                //     else{return 1;}
-                // });
+
         }
 
         function error_y(){
@@ -388,24 +389,40 @@ function updateChart() {
                 .attr("x1", function (d) {
                     return xScale(d[chartScales.x] );
                 })
+                // .attr("y1", function (d) {
+                //     return yScale(d[chartScales.y]-std_y/2);
+                // })
                 .attr("y1", function (d) {
-                    return yScale(d[chartScales.y]-std_y/2);
+                    if(yScale(d[chartScales.y]-std_y/2) >= 520){
+                        // console.log('yscale max and y values',d[chartScales.y]-std_y/2,yScale(d[chartScales.y]-std_y/2));
+                        // return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+                        return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2));
+                    }else{
+                        return yScale(d[chartScales.y]-std_y/2);
+                    }
                 })
                 .attr("x2", function (d) {
                     return xScale(d[chartScales.x] );
                 })
-                // .attr("y2", function (d) {
-                //     return yScale(d[chartScales.y]+std_y/2);
-                // });
                 .attr("y2", function (d) {
-                    // console.log("log data y scale",yScale(d[chartScales.y]),d[chartScales.y],yScale(d[chartScales.y]+std_y/2),d[chartScales.y]+std_y/2);
                     return yScale(d[chartScales.y]+std_y/2);
                 });
-                // .style("opacity",function(d){
-                //     console.log(d[chartScales.y]-std_y/2,d[chartScales.y],std_y/2);
-                //     if(yScale(d[chartScales.y]-std_y/2 < yScaleMax)){return 0;}
-                //     else{return 1;}
-                // })
+                // .attr("y2", function (d) {
+                //         if(yScale(d[chartScales.y]) >= yScale(std_y/2)){ // almost there
+                //         // if(yScale(d[chartScales.y]+std_y/2) >= yScale(std_y/2)){ // almost there
+                //         console.log('yscale max and y values',yScale(yScaleMax),yScale(yScaleMin),d[chartScales.y]+std_y/2,yScale(d[chartScales.y]+std_y/2));
+                //         // return yScale(d[chartScales.y]+std_y/2 + yScaleMin -(d[chartScales.y]+std_y/2)); // this so that the lines do not go over axis
+                //         // return yScale(d[chartScales.y]+std_y/2-(yScaleMin-d[chartScales.y]-std_y/2));
+                //         return yScale(d[chartScales.y]+std_y/2);
+                //         }else{
+                //         return yScale(d[chartScales.y]+std_y/2);
+                //     }
+                // });
+                // .attr("y2", function (d) {
+                //     console.log("log data y scale",yScale(d[chartScales.y]),d[chartScales.y],yScale(d[chartScales.y]+std_y/2),d[chartScales.y]+std_y/2);
+                //     return yScale(d[chartScales.y]+std_y/2);
+                // });
+
         }
 
         setTimeout(error_x(),2000);
