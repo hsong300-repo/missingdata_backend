@@ -229,7 +229,8 @@ function updateChart() {
     // ENTER + UPDATE selections - bindings that happen on all updateChart calls
     dots.merge(dotsEnter)
         .transition() // Add transition - this will interpolate the translate() on any changes
-        .duration(750)
+        // .duration(750)
+        .duration(300)
         .attr('transform', function(d) {
             console.log('this gets called merge');
             // Transform the group based on x and y property

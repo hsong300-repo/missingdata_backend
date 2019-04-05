@@ -229,6 +229,8 @@ function updateChart() {
     std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
+    console.log('std_x, std_y',std_x,std_y);
+
     // dotsEnter.append("line")
     // // .filter(function(d){
     // //     return d[select_x] ===1})
@@ -271,6 +273,11 @@ function updateChart() {
         .filter(function(d){return d[select_x] ===0 && d[select_y] === 0})
         .style("fill","steelblue");
 
+
+
+    // redraw_error();
+    redraw_error();
+
     if(impute_flag === true){
         filter_impute();
     }else if(no_impute_flag === true){
@@ -278,9 +285,6 @@ function updateChart() {
     }else if(both_flag === true){
         filter_both();
     }
-
-    // redraw_error();
-    redraw_error();
 
     function redraw_error() {
         // ****this draws it over the layout already****
@@ -357,6 +361,14 @@ function updateChart() {
 
         error_x();
         error_y();
+
+        // if(impute_flag === true){
+        //     filter_impute();
+        // }else if(no_impute_flag === true){
+        //     filter_no_impute();
+        // }else if(both_flag === true){
+        //     filter_both();
+        // }
 
     }// end of scatter error
 

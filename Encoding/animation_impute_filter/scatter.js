@@ -151,6 +151,11 @@ function updateChart() {
     yScale.domain(domainMap[chartScales.y]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
 
+    var xScaleMin = xScale.domain()[0];
+
+    var yScaleMax =yScale.domain().slice(-1)[0];
+    var yScaleMin =yScale.domain()[0];
+
     // Update the axes here first
     xAxisG.transition()
         .duration(750) // Add transition
@@ -267,8 +272,6 @@ function updateChart() {
 
     dotsEnter.append('circle')
         .attr("class","no_impute")
-        // .attr("cx", function (d) { return d[chartScales.x]; } )
-        // .attr("cy", function (d) { return d[chartScales.y]; } )
         .style("fill",function(d){
             if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
             else{return "steelblue";}
@@ -324,6 +327,7 @@ function updateChart() {
         filter_impute();
     }else if(no_impute_flag === true){
         filter_no_impute();
+        d3.selectAll("line")
     }else if(both_flag === true){
         filter_both();
     }
@@ -342,12 +346,25 @@ function updateChart() {
             // var transition_x = d3.selectAll(".impute_x");
         var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
 
+        // dots_chart = chartG.append("g").attr('class', "Scatter")
+        //    .selectAll("circle")
+        //    .data(filtered_x).enter()
+        //    // .data(whiskey).enter()
+        //    .append('circle')
+        //    .style("fill", 'red')
+        //    .attr("cx", function (d) {
+        //        return xScale(d[chartScales.x]);
+        //    })
+        //    .attr("cy", function (d) {
+        //        return yScale(d[chartScales.y]);
+        //    })
+        //    .attr('r', 5);
+
 
         function repeat_x(){
             transition_x.transition()
                 .duration(1000)
-                // .attr('x',-std_x)
-                .attr('cx',-std_x)
+                .attr('x',-std_x)
                 .transition()
                 .duration(1000)
                 .attr('cx',std_x)
@@ -369,6 +386,7 @@ function updateChart() {
                 .transition()
                 .duration(1000)
                 .attr("cy", 0);
+
         }
 
         var transition_xy = d3.selectAll("circle").filter(function(d){return d[select_x] ===1 && d[select_y] === 1 ; });
