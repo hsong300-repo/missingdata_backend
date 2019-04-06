@@ -354,9 +354,16 @@ function updateChart() {
                 .attr("x2", function (d) {
                     return xScale(d[chartScales.x] );
                 })
+                // .attr("y2", function (d) {
+                //     return yScale(d[chartScales.y]+std_y/2);
+                // });
                 .attr("y2", function (d) {
-                    return yScale(d[chartScales.y]+std_y/2);
-                });
+                    if(yScale(d[chartScales.y]+std_y/2) <= 0){// when it goes over maximum values
+                        return yScale(yScaleMax);
+                    }else{
+                        return yScale(d[chartScales.y]+std_y/2);
+                    }
+                })
         }
 
         error_x();
