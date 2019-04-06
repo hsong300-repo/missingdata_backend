@@ -248,6 +248,8 @@ function updateChart() {
         .filter(function(d){return d[select_x] ===0 && d[select_y] === 0})
         .style("fill","steelblue");
 
+    redraw_ticks_on();
+
     if(impute_flag === true){
         filter_impute();
     }else if(no_impute_flag === true){
@@ -255,9 +257,6 @@ function updateChart() {
     }else if(both_flag === true){
         filter_both();
     }
-
-    redraw_ticks_on();
-
 
     function redraw_ticks_on() {
 
