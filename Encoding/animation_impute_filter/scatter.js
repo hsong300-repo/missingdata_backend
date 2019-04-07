@@ -344,7 +344,10 @@ function updateChart() {
         console.log('std_x std_y',std_x,std_y);
 
             // var transition_x = d3.selectAll(".impute_x");
-        var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
+        // var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
+        var transition_x = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) <= 0 && d[select_x] === 1});
+        var transition_xx = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) > 0 && d[select_x] === 1});
+
 
         // dots_chart = chartG.append("g").attr('class', "Scatter")
         //    .selectAll("circle")
@@ -362,7 +365,28 @@ function updateChart() {
 
 
         function repeat_x(){
-            transition_x.transition()
+
+        // .attr("x1", function (d) {
+        //         if(xScale(d[chartScales.x]-std_x/2) <= 0){
+        //             return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+        //         }else{
+        //             return xScale(d[chartScales.x]-std_x/2);
+        //         }
+        //     })
+
+            transition_x
+                .transition()
+                .duration(1000)
+                .attr('x',-std_x)
+                .transition()
+                .duration(1000)
+                .attr('cx',std_x)
+                .transition()
+                .duration(1000)
+                .attr("cx", 0);
+
+            transition_xx
+                .transition()
                 .duration(1000)
                 .attr('x',-std_x)
                 .transition()
