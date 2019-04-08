@@ -10,7 +10,7 @@ Caol Ila Single Malt Scotch Distillers Edition,99,Scotland,Islay,70,43,10,Caol I
 Glenmorangie Single Malt Scotch,99,Scotland,Highlands,80,54.19999696,10,Glenmorangie,0,0,1,0
 Ardbeg Uigeadail,99,Scotland,Islay,80,54.2,10,Ardbeg,0,0,0,0
 Kingdom 17 Year Old Scotch,99,Scotland,Blended,50,40,11.99999889,Kingdom,0,0,0,1
-Powers 12 Year Old Irish Whiskey,99,Ireland,Blended,35,40,12,Powers,0,1,0,0
+Powers 12 Year Old Irish Whiskey,99,Ireland,Blended,35,40,12,Powers,0,0,0,0
 Balvenie 12 Year Old Doublewood Single Malt Scotch,99,Scotland,Speyside,75.66666667,40,12,Balvenie,0,1,0,0
 Balvenie 14 Year Old Single Malt Scotch,99,Scotland,Speyside,60,43,14,Balvenie,0,0,0,0
 Pappy Van Winkle 15 Year Old Family Reserve Whiskey,99,USA,Bourbon,58,53.5,15,Pappy Van Winkle,0,0,0,1
@@ -279,4 +279,4 @@ Rich & Rare Canadian Whisky,47,Canada,Blended,10,40,1,Rich & Rare,0,0,0,0
 Kellan Irish Whiskey,47,Ireland,Blended,20,40,1,Kellan,0,0,0,0
 Canadian LTD Blended Canadian Whiskey,43,Canada,Blended,10,40,1,Canadian LTD,1,0,0,0
 McAdams Canadian Whisky,40,Canada,Blended,8,40,1,McAdams,1,0,0,0
-Canadian Hunter Canadian Whisky,40,Canada,Blended,62.66666667,40,1,Canadian Hunter,0,1,0,0
+Canadian Hunter Canadian Whisky,40,Canada,Blended,62.66666667,40,1,Canadian Hunter,1,0,0,0
