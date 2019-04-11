@@ -91,6 +91,8 @@ function updateChart() {
 
     console.log('yscale min',yScale.domain()[0],yScale.domain().slice(-1)[0]);
     var xScaleMin = xScale.domain()[0];
+    var xScaleMax =xScale.domain().slice(-1)[0];
+
     console.log('xScaleMin',xScaleMin,xScale(xScaleMin));
 
     var yScaleMax =yScale.domain().slice(-1)[0];
@@ -331,8 +333,15 @@ function updateChart() {
                 .attr("y1", function (d) {
                     return yScale(d[chartScales.y]);
                 })
+                // .attr("x2", function (d) {
+                //     return xScale(d[chartScales.x] +std_x/2);
+                // })
                 .attr("x2", function (d) {
-                    return xScale(d[chartScales.x] +std_x/2);
+                    if(xScale(d[chartScales.x]+std_x/2) >= 520){
+                        return xScale(xScaleMax);
+                    }else{
+                        return xScale(d[chartScales.x]+std_x/2);
+                    }
                 })
                 .attr("y2", function (d) {
                     return yScale(d[chartScales.y]);
