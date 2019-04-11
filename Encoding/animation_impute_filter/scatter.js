@@ -554,7 +554,7 @@ function updateChart() {
         .attr('y', -10)
         .text(function(d) {
             // console.log('price impute',d.price_impute);
-            return d.Name;
+            return d.Brand;
         });
 
     d3.selectAll(("input[value='animation']")).on("change", function() {
@@ -595,17 +595,19 @@ function updateChart() {
         .style("fill","steelblue");
 
 
+
+    // restart_animation();
+    redraw_animation();
+
     if(impute_flag === true){
         filter_impute();
     }else if(no_impute_flag === true){
+
         filter_no_impute();
-        d3.selectAll("line")
     }else if(both_flag === true){
         filter_both();
     }
 
-    // restart_animation();
-    redraw_animation();
 
 
     function redraw_animation() {
@@ -644,6 +646,59 @@ function updateChart() {
 
 
         function repeat_x(){
+
+            dotsXX = chartG.selectAll('.dot')
+                .data(filtered_x);
+            // .data(noimpute_data);
+
+            // dots.exit().remove();
+
+            // Define the div for the tooltip
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip");
+
+            // var dotsEnter = dots.enter()
+            dotsXXX = dotsXX.enter()
+                .append('g')
+                .attr('class', 'dot')
+                // .attr("id","id_"+i)
+                // .attr("fill","steelblue")
+                .on('mouseover', function(d){ // Add hover start event binding
+                    var hovered = d3.select(this);
+                    // Show the text, otherwise hidden
+                    hovered.select('text')
+                        .style('visibility', 'visible');
+                    // Add stroke to circle to highlight it
+                    hovered.select('circle')
+                        .style('stroke-width', 2)
+                        .style('stroke', '#333');
+                })
+                .on('mouseout', function(d){ // Add hover end event binding
+                    // Select the hovered g.dot
+                    var hovered = d3.select(this);
+                    // Remove the highlighting we did in mouseover
+                    hovered.select('text')
+                        .style('visibility', 'hidden');
+                    hovered.select('circle')
+                        .style('stroke-width', 0)
+                        .style('stroke', 'none');
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+
+            dotsXXX.append('circle')
+                .attr("class","no_impute")
+                .style("fill", 'url(#diagonal-stripes)')
+
+                .attr('r', 5);
+
+            dotsXXX.append('text')
+                .attr('y', -10)
+                .text(function(d) {
+                    // console.log('price impute',d.price_impute);
+                    return d.Brand;
+                });
 
         // .attr("x1", function (d) {
         //         if(xScale(d[chartScales.x]-std_x/2) <= 0){
@@ -714,6 +769,13 @@ function updateChart() {
                 .duration(1000)
                 .attr("cx", function (d) {
                     return xScale(d[chartScales.x]);
+                });
+
+            dotsX.append('text')
+                .attr('y', -10)
+                .text(function(d) {
+                    // console.log('price impute',d.price_impute);
+                    return d.Brand;
                 });
 
         }
@@ -868,9 +930,13 @@ function updateChart() {
 
         if(select_x === select_y){
             repeat_xy();
+
         }else{
             repeat_x();
             repeat_y();
+
+
+
         }
 
     }// end of animation
@@ -903,6 +969,22 @@ function updateChart() {
     }// end of imputed filter
 
     function filter_no_impute() {
+
+        if(typeof dotsX === 'undefined'){ // bars
+        }else{
+            dotsX.remove().exit();
+        }if(typeof dotsY === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dotsY.remove().exit();
+            // dots_remove.remove().exit();
+        }if(typeof dotsXY === 'undefined'){ // bars
+            console.log('dotschart undefined');
+        }else {
+            dotsXY.remove().exit();
+            // dots_remove.remove().exit();
+        }
+
 
         d3.selectAll("circle")
             .style("fill",function(d){
