@@ -23,22 +23,6 @@ function onYScaleChanged() {
 // };
 
 function restart_animation(){
-
-    if(typeof dotsX === 'undefined'){ // bars
-    }else{
-        dotsX.remove().exit();
-    }if(typeof dotsY === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dotsY.remove().exit();
-        // dots_remove.remove().exit();
-    }if(typeof dotsXY === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dotsXY.remove().exit();
-        // dots_remove.remove().exit();
-    }
-
     var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
@@ -46,142 +30,62 @@ function restart_animation(){
 
     // var transition_x = d3.selectAll(".impute_x");
     var transition_x = d3.selectAll("circle")
-        .filter(function(d){return d[select_x] ===1; })
-        .style("opacity",0);
-    // var transition_x = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) <= 0 && d[select_x] === 1});
-    // var transition_xx = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) > 0 && d[select_x] === 1});
-
+        .filter(function(d){return d[select_x] ===1; });
 
     function repeat_x(){
 
-        // .attr("x1", function (d) {
-        //         if(xScale(d[chartScales.x]-std_x/2) <= 0){
-        //             return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
-        //         }else{
-        //             return xScale(d[chartScales.x]-std_x/2);
-        //         }
-        //     })
-
-        // transition_x
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('x',-std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cx',std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr("cx", 0);
-        //
-        // transition_xx
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('x',-std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cx',std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr("cx", 0);
-        dotsX = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            .data(filtered_x).enter()
-            // .data(whiskey).enter()
-            .append('circle')
-            .style("fill", 'url(#diagonal-stripes)')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 5);
-
-        dotsX
+        transition_x
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
                 if(xScale(d[chartScales.x]-std_x/2) <= 0){
-                    return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+                    return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2))-xScale(d[chartScales.x]); // this so that the lines do not go over axis
                 }else{
-                    return xScale(d[chartScales.x]-std_x/2);
+                    return xScale(d[chartScales.x]-std_x/2) -xScale(d[chartScales.x]);
                 }
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
             })
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
                 if(xScale(d[chartScales.x]+std_x/2) >= 520){
-                    return xScale(xScaleMax);
+                    return xScale(xScaleMax) -xScale(d[chartScales.x]);
                 }else{
-                    return xScale(d[chartScales.x]+std_x/2);
+                    return xScale(d[chartScales.x]+std_x/2) -xScale(d[chartScales.x]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
+                return xScale(d[chartScales.x]) -xScale(d[chartScales.x]);
             });
-
     }
 
-    var transition_y = d3.selectAll("circle")
-        .filter(function(d){return d[select_y] ===1; })
-        .style('opacity',0);
-
     function repeat_y(){
-        // transition_y.transition()
-        //     .duration(1000)
-        //     .attr('cy',-std_y)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cy',std_y)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr("cy", 0);
+        var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] === 1});
 
-        dotsY = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            .data(filtered_y).enter()
-            // .data(whiskey).enter()
-            .append('circle')
-            .style("fill", 'url(#diagonal-stripes)')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 5);
-
-        dotsY
+        transition_y
             .transition()
             .duration(1000)
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x] );
-            })
             .attr("cy", function (d) {
                 if(yScale(d[chartScales.y]-std_y/2) >= 520){
-                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2));
+                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) -yScale(d[chartScales.y]);
                 }else{
-                    return yScale(d[chartScales.y]-std_y/2);
+                    return yScale(d[chartScales.y]-std_y/2) - yScale(d[chartScales.y]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cy", function (d) {
                 if(yScale(d[chartScales.y]+std_y/2) <= 0){// when it goes over maximum values
-                    return yScale(yScaleMax);
+                    return yScale(yScaleMax) -yScale(d[chartScales.y]);
                 }else{
-                    return yScale(d[chartScales.y]+std_y/2);
+                    return yScale(d[chartScales.y]+std_y/2) - yScale(d[chartScales.y]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
+                return yScale(d[chartScales.y]) - yScale(d[chartScales.y]);
             });
 
     }
@@ -189,87 +93,53 @@ function restart_animation(){
     var transition_xy = d3.selectAll("circle").filter(function(d){return d[select_x] ===1 && d[select_y] === 1 ; });
 
     function repeat_xy(){
-        // transition_xy.transition()
-        //     .duration(1000)
-        //     // .attr('x',-std_x)
-        //     .attr('cx',-std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cx',std_x)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr("cx", 0)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cy',-std_y)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr('cy',std_y)
-        //     .transition()
-        //     .duration(1000)
-        //     .attr("cy", 0);
 
-        dotsXY = chartG.append("g").attr('class', "Scatter")
-            .selectAll("circle")
-            .data(filtered_xy).enter()
-            // .data(whiskey).enter()
-            .append('circle')
-            .style("fill", 'url(#diagonal-stripes)')
-            .attr("cx", function (d) {
-                return xScale(d[chartScales.x]);
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
-            })
-            .attr('r', 5);
-
-        dotsXY
+        transition_xy
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
                 if(xScale(d[chartScales.x]-std_x/2) <= 0){
-                    return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+                    return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)) -xScale(d[chartScales.x]); // this so that the lines do not go over axis
                 }else{
-                    return xScale(d[chartScales.x]-std_x/2);
+                    return xScale(d[chartScales.x]-std_x/2)-xScale(d[chartScales.x]);
                 }
-            })
-            .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
             })
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
                 if(xScale(d[chartScales.x]+std_x/2) >= 520){
-                    return xScale(xScaleMax);
+                    return xScale(xScaleMax) -xScale(d[chartScales.x]);
                 }else{
-                    return xScale(d[chartScales.x]+std_x/2);
+                    return xScale(d[chartScales.x]+std_x/2) -xScale(d[chartScales.x]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cx", function (d) {
-                return xScale(d[chartScales.x] );
+                return xScale(d[chartScales.x]) -xScale(d[chartScales.x]);
             })
+            .transition()
+            .duration(1000)
             .attr("cy", function (d) {
                 if(yScale(d[chartScales.y]-std_y/2) >= 520){
-                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2));
+                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) -yScale(d[chartScales.y]);
                 }else{
-                    return yScale(d[chartScales.y]-std_y/2);
+                    return yScale(d[chartScales.y]-std_y/2) -yScale(d[chartScales.y]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cy", function (d) {
                 if(yScale(d[chartScales.y]+std_y/2) <= 0){// when it goes over maximum values
-                    return yScale(yScaleMax);
+                    return yScale(yScaleMax) -yScale(d[chartScales.y]);
                 }else{
-                    return yScale(d[chartScales.y]+std_y/2);
+                    return yScale(d[chartScales.y]+std_y/2) -yScale(d[chartScales.y]);
                 }
             })
             .transition()
             .duration(1000)
             .attr("cy", function (d) {
-                return yScale(d[chartScales.y]);
+                return yScale(d[chartScales.y]) -yScale(d[chartScales.y]);
             });
 
     }
@@ -279,75 +149,8 @@ function restart_animation(){
     }else{
         repeat_x();
         repeat_y();
+
     }
-
-
-    // var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    // var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
-    //
-    // // var transition_x = d3.selectAll(".impute_x");
-    // var transition_x = d3.selectAll("circle").filter(function(d){return d[select_x] ===1; });
-    //
-    // function repeat_x(){
-    //     transition_x.transition()
-    //         .duration(1000)
-    //         // .attr('x',-std_x)
-    //         .attr('cx',-std_x)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr('cx',std_x)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr("cx", 0);
-    // }
-    //
-    // var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] ===1; });
-    //
-    // function repeat_y(){
-    //     transition_y.transition()
-    //         .duration(1000)
-    //         .attr('cy',-std_y)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr('cy',std_y)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr("cy", 0);
-    // }
-    //
-    // var transition_xy = d3.selectAll("circle").filter(function(d){return d[select_x] ===1 && d[select_y] === 1 ; });
-    //
-    // function repeat_xy(){
-    //     transition_xy.transition()
-    //         .duration(1000)
-    //         // .attr('x',-std_x)
-    //         .attr('cx',-std_x)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr('cx',std_x)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr("cx", 0)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr('cy',-std_y)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr('cy',std_y)
-    //         .transition()
-    //         .duration(1000)
-    //         .attr("cy", 0);
-    //
-    // }
-    //
-    // if(select_x === select_y){
-    //     repeat_xy();
-    // }else{
-    //     repeat_x();
-    //     repeat_y();
-    // }
-
-
 }
 
 // Also, declare global variables for missing amount, total amount, and percentage
@@ -411,8 +214,6 @@ var transitionScale = d3.transition()
 
 //****scatter plot
 function updateChart() {
-
-
 
     // console.log('upatechart');
     // **** Draw and Update your chart here ****
@@ -507,8 +308,6 @@ function updateChart() {
     dotsEnter = dots.enter()
         .append('g')
         .attr('class', 'dot')
-        // .attr("id","id_"+i)
-        // .attr("fill","steelblue")
         .on('mouseover', function(d){ // Add hover start event binding
             var hovered = d3.select(this);
             // Show the text, otherwise hidden
@@ -534,6 +333,16 @@ function updateChart() {
         });
 
     // Append a circle to the ENTER selection
+    dotsEnter.append('circle')
+        .attr("class","no_impute")
+        .attr("cx",function(d){xScale(d[chartScales.x])})
+        .attr("cy",function(d){yScale(d[chartScales.y])})
+        .style("fill",function(d){
+            if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
+            else{return "steelblue";}
+        })
+        .attr('r', 5);
+
     // dotsEnter.append('circle')
     //     .attr("class","no_impute")
     //     .style("fill",function(d){
@@ -541,14 +350,6 @@ function updateChart() {
     //         else{return "steelblue";}
     //     })
     //     .attr('r', 5);
-
-    dotsEnter.append('circle')
-        .attr("class","no_impute")
-        .style("fill",function(d){
-            if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
-            else{return "steelblue";}
-        })
-        .attr('r', 5);
 
     dotsEnter.append('text')
         .attr('y', -10)
@@ -594,10 +395,9 @@ function updateChart() {
         .filter(function(d){return d[select_x] ===0 && d[select_y] ===0})
         .style("fill","steelblue");
 
-
-
     // restart_animation();
     redraw_animation();
+
 
     if(impute_flag === true){
         filter_impute();
@@ -608,25 +408,7 @@ function updateChart() {
         filter_both();
     }
 
-
-
     function redraw_animation() {
-
-        if(typeof dotsX === 'undefined'){ // bars
-        }else{
-            dotsX.remove().exit();
-        }if(typeof dotsY === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dotsY.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dotsXY === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dotsXY.remove().exit();
-            // dots_remove.remove().exit();
-        }
-
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
@@ -634,207 +416,62 @@ function updateChart() {
 
             // var transition_x = d3.selectAll(".impute_x");
         var transition_x = d3.selectAll("circle")
-            .filter(function(d){return d[select_x] ===1; })
-            .style("opacity",0);
-        // var transition_x = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) <= 0 && d[select_x] === 1});
-        // var transition_xx = d3.selectAll("circle").filter(function(d){return xScale(d[chartScales.x]-std_x/2) > 0 && d[select_x] === 1});
-
-
-
-
-
-
+            .filter(function(d){return d[select_x] ===1; });
 
         function repeat_x(){
 
-            dotsXX = chartG.selectAll('.dot')
-                .data(filtered_x);
-            // .data(noimpute_data);
-
-            // dots.exit().remove();
-
-            // Define the div for the tooltip
-            var div = d3.select("body").append("div")
-                .attr("class", "tooltip");
-
-            // var dotsEnter = dots.enter()
-            dotsXXX = dotsXX.enter()
-                .append('g')
-                .attr('class', 'dot')
-                // .attr("id","id_"+i)
-                // .attr("fill","steelblue")
-                .on('mouseover', function(d){ // Add hover start event binding
-                    var hovered = d3.select(this);
-                    // Show the text, otherwise hidden
-                    hovered.select('text')
-                        .style('visibility', 'visible');
-                    // Add stroke to circle to highlight it
-                    hovered.select('circle')
-                        .style('stroke-width', 2)
-                        .style('stroke', '#333');
-                })
-                .on('mouseout', function(d){ // Add hover end event binding
-                    // Select the hovered g.dot
-                    var hovered = d3.select(this);
-                    // Remove the highlighting we did in mouseover
-                    hovered.select('text')
-                        .style('visibility', 'hidden');
-                    hovered.select('circle')
-                        .style('stroke-width', 0)
-                        .style('stroke', 'none');
-                    div.transition()
-                        .duration(500)
-                        .style("opacity", 0);
-                });
-
-            dotsXXX.append('circle')
-                .attr("class","no_impute")
-                .style("fill", 'url(#diagonal-stripes)')
-
-                .attr('r', 5);
-
-            dotsXXX.append('text')
-                .attr('y', -10)
-                .text(function(d) {
-                    // console.log('price impute',d.price_impute);
-                    return d.Brand;
-                });
-
-        // .attr("x1", function (d) {
-        //         if(xScale(d[chartScales.x]-std_x/2) <= 0){
-        //             return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
-        //         }else{
-        //             return xScale(d[chartScales.x]-std_x/2);
-        //         }
-        //     })
-
-            // transition_x
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('x',-std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cx',std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr("cx", 0);
-            //
-            // transition_xx
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('x',-std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cx',std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr("cx", 0);
-            dotsX = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                .data(filtered_x).enter()
-                // .data(whiskey).enter()
-                .append('circle')
-                .style("fill", 'url(#diagonal-stripes)')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr('r', 5);
-
-            dotsX
+            transition_x
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
                     if(xScale(d[chartScales.x]-std_x/2) <= 0){
-                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2))-xScale(d[chartScales.x]); // this so that the lines do not go over axis
                     }else{
-                        return xScale(d[chartScales.x]-std_x/2);
+                        return xScale(d[chartScales.x]-std_x/2) -xScale(d[chartScales.x]);
                     }
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
                 })
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
                     if(xScale(d[chartScales.x]+std_x/2) >= 520){
-                        return xScale(xScaleMax);
+                        return xScale(xScaleMax) -xScale(d[chartScales.x]);
                     }else{
-                        return xScale(d[chartScales.x]+std_x/2);
+                        return xScale(d[chartScales.x]+std_x/2) -xScale(d[chartScales.x]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
+                    return xScale(d[chartScales.x]) -xScale(d[chartScales.x]);
                 });
-
-            dotsX.append('text')
-                .attr('y', -10)
-                .text(function(d) {
-                    // console.log('price impute',d.price_impute);
-                    return d.Brand;
-                });
-
         }
 
-        var transition_y = d3.selectAll("circle")
-            .filter(function(d){return d[select_y] ===1; })
-            .style('opacity',0);
-
         function repeat_y(){
-            // transition_y.transition()
-            //     .duration(1000)
-            //     .attr('cy',-std_y)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cy',std_y)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr("cy", 0);
+            var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] === 1});
 
-            dotsY = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                .data(filtered_y).enter()
-                // .data(whiskey).enter()
-                .append('circle')
-                .style("fill", 'url(#diagonal-stripes)')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr('r', 5);
-
-            dotsY
+            transition_y
                 .transition()
                 .duration(1000)
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x] );
-                })
                 .attr("cy", function (d) {
                     if(yScale(d[chartScales.y]-std_y/2) >= 520){
-                        return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2));
+                        return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) -yScale(d[chartScales.y]);
                     }else{
-                        return yScale(d[chartScales.y]-std_y/2);
+                        return yScale(d[chartScales.y]-std_y/2) - yScale(d[chartScales.y]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cy", function (d) {
                     if(yScale(d[chartScales.y]+std_y/2) <= 0){// when it goes over maximum values
-                        return yScale(yScaleMax);
+                        return yScale(yScaleMax) -yScale(d[chartScales.y]);
                     }else{
-                        return yScale(d[chartScales.y]+std_y/2);
+                        return yScale(d[chartScales.y]+std_y/2) - yScale(d[chartScales.y]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
+                    return yScale(d[chartScales.y]) - yScale(d[chartScales.y]);
                 });
 
         }
@@ -842,100 +479,62 @@ function updateChart() {
         var transition_xy = d3.selectAll("circle").filter(function(d){return d[select_x] ===1 && d[select_y] === 1 ; });
 
         function repeat_xy(){
-            // transition_xy.transition()
-            //     .duration(1000)
-            //     // .attr('x',-std_x)
-            //     .attr('cx',-std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cx',std_x)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr("cx", 0)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cy',-std_y)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr('cy',std_y)
-            //     .transition()
-            //     .duration(1000)
-            //     .attr("cy", 0);
 
-            dotsXY = chartG.append("g").attr('class', "Scatter")
-                .selectAll("circle")
-                .data(filtered_xy).enter()
-                // .data(whiskey).enter()
-                .append('circle')
-                .style("fill", 'url(#diagonal-stripes)')
-                .attr("cx", function (d) {
-                    return xScale(d[chartScales.x]);
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
-                })
-                .attr('r', 5);
-
-            dotsXY
+            transition_xy
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
                     if(xScale(d[chartScales.x]-std_x/2) <= 0){
-                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)); // this so that the lines do not go over axis
+                        return xScale(d[chartScales.x]-std_x/2 + xScaleMin -(d[chartScales.x]-std_x/2)) -xScale(d[chartScales.x]); // this so that the lines do not go over axis
                     }else{
-                        return xScale(d[chartScales.x]-std_x/2);
+                        return xScale(d[chartScales.x]-std_x/2)-xScale(d[chartScales.x]);
                     }
-                })
-                .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
                 })
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
                     if(xScale(d[chartScales.x]+std_x/2) >= 520){
-                        return xScale(xScaleMax);
+                        return xScale(xScaleMax) -xScale(d[chartScales.x]);
                     }else{
-                        return xScale(d[chartScales.x]+std_x/2);
+                        return xScale(d[chartScales.x]+std_x/2) -xScale(d[chartScales.x]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cx", function (d) {
-                    return xScale(d[chartScales.x] );
+                    return xScale(d[chartScales.x]) -xScale(d[chartScales.x]);
                 })
+                .transition()
+                .duration(1000)
                 .attr("cy", function (d) {
                     if(yScale(d[chartScales.y]-std_y/2) >= 520){
-                        return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2));
+                        return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) -yScale(d[chartScales.y]);
                     }else{
-                        return yScale(d[chartScales.y]-std_y/2);
+                        return yScale(d[chartScales.y]-std_y/2) -yScale(d[chartScales.y]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cy", function (d) {
                     if(yScale(d[chartScales.y]+std_y/2) <= 0){// when it goes over maximum values
-                        return yScale(yScaleMax);
+                        return yScale(yScaleMax) -yScale(d[chartScales.y]);
                     }else{
-                        return yScale(d[chartScales.y]+std_y/2);
+                        return yScale(d[chartScales.y]+std_y/2) -yScale(d[chartScales.y]);
                     }
                 })
                 .transition()
                 .duration(1000)
                 .attr("cy", function (d) {
-                    return yScale(d[chartScales.y]);
+                    return yScale(d[chartScales.y]) -yScale(d[chartScales.y]);
                 });
-
 
         }
 
         if(select_x === select_y){
             repeat_xy();
-
         }else{
             repeat_x();
             repeat_y();
-
-
 
         }
 
@@ -969,22 +568,6 @@ function updateChart() {
     }// end of imputed filter
 
     function filter_no_impute() {
-
-        if(typeof dotsX === 'undefined'){ // bars
-        }else{
-            dotsX.remove().exit();
-        }if(typeof dotsY === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dotsY.remove().exit();
-            // dots_remove.remove().exit();
-        }if(typeof dotsXY === 'undefined'){ // bars
-            console.log('dotschart undefined');
-        }else {
-            dotsXY.remove().exit();
-            // dots_remove.remove().exit();
-        }
-
 
         d3.selectAll("circle")
             .style("fill",function(d){
