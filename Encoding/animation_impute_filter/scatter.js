@@ -274,7 +274,6 @@ function updateChart() {
         .filter(function(d){
             return d[select_x] === 1 && d[select_y] === 1});
 
-
     filtered_x = whiskey
         .filter(function(d){
             return d[select_x] ===1});
@@ -309,21 +308,46 @@ function updateChart() {
         .append('g')
         .attr('class', 'dot')
         .on('mouseover', function(d){ // Add hover start event binding
+            // var hovered = d3.select(this);
+            // // Show the text, otherwise hidden
+            // hovered.select('text')
+            //     .style('visibility', 'visible');
+            // // Add stroke to circle to highlight it
+            // hovered.select('circle')
+            //     .style('stroke-width', 2)
+            //     .style('stroke', '#333');
             var hovered = d3.select(this);
-            // Show the text, otherwise hidden
-            hovered.select('text')
-                .style('visibility', 'visible');
+            // // Show the text, otherwise hidden
+            // hovered.select('text')
+            //     .style('visibility', 'visible');
             // Add stroke to circle to highlight it
+            div.transition()
+                .duration(200)
+                .style("opacity", .9);
+            // div	.html(d.Name)
+            div	.html(d.Brand)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
             hovered.select('circle')
                 .style('stroke-width', 2)
                 .style('stroke', '#333');
         })
         .on('mouseout', function(d){ // Add hover end event binding
             // Select the hovered g.dot
+            // var hovered = d3.select(this);
+            // // Remove the highlighting we did in mouseover
+            // hovered.select('text')
+            //     .style('visibility', 'hidden');
+            // hovered.select('circle')
+            //     .style('stroke-width', 0)
+            //     .style('stroke', 'none');
+            // div.transition()
+            //     .duration(500)
+            //     .style("opacity", 0);
             var hovered = d3.select(this);
             // Remove the highlighting we did in mouseover
-            hovered.select('text')
-                .style('visibility', 'hidden');
+            // hovered.select('text')
+            //     .style('visibility', 'hidden');
             hovered.select('circle')
                 .style('stroke-width', 0)
                 .style('stroke', 'none');
@@ -351,12 +375,12 @@ function updateChart() {
     //     })
     //     .attr('r', 5);
 
-    dotsEnter.append('text')
-        .attr('y', -10)
-        .text(function(d) {
-            // console.log('price impute',d.price_impute);
-            return d.Brand;
-        });
+    // dotsEnter.append('text')
+    //     .attr('y', -10)
+    //     .text(function(d) {
+    //         // console.log('price impute',d.price_impute);
+    //         return d.Brand;
+    //     });
 
     d3.selectAll(("input[value='animation']")).on("change", function() {
         redraw_animation();
