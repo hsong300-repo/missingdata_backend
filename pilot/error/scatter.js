@@ -1,3 +1,23 @@
+var circles;
+
+d3.select("#txtName").on("change paste keyup", function() {
+    highLight();
+});
+
+function highLight() {
+    var txtName = document.getElementById("txtName");
+    // circles = svg.selectAll("circle");
+    circles = svg.selectAll("circle");
+    circles.style("fill", function(d) {
+        if (d.Brand == txtName.value) {
+            return "red"
+        }else if(d[select_x] ===1 || d[select_y] === 1){
+            return "url(#diagonal-stripes)";}
+        else{
+            return "steelblue";}
+    });
+}
+
 // Global functions called when select elements changed
 function onXScaleChanged() {
     var select = d3.select('#xScaleSelect').node();
@@ -184,7 +204,7 @@ function updateChart() {
             // .style("left", (d3.event.pageX) + "px")
             // .style("top", (d3.event.pageY - 28) + "px");
                 .style("left", "1050px")
-                .style("top", "70px");
+                .style("top", "100px");
             hovered.select('circle')
                 .style('stroke-width', 2)
                 .style('stroke', '#333');
