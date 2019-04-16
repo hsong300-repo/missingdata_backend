@@ -28,22 +28,7 @@ both_flag = false;
 
 // the work flow is like when click on a button it will remove the other one
 //or this button is to remove
-function drawBar() {
-    // $('scatter_view').remove();
-    document.getElementById('bar_view').style.display = "inline";
-    document.getElementById('bar_radio').style.display = "inline";
-    document.getElementById('scatter_radio').style.display = "none";
-    document.getElementById('scatter_view').style.display = "none";
-}
 
-//show scatter when after click button
-function drawScatter() {
-    // d3.select("#scatter_view").select("svg").remove();
-    document.getElementById('scatter_view').style.display = "inline";
-    document.getElementById('scatter_radio').style.display = "inline";
-    document.getElementById('bar_radio').style.display = "none";
-    document.getElementById('bar_view').style.display = "none";
-}
 
 var svg = d3.select('svg');
 
