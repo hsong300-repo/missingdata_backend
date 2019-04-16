@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pilot/error/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/error/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pilot/error/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/error/scatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/ticks/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/ticks/new_data/whiskey_knn_customized.csv" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/ticks/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/scatter.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,9 +35,9 @@
         <counts>
           <entry key="Procfile" value="2" />
           <entry key="css" value="18" />
-          <entry key="csv" value="23" />
+          <entry key="csv" value="24" />
           <entry key="gitmodules" value="1" />
-          <entry key="html" value="22" />
+          <entry key="html" value="23" />
           <entry key="js" value="47" />
           <entry key="py" value="20" />
           <entry key="txt" value="8" />
@@ -44,9 +46,9 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="18" />
-          <entry key="HTML" value="22" />
+          <entry key="HTML" value="23" />
           <entry key="JavaScript" value="47" />
-          <entry key="PLAIN_TEXT" value="41" />
+          <entry key="PLAIN_TEXT" value="42" />
           <entry key="Python" value="13" />
         </counts>
       </usages-collector>
@@ -54,8 +56,8 @@
         <counts>
           <entry key="Procfile" value="22" />
           <entry key="css" value="404" />
-          <entry key="html" value="1997" />
-          <entry key="js" value="21439" />
+          <entry key="html" value="2030" />
+          <entry key="js" value="21767" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
@@ -63,8 +65,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="404" />
-          <entry key="HTML" value="1997" />
-          <entry key="JavaScript" value="21439" />
+          <entry key="HTML" value="2030" />
+          <entry key="JavaScript" value="21767" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -73,15 +75,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/index.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -96,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="49" column="68" selection-start-line="49" selection-start-column="68" selection-end-line="49" selection-end-column="68" />
+            <state relative-caret-position="272">
+              <caret line="61" column="6" lean-forward="true" selection-start-line="12" selection-end-line="61" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -135,19 +128,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4215">
-              <caret line="281" column="26" lean-forward="true" selection-start-line="281" selection-start-column="26" selection-end-line="281" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="206" column="33" selection-start-line="206" selection-start-column="33" selection-end-line="206" selection-end-column="33" />
+            <state relative-caret-position="364">
+              <caret line="209" column="31" lean-forward="true" selection-start-line="209" selection-end-line="210" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -159,12 +143,39 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+        <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2595">
-              <caret line="173" column="38" lean-forward="true" selection-start-line="159" selection-start-column="12" selection-end-line="173" selection-end-column="38" />
+            <state relative-caret-position="411">
+              <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#svg#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="197" selection-start-line="197" selection-end-line="197" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pilot/ticks/new_data/whiskey_knn_customized.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -275,14 +286,14 @@
         <option value="$PROJECT_DIR$/Encoding/animation_impute_filter/style.css" />
         <option value="$PROJECT_DIR$/Encoding/animation_impute_filter/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/index.html" />
-        <option value="$PROJECT_DIR$/pilot/ticks/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/style.css" />
-        <option value="$PROJECT_DIR$/pilot/ticks/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/style.css" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/error/style.css" />
-        <option value="$PROJECT_DIR$/pilot/error/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/error/index.html" />
+        <option value="$PROJECT_DIR$/pilot/error/scatter.js" />
+        <option value="$PROJECT_DIR$/pilot/ticks/index.html" />
+        <option value="$PROJECT_DIR$/pilot/ticks/scatter.js" />
       </list>
     </option>
   </component>
@@ -331,6 +342,26 @@
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
               <item name="pilot" type="462c0819:PsiDirectoryNode" />
               <item name="error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+              <item name="new_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="ticks" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="ticks" type="462c0819:PsiDirectoryNode" />
+              <item name="new_data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -415,16 +446,15 @@
       <workItem from="1555271141818" duration="9000" />
       <workItem from="1555352906099" duration="674000" />
       <workItem from="1555381270056" duration="7270000" />
-      <workItem from="1555437621734" duration="4332000" />
+      <workItem from="1555437621734" duration="6126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161069000" />
+    <option name="totallyTimeSpent" value="162863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="798" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.15534492" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
@@ -456,13 +486,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/prototype/templates/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3360">
-          <caret line="224" selection-start-line="224" selection-end-line="224" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/prototype/templates/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3005">
@@ -667,13 +690,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/view.js" />
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="16" column="88" selection-start-line="16" selection-start-column="88" selection-end-line="16" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4995">
@@ -692,13 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4215">
           <caret line="281" column="26" lean-forward="true" selection-start-line="281" selection-start-column="26" selection-end-line="281" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2595">
-          <caret line="173" column="38" lean-forward="true" selection-start-line="159" selection-start-column="12" selection-end-line="173" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -724,13 +733,6 @@
     <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1924">
-          <caret line="141" column="19" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Encoding/error/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -741,23 +743,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
+    <entry file="file://$PROJECT_DIR$/pilot/error/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="206" column="33" selection-start-line="206" selection-start-column="33" selection-end-line="206" selection-end-column="33" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1924">
+          <caret line="141" column="19" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="49" column="68" selection-start-line="49" selection-start-column="68" selection-end-line="49" selection-end-column="68" />
+        <state relative-caret-position="272">
+          <caret line="61" column="6" lean-forward="true" selection-start-line="12" selection-end-line="61" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -768,6 +764,49 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="209" column="31" lean-forward="true" selection-start-line="209" selection-end-line="210" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/new_data/whiskey_knn_customized.csv">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

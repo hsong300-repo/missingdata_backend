@@ -11,44 +11,55 @@
 <body>
 <!--partition into two columns-->
 <div class="table">
-            <div class='row' id="scatter_radio" style="margin-left: 100px;">
-                <div class='radio' >
-                    <label class='radio-inline'>
-                        Filter: <input type="radio" name="filter" value="impute"> Missing values
-                    </label>
-                    <label class='radio-inline'>
-                        <input type="radio" name="filter" value="no_impute"> Not missing
-                    </label>
-                    <label class='radio-inline' >
-                        <input type="radio" name="filter" value="both" checked> All
-                    </label>
-                    <label><button type="button" name ="restart" value="restart" onclick="restart_animation()">restart</button></label>
-                </div>
-            </div>
-                <div style="margin-left: 250px;" >
-                    <label for="categorySelect">Y Scale:</label>
-                    <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
-                        <option value="Rating">Rating</option>
-                        <option value="Price">Price</option>
-                        <option value="ABV">ABV</option>
-                        <option selected value="Age">Age</option>
-                    </select>
-                </div>
-            <div align="center">
-                <svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
-                </svg>
-            </div>
-            <!--<div style="margin-left: 380px;">-->
-            <div align="center">
-                <label for="categorySelect">X Scale:</label>
-                <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
-                    <option value="Rating">Rating</option>
-                    <option selected value="Price">Price</option>
-                    <option value="ABV">ABV</option>
-                    <option value="Age">Age</option>
-                </select>
-            </div>
+    <br>
+    <div class='row' id="scatter_radio" style="margin-left: 100px;">
+        <div class='radio' >
+            <label class='radio-inline'>
+                Filter: <input type="radio" name="filter" value="impute"> Missing values
+            </label>
+            <label class='radio-inline'>
+                <input type="radio" name="filter" value="no_impute"> Not missing
+            </label>
+            <label class='radio-inline' >
+                <input type="radio" name="filter" value="both" checked> All
+            </label>
         </div>
+        <br><br><br>
+    </div>
+
+    <!--<div algin="right"><textarea id="txtName" name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>-->
+    <!--<button onclick="highLight()">Search</button>-->
+    <!--</div>-->
+
+
+    <div style="position:absolute;top:350px;left:250px" >
+        <label for="categorySelect">Y Scale:</label>
+        <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
+            <option value="Rating">Rating</option>
+            <option value="Price">Price</option>
+            <option value="ABV">ABV</option>
+            <option selected value="Age">Age</option>
+        </select>
+    </div>
+    <div align="center">
+        <svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
+        </svg>
+    </div>
+    <!--<div style="margin-left: 380px;">-->
+    <div align="center">
+        <label for="categorySelect">X Scale:</label>
+        <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
+            <option value="Rating">Rating</option>
+            <option selected value="Price">Price</option>
+            <option value="ABV">ABV</option>
+            <option value="Age">Age</option>
+        </select>
+    </div>
+    <textarea style="position:absolute;top:25px;right:200px" id="txtName"  name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>
+    <button style="position:absolute;top:20px;left:1200px" onclick="highLight()">Search</button>
+
+
+</div>
 
 
     </div>

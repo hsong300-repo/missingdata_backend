@@ -11,6 +11,7 @@
 <body>
 <!--partition into two columns-->
 <div class="table">
+    <br>
     <div class='row' id="scatter_radio" style="margin-left: 100px;">
         <div class='radio' >
             <label class='radio-inline'>
@@ -23,8 +24,15 @@
                 <input type="radio" name="filter" value="both" checked> All
             </label>
         </div>
+        <br><br><br>
     </div>
-    <div style="margin-left: 250px;" >
+
+    <!--<div algin="right"><textarea id="txtName" name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>-->
+    <!--<button onclick="highLight()">Search</button>-->
+    <!--</div>-->
+
+
+    <div style="position:absolute;top:350px;left:250px" >
         <label for="categorySelect">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
             <option value="Rating">Rating</option>
@@ -47,8 +55,11 @@
             <option value="Age">Age</option>
         </select>
     </div>
-</div>
+    <textarea style="position:absolute;top:25px;right:200px" id="txtName"  name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>
+    <button style="position:absolute;top:20px;left:1200px" onclick="highLight()">Search</button>
 
+
+</div>
 
 </div>
 <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"><defs>

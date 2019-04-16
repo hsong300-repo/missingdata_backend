@@ -2,6 +2,7 @@ var circles;
 
 d3.select("#txtName").on("change paste keyup", function() {
     highLight();
+
 });
 
 function highLight() {
@@ -16,6 +17,8 @@ function highLight() {
         else{
             return "steelblue";}
     });
+
+
 }
 
 // Global functions called when select elements changed
@@ -307,12 +310,16 @@ function updateChart() {
     // redraw_error();
     redraw_error();
 
+
     if(impute_flag === true){
         filter_impute();
+
     }else if(no_impute_flag === true){
         filter_no_impute();
+
     }else if(both_flag === true){
         filter_both();
+
     }
 
     function redraw_error() {
@@ -405,6 +412,8 @@ function updateChart() {
         error_x();
         error_y();
 
+
+
         // if(impute_flag === true){
         //     filter_impute();
         // }else if(no_impute_flag === true){
@@ -433,6 +442,8 @@ function updateChart() {
         both_flag = false;
 
         redraw_error();
+
+
 
     }// end of imputed filter
 
@@ -463,6 +474,8 @@ function updateChart() {
         both_flag = false;
 
 
+
+
     }// end of no filter
 
     function filter_both() {
@@ -482,7 +495,6 @@ function updateChart() {
         both_flag = true;
 
         redraw_error();
-
 
     }// end of imputed filter
 
