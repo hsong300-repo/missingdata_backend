@@ -157,9 +157,21 @@ function updateChart() {
                 .duration(200)
                 .style("opacity", .9);
             // div	.html(d.Name)
-            div	.html(d.Brand)
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY - 28) + "px");
+            div.html(function(){
+                if(d[select_x]===1 && d[select_y]===0){
+                    return  "Brand: "+d.Brand + "<br>" +chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
+                }else if(d[select_y] === 1 && d[select_x] === 0){
+                    return  "Brand: "+d.Brand + "<br>" + chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                }else if(d[select_x] ===0 && d[select_y] === 0){
+                    return  "Brand: "+d.Brand + "<br>" + chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y]
+                }else if(d[select_x] ===1  && d[select_y] === 1){
+                    return  "Brand: "+d.Brand + "<br>" + chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                }
+            })
+            // .style("left", (d3.event.pageX) + "px")
+            // .style("top", (d3.event.pageY - 28) + "px");
+                .style("left", "1050px")
+                .style("top", "70px");
             hovered.select('circle')
                         .style('stroke-width', 2)
                         .style('stroke', '#333');

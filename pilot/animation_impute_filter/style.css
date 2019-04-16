@@ -273,9 +273,11 @@ circle {
 
 div.tooltip {
     position: absolute;
-    text-align: center;
-    width: 120px;
-    height: 25px;
+    /*text-align: center;*/
+    text-align:left;
+    width: 160px;
+    /*height: 25px;*/
+    height: 60px;
     padding: 2px;
     font: 12px sans-serif;
     background: lightsteelblue;
@@ -283,3 +285,19 @@ div.tooltip {
     border-radius: 8px;
     pointer-events: none;
 }
+
+
+
+/*div.tooltip {*/
+/*position: absolute;*/
+/*text-align: center;*/
+/*width: 120px;*/
+/*height: 25px;*/
+/*padding: 2px;*/
+/*font: 12px sans-serif;*/
+/*background: lightsteelblue;*/
+/*border: 0px;*/
+/*border-radius: 8px;*/
+/*pointer-events: none;*/
+/*}*/
+
