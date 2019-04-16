@@ -275,7 +275,7 @@ div.tooltip {
     position: absolute;
     /*text-align: center;*/
     text-align:left;
-    width: 150px;
+    width: 160px;
     /*height: 25px;*/
     height: 60px;
     padding: 2px;
@@ -284,6 +284,10 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+}
+
+mark.red{
+    color:#ff0000;
 }
 
 /*div.tooltip {*/
