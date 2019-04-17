@@ -7,6 +7,7 @@ d3.select("#txtName").on("change paste keyup", function() {
 
 function highLight() {
     var txtName = document.getElementById("txtName");
+    console.log('inside function txtName',txtName.value);
     // circles = svg.selectAll("circle");
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
@@ -310,6 +311,12 @@ function updateChart() {
     // redraw_error();
     redraw_error();
 
+    var txtName = document.getElementById("txtName");
+    // circles = svg.selectAll("circle");
+    console.log('updatechart name',txtName.value);
+    if(txtName.value){
+        highLight();
+    }
 
     if(impute_flag === true){
         filter_impute();
@@ -442,6 +449,11 @@ function updateChart() {
         both_flag = false;
 
         redraw_error();
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
 
 
 
@@ -473,6 +485,12 @@ function updateChart() {
         no_impute_flag = true;
         both_flag = false;
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
 
 
 
@@ -495,6 +513,12 @@ function updateChart() {
         both_flag = true;
 
         redraw_error();
+
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
 
     }// end of imputed filter
 
