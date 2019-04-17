@@ -310,6 +310,12 @@ function updateChart() {
     // redraw_error();
     redraw_error();
 
+    var txtName = document.getElementById("txtName");
+
+    if(txtName.value){
+        highLight();
+    }
+
 
     if(impute_flag === true){
         filter_impute();
@@ -443,6 +449,12 @@ function updateChart() {
 
         redraw_error();
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
 
 
     }// end of imputed filter
@@ -473,6 +485,12 @@ function updateChart() {
         no_impute_flag = true;
         both_flag = false;
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
 
 
 
@@ -495,6 +513,12 @@ function updateChart() {
         both_flag = true;
 
         redraw_error();
+
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
 
     }// end of imputed filter
 

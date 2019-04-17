@@ -275,6 +275,12 @@ function updateChart() {
 
     redraw_ticks_on();
 
+    var txtName = document.getElementById("txtName");
+
+    if(txtName.value){
+        highLight();
+    }
+
     if(impute_flag === true){
         filter_impute();
     }else if(no_impute_flag === true){
@@ -376,6 +382,12 @@ function updateChart() {
 
         redraw_ticks_on();
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
     }// end of imputed filter
 
     function filter_no_impute() {
@@ -406,6 +418,12 @@ function updateChart() {
         no_impute_flag = true;
         both_flag = false;
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
 
     }// end of no filter
 
@@ -434,6 +452,12 @@ function updateChart() {
         both_flag = true;
 
         redraw_ticks_on();
+
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
 
 
     }// end of imputed filter

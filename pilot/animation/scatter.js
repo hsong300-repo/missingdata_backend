@@ -449,6 +449,12 @@ function updateChart() {
     // restart_animation();
     redraw_animation();
 
+    var txtName = document.getElementById("txtName");
+
+    if(txtName.value){
+        highLight();
+    }
+
 
     if(impute_flag === true){
         filter_impute();
@@ -607,6 +613,12 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = false;
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
         // d3.selectAll("circle")
         //     .filter(function(d){return d[select_x] ===1 })
         //     .style('fill',)
@@ -634,6 +646,12 @@ function updateChart() {
         no_impute_flag = true;
         both_flag = false;
 
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
+
 
     }// end of no filter
 
@@ -660,6 +678,12 @@ function updateChart() {
         impute_flag = false;
         no_impute_flag = false;
         both_flag = true;
+
+        var txtName = document.getElementById("txtName");
+
+        if(txtName.value){
+            highLight();
+        }
 
     }// end of imputed filter
 
