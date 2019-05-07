@@ -18,7 +18,6 @@ function highLight() {
             return "steelblue";}
     });
 
-
 }
 
 // Global functions called when select elements changed
@@ -231,6 +230,8 @@ var transitionScale = d3.transition()
 //****scatter plot
 function updateChart() {
 
+
+
     // console.log('upatechart');
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
@@ -246,10 +247,10 @@ function updateChart() {
     yScaleMax =yScale.domain().slice(-1)[0];
     yScaleMin =yScale.domain()[0];
     // Update the axes here first
-    xAxisG.transition()
+    var gX = xAxisG.transition()
         .duration(750) // Add transition
         .call(d3.axisBottom(xScale));
-    yAxisG.transition()
+    var gY = yAxisG.transition()
         .duration(750) // Add transition
         .call(d3.axisLeft(yScale));
 
@@ -307,11 +308,29 @@ function updateChart() {
     std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
+
+    //here added
+    // Add a clipPath: everything out of this area won't be drawn.
+    // create a clipping region
+    chartG.append("defs").append("clipPath")
+        .attr("id", "clip")
+        .append("rect")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight);
+
+    // Create the scatter variable: where both the circles and the brush take place
+
+
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
+        .attr("clip-path", "url(#clip)")
         .data(whiskey);
     // .data(noimpute_data);
+
+    // this is added
+
+
 
     // dots.exit().remove();
 
@@ -448,6 +467,8 @@ function updateChart() {
 
     // restart_animation();
     redraw_animation();
+
+
 
 
     if(impute_flag === true){
@@ -662,6 +683,41 @@ function updateChart() {
         both_flag = true;
 
     }// end of imputed filter
+
+
+    //here is the jitter
+    // Pan and zoom
+    var zoom = d3.zoom()
+        .scaleExtent([.5, 20])
+        .extent([[0, 0], [chartWidth, chartHeight]])
+        .on("zoom", zoomed);
+
+    chartG.append("rect")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight)
+        .style("fill", "none")
+        .style("pointer-events", "all")
+        // .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .call(zoom);
+
+    function zoomed() {
+    // create new scale ojects based on event
+        var new_xScale = d3.event.transform.rescaleX(xScale);
+        var new_yScale = d3.event.transform.rescaleY(yScale);
+    // update axes
+        gX.call(xAxisG.scale(new_xScale));
+        gY.call(yAxisG.scale(new_yScale));
+        points.data(data)
+            .attr('cx', function(d) {return new_xScale(d[chartScales.x])})
+            .attr('cy', function(d) {return new_yScale(d[chartScales.y])});
+    }
+
+
+
+
+
+
+
 
 
 

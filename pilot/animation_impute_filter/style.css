@@ -286,6 +286,17 @@ div.tooltip {
     pointer-events: none;
 }
 
+#controls {
+    font-size: 14px;
+    position: absolute;
+    top: 120px;
+    left: 810px;
+}
+
+input {
+    margin: 4px 4px 0;
+}
+
 
 
 /*div.tooltip {*/

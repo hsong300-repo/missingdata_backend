@@ -1,3 +1,4 @@
+
 // Remember code outside of the data callback function will run before the data loads
 var rowToHtml = function( row ) {
     var result = "";
@@ -44,26 +45,6 @@ var previewCsvUrl = function( csvUrl ) {
             // Create global variables here
             whiskey = dataset;
 
-            // ***autocomplete goes here***
-            global_wiskey_data =  whiskey;
-
-            // generate a list of genes for auto complete
-            //// get all data whiskey
-            all_whiskey = [];
-
-            //loop through row_nodes
-            for (i=0; i<dataset.length; i++){
-                all_whiskey.push( dataset[i]['Brand'] );
-            };
-
-            // use Jquery autocomplete
-            ////////////////////////////////
-            $( "#gene_search_box" ).autocomplete({
-                source: all_whiskey
-            });
-
-            //*** auto complete ends here
-
             // Create scales and other functions here
             xScale = d3.scaleLinear()
                 .range([0, chartWidth]);
@@ -107,6 +88,10 @@ var previewCsvUrl = function( csvUrl ) {
                 // make_bar(data);
                 make_bar(random_data,global_data, knn_data);
 
+
+
+
+
             });
         });
     });
@@ -141,6 +126,8 @@ var previewCsvUrl = function( csvUrl ) {
             data = global_data;
         }
 
+
+
         // filter value
         // Get every column value
         var elements = Object.keys(data[0])
@@ -159,6 +146,8 @@ var previewCsvUrl = function( csvUrl ) {
             temp="abv"
         }
         var concat_selection = temp.concat("_impute");
+
+
 
         var avg = d3.nest()
         // var avg = d3.nest()
@@ -1282,275 +1271,7 @@ d3.select("#cRight")
 
 
 
-// Initialize with csv file from server, this is the deafult
-// previewCsvUrl("./whiskey.csv");
-
-// d3.selectAll(("input[value='bar_mean']")).on("change", function() {
-//     if(typeof canvas === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         console.log('canvas defined');
-//         // selector.remove().exit();
-//         canvas.remove().exit();
-//     }if(typeof selector === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         selector.remove().exit();
-//     }
-//     if(typeof dots === 'undefined'){  //scatter
-//         console.log('canvas undefined');
-//     }else{
-//         console.log('canvas defined');
-//         dots.remove().exit();
-//         dotsEnter.remove().exit();
-//         // dots_chart.remove().exit();
-//
-//
-//     }if(typeof dots_chart === 'undefined'){ // bars
-//     }else{
-//         dots_chart.remove().exit(); //remove some of the encodings
-//     }
-//     if(typeof dots_chart_line === 'undefined'){ // bars
-//     }else{
-//         dots_chart_line.remove().exit();
-//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else {
-//         dots_chart_line_y.remove().exit();
-//         // dots_remove.remove().exit();
-//     }if(typeof dots_chart_x === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_x.remove().exit(); //remove some of the encodings
-//     }if(typeof dots_chart_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_y.remove().exit(); //remove some of the encodings
-//     }
-//     // result = runPyScript(datatosend);
-//
-//     previewCsvUrl("./new_data/whiskey_global.csv");
-// });
-//
-// d3.selectAll(("input[value='bar_knn']")).on("change", function() {
-//     if(typeof canvas === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         console.log('canvas defined');
-//         selector.remove().exit();
-//         canvas.remove().exit();
-//     } if(typeof selector === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         selector.remove().exit();
-//     }
-//     if(typeof dots === 'undefined'){  //scatter
-//         console.log('canvas undefined');
-//     }else{
-//         console.log('canvas defined');
-//         dots.remove().exit();
-//         dotsEnter.remove().exit();
-//         // dots_chart.remove().exit();
-//     }if(typeof dots_chart === 'undefined'){ // bars
-//     }else{
-//         dots_chart.remove().exit(); //remove some of the encodings
-//     }
-//     if(typeof dots_chart_line === 'undefined'){ // bars
-//     }else{
-//         dots_chart_line.remove().exit();
-//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else {
-//         dots_chart_line_y.remove().exit();
-//         // dots_remove.remove().exit();
-//     }if(typeof dots_chart_x === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_x.remove().exit(); //remove some of the encodings
-//     }if(typeof dots_chart_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_y.remove().exit(); //remove some of the encodings
-//     }
-//     previewCsvUrl("./new_data/whiskey_knn.csv");
-// });
-//
-// d3.selectAll(("input[value='bar_random']")).on("change", function() {
-//     if(typeof canvas === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         // selector.remove().exit();
-//         canvas.remove().exit();
-//     }if(typeof selector === 'undefined'){
-//         console.log('canvas undefined');
-//     }else{
-//         selector.remove().exit();
-//     }
-//
-//     if(typeof dots === 'undefined'){  //scatter
-//         console.log('canvas undefined');
-//     }else{
-//         dots.remove().exit();
-//         dotsEnter.remove().exit();
-//         // dots_chart.remove().exit();
-//     }if(typeof dots_chart === 'undefined'){ // bars
-//     }else{
-//         dots_chart.remove().exit(); //remove some of the encodings
-//     }
-//     if(typeof dots_chart_line === 'undefined'){ // bars
-//     }else{
-//         dots_chart_line.remove().exit();
-//     }if(typeof dots_chart_line_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else {
-//         dots_chart_line_y.remove().exit();
-//         // dots_remove.remove().exit();
-//     }if(typeof dots_chart_x === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_x.remove().exit(); //remove some of the encodings
-//     }if(typeof dots_chart_y === 'undefined'){ // bars
-//         console.log('dotschart undefined');
-//     }else{
-//         dots_chart_y.remove().exit(); //remove some of the encodings
-//     }
-//     previewCsvUrl("./new_data/whiskey_random.csv");
-// });
-
-d3.selectAll(("input[value='scatter_mean']")).on("change", function() {
-    if(typeof canvas === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        // selector.remove().exit();
-        canvas.remove().exit();
-    }if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }if(typeof dots_chart_x === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_x.remove().exit(); //remove some of the encodings
-    }if(typeof dots_chart_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_y.remove().exit(); //remove some of the encodings
-    }
-    previewCsvUrl("./new_data/whiskey_global.csv");
-});
-
-d3.selectAll(("input[value='scatter_knn']")).on("change", function() {
-    if(typeof canvas === 'undefined'){ // bars
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        // selector.remove().exit();
-        canvas.remove().exit();
-    }if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }if(typeof dots_chart_x === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_x.remove().exit(); //remove some of the encodings
-    }if(typeof dots_chart_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_y.remove().exit(); //remove some of the encodings
-    }
-
-    console.log('call knn for scatter');
-    previewCsvUrl("./new_data/whiskey_knn.csv");
-});
-
-d3.selectAll(("input[value='scatter_random']")).on("change", function() {
-    if(typeof canvas === 'undefined'){ // bars
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        // selector.remove().exit();
-        canvas.remove().exit();
-    }if(typeof selector === 'undefined'){
-        console.log('canvas undefined');
-    }else{
-        selector.remove().exit();
-    }
-
-    if(typeof dots === 'undefined'){  //scatter
-        console.log('canvas undefined');
-    }else{
-        console.log('canvas defined');
-        dots.remove().exit();
-        dotsEnter.remove().exit();
-        // dots_chart.remove().exit();
-    }if(typeof dots_chart === 'undefined'){ // bars
-    }else{
-        dots_chart.remove().exit(); //remove some of the encodings
-    }
-    if(typeof dots_chart_line === 'undefined'){ // bars
-    }else{
-        dots_chart_line.remove().exit();
-    }if(typeof dots_chart_line_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else {
-        dots_chart_line_y.remove().exit();
-        // dots_remove.remove().exit();
-    }if(typeof dots_chart_x === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_x.remove().exit(); //remove some of the encodings
-    }if(typeof dots_chart_y === 'undefined'){ // bars
-        console.log('dotschart undefined');
-    }else{
-        dots_chart_y.remove().exit(); //remove some of the encodings
-    }
-
-    previewCsvUrl("./new_data/whiskey_random.csv");
-});
-
+// previewCsvUrl("./static/new_data/whiskey_random.csv");
 previewCsvUrl("./new_data/whiskey_knn_customized.csv");
 
 
