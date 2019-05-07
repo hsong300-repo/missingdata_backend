@@ -45,6 +45,26 @@ var previewCsvUrl = function( csvUrl ) {
             // Create global variables here
             whiskey = dataset;
 
+            // ***autocomplete goes here***
+            global_wiskey_data =  whiskey;
+
+            // generate a list of genes for auto complete
+            //// get all data whiskey
+            all_whiskey = [];
+
+            //loop through row_nodes
+            for (i=0; i<dataset.length; i++){
+                all_whiskey.push( dataset[i]['Brand'] );
+            };
+
+            // use Jquery autocomplete
+            ////////////////////////////////
+            $( "#gene_search_box" ).autocomplete({
+                source: all_whiskey
+            });
+
+            //*** auto complete ends here
+
             // Create scales and other functions here
             xScale = d3.scaleLinear()
                 .range([0, chartWidth]);

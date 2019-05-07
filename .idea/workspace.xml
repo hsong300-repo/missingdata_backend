@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pilot/ticks/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pilot/ticks/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pilot/ticks/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/scatter.js" afterDir="false" />
-    </list>
+    <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +32,7 @@
           <entry key="csv" value="31" />
           <entry key="gitmodules" value="1" />
           <entry key="html" value="35" />
-          <entry key="js" value="65" />
+          <entry key="js" value="66" />
           <entry key="py" value="21" />
           <entry key="ts" value="1" />
           <entry key="txt" value="8" />
@@ -47,7 +42,7 @@
         <counts>
           <entry key="CSS" value="23" />
           <entry key="HTML" value="35" />
-          <entry key="JavaScript" value="65" />
+          <entry key="JavaScript" value="66" />
           <entry key="PLAIN_TEXT" value="50" />
           <entry key="Python" value="13" />
           <entry key="TypeScript" value="1" />
@@ -58,7 +53,7 @@
           <entry key="Procfile" value="22" />
           <entry key="css" value="455" />
           <entry key="html" value="2154" />
-          <entry key="js" value="22824" />
+          <entry key="js" value="22826" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
@@ -67,7 +62,7 @@
         <counts>
           <entry key="CSS" value="455" />
           <entry key="HTML" value="2154" />
-          <entry key="JavaScript" value="22824" />
+          <entry key="JavaScript" value="22826" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -79,8 +74,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="55" column="41" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
+            <state relative-caret-position="433">
+              <caret line="64" column="41" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="64" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pilot/ticks/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -132,27 +136,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/animation/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tutorial/error/new_data/whiskey_knn_customized.csv">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="22" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="22" />
+            <state relative-caret-position="495">
+              <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -219,8 +211,8 @@
       <find>xscale</find>
       <find>csv</find>
       <find>gene_sear</find>
-      <find>txtname</find>
       <find>highlight</find>
+      <find>txtname</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -232,7 +224,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/demo/RUN.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/app/python-getting-started/Procfile" />
         <option value="$PROJECT_DIR$/app/static/style.css" />
@@ -283,6 +274,7 @@
         <option value="$PROJECT_DIR$/pilot/error/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/scatter.js" />
+        <option value="$PROJECT_DIR$/pilot/ticks/main.js" />
       </list>
     </option>
   </component>
@@ -318,13 +310,7 @@
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
               <item name="pilot" type="462c0819:PsiDirectoryNode" />
-              <item name="error" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="pilot" type="462c0819:PsiDirectoryNode" />
-              <item name="ticks" type="462c0819:PsiDirectoryNode" />
+              <item name="animation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -421,17 +407,17 @@
       <workItem from="1556138107309" duration="237000" />
       <workItem from="1557191310296" duration="661000" />
       <workItem from="1557192381731" duration="1891000" />
-      <workItem from="1557195579258" duration="989000" />
+      <workItem from="1557195579258" duration="1316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182373000" />
+    <option name="totallyTimeSpent" value="182700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.14235377" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.14235377" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -445,7 +431,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2253012" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2253012" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -461,9 +447,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Encoding/error/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Encoding/ticks/new_data/whiskey_knn_customized.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -721,10 +704,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="55" column="41" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
+        <state relative-caret-position="198">
+          <caret line="4752" column="4" selection-start-line="4752" selection-start-column="4" selection-end-line="4752" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -741,23 +737,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+    <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="4752" column="4" selection-start-line="4752" selection-start-column="4" selection-end-line="4752" selection-end-column="4" />
+        <state relative-caret-position="433">
+          <caret line="64" column="41" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="64" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="735">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
