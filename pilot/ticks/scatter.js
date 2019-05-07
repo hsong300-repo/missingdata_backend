@@ -1,12 +1,15 @@
 var circles;
 
-d3.select("#txtName").on("change paste keyup", function() {
+d3.select("#gene_search_box").on("change paste keyup", function() {
+// d3.select("#txtName").on("change paste keyup", function() {
     highLight();
 
 });
 
 function highLight() {
-    var txtName = document.getElementById("txtName");
+    // var txtName = document.getElementById("txtName");
+    var txtName = document.getElementById("gene_search_box");
+
     // circles = svg.selectAll("circle");
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
@@ -20,7 +23,6 @@ function highLight() {
 
 
 }
-
 // Global functions called when select elements changed
 function onXScaleChanged() {
     var select = d3.select('#xScaleSelect').node();
@@ -275,7 +277,9 @@ function updateChart() {
 
     redraw_ticks_on();
 
-    var txtName = document.getElementById("txtName");
+    // var txtName = document.getElementById("txtName");
+    var txtName = document.getElementById("gene_search_box");
+
 
     if(txtName.value){
         highLight();
@@ -382,7 +386,9 @@ function updateChart() {
 
         redraw_ticks_on();
 
-        var txtName = document.getElementById("txtName");
+        // var txtName = document.getElementById("txtName");
+        var txtName = document.getElementById("gene_search_box");
+
 
         if(txtName.value){
             highLight();
@@ -418,7 +424,9 @@ function updateChart() {
         no_impute_flag = true;
         both_flag = false;
 
-        var txtName = document.getElementById("txtName");
+        // var txtName = document.getElementById("txtName");
+        var txtName = document.getElementById("gene_search_box");
+
 
         if(txtName.value){
             highLight();
@@ -453,7 +461,9 @@ function updateChart() {
 
         redraw_ticks_on();
 
-        var txtName = document.getElementById("txtName");
+        // var txtName = document.getElementById("txtName");
+        var txtName = document.getElementById("gene_search_box");
+
 
         if(txtName.value){
             highLight();
