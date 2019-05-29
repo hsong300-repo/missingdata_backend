@@ -72,7 +72,8 @@ var chartG = svg.append('g')
     .attr('transform', 'translate('+[padding.l, padding.t]+')');
 
 var xAxisG = chartG.append('g')
-    .attr('class', 'x axis')
+    .attr('class', 'x-axis')
+    // .attr('class', 'x axis')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')

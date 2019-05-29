@@ -1,0 +1,24 @@
+Name,Rating,Country,Category,Price,ABV,Age,Brand,rate_impute,price_impute,abv_impute,age_impute
+Tyrconnell 10 Year Old Single Malt Madeira Cask Finish Irish Whiskey,100,Ireland,Single Malt,72,46,10,Tyrconnell 10,0,1,0,0
+Macallan 21 Year Old Fine Oak Scotch Whisky,100,Scotland,Speyside,220,43,21,Macallan,0,0,0,0
+Thomas H. Handy Kentucky Straight Rye Whiskey,99,USA,Rye,67,66.4,6,Thomas H. Handy,0,1,0,0
+Rebel Yell Kentucky Straight Bourbon Whiskey,99,USA,Bourbon,11,41.74035086,8,Rebel Yell,1,0,0,0
+Glenmorangie 12 Year Old Single Malt Scotch,95,Scotland,Highlands,55,46,12,Glenmorangie,0,0,0,0
+Bowmore 25 Year Old Scotch,94,Scotland,Islay,190,43,25,Bowmore 25,0,0,0,0
+Michael Collins 10 Year Old Single Malt Irish Whiskey,93,Ireland,Single Malt,39,40.00000104,10,Michael Collins,0,0,1,0
+Glenfiddich 21 Year Old Single Malt Scotch,93,Scotland,Speyside,133,40,21,Glenfiddich 21,0,0,0,0
+Glenrothes 1975 Single Malt Scotch,91,Scotland,Speyside,400,43,31,Glenrothes 31,0,0,0,1
+Jefferson's Presidential Select,90.60999724,USA,Bourbon,90,47,17,Jefferson 17,1,0,0,0
+Aberlour A'Bunadh Batch 21 Scotch,90,Scotland,Speyside,63,59.5,21,Aberlour 21,0,0,0,0
+Highland Park 25-Year-Old Orkney Islands Single Malt Whisky,90,Scotland,Islands,240,48.1,25,Highland Park 25,0,0,0,0
+Connemara Cask Strength Peated Single Malt Irish Whiskey,78,Ireland,Single Malt,65,58,16.91635177,Connemara,0,0,0,0
+Sazerac 18 Year Old Kentucky Straight Rye Whiskey,78,USA,Rye,75,45,18,Sazerac,0,0,0,0
+Wild Turkey Bourbon 101,77,USA,Bourbon,20,50,8,Wild Turkey 8,0,0,0,0
+Michael Collins Blended Irish Whiskey,77,Ireland,Blended,28,40,12,Michael Collins 12,0,1,0,0
+Johnnie Walker Black Label Scotch Whisky,70,Scotland,Blended,45,43,12,Johnnie Walker 12,0,0,0,1
+Famous Grouse Blended Scotch Whisky,69,Scotland,Blended,20,40,1,Famous Grouse,0,0,0,0
+Sazerac Kentucky Straight Rye Whiskey,69,USA,Rye,27,39.99999898,6,Sazerac 6,0,0,1,0
+Ellington Canadian Whisky,54,Canada,Blended,11,40,1,Ellington,0,0,0,0
+Jack Daniel's No. 7 Whiskey,54,USA,Blended,20,40,7,Jack Daniel's,0,0,0,1
+Canadian Club 6 Year Old Canadian Whisky,53,Canada,Blended,12,43.24589803,6,Canadian Club 6,0,0,1,0
+McAdams Canadian Whisky,40,Canada,Blended,8,40,1,McAdams,1,0,0,0

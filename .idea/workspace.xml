@@ -1,7 +1,225 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="" />
+    <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jitter/animation_jitter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/jitter/data.tsv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/jitter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pilot/zoom/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tutorial/ticks_auto/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation_jitter/data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/animation_jitter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/error_jitter/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/jitter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/button_img/bar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/button_img/scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/histogram.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/sales.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/histogram/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/color.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/d3.sketchy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/errorbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/gradient.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/local.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/shape.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/sketchy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/scatter/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/test_bar/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/test_bar/whiskey-test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/test_bar/whiskey.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v3/ticks/whiskey_knn_customized.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/ticks/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/ticks/scatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/zoom/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/zoom/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/zoom/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/zoom/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial/ticks/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/ticks/scatter.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,38 +230,39 @@
     <session id="-228540039">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="40" />
+          <entry key="project.closed" value="44" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="9" />
           <entry key="project.open.time.2" value="9" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="6" />
-          <entry key="project.open.time.7" value="6" />
+          <entry key="project.open.time.7" value="9" />
           <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="40" />
+          <entry key="project.opened" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Procfile" value="2" />
-          <entry key="css" value="23" />
-          <entry key="csv" value="31" />
+          <entry key="css" value="28" />
+          <entry key="csv" value="35" />
           <entry key="gitmodules" value="1" />
-          <entry key="html" value="35" />
-          <entry key="js" value="66" />
-          <entry key="py" value="21" />
+          <entry key="html" value="46" />
+          <entry key="js" value="84" />
+          <entry key="py" value="28" />
           <entry key="ts" value="1" />
+          <entry key="tsv" value="1" />
           <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="23" />
-          <entry key="HTML" value="35" />
-          <entry key="JavaScript" value="66" />
-          <entry key="PLAIN_TEXT" value="50" />
+          <entry key="CSS" value="28" />
+          <entry key="HTML" value="46" />
+          <entry key="JavaScript" value="84" />
+          <entry key="PLAIN_TEXT" value="62" />
           <entry key="Python" value="13" />
           <entry key="TypeScript" value="1" />
         </counts>
@@ -51,18 +270,18 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Procfile" value="22" />
-          <entry key="css" value="455" />
-          <entry key="html" value="2154" />
-          <entry key="js" value="22826" />
+          <entry key="css" value="500" />
+          <entry key="html" value="2246" />
+          <entry key="js" value="23310" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="455" />
-          <entry key="HTML" value="2154" />
-          <entry key="JavaScript" value="22826" />
+          <entry key="CSS" value="500" />
+          <entry key="HTML" value="2246" />
+          <entry key="JavaScript" value="23310" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -72,101 +291,104 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
+        <entry file="file://$PROJECT_DIR$/tutorial/ticks/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="64" column="41" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="64" selection-end-column="41" />
+            <state relative-caret-position="431">
+              <caret line="1545" column="33" selection-start-line="1545" selection-end-line="1546" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_knn.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="29" column="71" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v3/animation_jitter/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/main.js">
+        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="120" lean-forward="true" selection-start-line="109" selection-end-line="120" />
+            <state relative-caret-position="120">
+              <caret line="263" column="45" lean-forward="true" selection-start-line="263" selection-start-column="45" selection-end-line="263" selection-end-column="45" />
               <folding>
-                <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/custom.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="317" column="49" selection-start-line="317" selection-end-line="318" />
-              <folding>
+                <element signature="e#80#164#0" />
+                <element signature="n#!!block;n#highLight#0" />
+                <element signature="n#!!block;n#onXScaleChanged#0" />
+                <element signature="n#!!block;n#onYScaleChanged#0" />
+                <element signature="n#!!block;n#repeat_x#0;n#!!block;n#restart_animation#0" />
+                <element signature="n#!!block;n#repeat_y#0;n#!!block;n#restart_animation#0" />
+                <element signature="n#!!block;n#repeat_xy#0;n#!!block;n#restart_animation#0" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+                <element signature="e#21208#22176#0" />
+                <element signature="e#22234#22891#0" />
+                <element signature="e#22939#23882#0" />
+                <marker date="1559149187331" expanded="true" signature="8693:9278" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="119" selection-start-line="119" selection-end-line="119" />
-              <folding>
-                <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tutorial/error/new_data/whiskey_knn_customized.csv">
+        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/custom.css">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-874">
+              <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="4752" column="4" selection-start-line="4752" selection-start-column="4" selection-end-line="4752" selection-end-column="4" />
+            <state relative-caret-position="189">
+              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tutorial/ticks/new_data/whiskey_knn_customized.csv">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/v3/error/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-117" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v3/animation_jitter/data.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4107">
+              <caret line="274" column="90" selection-start-line="274" selection-start-column="90" selection-end-line="274" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v3/error/new_data/whiskey_knn_customized.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="274" selection-end-column="90" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -176,43 +398,43 @@
       <list>
         <option value="Python Script" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>label</find>
-      <find>console</find>
-      <find>no_impute</find>
-      <find>restart_animation</find>
-      <find>tooltip</find>
-      <find>fill</find>
-      <find>animation</find>
-      <find>oncli</find>
-      <find>hover</find>
-      <find>mousemove</find>
-      <find>opacity</find>
-      <find>brand</find>
-      <find>drawsca</find>
-      <find>text</find>
-      <find>drawscat</find>
-      <find>circle</find>
-      <find>table</find>
-      <find>radio</find>
-      <find>inline</find>
-      <find>float</find>
-      <find>restart</find>
-      <find>#</find>
-      <find>margin</find>
-      <find>rescalex</find>
-      <find>svg</find>
-      <find>xscale</find>
-      <find>csv</find>
       <find>gene_sear</find>
       <find>highlight</find>
       <find>txtname</find>
+      <find>txt</find>
+      <find>txtN</find>
+      <find>d3</find>
+      <find>sca</find>
+      <find>axis</find>
+      <find>chartWidth</find>
+      <find>svg</find>
+      <find>node</find>
+      <find>g</find>
+      <find>tick</find>
+      <find>.append(&quot;g&quot;)</find>
+      <find>append(&quot;g&quot;)</find>
+      <find>append</find>
+      <find>appen</find>
+      <find>y axis</find>
+      <find>opacity</find>
+      <find>y</find>
+      <find>xaxis</find>
+      <find>radius</find>
+      <find>range</find>
+      <find>rowtohtml</find>
+      <find>impute_flag</find>
+      <find>filtered_data</find>
+      <find>filtered_xy</find>
+      <find>filtered_x</find>
+      <find>noimpute_data</find>
+      <find>std_x</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -224,26 +446,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/app/python-getting-started/Procfile" />
-        <option value="$PROJECT_DIR$/app/static/style.css" />
-        <option value="$PROJECT_DIR$/app/templates/index.html" />
-        <option value="$PROJECT_DIR$/prototype/app.py" />
-        <option value="$PROJECT_DIR$/app/app.py" />
-        <option value="$PROJECT_DIR$/data_analysis.py" />
-        <option value="$PROJECT_DIR$/prototype/templates/view.js" />
-        <option value="$PROJECT_DIR$/prototype/templates/index.html" />
-        <option value="$PROJECT_DIR$/prototype/templates/style.css" />
-        <option value="$PROJECT_DIR$/prototype/templates/main.js" />
-        <option value="$PROJECT_DIR$/Encoding/error/bar.js" />
-        <option value="$PROJECT_DIR$/Encoding/animation/main.js" />
-        <option value="$PROJECT_DIR$/Encoding/ticks/main.js" />
-        <option value="$PROJECT_DIR$/Encoding/error/main.js" />
-        <option value="$PROJECT_DIR$/Encoding/animation/scatter.js" />
-        <option value="$PROJECT_DIR$/Encoding/animation/index.html" />
-        <option value="$PROJECT_DIR$/Encoding/animation_filter/index.html" />
-        <option value="$PROJECT_DIR$/Encoding/animation_filter/scatter.js" />
-        <option value="$PROJECT_DIR$/Encoding/animation_filter/rangeFilter.js" />
         <option value="$PROJECT_DIR$/Encoding/animation_filter/slider.js" />
         <option value="$PROJECT_DIR$/Encoding/ticks/index.html" />
         <option value="$PROJECT_DIR$/Encoding/error/index.html" />
@@ -258,9 +460,6 @@
         <option value="$PROJECT_DIR$/pilot/ticks/style.css" />
         <option value="$PROJECT_DIR$/tutorial/error/scatter.js" />
         <option value="$PROJECT_DIR$/tutorial/animation/scatter.js" />
-        <option value="$PROJECT_DIR$/tutorial/ticks/scatter.js" />
-        <option value="$PROJECT_DIR$/pilot/animation/scatter.js" />
-        <option value="$PROJECT_DIR$/pilot/animation/index.html" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/style.css" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/jitter.js" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/index.html" />
@@ -273,8 +472,31 @@
         <option value="$PROJECT_DIR$/pilot/error/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/error/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/index.html" />
-        <option value="$PROJECT_DIR$/pilot/ticks/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/ticks/main.js" />
+        <option value="$PROJECT_DIR$/pilot/animation/main.js" />
+        <option value="$PROJECT_DIR$/pilot/animation/scatter.js" />
+        <option value="$PROJECT_DIR$/pilot/animation/index.html" />
+        <option value="$PROJECT_DIR$/pilot/zoom/main.js" />
+        <option value="$PROJECT_DIR$/pilot/zoom/scatter.js" />
+        <option value="$PROJECT_DIR$/pilot/jitter/data.tsv" />
+        <option value="$PROJECT_DIR$/pilot/jitter/index.html" />
+        <option value="$PROJECT_DIR$/v3/animation/index.html" />
+        <option value="$PROJECT_DIR$/v3/error/index.html" />
+        <option value="$PROJECT_DIR$/v3/ticks/index.html" />
+        <option value="$PROJECT_DIR$/v3/error_jitter/style.css" />
+        <option value="$PROJECT_DIR$/v3/error_jitter/main.js" />
+        <option value="$PROJECT_DIR$/v3/error_jitter/scatter.js" />
+        <option value="$PROJECT_DIR$/v3/ticks/main.js" />
+        <option value="$PROJECT_DIR$/pilot/ticks/scatter.js" />
+        <option value="$PROJECT_DIR$/v3/ticks/style.css" />
+        <option value="$PROJECT_DIR$/v3/ticks/scatter.js" />
+        <option value="$PROJECT_DIR$/v3/jitter/index.html" />
+        <option value="$PROJECT_DIR$/tutorial/ticks/scatter.js" />
+        <option value="$PROJECT_DIR$/tutorial/ticks_auto/main.js" />
+        <option value="$PROJECT_DIR$/v3/animation_jitter/data.csv" />
+        <option value="$PROJECT_DIR$/v3/animation_jitter/index.html" />
+        <option value="$PROJECT_DIR$/jitter/animation_jitter/main.js" />
+        <option value="$PROJECT_DIR$/jitter/animation_jitter/scatter.js" />
       </list>
     </option>
   </component>
@@ -285,7 +507,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
+    <option name="x" value="730" />
+    <option name="width" value="710" />
     <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -294,6 +517,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -304,19 +528,23 @@
             <path>
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="jitter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="pilot" type="462c0819:PsiDirectoryNode" />
-              <item name="animation" type="462c0819:PsiDirectoryNode" />
+              <item name="jitter" type="462c0819:PsiDirectoryNode" />
+              <item name="animation_jitter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="v3" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,11 +560,11 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/pilot/ticks" />
+      <recent name="$PROJECT_DIR$/jitter" />
+      <recent name="$PROJECT_DIR$/v3" />
+      <recent name="$PROJECT_DIR$/tutorial/ticks_auto" />
+      <recent name="$PROJECT_DIR$/tutorial/ticks_auto/new_data" />
       <recent name="$PROJECT_DIR$/pilot/zoom" />
-      <recent name="$PROJECT_DIR$/tutorial/ticks/new_data" />
-      <recent name="$PROJECT_DIR$/tutorial/error/new_data" />
-      <recent name="$PROJECT_DIR$/tutorial/animation/new_data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -407,21 +635,26 @@
       <workItem from="1556138107309" duration="237000" />
       <workItem from="1557191310296" duration="661000" />
       <workItem from="1557192381731" duration="1891000" />
-      <workItem from="1557195579258" duration="1316000" />
+      <workItem from="1557195579258" duration="2745000" />
+      <workItem from="1558211957518" duration="1473000" />
+      <workItem from="1558368022254" duration="280000" />
+      <workItem from="1558625526084" duration="1316000" />
+      <workItem from="1558727676137" duration="7629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182700000" />
+    <option name="totallyTimeSpent" value="194827000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="730" y="0" width="710" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.14235377" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.12772134" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32871288" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32771084" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -439,6 +672,29 @@
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.14235377" />
+      <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32771084" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2253012" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -447,208 +703,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Encoding/ticks/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="93" lean-forward="true" selection-start-line="19" selection-start-column="93" selection-end-line="19" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/error/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="53" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/ticks/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/error/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2760">
-          <caret line="184" column="29" selection-start-line="184" selection-start-column="24" selection-end-line="184" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_filter/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="119" column="45" selection-start-line="119" selection-start-column="45" selection-end-line="119" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_impute_filter/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4275">
-          <caret line="285" selection-start-line="285" selection-end-line="285" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/error/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4275">
-          <caret line="285" selection-start-line="285" selection-end-line="285" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_filter/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4275">
-          <caret line="285" selection-start-line="285" selection-end-line="285" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_impute_filter/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/ticks/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4725">
-          <caret line="315" column="30" selection-start-line="315" selection-start-column="30" selection-end-line="315" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_impute_filter/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3230">
-          <caret line="382" column="14" selection-start-line="377" selection-start-column="7" selection-end-line="382" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_impute_filter/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18500" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/app.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/view.js" />
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4215">
-          <caret line="281" column="26" lean-forward="true" selection-start-line="281" selection-start-column="26" selection-end-line="281" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/error/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="103" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="93" selection-start-line="16" selection-start-column="93" selection-end-line="16" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Encoding/animation_impute_filter/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="39" column="62" selection-start-line="39" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/animation/app.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/animation/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18500" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/animation/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-305" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/error/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/animation/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10275">
-          <caret line="685" column="9" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/error/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/error/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7800">
-          <caret line="520" column="9" lean-forward="true" selection-start-line="516" selection-start-column="7" selection-end-line="520" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/ticks/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6885">
-          <caret line="459" column="9" selection-start-line="459" selection-start-column="9" selection-end-line="459" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tutorial/animation/new_data/whiskey_knn_customized.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/jitter.js" />
-    <entry file="file://$PROJECT_DIR$/pilot/animation/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10275">
-          <caret line="685" column="9" selection-start-line="685" selection-start-column="9" selection-end-line="685" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/zoom/indx.html" />
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4470">
-          <caret line="298" selection-start-line="298" selection-end-line="298" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/zoom/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" column="19" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1290">
-          <caret line="99" column="56" selection-start-line="99" selection-start-column="56" selection-end-line="99" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8700">
-          <caret line="709" column="25" selection-start-line="709" selection-start-column="25" selection-end-line="709" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/zoom/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation_impute_filter/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="101" column="18" lean-forward="true" selection-start-line="101" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pilot/error/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4545">
@@ -663,46 +717,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tutorial/error/new_data/whiskey_knn_customized.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tutorial/ticks/new_data/whiskey_knn_customized.csv">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/custom.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="120" lean-forward="true" selection-start-line="109" selection-end-line="120" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -711,23 +730,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
+    <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="960">
+          <caret line="64" column="41" selection-start-line="46" selection-start-column="11" selection-end-line="64" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/animation/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="41" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
+        <state relative-caret-position="4755">
           <caret line="317" column="49" selection-start-line="317" selection-end-line="318" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/animation/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6945">
+          <caret line="463" column="29" selection-start-line="463" selection-start-column="29" selection-end-line="463" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/custom.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/zoom/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/animation/custom.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/zoom/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4455">
+          <caret line="313" column="150" selection-start-line="313" selection-start-column="146" selection-end-line="313" selection-end-column="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/animation/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="356" selection-start-line="92" selection-start-column="354" selection-end-line="92" selection-end-column="356" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-514">
+          <caret line="56" column="56" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="85" selection-start-line="85" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/jitter/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1410">
+          <caret line="94" column="23" selection-start-line="94" selection-start-column="23" selection-end-line="94" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/animation/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/animation/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" column="39" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" column="35" selection-start-line="106" selection-start-column="35" selection-end-line="106" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/ticks/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/jitter/data.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="150" column="25" selection-start-line="150" selection-start-column="25" selection-end-line="150" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error_jitter/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error_jitter/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="314" column="1" selection-start-line="314" selection-start-column="1" selection-end-line="314" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error_jitter/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error_jitter/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error_jitter/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1424">
+          <caret line="354" column="10" selection-start-line="354" selection-start-column="10" selection-end-line="354" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -737,17 +869,185 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="64" column="41" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="64" selection-end-column="41" />
+        <state relative-caret-position="-573">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/main.js">
+    <entry file="file://$PROJECT_DIR$/pilot/ticks/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="208">
+          <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/ticks/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="173" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/ticks/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/ticks/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1310">
+          <caret line="146" column="18" selection-start-line="146" selection-start-column="17" selection-end-line="146" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/ticks/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1351">
+          <caret line="122" column="32" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
+          <folding>
+            <element signature="e#2916#2946#0" />
+            <element signature="e#2974#3003#0" />
+            <element signature="e#3030#3060#0" />
+            <element signature="e#3085#3113#0" />
+            <element signature="e#3138#3168#0" />
+            <element signature="e#3196#3225#0" />
+            <element signature="e#3252#3282#0" />
+            <element signature="e#3307#3335#0" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/jitter/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="203" column="9" selection-start-line="203" selection-start-column="9" selection-end-line="203" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/ticks_auto/new_data/new_data/whiskey_knn.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/ticks/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/ticks_auto/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="424" selection-start-line="424" selection-end-line="424" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/ticks/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="1545" column="33" selection-start-line="1545" selection-end-line="1546" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/animation_jitter/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorial/ticks_auto/new_data/whiskey_knn.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="29" column="71" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error/new_data/whiskey_knn_customized.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="274" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/animation_jitter/data.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4107">
+          <caret line="274" column="90" selection-start-line="274" selection-start-column="90" selection-end-line="274" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/error/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/app.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v3/animation_jitter/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/custom.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-874">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="263" column="45" lean-forward="true" selection-start-line="263" selection-start-column="45" selection-end-line="263" selection-end-column="45" />
+          <folding>
+            <element signature="e#80#164#0" />
+            <element signature="n#!!block;n#highLight#0" />
+            <element signature="n#!!block;n#onXScaleChanged#0" />
+            <element signature="n#!!block;n#onYScaleChanged#0" />
+            <element signature="n#!!block;n#repeat_x#0;n#!!block;n#restart_animation#0" />
+            <element signature="n#!!block;n#repeat_y#0;n#!!block;n#restart_animation#0" />
+            <element signature="n#!!block;n#repeat_xy#0;n#!!block;n#restart_animation#0" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+            <element signature="e#21208#22176#0" />
+            <element signature="e#22234#22891#0" />
+            <element signature="e#22939#23882#0" />
+            <marker date="1559149187331" expanded="true" signature="8693:9278" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
