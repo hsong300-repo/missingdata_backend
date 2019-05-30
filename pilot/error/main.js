@@ -56,11 +56,21 @@ var previewCsvUrl = function( csvUrl ) {
                 all_whiskey.push( dataset[i]['Brand'] );
             };
 
+            all_whiskey.sort();
+
             // use Jquery autocomplete
             ////////////////////////////////
             $( "#gene_search_box" ).autocomplete({
                 source: all_whiskey
-            });
+            }).data("ui-autocomplete")._renderMenu = function (ul, items) {
+                var that = this;
+                var res = items.sort(function (a, b) {
+                    return new RegExp("^" + that.element.val(), "i").test(a.value) < new RegExp("^" + that.element.val(), "i").test(b.value) && 1
+                });
+                $.each(res, function (index, item) {
+                    that._renderItemData(ul, item);
+                });
+            };
 
             //*** auto complete ends here
 

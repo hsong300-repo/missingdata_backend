@@ -2,114 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/v3/animation_jitter_new/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/new_data/whiskey_global.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/new_data/whiskey_knn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/new_data/whiskey_knn_customized.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/new_data/whiskey_random.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/scatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/animation_zoom/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zoom/zoom/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jitter/animation_jitter/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/jitter/animation_jitter/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jitter/animation_jitter/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/jitter/animation_jitter/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jitter/animation_jitter/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/jitter/animation_jitter/scatter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jitter/animation_jitter/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/jitter/animation_jitter/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/button_img/bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/button_img/scatter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/histogram.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/sales.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/histogram/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/new_data/whiskey_global.csv" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/new_data/whiskey_global.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/new_data/whiskey_knn.csv" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/new_data/whiskey_knn.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/new_data/whiskey_knn_customized.csv" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/new_data/whiskey_knn_customized.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/new_data/whiskey_random.csv" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/new_data/whiskey_random.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/scatter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/color.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/d3.sketchy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/default.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/errorbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/gradient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/local.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/shape.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/sketchy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/scatter/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/test_bar/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/test_bar/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation/test_bar/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/animation_jitter/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/button_img/bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/button_img/scatter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/histogram.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/sales.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/histogram/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/new_data/whiskey_global.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/new_data/whiskey_knn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/new_data/whiskey_knn_customized.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/new_data/whiskey_random.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/color.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/d3.sketchy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/default.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/errorbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/gradient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/local.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/shape.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/sketchy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/scatter/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/test_bar/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/test_bar/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/error/test_bar/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/jitter/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/button_img/bar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/button_img/scatter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/histogram.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/sales.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/histogram/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_global.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_knn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_knn_customized.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/new_data/whiskey_random.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/color.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/d3.sketchy.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/default.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/errorbar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/gradient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/local.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/shape.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/sketchy.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/scatter/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/v3/animation_jitter_new/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/test_bar/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/test_bar/whiskey-test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/test_bar/whiskey.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v3/ticks/whiskey_knn_customized.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/animation/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/animation/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pilot/error/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pilot/error/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,11 +42,11 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Procfile" value="2" />
-          <entry key="css" value="31" />
-          <entry key="csv" value="37" />
+          <entry key="css" value="32" />
+          <entry key="csv" value="39" />
           <entry key="gitmodules" value="1" />
-          <entry key="html" value="49" />
-          <entry key="js" value="88" />
+          <entry key="html" value="50" />
+          <entry key="js" value="93" />
           <entry key="py" value="28" />
           <entry key="ts" value="1" />
           <entry key="tsv" value="1" />
@@ -150,10 +55,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="31" />
-          <entry key="HTML" value="49" />
-          <entry key="JavaScript" value="88" />
-          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="CSS" value="32" />
+          <entry key="HTML" value="50" />
+          <entry key="JavaScript" value="93" />
+          <entry key="PLAIN_TEXT" value="66" />
           <entry key="Python" value="13" />
           <entry key="TypeScript" value="1" />
         </counts>
@@ -163,7 +68,7 @@
           <entry key="Procfile" value="22" />
           <entry key="css" value="525" />
           <entry key="html" value="2383" />
-          <entry key="js" value="23505" />
+          <entry key="js" value="23906" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
@@ -172,7 +77,7 @@
         <counts>
           <entry key="CSS" value="525" />
           <entry key="HTML" value="2383" />
-          <entry key="JavaScript" value="23505" />
+          <entry key="JavaScript" value="23906" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -208,50 +113,56 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="303" column="23" lean-forward="true" selection-end-line="324" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="107" column="45" selection-start-line="107" selection-start-column="45" selection-end-line="107" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#rect#0;n#pattern#0;n#defs#0;n#svg#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#rect#1;n#pattern#0;n#defs#0;n#svg#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#rect#2;n#pattern#0;n#defs#0;n#svg#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#rect#3;n#pattern#0;n#defs#0;n#svg#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#rect#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="825">
               <caret line="55" column="24" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v3/animation_jitter_new/scatter.js">
+        <entry file="file://$PROJECT_DIR$/v3/animation_jitter/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="247" lean-forward="true" selection-start-line="247" selection-end-line="247" />
+            <state relative-caret-position="271">
+              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zoom/animation_zoom/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="656">
+              <caret line="80" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="80" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zoom/animation_zoom/scatter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="296" lean-forward="true" selection-start-line="296" selection-end-line="296" />
+              <folding>
+                <element signature="n#!!block;n#textProcess#0" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+                <element signature="n#!!block;n#redraw_animation#0;n#!!block;n#updateChart#0" />
+                <element signature="n#!!block;n#filter_impute#0;n#!!block;n#updateChart#0" />
+                <element signature="n#!!block;n#filter_no_impute#0;n#!!block;n#updateChart#0" />
+                <element signature="n#!!block;n#filter_both#0;n#!!block;n#updateChart#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -262,40 +173,27 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="72" column="14" lean-forward="true" selection-start-line="58" selection-start-column="11" selection-end-line="72" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/v3/animation_jitter/index.html">
+        <entry file="file://$PROJECT_DIR$/pilot/animation/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+            <state relative-caret-position="389">
+              <caret line="75" column="14" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v3/animation_jitter/data.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="274" column="90" selection-start-line="274" selection-start-column="90" selection-end-line="274" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v3/animation_jitter_new/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="69" column="15" lean-forward="true" selection-start-line="69" selection-start-column="15" selection-end-line="69" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v3/animation_jitter_new/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="107" column="35" lean-forward="true" selection-start-line="107" selection-start-column="35" selection-end-line="107" selection-end-column="35" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/pilot/error/new_data/whiskey_knn.csv">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -305,17 +203,13 @@
       <list>
         <option value="Python Script" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>axis</find>
-      <find>chartWidth</find>
-      <find>svg</find>
-      <find>g</find>
       <find>.append(&quot;g&quot;)</find>
       <find>append(&quot;g&quot;)</find>
       <find>append</find>
@@ -339,9 +233,13 @@
       <find>dataset</find>
       <find>v4</find>
       <find>filtered_data</find>
-      <find>d3.axisBottom(xScale)</find>
-      <find>sc</find>
       <find>nice</find>
+      <find>sc</find>
+      <find>div</find>
+      <find>scatter</find>
+      <find>zoom</find>
+      <find>clip</find>
+      <find>d3.axisBottom(xScale)</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -353,8 +251,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Encoding/error/scatter.js" />
-        <option value="$PROJECT_DIR$/Encoding/animation_impute_filter/index.html" />
         <option value="$PROJECT_DIR$/Encoding/animation_filter/style.css" />
         <option value="$PROJECT_DIR$/Encoding/animation_impute_filter/style.css" />
         <option value="$PROJECT_DIR$/Encoding/animation_impute_filter/scatter.js" />
@@ -367,14 +263,12 @@
         <option value="$PROJECT_DIR$/pilot/zoom/indx.html" />
         <option value="$PROJECT_DIR$/pilot/zoom/index.html" />
         <option value="$PROJECT_DIR$/pilot/animation_impute_filter/scatter.js" />
-        <option value="$PROJECT_DIR$/pilot/error/main.js" />
         <option value="$PROJECT_DIR$/pilot/error/custom.css" />
         <option value="$PROJECT_DIR$/pilot/error/style.css" />
         <option value="$PROJECT_DIR$/pilot/error/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/error/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/index.html" />
         <option value="$PROJECT_DIR$/pilot/ticks/main.js" />
-        <option value="$PROJECT_DIR$/pilot/animation/main.js" />
         <option value="$PROJECT_DIR$/pilot/animation/scatter.js" />
         <option value="$PROJECT_DIR$/pilot/animation/index.html" />
         <option value="$PROJECT_DIR$/pilot/zoom/main.js" />
@@ -404,6 +298,10 @@
         <option value="$PROJECT_DIR$/v3/animation_jitter_new/scatter.js" />
         <option value="$PROJECT_DIR$/jitter/animation_jitter/index.html" />
         <option value="$PROJECT_DIR$/v3/animation_jitter/index.html" />
+        <option value="$PROJECT_DIR$/zoom/zoom/index.html" />
+        <option value="$PROJECT_DIR$/zoom/animation_zoom/scatter.js" />
+        <option value="$PROJECT_DIR$/pilot/error/main.js" />
+        <option value="$PROJECT_DIR$/pilot/animation/main.js" />
       </list>
     </option>
   </component>
@@ -413,9 +311,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="970" />
+    <option name="width" value="950" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -434,18 +333,26 @@
             <path>
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="jitter" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="v3" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="animation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="v3" type="462c0819:PsiDirectoryNode" />
-              <item name="animation_jitter" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="pilot" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+              <item name="button_img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -466,11 +373,11 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pilot/error" />
+      <recent name="$PROJECT_DIR$/pilot/error/button_img" />
+      <recent name="$PROJECT_DIR$/zoom" />
       <recent name="$PROJECT_DIR$/v3" />
       <recent name="$PROJECT_DIR$/v3/animation_jitter_new" />
-      <recent name="$PROJECT_DIR$/jitter" />
-      <recent name="$PROJECT_DIR$/tutorial/ticks_auto" />
-      <recent name="$PROJECT_DIR$/tutorial/ticks_auto/new_data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -545,17 +452,18 @@
       <workItem from="1558211957518" duration="1473000" />
       <workItem from="1558368022254" duration="280000" />
       <workItem from="1558625526084" duration="1316000" />
-      <workItem from="1558727676137" duration="14668000" />
+      <workItem from="1558727676137" duration="19426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201866000" />
+    <option name="totallyTimeSpent" value="206624000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="970" y="0" width="950" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.14869626" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.2217438" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -569,7 +477,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2253012" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.18514852" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -608,61 +516,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4755">
-          <caret line="317" column="49" selection-start-line="317" selection-end-line="318" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6945">
-          <caret line="463" column="29" selection-start-line="463" selection-start-column="29" selection-end-line="463" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/custom.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/zoom/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation/custom.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/zoom/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4455">
-          <caret line="313" column="150" selection-start-line="313" selection-start-column="146" selection-end-line="313" selection-end-column="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/animation/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" column="356" selection-start-line="92" selection-start-column="354" selection-end-line="92" selection-end-column="356" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/error/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-514">
-          <caret line="56" column="56" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pilot/ticks/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="85" selection-start-line="85" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pilot/jitter/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1410">
@@ -954,13 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v3/animation_jitter/data.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -972,6 +818,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jitter/animation_jitter/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="24" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zoom/animation_zoom/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zoom/animation_zoom/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="656">
+          <caret line="80" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zoom/zoom/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="128" column="58" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="128" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zoom/animation_zoom/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="296" lean-forward="true" selection-start-line="296" selection-end-line="296" />
+          <folding>
+            <element signature="n#!!block;n#textProcess#0" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#redraw_animation#0;n#!!block;n#updateChart#0" />
+            <element signature="n#!!block;n#filter_impute#0;n#!!block;n#updateChart#0" />
+            <element signature="n#!!block;n#filter_no_impute#0;n#!!block;n#updateChart#0" />
+            <element signature="n#!!block;n#filter_both#0;n#!!block;n#updateChart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/button_img/new_data/whiskey_knn.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/new_data/whiskey_knn.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/error/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="72" column="14" lean-forward="true" selection-start-line="58" selection-start-column="11" selection-end-line="72" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pilot/animation/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="75" column="14" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
         </state>
       </provider>
     </entry>
