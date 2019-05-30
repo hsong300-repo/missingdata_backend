@@ -223,13 +223,11 @@ var chartG = svg.append('g')
     .attr('transform', 'translate('+[padding.l, padding.t]+')');
 
 var xAxisG = chartG.append('g')
-    .attr('id', "axis--g")
     .attr('class', 'x axis')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-    .attr('id', "axis--y")
-    .attr('class', 'y axis');
+.attr('class', 'y axis');
     // .attr('class', 'y-axis'); //there was a overlap in class name for bar
 
 var transitionScale = d3.transition()
@@ -240,10 +238,14 @@ var transitionScale = d3.transition()
 
 //****scatter plot
 function updateChart() {
+
+
+
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
+
 
 
     xScaleMin = xScale.domain()[0];
@@ -268,60 +270,17 @@ function updateChart() {
 
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
-    var clip = chartG.append("defs").append("svg:clipPath")
-        .attr("id", "clip")
-        .append("svg:rect")
-        .attr("width", chartWidth )
-        .attr("height", chartHeight )
-        .attr("x", 0)
-        .attr("y", 0);
-
-    scatter = chartG.append("g")
-        .attr("id","scatterplot")
-        .attr("clip-path","url(#clip");
-
-    scatter.selectAll(".dot")
-        .data(whiskey)
-        .enter().append("circle")
-        .attr("class", "dot")
-        .attr("r", 4)
-        .attr("cx", function (d) { return xScale(d[chartScales.x]); })
-        .attr("cy", function (d) { return yScale(d[chartScales.y]); })
-        .attr("opacity", 0.5)
-        .style("fill", "red");
-
-
-
     dots = chartG.selectAll('.dot')
-    // scatter.selectAll('.dot')
-    // .data(data);
+        // .data(data);
         .data(whiskey);
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
         .attr("class", "tooltip");
 
-    /*zoom*/
-    var tooltip = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
-
-    var brush = d3.brush().extent([[0, 0], [chartWidth, chartHeight]]).on("end", brushended),
-        idleTimeout,
-        idleDelay = 350;
-
-
-    /**/
-
-
-
-
     // var dotsEnter = dots.enter()
     dotsEnter = dots.enter()
-    // dotsEnter = dots.enter()
         .append('g')
-        // .attr("id", "scatterplot") //zoom
-        // .attr("clip-path", "url(#clip)") //zoom
         .attr('class', 'dot')
         .on('mouseover', function(d){ // Add hover start event binding
             var hovered = d3.select(this);
@@ -351,8 +310,10 @@ function updateChart() {
             // hovered.select('text')
             //     .style('visibility', 'hidden');
             hovered.select('circle')
-                .style('stroke-width', 1);
+                // .style('stroke-width', 0)
                 // .style('stroke', 'none');
+                .style('stroke-width', 1)
+                .style('stroke', '#000');
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -625,42 +586,6 @@ function updateChart() {
         }
 
     }// end of imputed filter
-
-    scatter.append("g")
-        .attr("class", "brush")
-        .call(brush);
-
-
-    function brushended() {
-
-        var s = d3.event.selection;
-        if (!s) {
-            if (!idleTimeout) return idleTimeout = setTimeout(idled, idleDelay);
-            xScale.domain(d3.extent(whiskey, function (d) { return d[chartScales.x]; })).nice();
-            yScale.domain(d3.extent(whiskey, function (d) { return d[chartScales.y]; })).nice();
-        } else {
-//here
-            xScale.domain([s[0][0], s[1][0]].map(xScale.invert, xScale));
-            yScale.domain([s[1][1], s[0][1]].map(yScale.invert, yScale));
-            scatter.select(".brush").call(brush.move, null);
-        }
-        zoom();
-    }
-
-    function idled() {
-        idleTimeout = null;
-    }
-
-    function zoom() {
-
-        var t = scatter.transition().duration(750);
-        chartG.select("#axis--x").transition(t).call(xAxisG);
-        chartG.select("#axis--y").transition(t).call(yAxisG);
-        scatter.selectAll("circle").transition(t)
-            .attr("cx", function (d) { return xScale(d[chartScales.x]); })
-            .attr("cy", function (d) { return yScale(d[chartScales.y]); });
-    }
-
 
 
 }// end of updatechart for Scatterplots
