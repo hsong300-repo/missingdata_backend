@@ -54,9 +54,9 @@ var previewCsvUrl = function( csvUrl ) {
 
             //*** auto complete ends here
             // Create scales and other functions here
-            xScale = d3.scaleLinear()
+            xScale = d3.scale.linear()
                 .range([0, chartWidth]);
-            yScale = d3.scaleLinear()
+            yScale = d3.scale.linear()
                 .range([chartHeight, 0]);
 
             // Get min, max here for all dataset columns

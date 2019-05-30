@@ -10,7 +10,6 @@ function highLight() {
     // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
 
-    // circles = svg.selectAll("circle");
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
         if (d.Brand == txtName.value) {
@@ -20,7 +19,6 @@ function highLight() {
         else{
             return "steelblue";}
     });
-
 
 }
 
@@ -44,22 +42,15 @@ function onYScaleChanged() {
     updateChart();
 }
 
-// document.getElementById("restart").onclick = function fun() {
-//     redraw_animation();
-// };
-
 function restart_animation(){
     var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
-
-    console.log('std_x std_y',std_x,std_y);
 
     // var transition_x = d3.selectAll(".impute_x");
     var transition_x = d3.selectAll("circle")
         .filter(function(d){return d[select_x] ===1; });
 
     function repeat_x(){
-
         transition_x
             .transition()
             .duration(1000)
@@ -94,7 +85,7 @@ function restart_animation(){
             .duration(1000)
             .attr("cy", function (d) {
                 if(yScale(d[chartScales.y]-std_y/2) >= 520){
-                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) -yScale(d[chartScales.y]);
+                    return yScale(d[chartScales.y]-std_y/2 + yScaleMin-(d[chartScales.y]-std_y/2)) - yScale(d[chartScales.y]);
                 }else{
                     return yScale(d[chartScales.y]-std_y/2) - yScale(d[chartScales.y]);
                 }
@@ -179,87 +170,7 @@ function restart_animation(){
     }
 }
 
-// Also, declare global variables for missing amount, total amount, and percentage
-missing_count = 0;
-total_count = 0;
-per = 0;
-impute_flag = false;
-no_impute_flag = false;
-both_flag = false;
-
-
-// the work flow is like when click on a button it will remove the other one
-//or this button is to remove
-
-
-//show scatter when after click button
-// function drawScatter() {
-// document.getElementById('scatter_view').style.display = "inline";
-// document.getElementById('scatter_radio').style.display = "inline";
-// }
-
-var svg = d3.select('svg');
-
-// Get layout parameters
-var svgWidth = +svg.attr('width');
-var svgHeight = +svg.attr('height');
-
-var padding = {t: 40, r: 40, b: 40, l: 40};
-
-// Compute chart dimensions
-var chartWidth = svgWidth - padding.l - padding.r;
-var chartHeight = svgHeight - padding.t - padding.b;
-
-// Create a group element for appending chart elements
-var chartG = svg.append('g')
-    .attr('transform', 'translate('+[padding.l, padding.t]+')');
-
-var xAxisG = chartG.append('g')
-    .attr('class', 'x axis')
-    .attr('transform', 'translate('+[0, chartHeight]+')');
-
-var yAxisG = chartG.append('g')
-// .attr('class', 'y axis');
-    .attr('class', 'y-axis'); //there was a overlap in class name for bar
-
-
-var transitionScale = d3.transition()
-    .duration(600)
-    .ease(d3.easeLinear);
-
-// document.getElementById("restart").onclick = function fun() {
-//     redraw_animation();
-// };
-
-//****scatter plot
-function updateChart() {
-
-    // console.log('upatechart');
-    // **** Draw and Update your chart here ****
-    // Update the scales based on new data attributes
-    yScale.domain(domainMap[chartScales.y]).nice();
-    xScale.domain(domainMap[chartScales.x]).nice();
-
-    console.log('yscale min',yScale.domain()[0],yScale.domain().slice(-1)[0]);
-    xScaleMin = xScale.domain()[0];
-    xScaleMax =xScale.domain().slice(-1)[0];
-
-    console.log('xScaleMin',xScaleMin,xScale(xScaleMin));
-
-    yScaleMax =yScale.domain().slice(-1)[0];
-    yScaleMin =yScale.domain()[0];
-    // Update the axes here first
-    xAxisG.transition()
-        .duration(750) // Add transition
-        .call(d3.axisBottom(xScale));
-    yAxisG.transition()
-        .duration(750) // Add transition
-        .call(d3.axisLeft(yScale));
-
-    // these were declared as local initially
-    temp_x = chartScales.x;
-    temp_y = chartScales.y;
-
+function textProcess(temp_x,temp_y) {
     if(temp_x === "Age"){
         temp_x ="age";
     }else if(temp_x === "Rating"){
@@ -279,44 +190,92 @@ function updateChart() {
         temp_y="abv"
     }
 
-    select_x = temp_x.concat("_impute");
-    select_y = temp_y.concat("_impute");
+    let select_x = temp_x.concat("_impute");
+    let select_y = temp_y.concat("_impute");
 
-    console.log('select_x',select_x);
-    console.log('select_y', select_y);
 
-    filtered_data = whiskey
-        .filter(function(d){
-            return d[select_x] === 1 || d[select_y] === 1});
+    return {
+        select_x,
+        select_y
+    }
+}
 
-    filtered_xy = whiskey
-        .filter(function(d){
-            return d[select_x] === 1 && d[select_y] === 1});
+// Also, declare global variables for missing amount, total amount, and percentage
+impute_flag = false;
+no_impute_flag = false;
+both_flag = false;
 
-    filtered_x = whiskey
-        .filter(function(d){
-            return d[select_x] ===1});
+// the work flow is like when click on a button it will remove the other one
+//or this button is to remove
+var svg = d3.select('svg');
 
-    console.log("filtered_x",filtered_x);
-    filtered_y = whiskey
-        .filter(function(d){
-            return d[select_y] ===1});
-    console.log("filtered_y",filtered_y);
+// Get layout parameters
+var svgWidth = +svg.attr('width');
+var svgHeight = +svg.attr('height');
+var padding = {t: 40, r: 40, b: 40, l: 40};
 
-    noimpute_data = whiskey
-        .filter(function(d){
-            return d[select_x] === 0 && d[select_y] === 0});
+// Compute chart dimensions
+var chartWidth = svgWidth - padding.l - padding.r;
+var chartHeight = svgHeight - padding.t - padding.b;
 
-    std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
-    std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
+// Create a group element for appending chart elements
+var chartG = svg.append('g')
+    .attr('transform', 'translate('+[padding.l, padding.t]+')');
+
+var xAxisG = chartG.append('g')
+    .attr('class', 'x axis')
+    .attr('transform', 'translate('+[0, chartHeight]+')');
+
+var yAxisG = chartG.append('g')
+.attr('class', 'y axis');
+    // .attr('class', 'y-axis'); //there was a overlap in class name for bar
+
+var transitionScale = d3.transition()
+    .duration(600);
+    // .ease(d3.easeLinear);
+
+
+
+//****scatter plot
+function updateChart() {
+
+
+
+    // **** Draw and Update your chart here ****
+    // Update the scales based on new data attributes
+
+    // xScale.domain(d3.extent(whis, function(d) { return d[xVar]; })).nice();
+
+    yScale.domain(domainMap[chartScales.y]).nice();
+    xScale.domain(domainMap[chartScales.x]).nice();
+
+
+
+    xScaleMin = xScale.domain()[0];
+    xScaleMax = xScale.domain().slice(-1)[0];
+
+    yScaleMax =yScale.domain().slice(-1)[0];
+    yScaleMin =yScale.domain()[0];
+
+    // Update the axes here first
+    xAxisG.transition()
+        .duration(750) // Add transition
+        .call(d3.axisBottom(xScale));
+    yAxisG.transition()
+        .duration(750) // Add transition
+        .call(d3.axisLeft(yScale));
+
+    // these were declared as local initially
+    const select = textProcess(chartScales.x,chartScales.y);
+
+    select_x = select.select_x;
+    select_y = select.select_y;
 
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
+        // .data(data);
         .data(whiskey);
-    // .data(noimpute_data);
-
-    // dots.exit().remove();
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
@@ -327,19 +286,7 @@ function updateChart() {
         .append('g')
         .attr('class', 'dot')
         .on('mouseover', function(d){ // Add hover start event binding
-            // var hovered = d3.select(this);
-            // // Show the text, otherwise hidden
-            // hovered.select('text')
-            //     .style('visibility', 'visible');
-            // // Add stroke to circle to highlight it
-            // hovered.select('circle')
-            //     .style('stroke-width', 2)
-            //     .style('stroke', '#333');
             var hovered = d3.select(this);
-            // // Show the text, otherwise hidden
-            // hovered.select('text')
-            //     .style('visibility', 'visible');
-            // Add stroke to circle to highlight it
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
@@ -354,8 +301,6 @@ function updateChart() {
                     return  "Brand: "+d.Brand + "<br>" + chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
                 }
             })
-            // .style("left", (d3.event.pageX) + "px")
-            // .style("top", (d3.event.pageY - 28) + "px");
                 .style("left", "1050px")
                 .style("top", "100px");
             hovered.select('circle')
@@ -363,17 +308,6 @@ function updateChart() {
                 .style('stroke', '#333');
         })
         .on('mouseout', function(d){ // Add hover end event binding
-            // Select the hovered g.dot
-            // var hovered = d3.select(this);
-            // // Remove the highlighting we did in mouseover
-            // hovered.select('text')
-            //     .style('visibility', 'hidden');
-            // hovered.select('circle')
-            //     .style('stroke-width', 0)
-            //     .style('stroke', 'none');
-            // div.transition()
-            //     .duration(500)
-            //     .style("opacity", 0);
             var hovered = d3.select(this);
             // Remove the highlighting we did in mouseover
             // hovered.select('text')
@@ -396,21 +330,6 @@ function updateChart() {
             else{return "steelblue";}
         })
         .attr('r', 5);
-
-    // dotsEnter.append('circle')
-    //     .attr("class","no_impute")
-    //     .style("fill",function(d){
-    //         if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
-    //         else{return "steelblue";}
-    //     })
-    //     .attr('r', 5);
-
-    // dotsEnter.append('text')
-    //     .attr('y', -10)
-    //     .text(function(d) {
-    //         // console.log('price impute',d.price_impute);
-    //         return d.Brand;
-    //     });
 
     d3.selectAll(("input[value='animation']")).on("change", function() {
         redraw_animation();
@@ -452,14 +371,11 @@ function updateChart() {
     // restart_animation();
     redraw_animation();
 
-    // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
-
 
     if(txtName.value){
         highLight();
     }
-
 
     if(impute_flag === true){
         filter_impute();
@@ -474,14 +390,11 @@ function updateChart() {
         var std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
         var std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
-        console.log('std_x std_y',std_x,std_y);
-
             // var transition_x = d3.selectAll(".impute_x");
         var transition_x = d3.selectAll("circle")
             .filter(function(d){return d[select_x] ===1; });
 
         function repeat_x(){
-
             transition_x
                 .transition()
                 .duration(1000)
@@ -510,7 +423,6 @@ function updateChart() {
 
         function repeat_y(){
             var transition_y = d3.selectAll("circle").filter(function(d){return d[select_y] === 1});
-
             transition_y
                 .transition()
                 .duration(1000)
@@ -541,7 +453,6 @@ function updateChart() {
         var transition_xy = d3.selectAll("circle").filter(function(d){return d[select_x] ===1 && d[select_y] === 1 ; });
 
         function repeat_xy(){
-
             transition_xy
                 .transition()
                 .duration(1000)
@@ -603,7 +514,6 @@ function updateChart() {
     }// end of animation
 
     function filter_impute() {
-
         d3.selectAll("circle")
             .style("fill",function(d){
             if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
@@ -618,7 +528,6 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = false;
 
-        // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
 
@@ -626,19 +535,9 @@ function updateChart() {
             highLight();
         }
 
-        // d3.selectAll("circle")
-        //     .filter(function(d){return d[select_x] ===1 })
-        //     .style('fill',)
-        //     .style("opacity",1);
-        //
-        // d3.selectAll("circle")
-        //     .filter(function(d){return d[select_y] ===1 })
-        //     .style("opacity",1);
-
     }// end of imputed filter
 
     function filter_no_impute() {
-
         d3.selectAll("circle")
             .style("fill",function(d){
                 if(d[select_x] ===0 && d[select_y] === 0){return "steelblue";}
@@ -656,7 +555,6 @@ function updateChart() {
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
-
         if(txtName.value){
             highLight();
         }
@@ -665,14 +563,6 @@ function updateChart() {
     }// end of no filter
 
     function filter_both() {
-
-        // d3.selectAll("circle")
-        //     .style("fill",function(d){
-        //         if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
-        //         else{return "steelblue";}
-        //     })
-        //     .style("opacity",0.8);
-
         d3.selectAll("circle")
             .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
             .style("fill","url(#diagonal-stripes)")
@@ -697,10 +587,6 @@ function updateChart() {
         }
 
     }// end of imputed filter
-
-
-
-
 
 
 }// end of updatechart for Scatterplots

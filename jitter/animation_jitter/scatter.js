@@ -234,12 +234,19 @@ var transitionScale = d3.transition()
     .duration(600)
     .ease(d3.easeLinear);
 
+
+
 //****scatter plot
 function updateChart() {
+
+
+
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
+
+
 
     xScaleMin = xScale.domain()[0];
     xScaleMax = xScale.domain().slice(-1)[0];
@@ -264,8 +271,8 @@ function updateChart() {
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots = chartG.selectAll('.dot')
+        // .data(data);
         .data(whiskey);
-    // .data(noimpute_data);
 
     // Define the div for the tooltip
     var div = d3.select("body").append("div")
@@ -577,5 +584,6 @@ function updateChart() {
         }
 
     }// end of imputed filter
+
 
 }// end of updatechart for Scatterplots
