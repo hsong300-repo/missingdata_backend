@@ -30,7 +30,6 @@ function onXScaleChanged() {
 
     console.log('XScale change');
     // Update chart
-
     updateChart();
 }
 
@@ -38,7 +37,6 @@ function onYScaleChanged() {
     var select = d3.select('#yScaleSelect').node();
     // Get current value of select element, save to global chartScales
     chartScales.y = select.options[select.selectedIndex].value;
-
 
     // Update chart
     updateChart();
@@ -202,7 +200,7 @@ function textProcess(temp_x,temp_y) {
     }
 }
 
-// this part is for the filtering per radio
+// Also, declare global variables for missing amount, total amount, and percentage
 impute_flag = false;
 no_impute_flag = false;
 both_flag = false;
@@ -220,19 +218,9 @@ var padding = {t: 40, r: 40, b: 40, l: 40};
 var chartWidth = svgWidth - padding.l - padding.r;
 var chartHeight = svgHeight - padding.t - padding.b;
 
-
-
 // Create a group element for appending chart elements
 var chartG = svg.append('g')
     .attr('transform', 'translate('+[padding.l, padding.t]+')');
-
-// **zoom**create a clipping region
-chartG.append("defs").append("clipPath")
-    .attr("id", "clip")
-    .append("rect")
-    .attr("width", chartWidth)
-    .attr("height", chartHeight);
-/**/
 
 var xAxisG = chartG.append('g')
     .attr('class', 'x axis')
@@ -250,10 +238,15 @@ var transitionScale = d3.transition()
 
 //****scatter plot
 function updateChart() {
+
+
+
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
+
+
 
     xScaleMin = xScale.domain()[0];
     xScaleMax = xScale.domain().slice(-1)[0];
@@ -261,7 +254,7 @@ function updateChart() {
     yScaleMax =yScale.domain().slice(-1)[0];
     yScaleMin =yScale.domain()[0];
 
-    // Update the axes here first, added gx, gy variable for zoom
+    // Update the axes here first
     xAxisG.transition()
         .duration(750) // Add transition
         .call(d3.axisBottom(xScale));
@@ -277,11 +270,7 @@ function updateChart() {
 
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
-    dots = chartG
-        // .selectAll('circle')
-        .append("g") //zoom, this helps it stay in the region
-        .attr("clip-path", "url(#clip)") //zoom
-        .selectAll('.dot')
+    dots = chartG.selectAll('.dot')
         // .data(data);
         .data(whiskey);
 
@@ -293,7 +282,6 @@ function updateChart() {
     dotsEnter = dots.enter()
         .append('g')
         .attr('class', 'dot')
-        // .classed("points_g", true) //zoom
         .on('mouseover', function(d){ // Add hover start event binding
             var hovered = d3.select(this);
             div.transition()
@@ -322,19 +310,16 @@ function updateChart() {
             // hovered.select('text')
             //     .style('visibility', 'hidden');
             hovered.select('circle')
-                // .style('stroke-width', 0)
-                // .style('stroke', 'none');
-                .style('stroke-width', 1)
-                .style('stroke', '#000');
+                .style('stroke-width', 0)
+                .style('stroke', 'none');
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
         });
 
     // Append a circle to the ENTER selection
-    // dotsEnter = dotsEnter.append('circle')
     dotsEnter.append('circle')
-        // .attr("class","no_impute")
+        .attr("class","no_impute")
         .attr("cx",function(d){xScale(d[chartScales.x])})
         .attr("cy",function(d){yScale(d[chartScales.y])})
         .style("fill",function(d){
@@ -381,7 +366,7 @@ function updateChart() {
         .style("fill","steelblue");
 
     // restart_animation();
-    // redraw_animation();//should renew this again
+    redraw_animation();
 
     var txtName = document.getElementById("gene_search_box");
 
@@ -599,56 +584,6 @@ function updateChart() {
         }
 
     }// end of imputed filter
-
-    //**zoom
-    // Pan and zoom
-    var zoom = d3.zoom()
-    // .scaleExtent([.5, 20]) // default setting will be .scaleExtent([0, infinity])
-        .extent([[0, 0], [chartWidth, chartHeight]])
-        .on("zoom", zoomed);
-
-    chartG.append("rect")
-        .attr("width", chartWidth)
-        .attr("height", chartHeight)
-        .style("fill", "none")
-        .style("pointer-events", "all")
-        .call(zoom);
-
-    function zoomed() {
-// create new scale ojects based on event
-        var new_xScale = d3.event.transform.rescaleX(xScale);
-        var new_yScale = d3.event.transform.rescaleY(yScale);
-
-        // console.log('new_xScale',new_xScale);
-        var xAxis = d3.axisBottom(xScale);
-        var yAxis = d3.axisLeft(yScale);
-
-// update axes
-        xAxisG.call( xAxis.scale(new_xScale));
-        yAxisG.call(yAxis.scale(new_yScale));
-        // dots.data(dotsEnter)
-        //dotsenter when have a subject it does update but weird
-        // dotsEnter.data(dots)
-        //     // .attr('cx', function(d) {return new_xScale(0)})
-        //     // .attr('cy', function(d) {return new_yScale(0)});
-        //     .attr('cx', function(d) {return new_xScale(d[chartScales.x])})
-        //     .attr('cy', function(d) {return new_yScale(d[chartScales.y])});
-
-        // it does update now
-        dots.merge(dotsEnter)
-        // dots.merge(dotsEnter)
-        //     .transition() // Add transition - this will interpolate the translate() on any changes
-            // .duration(750)
-            .attr('transform', function(d) {
-                console.log('this gets called merge');
-                // Transform the group based on x and y property
-                var tx = new_xScale(d[chartScales.x]);
-                var ty = new_yScale(d[chartScales.y]);
-                return 'translate('+[tx, ty]+')';
-            });
-
-    }
-    //**zoom
 
 
 }// end of updatechart for Scatterplots

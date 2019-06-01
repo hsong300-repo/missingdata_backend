@@ -2,7 +2,6 @@ var previewCsvUrl = function( csvUrl ) {
     //part that draws the scatter chart
     // Compute chart dimensions
     //         var	margin = {top: 30, right: 20, bottom: 30, left: 50},
-    //** probably this part not necessary
     var	margin = {top: 10, right: 10, bottom: 10, left: 10},
         width = 800 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
@@ -38,7 +37,7 @@ var previewCsvUrl = function( csvUrl ) {
             // ***autocomplete goes here***
             global_wiskey_data =  whiskey;
 
-            // generate a list of genes for **auto complete**
+            // generate a list of genes for auto complete
             //// get all data whiskey
             all_whiskey = [];
 
