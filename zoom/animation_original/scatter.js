@@ -284,6 +284,7 @@ function updateChart() {
         .attr('class', 'dot')
         .on('mouseover', function(d){ // Add hover start event binding
             var hovered = d3.select(this);
+            console.log("hovered",hovered);
             div.transition()
                 .duration(200)
                 .style("opacity", .9);
