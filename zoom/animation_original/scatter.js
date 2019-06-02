@@ -238,9 +238,6 @@ var transitionScale = d3.transition()
 
 //****scatter plot
 function updateChart() {
-
-
-
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();

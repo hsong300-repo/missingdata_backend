@@ -375,8 +375,6 @@ no_impute_flag = false;
 both_flag = false;
 zoom_called = false;
 
-
-
 // the work flow is like when click on a button it will remove the other one
 //or this button is to remove
 var svg = d3.select('svg');
@@ -389,8 +387,6 @@ var padding = {t: 40, r: 40, b: 40, l: 40};
 // Compute chart dimensions
 var chartWidth = svgWidth - padding.l - padding.r;
 var chartHeight = svgHeight - padding.t - padding.b;
-
-
 
 // Create a group element for appending chart elements
 var chartG = svg.append('g')
@@ -557,9 +553,6 @@ function updateChart() {
 
     // restart_animation();
     redraw_animation();//should renew this again
-
-    // restart_animation_zoom();//should renew this again
-
 
     var txtName = document.getElementById("gene_search_box");
 
