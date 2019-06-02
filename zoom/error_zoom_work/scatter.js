@@ -60,6 +60,8 @@ function onXScaleChanged() {
     }else{
         points.remove().exit();
     }
+    zoom_called = false;
+
 
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -74,6 +76,8 @@ function onYScaleChanged() {
     }else{
         points.remove().exit();
     }
+    zoom_called = false;
+
 
     var select = d3.select('#yScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -87,6 +91,8 @@ function onYScaleChanged() {
 impute_flag = false;
 no_impute_flag = false;
 both_flag = false;
+zoom_called = false;
+
 
 
 // the work flow is like when click on a button it will remove the other one
@@ -124,8 +130,8 @@ var xAxisG = chartG.append('g')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-// .attr('class', 'y axis');
-    .attr('class', 'y-axis'); //there was a overlap in class name for bar
+.attr('class', 'y axis');
+    // .attr('class', 'y-axis'); //there was a overlap in class name for bar
 
 var transitionScale = d3.transition()
     .duration(600)
@@ -164,12 +170,17 @@ function updateChart() {
     select_x = select.select_x;
     select_y = select.select_y;
 
+    var scatter = svg.append("g")
+        .attr('transform', 'translate('+[padding.l, padding.t]+')')
+        .attr("clip-path", "url(#clip)");
 
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
-    dots = chartG
-        .append("g") //zoom, this helps it stay in the region
-        .attr("clip-path", "url(#clip)") //zoom
+    dots =
+        // chartG
+        scatter
+        // .append("g") //zoom, this helps it stay in the region
+        // .attr("clip-path", "url(#clip)") //zoom
         .selectAll('.dot')
         .data(whiskey);
     // .data(noimpute_data);
@@ -213,8 +224,10 @@ function updateChart() {
             var hovered = d3.select(this);
             // Remove the highlighting we did in mouseover
             hovered.select('circle')
-                .style('stroke-width', 0)
-                .style('stroke', 'none');
+                // .style('stroke-width', 0)
+                // .style('stroke', 'none');
+                .style('stroke-width', 1)
+                .style('stroke', '#000');
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -469,7 +482,14 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = false;
 
-        redraw_error();
+        if (zoom_called === true) {
+            redraw_error_zoom();
+        }
+        if(zoom_called === false){
+            redraw_error();
+        }
+
+        // redraw_error();
 
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
@@ -526,11 +546,16 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = true;
 
-        redraw_error();
+        // redraw_error();
+        if (zoom_called === true) {
+            redraw_error_zoom();
+        }
+        if(zoom_called === false){
+            redraw_error();
+        }
 
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
-
 
         if(txtName.value){
             highLight();
@@ -575,6 +600,7 @@ function updateChart() {
                 var ty = new_yScale(d[chartScales.y]);
                 return 'translate('+[tx, ty]+')';
             });
+        zoom_called = true;
         redraw_error_zoom();
     }
     //**zoom

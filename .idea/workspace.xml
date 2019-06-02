@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/zoom/animation_zoom_work/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/zoom/animation_zoom_work/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zoom/animation_zoom_work/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/zoom/animation_zoom_work/scatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zoom/error_zoom_work/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/zoom/error_zoom_work/scatter.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +57,7 @@
           <entry key="Procfile" value="22" />
           <entry key="css" value="525" />
           <entry key="html" value="2391" />
-          <entry key="js" value="26274" />
+          <entry key="js" value="26332" />
           <entry key="py" value="1071" />
           <entry key="txt" value="17" />
         </counts>
@@ -66,7 +66,7 @@
         <counts>
           <entry key="CSS" value="525" />
           <entry key="HTML" value="2391" />
-          <entry key="JavaScript" value="26274" />
+          <entry key="JavaScript" value="26332" />
           <entry key="PLAIN_TEXT" value="39" />
           <entry key="Python" value="1071" />
         </counts>
@@ -155,11 +155,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zoom/error_zoom_work/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="390" column="45" lean-forward="true" selection-start-line="384" selection-start-column="17" selection-end-line="390" selection-end-column="45" />
+            <state relative-caret-position="552">
+              <caret line="554" column="9" selection-start-line="554" selection-start-column="9" selection-end-line="554" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#highLight#0" />
                 <element signature="n#!!block;n#textProcess#0" />
@@ -167,16 +167,17 @@
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+                <element signature="e#12361#15744#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zoom/animation_zoom_work/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="446" column="31" lean-forward="true" selection-start-line="446" selection-start-column="31" selection-end-line="446" selection-end-column="31" />
+            <state relative-caret-position="300">
+              <caret line="159" column="19" selection-start-line="159" selection-end-line="160" />
               <folding>
                 <element signature="n#!!block;n#highLight#0" />
                 <element signature="n#!!block;n#redraw_animation#0" />
@@ -221,7 +222,6 @@
       <find>restart_animation</find>
       <find>animation</find>
       <find>redraw_animation</find>
-      <find>zoom_called</find>
       <find>zoom</find>
       <find>chartG</find>
       <find>tooltop</find>
@@ -234,8 +234,9 @@
       <find>filtered_</find>
       <find>filter</find>
       <find>redraw_ticks</find>
-      <find>line</find>
       <find>chartg</find>
+      <find>line</find>
+      <find>zoom_called</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -293,11 +294,11 @@
         <option value="$PROJECT_DIR$/zoom/zoom2/scatter.js" />
         <option value="$PROJECT_DIR$/zoom/error_zoom_work/main.js" />
         <option value="$PROJECT_DIR$/zoom/animation_original/scatter.js" />
-        <option value="$PROJECT_DIR$/zoom/error_zoom_work/scatter.js" />
         <option value="$PROJECT_DIR$/zoom/ticks_zoom_work/main.js" />
         <option value="$PROJECT_DIR$/zoom/ticks_zoom_work/scatter.js" />
         <option value="$PROJECT_DIR$/zoom/animation_zoom_work/main.js" />
         <option value="$PROJECT_DIR$/zoom/animation_zoom_work/scatter.js" />
+        <option value="$PROJECT_DIR$/zoom/error_zoom_work/scatter.js" />
       </list>
     </option>
   </component>
@@ -308,10 +309,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="644" />
-    <option name="y" value="23" />
-    <option name="width" value="796" />
-    <option name="height" value="798" />
+    <option name="x" value="-241" />
+    <option name="y" value="-1080" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -348,6 +349,12 @@
               <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
               <item name="zoom" type="462c0819:PsiDirectoryNode" />
               <item name="animation_zoom_work" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="missingdata_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="missingdata_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="zoom" type="462c0819:PsiDirectoryNode" />
+              <item name="error_zoom_work" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -449,18 +456,18 @@
       <workItem from="1558625526084" duration="1316000" />
       <workItem from="1558727676137" duration="31628000" />
       <workItem from="1559349636704" duration="45000" />
-      <workItem from="1559367556631" duration="9464000" />
+      <workItem from="1559367556631" duration="10536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228335000" />
+    <option name="totallyTimeSpent" value="229407000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-241" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.16560958" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.12374934" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -474,7 +481,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24096386" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.1980198" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -769,21 +776,6 @@
     <entry file="file://$PROJECT_DIR$/zoom/error_zoom_work/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/zoom/error_zoom_work/scatter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="390" column="45" lean-forward="true" selection-start-line="384" selection-start-column="17" selection-end-line="390" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!block;n#highLight#0" />
-            <element signature="n#!!block;n#textProcess#0" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zoom/ticks_zoom_work/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -822,8 +814,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zoom/animation_zoom_work/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="446" column="31" lean-forward="true" selection-start-line="446" selection-start-column="31" selection-end-line="446" selection-end-column="31" />
+        <state relative-caret-position="300">
+          <caret line="159" column="19" selection-start-line="159" selection-end-line="160" />
           <folding>
             <element signature="n#!!block;n#highLight#0" />
             <element signature="n#!!block;n#redraw_animation#0" />
@@ -834,6 +826,22 @@
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zoom/error_zoom_work/scatter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="554" column="9" selection-start-line="554" selection-start-column="9" selection-end-line="554" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#highLight#0" />
+            <element signature="n#!!block;n#textProcess#0" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+            <element signature="e#12361#15744#0" />
           </folding>
         </state>
       </provider>
