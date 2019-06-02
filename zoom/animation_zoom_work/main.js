@@ -3,9 +3,6 @@ var previewCsvUrl = function( csvUrl ) {
     // Compute chart dimensions
     //         var	margin = {top: 30, right: 20, bottom: 30, left: 50},
     //** probably this part not necessary
-    var	margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = 800 - margin.left - margin.right,
-        height = 600 - margin.top - margin.bottom;
 
     //width =400, height 2230
     // d3.csv(csvUrl, function(error, dataset){

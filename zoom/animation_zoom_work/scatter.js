@@ -388,8 +388,11 @@ var padding = {t: 40, r: 40, b: 40, l: 40};
 var chartWidth = svgWidth - padding.l - padding.r;
 var chartHeight = svgHeight - padding.t - padding.b;
 
+
+
 // Create a group element for appending chart elements
 var chartG = svg.append('g')
+    // .attr("clip-path", "url(#clip)") //zoom
     .attr('transform', 'translate('+[padding.l, padding.t]+')');
 
 // **zoom**create a clipping region
@@ -400,6 +403,7 @@ chartG.append("defs").append("clipPath")
     .attr("width", chartWidth)
     .attr("height", chartHeight);
 /**/
+
 
 var xAxisG = chartG.append('g')
     .attr('class', 'x axis')
@@ -442,9 +446,15 @@ function updateChart() {
     select_x = select.select_x;
     select_y = select.select_y;
 
+    var scatter = svg.append("g")
+        .attr('transform', 'translate('+[padding.l, padding.t]+')')
+        .attr("clip-path", "url(#clip)");
+
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
-    dots = chartG
+    dots =
+        // chartG
+        scatter
         // .selectAll('circle')
         .append("g") //zoom, this helps it stay in the region
         .attr("clip-path", "url(#clip)") //zoom
@@ -663,7 +673,6 @@ function updateChart() {
         .call(zoom);
 
     function zoomed() {
-
 
         // create new scale ojects based on event
         new_xScale = d3.event.transform.rescaleX(xScale);
