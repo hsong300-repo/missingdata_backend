@@ -29,6 +29,7 @@ function onXScaleChanged() {
     }else{
         points.remove().exit();
     }
+    zoom_called = false;
 
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -43,6 +44,7 @@ function onYScaleChanged() {
     }else{
         points.remove().exit();
     }
+    zoom_called = false;
 
     var select = d3.select('#yScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -87,6 +89,8 @@ function textProcess(temp_x,temp_y) {
 impute_flag = false;
 no_impute_flag = false;
 both_flag = false;
+zoom_called = false;
+
 
 var svg = d3.select('svg');
 
@@ -160,12 +164,18 @@ function updateChart() {
     console.log("filtered_y",filtered_y);
 
 
+    var scatter = svg.append("g")
+        .attr('transform', 'translate('+[padding.l, padding.t]+')')
+        .attr("clip-path", "url(#clip)");
+
 
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
-    dots = chartG
-        .append("g") //zoom, this helps it stay in the region
-        .attr("clip-path", "url(#clip)") //zoom
+    dots =
+        // chartG
+        scatter
+        // .append("g") //zoom, this helps it stay in the region
+        // .attr("clip-path", "url(#clip)") //zoom
         .selectAll('.dot')
         .data(whiskey);
     // .data(noimpute_data);
@@ -209,8 +219,10 @@ function updateChart() {
             // hovered.select('text')
             //     .style('visibility', 'hidden');
             hovered.select('circle')
-                .style('stroke-width', 0)
-                .style('stroke', 'none');
+                // .style('stroke-width', 0)
+                // .style('stroke', 'none');
+                .style('stroke-width', 1)
+                .style('stroke', '#000');
             div.transition()
                 .duration(500)
                 .style("opacity", 0);
@@ -218,7 +230,7 @@ function updateChart() {
 
     // Append a circle to the ENTER selection
     // dotsEnter.append('circle')
-    dotsEnter.append('circle')
+    points = dotsEnter.append('circle')
         .attr("class","no_impute")
         .style("fill",function(d){
             if(d[select_x] ===1 || d[select_y] === 1){return "url(#diagonal-stripes)";}
@@ -428,7 +440,13 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = false;
 
-        redraw_ticks_on();
+        // redraw_ticks_on();
+        if (zoom_called === true) {
+            redraw_ticks_zoom();
+        }
+        if(zoom_called === false){
+            redraw_ticks_on();
+        }
 
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
@@ -493,7 +511,14 @@ function updateChart() {
         no_impute_flag = false;
         both_flag = true;
 
-        redraw_ticks_on();
+        // redraw_ticks_on();
+        // redraw_ticks_on();
+        if (zoom_called === true) {
+            redraw_ticks_zoom();
+        }
+        if(zoom_called === false){
+            redraw_ticks_on();
+        }
 
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
@@ -555,6 +580,7 @@ function updateChart() {
                 return 'translate('+[tx, ty]+')';
             });
 
+        zoom_called = true;
         redraw_ticks_zoom();
 
         // restart_animation()

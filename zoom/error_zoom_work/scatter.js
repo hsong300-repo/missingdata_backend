@@ -93,8 +93,6 @@ no_impute_flag = false;
 both_flag = false;
 zoom_called = false;
 
-
-
 // the work flow is like when click on a button it will remove the other one
 //or this button is to remove
 var svg = d3.select('svg');
