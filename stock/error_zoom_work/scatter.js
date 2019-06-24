@@ -192,16 +192,17 @@ function updateChart() {
             div.html(function(){
                 console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
                 if(d[select_x] === 1 && d[select_y]===0){
-                    return  "name: "+d.name + "<br>" +chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
                 }else if(d[select_y] === 1 && d[select_x] === 0){
-                    return  "name: "+d.name + "<br>" + chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
                 }else if(d[select_x] === 0 && d[select_y] === 0){
-                    return  "name: "+d.name + "<br>" + chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y]
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y]
                 }else if(d[select_x] === 1  && d[select_y] === 1){
-                    return  "name: "+d.name + "<br>" + chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
                 }
             })
-                .style("left", "1050px")
+                // .style("left", "1050px")
+                .style("left", "1130px")
                 .style("top", "100px");
             hovered.select('circle')
                 .style('stroke-width', 2)

@@ -14,7 +14,8 @@
 <body>
 <div class="table">
     <br>
-    <div class='row' id="scatter_radio" style="margin-left: 100px;">
+    <!--<div class='row' id="scatter_radio" style="margin-left: 100px;">-->
+    <div class='row' id="scatter_radio" style="margin-left: 200px;">
         <div class='radio' >
             <label class='radio-inline'>
                 Show: <input type="radio" name="filter" value="both" checked> All
@@ -30,7 +31,8 @@
     </div>
 
 
-    <div style="position:absolute;top:350px;left:250px" >
+    <!--<div style="position:absolute;top:350px;left:250px" >-->
+        <div style="position:absolute;top:375px;left:300px" >
         <label for="categorySelect">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
             <option value="beta">beta</option>
@@ -47,8 +49,9 @@
         <svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
         </svg>
     </div>
-    <div align="center">
-        <label for="categorySelect">X Scale:</label>
+    <!--<div align="center">-->
+    <div style="position:absolute;top:720px;left:700px" >
+    <label for="categorySelect">X Scale:</label>
         <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
             <option selected value="beta">beta</option>
             <option value="currprice">currprice</option>
@@ -61,9 +64,10 @@
         </select>
     </div>
     <div id='gene_search_container' class='row'>
-        <input id='gene_search_box' type="text" class="form-control" placeholder="Input name" aria-describedby="sizing-addon2" style="position:absolute;top:25px;right:200px">
-
-        <div id='gene_search_button' class="btn-group" data-toggle="buttons" style="position:absolute;top:20px;right:110px">
+        <!--<input id='gene_search_box' type="text" class="form-control" placeholder="Input Name" aria-describedby="sizing-addon2" style="position:absolute;top:25px;right:200px">-->
+        <input id='gene_search_box' type="text" class="form-control" placeholder="Input Name" aria-describedby="sizing-addon2" style="position:absolute;top:25px;right:350px">
+        <!--<div id='gene_search_button' class="btn-group" data-toggle="buttons" style="position:absolute;top:20px;right:110px">-->
+            <div id='gene_search_button' class="btn-group" data-toggle="buttons" style="position:absolute;top:25px;right:260px">
             <label id='gene_search_submit' class="btn btn-primary active " onclick="highLight();" >
                 <input type="radio" name="options" id="" autocomplete="off" checked > Search
             </label>
