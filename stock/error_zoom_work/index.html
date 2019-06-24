@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="custom.css">
 
 </head>
 <body>
-<!--partition into two columns-->
 <div class="table">
     <br>
     <div class='row' id="scatter_radio" style="margin-left: 100px;">
@@ -31,16 +29,12 @@
         <br><br><br>
     </div>
 
-    <!--<div algin="right"><textarea id="txtName" name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>-->
-        <!--<button onclick="highLight()">Search</button>-->
-    <!--</div>-->
-
 
     <div style="position:absolute;top:350px;left:250px" >
         <label for="categorySelect">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
-            <option selected value="beta">beta</option>
-            <option value="currprice">currprice</option>
+            <option value="beta">beta</option>
+            <option selected value="currprice">currprice</option>
             <option value="pctchg52wks">pctchg52wks</option>
             <option value="avgvol">avgvol</option>
             <option value="peratio">peratio</option>
@@ -53,12 +47,11 @@
         <svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
         </svg>
     </div>
-    <!--<div style="margin-left: 380px;">-->
     <div align="center">
         <label for="categorySelect">X Scale:</label>
         <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
-            <option value="beta">beta</option>
-            <option selected value="currprice">currprice</option>
+            <option selected value="beta">beta</option>
+            <option value="currprice">currprice</option>
             <option value="pctchg52wks">pctchg52wks</option>
             <option value="avgvol">avgvol</option>
             <option value="peratio">peratio</option>
@@ -67,9 +60,8 @@
             <option value="eps">eps</option>
         </select>
     </div>
-    <!-- input box for gene search -->
     <div id='gene_search_container' class='row'>
-        <input id='gene_search_box' type="text" class="form-control" placeholder="Input Brand" aria-describedby="sizing-addon2" style="position:absolute;top:25px;right:200px">
+        <input id='gene_search_box' type="text" class="form-control" placeholder="Input name" aria-describedby="sizing-addon2" style="position:absolute;top:25px;right:200px">
 
         <div id='gene_search_button' class="btn-group" data-toggle="buttons" style="position:absolute;top:20px;right:110px">
             <label id='gene_search_submit' class="btn btn-primary active " onclick="highLight();" >
@@ -77,10 +69,6 @@
             </label>
         </div>
     </div>
-    <!--<textarea style="position:absolute;top:25px;right:200px" id="txtName"  name="txt-Name" placeholder="Search for whiskey Brand..."></textarea>-->
-    <!--<button style="position:absolute;top:20px;left:1200px" onclick="highLight()">Search</button>-->
-
-
 </div>
 
 
@@ -107,15 +95,12 @@
 
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<!--this doesn't seem to help-->
 <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
 <title>Tool for the Incomplete Datasets</title>
-<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 
 </body>
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 <!--autocomplete-->
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

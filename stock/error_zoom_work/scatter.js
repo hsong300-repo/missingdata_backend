@@ -190,7 +190,7 @@ function updateChart() {
                 .duration(200)
                 .style("opacity", .9);
             div.html(function(){
-                console.log('d[select_x] & d[select_y]', d[select_x], d[select_y]);
+                console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
                 if(d[select_x] === 1 && d[select_y]===0){
                     return  "name: "+d.name + "<br>" +chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
                 }else if(d[select_y] === 1 && d[select_x] === 0){

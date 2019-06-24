@@ -117,15 +117,23 @@ chartG.append("defs").append("clipPath")
     .attr("height", chartHeight);
 /**/
 
+// svg.append("defs").append("clipPath")
+//     .attr("id", "clip_line")
+//     .append("rect")
+//     .attr('transform', 'translate('+[padding.l, padding.t]+')')
+//     .attr("width", chartWidth)
+//     .attr("height", chartHeight);
+// /**/
+
 var xAxisG = chartG.append('g')
     //this was changed to remove the ticks
-    // .attr('class', 'x axis')
-    .attr('class', 'x-axis')
+    .attr('class', 'x axis')
+    // .attr('class', 'x-axis')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-// .attr('class', 'y axis');
-    .attr('class', 'y-axis'); //there was a overlap in class name for bar
+.attr('class', 'y axis');
+    // .attr('class', 'y-axis'); //there was a overlap in class name for bar
 
 
 var transitionScale = d3.transition()
@@ -323,14 +331,17 @@ function updateChart() {
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
-                return 520;
+                return 510;
+                // return 520;
             })
             .attr("x2", function (d) {
                 return xScale(d[chartScales.x]);
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
-                return 520+10;
+                // return 520+10;
+                return 510+10;
+
             });
 
         dots_line_y = chartG.append("g")
@@ -341,14 +352,18 @@ function updateChart() {
             .attr("opacity",1)
             .attr("class", "normal-line")
             .attr("x1", function (d) {
-                return -10;
+                // return -10;
+                return -10+10;
+
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
                 return yScale(d[chartScales.y]);
             })
             .attr("x2", function (d) {
-                return 0;
+                // return 0;
+                return 0+10;
+
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
@@ -370,7 +385,8 @@ function updateChart() {
         // where it is missing, so if the value is imputed than it will show little lines next to it
         dots_line_x = chartG
             .append("g")
-            // .attr("clip-path", "url(#clip)") //zoom
+            .attr("clip-path", "url(#clip)") //zoom
+            // .attr("clip-path", "url(#clip_line)") //zoom
             .selectAll("line")
             .data(whiskey)
             // .data(filtered_x)
@@ -385,18 +401,23 @@ function updateChart() {
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
-                return 520;
+                // return new_yScale(yScaleMax)
+                return 510;
+                // return 520;
             })
             .attr("x2", function (d) {
                 return new_xScale(d[chartScales.x]);
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);
-                return 520+10;
+                // return new_yScale(yScaleMax+10)
+                return 510+10;
+                // return 520+10;
             });
 
         dots_line_y = chartG.append("g")
-            // .attr("clip-path", "url(#clip)") //zoom
+            .attr("clip-path", "url(#clip)") //zoom
+            // .attr("clip-path", "url(#clip_line)") //zoom
             .selectAll("line")
             // .data(filtered_y)
             .data(whiskey)
@@ -407,14 +428,16 @@ function updateChart() {
             .attr("opacity",1)
             .attr("class", "normal-line")
             .attr("x1", function (d) {
-                return -10;
+                return -10+10;
+                // return -10;
             })
             .attr("y1", function (d) {
                 // return yScale(d[chartScales.y]+1);
                 return new_yScale(d[chartScales.y]);
             })
             .attr("x2", function (d) {
-                return  0;
+                return  0+10;
+                // return  0;
             })
             .attr("y2", function (d) {
                 // return yScale(d[chartScales.y]-1);

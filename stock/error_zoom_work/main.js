@@ -23,6 +23,7 @@ var previewCsvUrl = function( csvUrl ) {
                 'roe': +row['roe'],
                 'marketcap': +row['marketcap'],
                 'eps': +row['eps'],
+                'beta_impute': +row['beta_impute'],
                 'currprice_impute': +row['currprice_impute'],
                 'pctchg52wks_impute': +row['pctchg52wks_impute'],
                 'avgvol_impute': +row['avgvol_impute'],
@@ -42,6 +43,7 @@ var previewCsvUrl = function( csvUrl ) {
 
             // Create global variables here
             whiskey = dataset;
+            console.log('dataset',dataset);
 
             // ***autocomplete goes here***
             global_wiskey_data =  whiskey;
@@ -92,7 +94,7 @@ var previewCsvUrl = function( csvUrl ) {
             //get the percentage of the two
 
             // Create global object called chartScales to keep state
-            chartScales = {x: 'currprice', y: 'beta'};
+            chartScales = {x: 'beta', y: 'currprice'};
 
             updateChart();
 
