@@ -207,59 +207,79 @@ function updateChart() {
                 .style('stroke', '#333');
         })
         .on("click",function(d){
-            if (!d3.select(this).classed("selected") ){
-                var clicked = d3.select(this);
+            var clicked = d3.select(this);
+            var color = clicked.style("fill");
+            var inColor = d3.rgb("yellow");
+            if (!d3.select(this).classed("selected")){
+                    // var clicked = d3.select(this);
 
-                clickedCircles.push(d.name);
-                clicked.select('circle')
-                    .style('fill',"yellow");
+                    console.log('first time yellow');
 
-                clicked.classed("selected", true);
+                    clickedCircles.push(d.name);
+                    clicked.select('circle')
+                        .style('fill',"yellow");
 
-                console.log('list of clicked circles',clickedCircles);
+                    clicked.classed("selected", true);
 
-
-
+                    console.log('list of clicked circles',clickedCircles);
             }else{
+                console.log('remove it');
 
-                var clicked = d3.select(this);
+                // var clicked = d3.select(this);
 
-                while ((index = clickedCircles.indexOf(d.name)) > -1) {
-                    clickedCircles.splice(index, 1);
+                    while ((index = clickedCircles.indexOf(d.name)) > -1) {
+                        clickedCircles.splice(index, 1);
+                    }
+                    clicked.select('circle')
+                        .style('fill',function(d){
+                            if(d[select_x] ===1 || d[select_y] === 1){
+                                return "url(#diagonal-stripes)";}
+                            else{return "steelblue";}
+                        });
+
+                    // clicked.classed("selected", true);
+                    clicked.classed("selected", false);
+
+                    console.log('list of clicked circles',clickedCircles);
                 }
-                clicked.select('circle')
-                    .style('fill',function(d){
-                        if(d[select_x] ===1 || d[select_y] === 1){
-                            return "url(#diagonal-stripes)";}
-                        else{return "steelblue";}
-                    });
-
-                // clicked.classed("selected", true);
-                clicked.classed("selected", false);
-
-                console.log('list of clicked circles',clickedCircles);
-
-            }
-
-            // var clicked = d3.select(this);
-            //
-            // clickedCircles.push(d.name);
-            // clicked.select('circle')
-            //     .style('fill',"yellow");
-            //
-            // console.log('list of clicked circles',clickedCircles);
-
-
-            // if (clickedCircles.indexOf(d.name) >= 0) {
-            //     circles = svg.selectAll("circle");
-            //     circles.style("fill", function(d) {
-            //         if(d[select_x] ===1 || d[select_y] === 1){
-            //             return "url(#diagonal-stripes)";}
-            //         else{
-            //             return "steelblue";}
-            //     });
-            // }
-        })
+            })
+        // .on("click",function(d){
+        //
+        //     var clicked = d3.select(this);
+        //     var color = clicked.style("fill");
+        //     var inColor = d3.rgb("yellow");
+        //
+        //     if(color.r === inColor.r && color.g === inColor.g && color.b === inColor.b){//selected
+        //
+        //         var clicked = d3.select(this);
+        //
+        //         while ((index = clickedCircles.indexOf(d.name)) > -1) {
+        //             clickedCircles.splice(index, 1);
+        //         }
+        //         clicked.select('circle')
+        //             .style('fill',function(d){
+        //                 if(d[select_x] ===1 || d[select_y] === 1){
+        //                     return "url(#diagonal-stripes)";}
+        //                 else{return "steelblue";}
+        //             });
+        //
+        //         // clicked.classed("selected", true);
+        //         // clicked.classed("selected", false);
+        //
+        //         console.log('list of clicked circles',clickedCircles);
+        //         // d3.selectAll(".pointE").remove(); //testing
+        //     }else{//de-select
+        //
+        //         clickedCircles.push(d.name);
+        //         clicked.select('circle')
+        //             .style('fill',"yellow");
+        //
+        //         // clicked.classed("selected", true);
+        //
+        //         console.log('list of clicked circles',clickedCircles);
+        //
+        //     }
+        // })
         .on('mouseout', function(d){ // Add hover end event binding
             // Select the hovered g.dot
             var hovered = d3.select(this);

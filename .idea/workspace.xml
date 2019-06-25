@@ -59,7 +59,7 @@
           <entry key="css" value="529" />
           <entry key="csv" value="3" />
           <entry key="html" value="2557" />
-          <entry key="js" value="27903" />
+          <entry key="js" value="28053" />
           <entry key="py" value="1297" />
           <entry key="txt" value="17" />
         </counts>
@@ -68,7 +68,7 @@
         <counts>
           <entry key="CSS" value="529" />
           <entry key="HTML" value="2557" />
-          <entry key="JavaScript" value="27903" />
+          <entry key="JavaScript" value="28053" />
           <entry key="PLAIN_TEXT" value="42" />
           <entry key="Python" value="1297" />
         </counts>
@@ -132,8 +132,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="234" column="23" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="23" />
+            <state relative-caret-position="191">
+              <caret line="240" column="17" selection-start-line="240" selection-start-column="17" selection-end-line="240" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -452,12 +452,12 @@
       <workItem from="1561341332733" duration="4820000" />
       <workItem from="1561398616444" duration="3312000" />
       <workItem from="1561438547745" duration="231000" />
-      <workItem from="1561481294885" duration="4308000" />
+      <workItem from="1561481294885" duration="5283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248868000" />
+    <option name="totallyTimeSpent" value="249843000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -782,8 +782,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="234" column="23" selection-start-line="234" selection-start-column="23" selection-end-line="234" selection-end-column="23" />
+        <state relative-caret-position="191">
+          <caret line="240" column="17" selection-start-line="240" selection-start-column="17" selection-end-line="240" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
