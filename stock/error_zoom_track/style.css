@@ -1,0 +1,266 @@
+
+.dot circle {
+    /*fill: #2381b3;*/
+    /*opacity: 0.8;*/
+    stroke: #000;
+    stroke-opacity: .7;
+    fill-opacity: .7;
+}
+
+.dot text {
+    text-anchor: middle;
+    font-size: 10px;
+    pointer-events: none;
+    fill: #555;
+}
+
+.dot text {
+    opacity: 0;
+}
+
+.dot:hover text {
+    opacity: 1;
+}
+
+body {
+    font-family: "Open Sans";
+    margin: 0;
+}
+
+label {
+    font-size: 16px;
+}
+
+#main {
+    margin: 20px;
+}
+
+/*this part is for bar chart*/
+select {
+    display: block;
+}
+.bar {
+    /*fill: purple;*/
+    fill: steelblue;
+    opacity: 0.8;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+line.x {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+line.y {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+/*this part added to partition into two columns*/
+* {
+    box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 10px;
+    height: 260px; /* Should be removed. Only for demonstration */
+}
+
+.left {
+    height: 100%;
+    width: 25%;
+}
+
+.right {
+    height: 100%;
+    width: 75%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+html, body {
+    height: 100%;
+}
+
+.table {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.cell {
+    height: 100%;
+    display: table-cell;
+}
+
+.cell:first-child {
+    width: 1px;
+    /*background: #ff0000;*/
+}
+
+.cell:last-child {
+    /*background: #0000ff;*/
+}
+
+.inner {
+    width: 100px;
+}
+
+button {
+    display: inline-block;
+    top: 50%;
+    margin-top:30px;
+    left: 50%;
+    margin-left:50px;
+
+}
+
+button:active {
+    border: 2px solid green;
+}
+
+button:focus {
+    border: 2px solid deepskyblue;
+}
+
+
+.rectangle {
+    /*fill: steelblue;*/
+}
+.rectangle:hover {
+    /*fill: orange;*/
+}
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#bar img {
+    display: block;
+
+}
+
+/*radio buttons*/
+.radio{
+    text-align: left;
+    margin-left: 400px;
+}
+.row{
+    text-align: center;
+}
+
+/*starting from here*/
+circle {
+    fill: #ff6600;
+}
+
+/*error bar cap and encodings add*/
+.error-line {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+}
+
+.ticks-line {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+}
+
+.normal-line-x{
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+
+}
+
+.normal-line-y {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+
+}
+
+.normal-line {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-dasharray: 2,2;
+
+}
+
+.error-cap {
+    /*stroke: #b30059;*/
+    stroke:#000;
+    stroke-width: 2px;
+    stroke-type: solid;
+}
+
+.plot-bg {
+    fill: #fff0e6;
+}
+
+.missing{
+    fill: black
+}
+
+.not_missing{
+    fill:white
+}
+
+#cLeft {
+    width: 17%;
+}
+
+
+div.tooltip {
+    position: absolute;
+    /*text-align: center;*/
+    text-align:left;
+    /*width: 160px;*/
+    width: 200px;
+    /*height: 25px;*/
+    height: 60px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/*addition for jitter*/
+#controls {
+    font-size: 14px;
+    position: absolute;
+    top: 120px;
+    left: 810px;
+}
+
+input {
+    margin: 4px 4px 0;
+}
