@@ -207,13 +207,47 @@ function updateChart() {
                 .style('stroke', '#333');
         })
         .on("click",function(d){
-            var clicked = d3.select(this);
+            if (!d3.select(this).classed("selected") ){
+                var clicked = d3.select(this);
 
-            clickedCircles.push(d.name);
-            clicked.select('circle')
-                .style('fill',"yellow");
+                clickedCircles.push(d.name);
+                clicked.select('circle')
+                    .style('fill',"yellow");
 
-            console.log('list of clicked circles',clickedCircles);
+                clicked.classed("selected", true);
+
+                console.log('list of clicked circles',clickedCircles);
+
+
+
+            }else{
+
+                var clicked = d3.select(this);
+
+                while ((index = clickedCircles.indexOf(d.name)) > -1) {
+                    clickedCircles.splice(index, 1);
+                }
+                clicked.select('circle')
+                    .style('fill',function(d){
+                        if(d[select_x] ===1 || d[select_y] === 1){
+                            return "url(#diagonal-stripes)";}
+                        else{return "steelblue";}
+                    });
+
+                // clicked.classed("selected", true);
+                clicked.classed("selected", false);
+
+                console.log('list of clicked circles',clickedCircles);
+
+            }
+
+            // var clicked = d3.select(this);
+            //
+            // clickedCircles.push(d.name);
+            // clicked.select('circle')
+            //     .style('fill',"yellow");
+            //
+            // console.log('list of clicked circles',clickedCircles);
 
 
             // if (clickedCircles.indexOf(d.name) >= 0) {
