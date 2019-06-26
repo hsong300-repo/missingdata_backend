@@ -32,7 +32,7 @@
 
 
     <!--<div style="position:absolute;top:350px;left:250px" >-->
-        <div style="position:absolute;top:375px;left:300px" >
+        <div style="position:absolute;top:375px;left:250px" >
         <label for="categorySelect">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
             <option value="beta">beta</option>
@@ -46,11 +46,12 @@
         </select>
     </div>
     <div align="center">
-        <svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">
-        </svg>
+        <!--<svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">-->
+        <svg class ="charts"  id = "scatter_canvas" width="650" height="650" style="border: 1px solid #777;">
+            </svg>
     </div>
     <!--<div align="center">-->
-    <div style="position:absolute;top:720px;left:700px" >
+    <div style="position:absolute;top:770px;left:700px" >
     <label for="categorySelect">X Scale:</label>
         <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
             <option selected value="beta">beta</option>

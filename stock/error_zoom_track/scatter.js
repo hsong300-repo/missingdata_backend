@@ -99,7 +99,9 @@ var svgHeight = +svg.attr('height');
 
 // console.log()
 
-var padding = {t: 40, r: 40, b: 40, l: 40};
+// var padding = {t: 40, r: 40, b: 40, l: 40};
+var padding = {t: 50, r: 50, b: 50, l: 50};
+
 
 // Compute chart dimensions
 var chartWidth = svgWidth - padding.l - padding.r;
