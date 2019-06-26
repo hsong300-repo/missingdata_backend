@@ -59,7 +59,7 @@
           <entry key="css" value="529" />
           <entry key="csv" value="3" />
           <entry key="html" value="2557" />
-          <entry key="js" value="28053" />
+          <entry key="js" value="28250" />
           <entry key="py" value="1297" />
           <entry key="txt" value="17" />
         </counts>
@@ -68,7 +68,7 @@
         <counts>
           <entry key="CSS" value="529" />
           <entry key="HTML" value="2557" />
-          <entry key="JavaScript" value="28053" />
+          <entry key="JavaScript" value="28250" />
           <entry key="PLAIN_TEXT" value="42" />
           <entry key="Python" value="1297" />
         </counts>
@@ -132,8 +132,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="240" column="17" selection-start-line="240" selection-start-column="17" selection-end-line="240" selection-end-column="17" />
+            <state relative-caret-position="253">
+              <caret line="232" column="42" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
@@ -201,8 +201,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>animation</find>
-      <find>redraw_animation</find>
       <find>chartG</find>
       <find>tooltop</find>
       <find>text</find>
@@ -231,6 +229,8 @@
       <find>append</find>
       <find>circle</find>
       <find>'class', 'dot'</find>
+      <find>yellow</find>
+      <find>green</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -303,8 +303,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="714" />
-    <option name="height" value="900" />
+    <option name="x" value="-241" />
+    <option name="y" value="-1080" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -452,18 +454,18 @@
       <workItem from="1561341332733" duration="4820000" />
       <workItem from="1561398616444" duration="3312000" />
       <workItem from="1561438547745" duration="231000" />
-      <workItem from="1561481294885" duration="5283000" />
+      <workItem from="1561481294885" duration="6465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249843000" />
+    <option name="totallyTimeSpent" value="251025000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-241" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.16208598" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.12111638" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -477,7 +479,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.19397591" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.15940595" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32970297" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -782,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="240" column="17" selection-start-line="240" selection-start-column="17" selection-end-line="240" selection-end-column="17" />
+        <state relative-caret-position="253">
+          <caret line="232" column="42" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
           <folding>
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
