@@ -202,7 +202,7 @@ function updateChart() {
                 }
             })
                 // .style("left", "1050px")
-                .style("left", "1130px")
+                .style("left", "1140px")
                 .style("top", "100px");
             hovered.select('circle')
                 .style('stroke-width', 2)
