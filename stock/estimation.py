@@ -5,7 +5,7 @@ from fancyimpute import KNN
 
 
 # read to csv for computation
-df = pd.read_csv("./stock.csv")
+df = pd.read_csv("./data_removed.csv")
 # to track original data
 temp = df
 temp_knn = df
@@ -80,4 +80,4 @@ temp_knn['eps'] = df_filled['eps']
 
 print("temp_mean after", temp_knn.describe())
 
-temp_knn.to_csv('./stock_knn.csv', index=False, header=True)
+temp_knn.to_csv('./data_removed_knn.csv', index=False, header=True)

@@ -13,7 +13,7 @@ var previewCsvUrl = function( csvUrl ) {
     // d3.csv(csvUrl, function(error, dataset){
     d3.csv(csvUrl,function(row) {
             return {
-                // 'name': row['name'],
+                'name': row['name'],
                 'ticker': row['ticker'],
                 'beta': +row['beta'],
                 'currprice': +row['currprice'],
@@ -54,7 +54,7 @@ var previewCsvUrl = function( csvUrl ) {
 
             //loop through row_nodes
             for (i=0; i<dataset.length; i++){
-                all_whiskey.push( dataset[i]['ticker'] );
+                all_whiskey.push( dataset[i]['name'] );
             };
 
             all_whiskey.sort();

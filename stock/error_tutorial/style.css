@@ -150,9 +150,7 @@ button:focus {
     /*fill: orange;*/
 }
 .axis {
-    /*font: 10px sans-serif;*/
-    font: 15px sans-serif;
-
+    font: 10px sans-serif;
 }
 
 .axis path,
@@ -171,14 +169,9 @@ button:focus {
 .radio{
     text-align: left;
     margin-left: 400px;
-    /*height:20px;*/
-    /*width:20px;*/
-
 }
-
 .row{
     text-align: center;
-    /*font-size:15px;*/
 }
 
 /*starting from here*/
@@ -258,7 +251,6 @@ div.tooltip {
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
-    font-size:17px;
 }
 
 /*addition for jitter*/
@@ -272,15 +264,3 @@ div.tooltip {
 input {
     margin: 4px 4px 0;
 }
-
-label.radio-inline,select.custom-select,label.scale,input.form-control,label.btn-primary{
-    /*font-size: 17px;    */
-    font: 15px sans-serif;
-
-}
-
-
-
-/*select.custom-select{*/
-    /*font-size: 20px;*/
-/*}*/

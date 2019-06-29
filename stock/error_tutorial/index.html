@@ -18,13 +18,13 @@
     <div class='row' id="scatter_radio" style="margin-left: 200px;">
         <div class='radio' >
             <label class='radio-inline'>
-               Show: <input type="radio" style="height:18px;width:18px;" name="filter" value="both" checked> All
+                Show: <input type="radio" name="filter" value="both" checked> All
             </label>
             <label class='radio-inline'>
-                <input type="radio" style="height:18px;width:18px;" name="filter" value="no_impute"> Not missing
+                <input type="radio" name="filter" value="no_impute"> Not missing
             </label>
             <label class='radio-inline' >
-                <input type="radio" style="height:18px;width:18px;" name="filter" value="impute"> Missing values
+                <input type="radio" name="filter" value="impute"> Missing values
             </label>
         </div>
         <br><br><br>
@@ -32,17 +32,17 @@
 
 
     <!--<div style="position:absolute;top:350px;left:250px" >-->
-        <div style="position:absolute;top:375px;left:150px" >
-        <label for="categorySelect" class="scale">Y Scale:</label>
+        <div style="position:absolute;top:375px;left:250px" >
+        <label for="categorySelect">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
-            <option value="beta">Beta</option>
-            <option selected value="currprice">Current price per share</option>
-            <option value="pctchg52wks">Price change over 52 weeks</option>
-            <option value="avgvol">Average volume</option>
-            <option value="peratio">PE Ratio</option>
-            <option value="roe">ROE</option>
-            <option value="marketcap">Market Capitalization</option>
-            <option value="eps">EPS</option>
+            <option value="beta">beta</option>
+            <option selected value="currprice">currprice</option>
+            <option value="pctchg52wks">pctchg52wks</option>
+            <option value="avgvol">avgvol</option>
+            <option value="peratio">peratio</option>
+            <option value="roe">roe</option>
+            <option value="marketcap">marketcap</option>
+            <option value="eps">eps</option>
         </select>
     </div>
     <div align="center">
@@ -51,17 +51,17 @@
             </svg>
     </div>
     <!--<div align="center">-->
-    <div style="position:absolute;top:770px;left:680px" >
-    <label for="categorySelect" class="scale">X Scale:</label>
+    <div style="position:absolute;top:770px;left:700px" >
+    <label for="categorySelect">X Scale:</label>
         <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
-            <option selected value="beta">Beta</option>
-            <option value="currprice">Current price per share</option>
-            <option value="pctchg52wks">Price change over 52 weeks</option>
-            <option value="avgvol">Average volume</option>
-            <option value="peratio">PE Ratio</option>
-            <option value="roe">ROE</option>
-            <option value="marketcap">Market Capitalization</option>
-            <option value="eps">EPS</option>
+            <option selected value="beta">beta</option>
+            <option value="currprice">currprice</option>
+            <option value="pctchg52wks">pctchg52wks</option>
+            <option value="avgvol">avgvol</option>
+            <option value="peratio">peratio</option>
+            <option value="roe">roe</option>
+            <option value="marketcap">marketcap</option>
+            <option value="eps">eps</option>
         </select>
     </div>
     <div id='gene_search_container' class='row'>

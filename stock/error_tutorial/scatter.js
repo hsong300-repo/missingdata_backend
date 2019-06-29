@@ -14,7 +14,7 @@ function highLight() {
 
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
-        if (d.ticker == txtName.value) {
+        if (d.name == txtName.value) {
             return "red"
         }else if(d[select_x] ===1 || d[select_y] === 1){
             return "url(#diagonal-stripes)";}
@@ -28,7 +28,7 @@ function trackClicked(clickedCircles){
 
         circles = svg.selectAll("circle");
         circles.style("fill", function(d) {
-            if((clickedCircles.indexOf(d.ticker) >= 0)){
+            if((clickedCircles.indexOf(d.name) >= 0)){
                 return "orange";
             } else if(d[select_x] ===1 || d[select_y] === 1){
                 return "url(#diagonal-stripes)";}
@@ -62,7 +62,6 @@ function onXScaleChanged() {
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
-
 
     // Update chart
     updateChart();
@@ -150,37 +149,13 @@ function updateChart() {
     yScaleMax = yScale.domain().slice(-1)[0];
     yScaleMin = yScale.domain()[0];
 
-    if(chartScales.x === "marketcap"){
-        xAxisG.transition()
-            .duration(750) // Add transition
-            .call(d3.axisBottom(xScale)
-                .tickFormat(d3.format(".0s")));
-    }else{
-        // Update the axes here first
-        xAxisG.transition()
-            .duration(750) // Add transition
-            .call(d3.axisBottom(xScale));
-    }
-
-    if(chartScales.y === "marketcap"){
-        yAxisG.transition()
-            .duration(750) // Add transition
-            .call(d3.axisLeft(yScale)
-                .tickFormat(d3.format(".0s")));
-    }else{
-        // Update the axes here first
-        yAxisG.transition()
-            .duration(750) // Add transition
-            .call(d3.axisLeft(yScale));
-    }
-
-    // xAxisG.transition()
-    //     .duration(750) // Add transition
-    //     .call(d3.axisBottom(xScale));
-    //
-    // yAxisG.transition()
-    //     .duration(750) // Add transition
-    //     .call(d3.axisLeft(yScale));
+    // Update the axes here first
+    xAxisG.transition()
+        .duration(750) // Add transition
+        .call(d3.axisBottom(xScale));
+    yAxisG.transition()
+        .duration(750) // Add transition
+        .call(d3.axisLeft(yScale));
 
     // these were declared as local initially
     const select = textProcess(chartScales.x,chartScales.y);
@@ -217,13 +192,13 @@ function updateChart() {
             div.html(function(){
                 console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
                 if(d[select_x] === 1 && d[select_y]===0){
-                    return  "ticker: "+d.ticker + "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y]
                 }else if(d[select_y] === 1 && d[select_x] === 0){
-                    return  "ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
                 }else if(d[select_x] === 0 && d[select_y] === 0){
-                    return  "ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y]
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y]
                 }else if(d[select_x] === 1  && d[select_y] === 1){
-                    return  "ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
+                    return  "name: "+d.name + "<br>" +"ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
                 }
             })
                 // .style("left", "1050px")
@@ -235,8 +210,8 @@ function updateChart() {
         })
         .on("click",function(d) {
             var clicked = d3.select(this);
-            if ((clickedCircles.indexOf(d.ticker) >= 0)) {
-                while ((index = clickedCircles.indexOf(d.ticker)) > -1) {
+            if ((clickedCircles.indexOf(d.name) >= 0)) {
+                while ((index = clickedCircles.indexOf(d.name)) > -1) {
                     clickedCircles.splice(index, 1);
                 }
                 clicked.select('circle')
@@ -255,7 +230,7 @@ function updateChart() {
                 console.log('list of clicked circles', clickedCircles);
             } else {
 
-                clickedCircles.push(d.ticker);
+                clickedCircles.push(d.name);
                 clicked.select('circle')
                     .style('fill', "orange");
 
