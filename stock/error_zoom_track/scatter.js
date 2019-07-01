@@ -1,4 +1,5 @@
 var circles;
+var labels;
 var clickedCircles = []; // track clicked circles
 var i = 0;
 
@@ -36,6 +37,14 @@ function trackClicked(clickedCircles){
                 return "steelblue";}
         });
 
+        labels = svg.selectAll(".tickers");
+        labels.style("opacity", function(d) {
+            if((clickedCircles.indexOf(d.ticker) >= 0)){
+                return "1";
+            }else{
+                return "0";}
+        });
+
 }
 
 function textProcess(temp_x,temp_y) {
@@ -58,6 +67,9 @@ function onXScaleChanged() {
     }
     zoom_called = false;
 
+    svg.selectAll(".tickers").remove().exit();
+
+
 
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -74,6 +86,8 @@ function onYScaleChanged() {
         points.remove().exit();
     }
     zoom_called = false;
+
+    svg.selectAll(".tickers").remove().exit();
 
 
     var select = d3.select('#yScaleSelect').node();
@@ -174,14 +188,6 @@ function updateChart() {
             .call(d3.axisLeft(yScale));
     }
 
-    // xAxisG.transition()
-    //     .duration(750) // Add transition
-    //     .call(d3.axisBottom(xScale));
-    //
-    // yAxisG.transition()
-    //     .duration(750) // Add transition
-    //     .call(d3.axisLeft(yScale));
-
     // these were declared as local initially
     const select = textProcess(chartScales.x,chartScales.y);
 
@@ -249,6 +255,10 @@ function updateChart() {
                         }
                     });
 
+                clicked.select('text')
+                    .style("opacity",0);
+
+
                 // clicked.classed("selected", true);
                 clicked.classed("selected", false);
 
@@ -258,6 +268,12 @@ function updateChart() {
                 clickedCircles.push(d.ticker);
                 clicked.select('circle')
                     .style('fill', "orange");
+
+
+                clicked.select('text')
+                    .style("opacity",1);
+
+
 
                 clicked.classed("selected", true);
 
@@ -283,6 +299,12 @@ function updateChart() {
             else{return "steelblue";}
         })
         .attr('r', 5);
+
+    dotsEnter.append("text")
+        .attr("class","tickers")
+        .attr("x",+10)
+        .attr("y",-10)
+        .text(function(d){return d.ticker});
 
 
     d3.selectAll(("input[value='error']")).on("change", function() {
@@ -549,6 +571,19 @@ function updateChart() {
             trackClicked(clickedCircles);
         }
 
+        d3.selectAll(".tickers")
+            .style("opacity",function(d){
+                if(d[select_x] ===1 || d[select_y] === 1){
+                    if(clickedCircles.indexOf(d.ticker) >= 0){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                } else{return 0;}
+            });
+
+
+
     }// end of imputed filter
 
     function filter_no_impute() {
@@ -571,7 +606,6 @@ function updateChart() {
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
-
         if(txtName.value){
             highLight();
         }
@@ -580,8 +614,16 @@ function updateChart() {
             trackClicked(clickedCircles);
         }
 
-
-
+        d3.selectAll(".tickers")
+            .style("opacity",function(d){
+                if(d[select_x] === 0 && d[select_y] === 0){
+                    if(clickedCircles.indexOf(d.ticker) >= 0){
+                        return 1;
+                    }else{
+                        return 0;
+                    }
+                }else{return 0;}
+            });
 
     }// end of no filter
 
@@ -595,6 +637,7 @@ function updateChart() {
             .filter(function(d){return d[select_x] ===0 && d[select_y] ===0})
             .style("fill","steelblue")
             .style("opacity",0.8);
+
 
 
         impute_flag = false;
@@ -619,6 +662,13 @@ function updateChart() {
         if (clickedCircles.length > 0) {
             trackClicked(clickedCircles);
         }
+
+
+
+
+
+
+
 
     }// end of imputed filter
 
