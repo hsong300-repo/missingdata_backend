@@ -13,11 +13,14 @@ function highLight() {
     // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
 
+
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
         if (d.ticker == txtName.value) {
             return "red"
-        }else if(d[select_x] ===1 || d[select_y] === 1){
+        }else if((clickedCircles.indexOf(d.ticker) >= 0)){
+            return "orange";
+        } else if(d[select_x] ===1 || d[select_y] === 1){
             return "url(#diagonal-stripes)";}
         else{
             return "steelblue";}
@@ -25,6 +28,8 @@ function highLight() {
 
 
 }
+
+
 function trackClicked(clickedCircles){
 
         circles = svg.selectAll("circle");
@@ -400,12 +405,14 @@ function updateChart() {
     // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
 
-    if(txtName.value){
-        highLight();
-    }
+
 
     if (clickedCircles.length > 0) {
         trackClicked(clickedCircles);
+    }
+
+    if(txtName.value){
+        highLight();
     }
 
     if(impute_flag === true){
@@ -613,12 +620,14 @@ function updateChart() {
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
-        if(txtName.value){
-            highLight();
-        }
+
 
         if (clickedCircles.length > 0) {
             trackClicked(clickedCircles);
+        }
+
+        if(txtName.value){
+            highLight();
         }
 
         d3.selectAll(".tickers")
@@ -656,12 +665,14 @@ function updateChart() {
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
-        if(txtName.value){
-            highLight();
-        }
+
 
         if (clickedCircles.length > 0) {
             trackClicked(clickedCircles);
+        }
+
+        if(txtName.value){
+            highLight();
         }
 
         d3.selectAll(".tickers")
@@ -705,12 +716,14 @@ function updateChart() {
         // var txtName = document.getElementById("txtName");
         var txtName = document.getElementById("gene_search_box");
 
-        if(txtName.value){
-            highLight();
-        }
+
 
         if (clickedCircles.length > 0) {
             trackClicked(clickedCircles);
+        }
+
+        if(txtName.value){
+            highLight();
         }
 
 
@@ -741,8 +754,26 @@ function updateChart() {
         new_xScale = d3.event.transform.rescaleX(xScale);
         new_yScale = d3.event.transform.rescaleY(yScale);
 
-        var xAxis = d3.axisBottom(xScale);
-        var yAxis = d3.axisLeft(yScale);
+
+        if(chartScales.x === "marketcap"){
+
+            var xAxis = d3.axisBottom(xScale).tickFormat(d3.format(".0s"));
+        }else{
+            // Update the axes here first
+            var xAxis = d3.axisBottom(xScale);
+
+        }
+
+        if(chartScales.y === "marketcap"){
+
+            var yAxis = d3.axisLeft(yScale).tickFormat(d3.format(".0s"));
+        }else{
+            var yAxis = d3.axisLeft(yScale);
+
+        }
+
+        // var xAxis = d3.axisBottom(xScale);
+        // var yAxis = d3.axisLeft(yScale);
 
         // update axes
         xAxisG.call( xAxis.scale(new_xScale));
