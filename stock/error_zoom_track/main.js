@@ -106,5 +106,7 @@ var previewCsvUrl = function( csvUrl ) {
 
 
 
-previewCsvUrl("./new_data/stock_knn_2.csv");
+// previewCsvUrl("./new_data/stock_knn_2.csv");
+previewCsvUrl("./new_data/stock_knn_demo1.csv");
+
 

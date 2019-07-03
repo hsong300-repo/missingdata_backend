@@ -211,6 +211,31 @@ function updateChart() {
     var div = d3.select("body").append("div")
         .attr("class", "tooltip");
 
+    //de-select all when clicked oustide
+    chartG.on("click",function()
+    {
+        console.log('outside');
+        while (clickedCircles.length > 0) {
+            clickedCircles.pop();
+        }
+        circles = svg.selectAll("circle");
+
+        circles.style('fill', function (d) {
+                if (d[select_x] === 1 || d[select_y] === 1) {
+                    return "url(#diagonal-stripes)";
+                }
+                else {
+                    return "steelblue";
+                }
+            });
+
+        labels = svg.selectAll(".tickers");
+
+        labels.style("opacity", 0);
+
+
+    });
+
     // var dotsEnter = dots.enter()
     dotsEnter = dots.enter()
         .append('g')
@@ -257,7 +282,7 @@ function updateChart() {
                 }
             })
                 // .style("left", "1050px")
-                .style("left", "1140px")
+                .style("left", "1060px")
                 .style("top", "100px");
             hovered.select('circle')
                 .style('stroke-width', 2)
@@ -265,6 +290,7 @@ function updateChart() {
         })
         .on("click",function(d) {
             var clicked = d3.select(this);
+            console.log("clicked",clicked);
             if ((clickedCircles.indexOf(d.ticker) >= 0)) {
                 while ((index = clickedCircles.indexOf(d.ticker)) > -1) {
                     clickedCircles.splice(index, 1);

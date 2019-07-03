@@ -74,7 +74,7 @@ temp_knn['pctchg52wks'] = df_filled['pctchg52wks']
 temp_knn['avgvol'] = df_filled['avgvol']
 temp_knn['peratio'] = df_filled['peratio']
 temp_knn['roe'] = df_filled['roe']
-temp_knn['marketcap'] = df_filled['marketcap']
+temp_knn['marketcap'] = df_filled['marketcap']*10000
 temp_knn['eps'] = df_filled['eps']
 
 
