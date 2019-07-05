@@ -4,7 +4,6 @@
     <list default="true" id="ca4fc5f2-665e-4517-9b5d-84b8e2cbf010" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock/error_zoom_track/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/stock/error_zoom_track/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock/error_zoom_track/new_data/stock_knn_demo1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stock/error_zoom_track/new_data/stock_knn_demo1.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock/error_zoom_track/scatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/stock/error_zoom_track/scatter.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,7 +16,7 @@
     <session id="-228540039">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="70" />
+          <entry key="project.closed" value="71" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="12" />
           <entry key="project.open.time.10" value="1" />
@@ -26,10 +25,10 @@
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="5" />
           <entry key="project.open.time.6" value="10" />
-          <entry key="project.open.time.7" value="14" />
+          <entry key="project.open.time.7" value="15" />
           <entry key="project.open.time.8" value="8" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="68" />
+          <entry key="project.opened" value="69" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -60,19 +59,19 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Procfile" value="22" />
-          <entry key="css" value="748" />
+          <entry key="css" value="749" />
           <entry key="csv" value="3" />
-          <entry key="html" value="2798" />
-          <entry key="js" value="29934" />
+          <entry key="html" value="2844" />
+          <entry key="js" value="30120" />
           <entry key="py" value="1323" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="748" />
-          <entry key="HTML" value="2798" />
-          <entry key="JavaScript" value="29934" />
+          <entry key="CSS" value="749" />
+          <entry key="HTML" value="2844" />
+          <entry key="JavaScript" value="30120" />
           <entry key="PLAIN_TEXT" value="63" />
           <entry key="Python" value="1302" />
         </counts>
@@ -84,7 +83,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="1215">
               <caret line="81" column="35" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
             </state>
           </provider>
@@ -112,10 +111,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="317" column="128" selection-start-line="317" selection-start-column="128" selection-end-line="317" selection-end-column="128" />
+            <state relative-caret-position="443">
+              <caret line="263" column="9" selection-start-line="263" selection-start-column="9" selection-end-line="263" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#textProcess#0" />
+                <element signature="e#8602#16504#0" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
@@ -140,6 +140,11 @@
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#2;n#!!top" expanded="true" />
+                <element signature="e#20764#23819#0" />
+                <element signature="e#23877#27260#0" />
+                <element signature="e#27315#28627#0" />
+                <element signature="e#28685#29855#0" />
+                <element signature="e#29903#30855#0" />
               </folding>
             </state>
           </provider>
@@ -148,8 +153,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-349">
-              <caret line="70" column="123" selection-start-line="70" selection-start-column="123" selection-end-line="70" selection-end-column="123" />
+            <state relative-caret-position="614">
+              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#label#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -158,6 +163,8 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#rect#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -168,8 +175,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3810">
-              <caret line="254" column="14" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
+            <state relative-caret-position="3765">
+              <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -298,10 +305,10 @@
         <option value="$PROJECT_DIR$/stock/error_zoom_work/index.html" />
         <option value="$PROJECT_DIR$/stock/error_zoom_track_data2/main.js" />
         <option value="$PROJECT_DIR$/stock/error_tutorial/main.js" />
-        <option value="$PROJECT_DIR$/stock/error_zoom_track/style.css" />
         <option value="$PROJECT_DIR$/stock/estimation.py" />
-        <option value="$PROJECT_DIR$/stock/error_zoom_track/index.html" />
         <option value="$PROJECT_DIR$/stock/error_zoom_track/main.js" />
+        <option value="$PROJECT_DIR$/stock/error_zoom_track/style.css" />
+        <option value="$PROJECT_DIR$/stock/error_zoom_track/index.html" />
         <option value="$PROJECT_DIR$/stock/error_zoom_track/scatter.js" />
       </list>
     </option>
@@ -313,8 +320,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="-241" />
+    <option name="y" value="-1057" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -322,6 +331,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -355,7 +365,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -470,12 +479,13 @@
       <workItem from="1562100512758" duration="881000" />
       <workItem from="1562119588186" duration="853000" />
       <workItem from="1562166364978" duration="470000" />
-      <workItem from="1562257937621" duration="3044000" />
+      <workItem from="1562257937621" duration="3469000" />
+      <workItem from="1562353571659" duration="2794000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274632000" />
+    <option name="totallyTimeSpent" value="277851000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,9 +497,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-241" y="-1080" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.21071176" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4975" visible="true" weight="0.15745129" />
       <window_info id="Structure" order="1" sideWeight="0.5025" side_tool="true" weight="0.13638757" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -503,7 +514,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003524" side_tool="true" weight="0.18620689" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49964765" visible="true" weight="0.1626506" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49964765" visible="true" weight="0.13366337" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32970297" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -701,6 +712,13 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/new_data/data_removed.csv" />
+    <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="81" column="35" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/new_data/stock_knn_demo1.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -716,8 +734,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3810">
-          <caret line="254" column="14" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
+        <state relative-caret-position="3765">
+          <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -740,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-349">
-          <caret line="70" column="123" selection-start-line="70" selection-start-column="123" selection-end-line="70" selection-end-column="123" />
+        <state relative-caret-position="614">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#label#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -750,25 +768,21 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#rect#0;n#svg#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="81" column="35" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stock/error_zoom_track/scatter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="317" column="128" selection-start-line="317" selection-start-column="128" selection-end-line="317" selection-end-column="128" />
+        <state relative-caret-position="443">
+          <caret line="263" column="9" selection-start-line="263" selection-start-column="9" selection-end-line="263" selection-end-column="9" />
           <folding>
             <element signature="n#!!block;n#textProcess#0" />
+            <element signature="e#8602#16504#0" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
@@ -793,6 +807,11 @@
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#2;n#!!top" expanded="true" />
+            <element signature="e#20764#23819#0" />
+            <element signature="e#23877#27260#0" />
+            <element signature="e#27315#28627#0" />
+            <element signature="e#28685#29855#0" />
+            <element signature="e#29903#30855#0" />
           </folding>
         </state>
       </provider>

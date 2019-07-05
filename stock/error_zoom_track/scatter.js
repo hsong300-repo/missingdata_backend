@@ -25,8 +25,6 @@ function highLight() {
         else{
             return "steelblue";}
     });
-
-
 }
 
 
@@ -74,12 +72,9 @@ function onXScaleChanged() {
 
     svg.selectAll(".tickers").remove().exit();
 
-
-
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
     chartScales.x = select.options[select.selectedIndex].value;
-
 
     // Update chart
     updateChart();
@@ -218,7 +213,30 @@ function updateChart() {
         .attr("class", "tooltip");
 
     //de-select all when clicked oustide
-    chartG.on("click",function()
+    // chartG.on("click",function()
+    // {
+    //     console.log('outside');
+    //     while (clickedCircles.length > 0) {
+    //         clickedCircles.pop();
+    //     }
+    //     circles = svg.selectAll("circle");
+    //
+    //     circles.style('fill', function (d) {
+    //             if (d[select_x] === 1 || d[select_y] === 1) {
+    //                 return "url(#diagonal-stripes)";
+    //             }
+    //             else {
+    //                 return "steelblue";
+    //             }
+    //         });
+    //
+    //     labels = svg.selectAll(".tickers");
+    //
+    //     labels.style("opacity", 0);
+    // });
+
+    //reset button click
+    d3.select("#reset").on("click",function()
     {
         console.log('outside');
         while (clickedCircles.length > 0) {
@@ -227,20 +245,20 @@ function updateChart() {
         circles = svg.selectAll("circle");
 
         circles.style('fill', function (d) {
-                if (d[select_x] === 1 || d[select_y] === 1) {
-                    return "url(#diagonal-stripes)";
-                }
-                else {
-                    return "steelblue";
-                }
-            });
+            if (d[select_x] === 1 || d[select_y] === 1) {
+                return "url(#diagonal-stripes)";
+            }
+            else {
+                return "steelblue";
+            }
+        });
 
         labels = svg.selectAll(".tickers");
 
         labels.style("opacity", 0);
 
-
     });
+
 
     // var dotsEnter = dots.enter()
     dotsEnter = dots.enter()
@@ -258,7 +276,6 @@ function updateChart() {
                     attr.splice(i, 1);
                 }
             }
-
             console.log("attr",attr.length,attr);
 
             div.transition().duration(200)
@@ -327,9 +344,11 @@ function updateChart() {
                 .style('stroke', '#333');
         })
         .on("click",function(d) {
+            //display buttons
             var clicked = d3.select(this);
             console.log("clicked",clicked);
             if ((clickedCircles.indexOf(d.ticker) >= 0)) {
+                // document.getElementById('reset').style.display = "block";
                 while ((index = clickedCircles.indexOf(d.ticker)) > -1) {
                     clickedCircles.splice(index, 1);
                 }
@@ -346,22 +365,19 @@ function updateChart() {
                 clicked.select('text')
                     .style("opacity",0);
 
-
                 // clicked.classed("selected", true);
                 clicked.classed("selected", false);
 
                 console.log('list of clicked circles', clickedCircles);
             } else {
+                // document.getElementById('reset').style.display = "none";
 
                 clickedCircles.push(d.ticker);
                 clicked.select('circle')
                     .style('fill', "orange");
 
-
                 clicked.select('text')
                     .style("opacity",1);
-
-
 
                 clicked.classed("selected", true);
 
@@ -393,7 +409,6 @@ function updateChart() {
         .attr("x",+10)
         .attr("y",-10)
         .text(function(d){return d.ticker});
-
 
     d3.selectAll(("input[value='error']")).on("change", function() {
         console.log('onchange error');
@@ -437,8 +452,6 @@ function updateChart() {
 
     // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
-
-
 
     if (clickedCircles.length > 0) {
         trackClicked(clickedCircles);
@@ -624,7 +637,6 @@ function updateChart() {
 
     }// end of scatter error
 
-
     function filter_impute() {
 
         d3.selectAll("circle")
@@ -789,7 +801,6 @@ function updateChart() {
 
 
         if(chartScales.x === "marketcap"){
-
             var xAxis = d3.axisBottom(xScale).tickFormat(d3.format(".0s"));
         }else{
             // Update the axes here first
@@ -798,7 +809,6 @@ function updateChart() {
         }
 
         if(chartScales.y === "marketcap"){
-
             var yAxis = d3.axisLeft(yScale).tickFormat(d3.format(".0s"));
         }else{
             var yAxis = d3.axisLeft(yScale);
@@ -827,7 +837,5 @@ function updateChart() {
         redraw_error_zoom();
     }
     //**zoom
-
-
 
 }// end of updatechart for Scatterplots
