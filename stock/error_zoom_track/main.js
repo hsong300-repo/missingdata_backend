@@ -91,6 +91,17 @@ var previewCsvUrl = function( csvUrl ) {
                 });
             });
 
+            console.log('domain map',domainMap);
+
+            console.log('domain beta',domainMap['beta'],domainMap['beta'][0],domainMap['beta'][1]);
+            //fix some tweaking
+            domainMap['beta'][1]+=0.2;
+            domainMap['currprice'][1]+=10;
+            // domainMap['pctchg52wks'][1]+=5;
+            domainMap['roe'][1] +=5;
+
+            console.log('change domainmap',domainMap);
+
             //get the percentage of the two
 
             // Create global object called chartScales to keep state

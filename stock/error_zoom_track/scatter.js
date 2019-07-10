@@ -136,12 +136,15 @@ chartG.append("defs").append("clipPath")
     .attr("height", chartHeight+20);
 /**/
 
+// var clipping = chartG.appne("g")
+//     .attr("clip-path","url(#clip)");
+
 var xAxisG = chartG.append('g')
     .attr('class', 'x axis')
     .attr('transform', 'translate('+[0, chartHeight]+')');
 
 var yAxisG = chartG.append('g')
-.attr('class', 'y axis');
+    .attr('class', 'y axis');
 
 var transitionScale = d3.transition()
     .duration(600)
@@ -153,9 +156,14 @@ function updateChart() {
     std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
+    console.log("std_x",chartScales.x, std_x);
+    console.log("std_y",chartScales.y, std_y);
+
+
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
     yScale.domain(domainMap[chartScales.y]).nice();
+    // xScale.domain(domainMap[chartScales.x]).nice();
     xScale.domain(domainMap[chartScales.x]).nice();
 
     xScaleMin = xScale.domain()[0];
@@ -200,6 +208,10 @@ function updateChart() {
         .attr('transform', 'translate('+[padding.l, padding.t]+')')
         .attr("clip-path", "url(#clip)");
 
+    // var scatter = chartG.append("g")
+    //     // .attr('transform', 'translate('+[padding.l, padding.t]+')')
+    //     .attr("clip-path", "url(#clip)");
+
     // Create and position scatterplot circles
     // User Enter, Update (don't need exit)
     dots =
@@ -234,6 +246,64 @@ function updateChart() {
         labels.style("opacity", 0);
     });
 
+    function tooltip(d){
+        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps"];
+
+        // var ticker,currprice,beta, pct52, avgvol,peratio,roe,eps = " "," "," "," "," "," "," "," ";
+        console.log('ticker',d.ticker);
+
+        var ticker = "Ticker: "+d.ticker + "<br>";
+        var currprice = "Current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>";
+
+
+
+        //text process
+        var beta_x = "beta".concat("_impute");
+        var pctchg52wks_x = "pctchg52wks".concat("_impute");
+        var avgvol_x = "avgvol".concat("_impute");
+        var peratio_x = "peratio".concat("_impute");
+        var roe_x = "roe".concat("_impute");
+        var eps_x = "eps".concat("_impute");
+
+        if(d[beta_x] === 1){
+            var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ d.beta + " (Est.)"+"</span>" + "<br>"
+        }else if(d[beta_x] === 0){
+            var beta =  "Beta" + ": " + d.beta + "<br>"
+        }
+
+        if(d[pctchg52wks_x] === 1){
+            var pctchg52wks =  "Price change over 52 weeks" + ": " + "<span style='color: #FF0000;'>"+ d.pctchg52wks + " (Est.)"+"</span>" + "<br>"
+        }else if(d[pctchg52wks_x] === 0){
+            var pctchg52wks = "Price change over 52 weeks" + ": " + d.pctchg52wks + "<br>"
+        }
+
+        if(d[avgvol_x] === 1){
+            var avgvol = "Average volume" + ": " + "<span style='color: #FF0000;'>"+ d.avgvol + " (Est.)"+"</span>" + "<br>"
+        }else if(d[avgvol_x] === 0){
+            var avgvol = "Average volume" + ": " + d.avgvol + "<br>"
+        }
+
+        if(d[peratio_x] === 1){
+            var peratio = "PE Ratio" + ": " + "<span style='color: #FF0000;'>"+ d.peratio + " (Est.)"+"</span>" + "<br>"
+        }else if(d[peratio_x] === 0){
+            var peratio = "PE Ratio" + ": " + d.peratio + "<br>"
+        }
+
+        if(d[roe_x] === 1){
+            var roe = "ROE" + ": " + "<span style='color: #FF0000;'>"+ d.roe + " (Est.)"+"</span>" + "<br>"
+        }else if(d[roe_x] === 0){
+            var roe = "ROE" + ": " + d.roe + "<br>"
+        }
+
+        if(d[eps_x] === 1){
+            var eps = "EPS" + ": " + "<span style='color: #FF0000;'>"+ d.eps + " (Est.)"+"</span>" + "<br>"
+        }else if(d[eps_x] === 0){
+            var eps = "EPS" + ": " + d.eps + "<br>"
+        }
+
+        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps;
+    }
+
     // var dotsEnter = dots.enter()
     dotsEnter = dots.enter()
         .append('g')
@@ -254,6 +324,10 @@ function updateChart() {
 
             div.transition().duration(200)
                 .style("opacity", .9);
+            div.html(function(){
+                console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
+                return tooltip(d);
+            })
             // div.html(function(){
             //     console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
             //     if(d[select_x] === 1 && d[select_y]===0){
@@ -266,58 +340,6 @@ function updateChart() {
             //         return  "ticker: "+d.ticker + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>"
             //     }
             // })
-            div.html(function(){
-                console.log('d[select_x] & d[select_y]', d[select_x],typeof d[select_x], d[select_y], typeof d[select_y]);
-                if(d[select_x] === 1 && d[select_y]===0){
-                    if(chartScales.x === "currprice"){
-                        return  "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.y + ": " + d[chartScales.y] + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]] + "<br>" + attr[4] + ": " + d[attr[4]]
-                    }else if(chartScales.y === "currprice"){
-                        return  "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>"+ attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === "currprice" && chartScales.y === "currprice"){
-                        return  "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.x + ": "+"<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]] + "<br>" + attr[4] + ": " + d[attr[4]]
-                    }else if(chartScales.x === chartScales.y){
-                        return  "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else{// both attribtues not currpcie
-                        return  "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.x + ": "+ "<span style='color: #FF0000;'>" + d[chartScales.x]+ " (Est.)"+ "</span>"+"<br>" + chartScales.y + ": " + d[chartScales.y] + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }
-                }else if(d[select_y] === 1 && d[select_x] === 0){
-                    if(chartScales.x === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === "currprice" && chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === chartScales.y){
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else{// both attribtues not currpcie
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }
-                }else if(d[select_x] === 0 && d[select_y] === 0){
-                    if(chartScales.x === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>" + chartScales.y + ": " + d[chartScales.y] + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === "currprice" && chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>"+ attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === chartScales.y){
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: "  + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>"+ chartScales.x + ": " + d[chartScales.x] + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else{// both attribtues not currpcie
-                        return   "ticker: "+d.ticker + "<br>" + "current price per share: "  + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>"+ chartScales.x + ": " + d[chartScales.x]+ "<br>" + chartScales.y + ": " + d[chartScales.y] + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }
-                }else if(d[select_x] === 1  && d[select_y] === 1){
-                    if(chartScales.x === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else if(chartScales.x === "currprice" && chartScales.y === "currprice"){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]] + "<br>" + attr[4] + ": " + d[attr[4]]
-                    }else if(chartScales.x === chartScales.y){
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>"+ attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }else{// both attribtues not currpcie
-                        return   "ticker: "+d.ticker + "<br>"  + "current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>" + "<br>"+ chartScales.x + ": " + "<span style='color: #FF0000;'>"+d[chartScales.x]+ " (Est.)"+"</span>"+ "<br>" + chartScales.y + ": " + "<span style='color: #FF0000;'>"+ d[chartScales.y] + " (Est.)"+"</span>" + "<br>" + attr[0] + ": " + d[attr[0]] + "<br>" + attr[1] + ": " + d[attr[1]] + "<br>" + attr[2] + ": " + d[attr[2]] + "<br>" + attr[3] + ": " + d[attr[3]]
-                    }
-                }
-            })
                 // .style("left", "1050px")
                 .style("left", "1060px")
                 .style("top", "100px");
