@@ -16,7 +16,7 @@ function highLight() {
 
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
-        if (d.ticker == txtName.value) {
+        if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
             return "red"
         }else if((clickedCircles.indexOf(d.ticker) >= 0)){
             return "orange";
@@ -27,7 +27,7 @@ function highLight() {
     });
 
     circles.style("stroke", function(d) {
-        if (d.ticker == txtName.value) {
+        if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
             return "black"
         }else if((clickedCircles.indexOf(d.ticker) >= 0)){
             return "black";
@@ -44,18 +44,24 @@ function trackClicked(clickedCircles){
         circles = svg.selectAll("circle");
         circles.style("fill", function(d) {
             if((clickedCircles.indexOf(d.ticker) >= 0)){
-                return "orange";
-            } else if(d[select_x] ===1 || d[select_y] === 1){
-                return "none";}
+                if(d[select_x] === 0 && d[select_y] === 0){
+                    return "orange";
+                }else{
+                    return "none";
+                }
+            }
             else{
                 return "steelblue";}
         });
 
         circles.style("stroke", function(d) {
             if((clickedCircles.indexOf(d.ticker) >= 0)){
-                return "black";
-            } else if(d[select_x] ===1 || d[select_y] === 1){
-                return "none";}
+                if(d[select_x] === 0 && d[select_y] === 0){
+                    return "black";
+                }else{
+                    return "none";
+                }
+            }
             else{
                 return "black";}
         });
@@ -63,7 +69,12 @@ function trackClicked(clickedCircles){
         labels = svg.selectAll(".tickers");
         labels.style("opacity", function(d) {
             if((clickedCircles.indexOf(d.ticker) >= 0)){
-                return "1";
+                if(d[select_x] === 0 && d[select_y] === 0){
+                    return "1";
+                }else{
+                    return "0";
+                }
+                // return "1";
             }else{
                 return "0";}
         });
