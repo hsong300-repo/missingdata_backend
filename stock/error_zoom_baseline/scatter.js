@@ -264,37 +264,37 @@ function updateChart() {
         var eps_x = "eps".concat("_impute");
 
         if(d[beta_x] === 1){
-            var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ d.beta + " (Est.)"+"</span>" + "<br>"
+            var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ "missing"+"</span>" + "<br>"
         }else if(d[beta_x] === 0){
             var beta =  "Beta" + ": " + d.beta + "<br>"
         }
 
         if(d[pctchg52wks_x] === 1){
-            var pctchg52wks =  "Price change over 52 weeks" + ": " + "<span style='color: #FF0000;'>"+ d.pctchg52wks + " (Est.)"+"</span>" + "<br>"
+            var pctchg52wks =  "Price change over 52 weeks" + ": " + "<span style='color: #FF0000;'>"+ "missing"+"</span>" + "<br>"
         }else if(d[pctchg52wks_x] === 0){
             var pctchg52wks = "Price change over 52 weeks" + ": " + d.pctchg52wks + "<br>"
         }
 
         if(d[avgvol_x] === 1){
-            var avgvol = "Average volume" + ": " + "<span style='color: #FF0000;'>"+ d.avgvol + " (Est.)"+"</span>" + "<br>"
+            var avgvol = "Average volume" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[avgvol_x] === 0){
             var avgvol = "Average volume" + ": " + d.avgvol + "<br>"
         }
 
         if(d[peratio_x] === 1){
-            var peratio = "PE Ratio" + ": " + "<span style='color: #FF0000;'>"+ d.peratio + " (Est.)"+"</span>" + "<br>"
+            var peratio = "PE Ratio" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[peratio_x] === 0){
             var peratio = "PE Ratio" + ": " + d.peratio + "<br>"
         }
 
         if(d[roe_x] === 1){
-            var roe = "ROE" + ": " + "<span style='color: #FF0000;'>"+ d.roe + " (Est.)"+"</span>" + "<br>"
+            var roe = "ROE" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[roe_x] === 0){
             var roe = "ROE" + ": " + d.roe + "<br>"
         }
 
         if(d[eps_x] === 1){
-            var eps = "EPS" + ": " + "<span style='color: #FF0000;'>"+ d.eps + " (Est.)"+"</span>" + "<br>"
+            var eps = "EPS" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[eps_x] === 0){
             var eps = "EPS" + ": " + d.eps + "<br>"
         }
