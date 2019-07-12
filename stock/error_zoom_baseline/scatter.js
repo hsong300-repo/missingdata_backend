@@ -26,6 +26,17 @@ function highLight() {
             return "steelblue";}
     });
 
+    circles.style("stroke", function(d) {
+        if (d.ticker == txtName.value) {
+            return "black"
+        }else if((clickedCircles.indexOf(d.ticker) >= 0)){
+            return "black";
+        } else if(d[select_x] ===1 || d[select_y] === 1){
+            return "none";}
+        else{
+            return "black";}
+    });
+
 
 }
 
@@ -38,6 +49,15 @@ function trackClicked(clickedCircles){
                 return "none";}
             else{
                 return "steelblue";}
+        });
+
+        circles.style("stroke", function(d) {
+            if((clickedCircles.indexOf(d.ticker) >= 0)){
+                return "black";
+            } else if(d[select_x] ===1 || d[select_y] === 1){
+                return "none";}
+            else{
+                return "black";}
         });
 
         labels = svg.selectAll(".tickers");
@@ -239,6 +259,15 @@ function updateChart() {
             }
         });
 
+        circles.style('stroke', function (d) {
+            if (d[select_x] === 1 || d[select_y] === 1) {
+                return "none";
+            }
+            else {
+                return "black";
+            }
+        });
+
         labels = svg.selectAll(".tickers");
 
         labels.style("opacity", 0);
@@ -252,8 +281,6 @@ function updateChart() {
 
         var ticker = "Ticker: "+d.ticker + "<br>";
         var currprice = "Current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>";
-
-
 
         //text process
         var beta_x = "beta".concat("_impute");
@@ -351,6 +378,16 @@ function updateChart() {
                         }
                     });
 
+                clicked.select('circle')
+                    .style('stroke', function (d) {
+                        if (d[select_x] === 1 || d[select_y] === 1) {
+                            return "none";
+                        }
+                        else {
+                            return "black";
+                        }
+                    });
+
                 clicked.select('text')
                     .style("opacity",0);
 
@@ -391,6 +428,10 @@ function updateChart() {
             if(d[select_x] === 1 || d[select_y] === 1){return "none";}
             else{return "steelblue";}
         })
+        .style("stroke",function(d){
+            if(d[select_x] === 1 || d[select_y] === 1){return "none";}
+            else{return "black";}
+        })
         .attr('r', 5);
 
     dotsEnter.append("text")
@@ -414,13 +455,13 @@ function updateChart() {
 
     d3.selectAll("circle")
         .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
-        .style("fill","none");
+        .style("fill","none")
+        .style("stroke","none");
 
     d3.selectAll("circle")
         .filter(function(d){return d[select_x] ===0 && d[select_y] === 0})
-        .style("fill","steelblue");
-
-    // redraw_error();
+        .style("fill","steelblue")
+        .style("stroke","black");
 
     // var txtName = document.getElementById("txtName");
     var txtName = document.getElementById("gene_search_box");
@@ -432,8 +473,6 @@ function updateChart() {
     if(txtName.value){
         highLight();
     }
-
-
 
     //**zoom
     // Pan and zoom
@@ -469,9 +508,6 @@ function updateChart() {
             var yAxis = d3.axisLeft(yScale);
 
         }
-
-        // var xAxis = d3.axisBottom(xScale);
-        // var yAxis = d3.axisLeft(yScale);
 
         // update axes
         xAxisG.call( xAxis.scale(new_xScale));
