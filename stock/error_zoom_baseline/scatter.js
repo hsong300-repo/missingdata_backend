@@ -16,26 +16,61 @@ function highLight() {
 
     circles = svg.selectAll("circle");
     circles.style("fill", function(d) {
-        if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
-            return "red"
+        if(d[select_x] === 1 || d[select_y] === 1){
+            return "none"
+        }else if (d.ticker == txtName.value) {
+            if(d[select_x] === 0 && d[select_y] === 0){
+                return "red";
+            }
         }else if((clickedCircles.indexOf(d.ticker) >= 0)){
             return "orange";
-        } else if(d[select_x] ===1 || d[select_y] === 1){
-            return "none";}
-        else{
+        } else{
             return "steelblue";}
     });
 
     circles.style("stroke", function(d) {
-        if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
-            return "black"
+        if(d[select_x] === 1 || d[select_y] === 1){
+            return "none"
+        }else if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
+            if(d[select_x] === 0 && d[select_y] === 0){
+                return "black";
+            }
         }else if((clickedCircles.indexOf(d.ticker) >= 0)){
             return "black";
-        } else if(d[select_x] ===1 || d[select_y] === 1){
-            return "none";}
-        else{
+        } else{
             return "black";}
     });
+
+    // circles.style("fill", function(d) {
+    //     if (d.ticker == txtName.value) {
+    //         if(d[select_x] === 0 && d[select_y] === 0){
+    //             return "red";
+    //         }else{
+    //             return "none";
+    //         }
+    //     }else if((clickedCircles.indexOf(d.ticker) >= 0)){
+    //         return "orange";
+    //     } else if(d[select_x] ===1 || d[select_y] === 1){
+    //         return "none";}
+    //     else{
+    //         return "steelblue";}
+    // });
+    //
+    // circles.style("stroke", function(d) {
+    //     if (d.ticker == txtName.value && d[select_x] === 0 && d[select_y] === 0) {
+    //         if(d[select_x] === 0 && d[select_y] === 0){
+    //             return "black";
+    //         }else{
+    //             return "none";
+    //         }
+    //     }else if((clickedCircles.indexOf(d.ticker) >= 0)){
+    //         return "black";
+    //     } else if(d[select_x] ===1 || d[select_y] === 1){
+    //         return "none";}
+    //     else{
+    //         return "black";}
+    // });
+
 
 
 }
@@ -64,6 +99,7 @@ function trackClicked(clickedCircles){
             }
             else{
                 return "black";}
+
         });
 
         labels = svg.selectAll(".tickers");
