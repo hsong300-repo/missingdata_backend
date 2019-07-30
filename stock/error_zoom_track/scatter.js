@@ -247,15 +247,13 @@ function updateChart() {
     });
 
     function tooltip(d){
-        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps"];
+        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps","marketcap"];
 
         // var ticker,currprice,beta, pct52, avgvol,peratio,roe,eps = " "," "," "," "," "," "," "," ";
         console.log('ticker',d.ticker);
 
         var ticker = "Ticker: "+d.ticker + "<br>";
         var currprice = "Current price per share: " + "<span style='color: #008000;'>" + d.currprice + "</span>"+ "<br>";
-
-
 
         //text process
         var beta_x = "beta".concat("_impute");
@@ -264,44 +262,52 @@ function updateChart() {
         var peratio_x = "peratio".concat("_impute");
         var roe_x = "roe".concat("_impute");
         var eps_x = "eps".concat("_impute");
+        var marketcap_x = "marketcap".concat("_impute");
+
 
         if(d[beta_x] === 1){
-            var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ d.beta + " (Est.)"+"</span>" + "<br>"
+            var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ "missing"+"</span>" + "<br>"
         }else if(d[beta_x] === 0){
             var beta =  "Beta" + ": " + d.beta + "<br>"
         }
 
         if(d[pctchg52wks_x] === 1){
-            var pctchg52wks =  "Price change over 52 weeks" + ": " + "<span style='color: #FF0000;'>"+ d.pctchg52wks + " (Est.)"+"</span>" + "<br>"
+            var pctchg52wks =  "Price change over 52 weeks" + ": " + "<span style='color: #FF0000;'>"+ "missing"+"</span>" + "<br>"
         }else if(d[pctchg52wks_x] === 0){
             var pctchg52wks = "Price change over 52 weeks" + ": " + d.pctchg52wks + "<br>"
         }
 
         if(d[avgvol_x] === 1){
-            var avgvol = "Average volume" + ": " + "<span style='color: #FF0000;'>"+ d.avgvol + " (Est.)"+"</span>" + "<br>"
+            var avgvol = "Average volume" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[avgvol_x] === 0){
             var avgvol = "Average volume" + ": " + d.avgvol + "<br>"
         }
 
         if(d[peratio_x] === 1){
-            var peratio = "PE Ratio" + ": " + "<span style='color: #FF0000;'>"+ d.peratio + " (Est.)"+"</span>" + "<br>"
+            var peratio = "PE Ratio" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[peratio_x] === 0){
             var peratio = "PE Ratio" + ": " + d.peratio + "<br>"
         }
 
         if(d[roe_x] === 1){
-            var roe = "ROE" + ": " + "<span style='color: #FF0000;'>"+ d.roe + " (Est.)"+"</span>" + "<br>"
+            var roe = "ROE" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[roe_x] === 0){
             var roe = "ROE" + ": " + d.roe + "<br>"
         }
 
         if(d[eps_x] === 1){
-            var eps = "EPS" + ": " + "<span style='color: #FF0000;'>"+ d.eps + " (Est.)"+"</span>" + "<br>"
+            var eps = "EPS" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
         }else if(d[eps_x] === 0){
             var eps = "EPS" + ": " + d.eps + "<br>"
         }
 
-        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps;
+        if(d[marketcap_x] === 1){
+            var marketcap = "Market Capitalization" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
+        }else if(d[marketcap_x] === 0){
+            var marketcap = "Market Capitalization" + ": " + d3.format(".0s")(d.marketcap) + "<br>"
+        }
+
+        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps + marketcap;
     }
 
     // var dotsEnter = dots.enter()

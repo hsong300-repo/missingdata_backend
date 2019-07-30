@@ -321,7 +321,7 @@ function updateChart() {
     });
 
     function tooltip(d){
-        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps"];
+        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps","marketcap"];
 
         // var ticker,currprice,beta, pct52, avgvol,peratio,roe,eps = " "," "," "," "," "," "," "," ";
         console.log('ticker',d.ticker);
@@ -336,6 +336,8 @@ function updateChart() {
         var peratio_x = "peratio".concat("_impute");
         var roe_x = "roe".concat("_impute");
         var eps_x = "eps".concat("_impute");
+        var marketcap_x = "marketcap".concat("_impute");
+
 
         if(d[beta_x] === 1){
             var beta = "Beta" + ": " + "<span style='color: #FF0000;'>"+ "missing"+"</span>" + "<br>"
@@ -373,7 +375,13 @@ function updateChart() {
             var eps = "EPS" + ": " + d.eps + "<br>"
         }
 
-        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps;
+        if(d[marketcap_x] === 1){
+            var marketcap = "Market Capitalization" + ": " + "<span style='color: #FF0000;'>"+ "missing" +"</span>" + "<br>"
+        }else if(d[marketcap_x] === 0){
+            var marketcap = "Market Capitalization" + ": " + d3.format(".0s")(d.marketcap) + "<br>"
+        }
+
+        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps + marketcap;
     }
 
     // var dotsEnter = dots.enter()
