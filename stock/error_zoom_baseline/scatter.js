@@ -2,6 +2,7 @@ var circles;
 var labels;
 var clickedCircles = []; // track clicked circles
 var i = 0;
+var totalCount = 79;
 
 d3.select("#gene_search_box").on("change paste keyup", function() {
 // d3.select("#txtName").on("change paste keyup", function() {
@@ -24,7 +25,7 @@ function highLight() {
             }
         }else if((clickedCircles.indexOf(d.ticker) >= 0)){
             return "orange";
-        } else{
+        } else if(d[select_x] === 0 && d[select_y] === 0){
             return "steelblue";}
     });
 
@@ -85,8 +86,14 @@ function trackClicked(clickedCircles){
                     return "none";
                 }
             }
-            else{
-                return "steelblue";}
+            else {
+                if (d[select_x] === 0 && d[select_y] === 0) {
+                    return "steelblue";
+                } else {
+                    return "none";
+                }
+            }
+                // return "steelblue";}
         });
 
         circles.style("stroke", function(d) {
@@ -97,9 +104,14 @@ function trackClicked(clickedCircles){
                     return "none";
                 }
             }
-            else{
-                return "black";}
-
+            else {
+                if (d[select_x] === 0 && d[select_y] === 0) {
+                    return "black";
+                } else {
+                    return "none";
+                }
+                // return "black";}
+            }
         });
 
         labels = svg.selectAll(".tickers");
@@ -137,6 +149,8 @@ function onXScaleChanged() {
     zoom_called = false;
 
     svg.selectAll(".tickers").remove().exit();
+    svg.selectAll(".missCountLabel").remove().exit();
+
 
     var select = d3.select('#xScaleSelect').node();
     // Get current value of select element, save to global chartScales
@@ -154,6 +168,8 @@ function onYScaleChanged() {
     zoom_called = false;
 
     svg.selectAll(".tickers").remove().exit();
+    svg.selectAll(".missCountLabel").remove().exit();
+
 
 
     var select = d3.select('#yScaleSelect').node();
@@ -266,6 +282,52 @@ function updateChart() {
 
     select_x = select.select_x;
     select_y = select.select_y;
+
+
+
+    //*****This is for the showing how many number of data points are missing******
+    var missingCount_x = d3.nest()
+        .key(function(d){return d[select_x]; }).sortKeys(d3.ascending)
+        .rollup(function(v) { return v.length; })
+        .entries(whiskey);
+
+    var missingCount_y = d3.nest()
+        .key(function(d){return d[select_y]; }).sortKeys(d3.ascending)
+        .rollup(function(v) { return v.length; })
+        .entries(whiskey);
+
+    console.log('counts x and y', missingCount_x,missingCount_y, missingCount_x[0].value,missingCount_y[0].value);
+
+    var missXCount = totalCount - missingCount_x[0].value;
+    var missYCount = totalCount - missingCount_y[0].value;
+
+    if(select_x === select_y) {
+        var missXYCount = missXCount;
+    }else{
+        var missXYCount = missXCount + missYCount;
+    }
+
+    chartG.append("text")
+        .attr("class","missCountLabel")
+        .attr("x",chartWidth/2 +chartWidth/4)
+        .attr("y",chartHeight/50)
+        .style("text-anchor","right")
+        .text("* " + missXYCount + " stocks are missing");
+
+    // chartG.append("text")
+    //     .text(function(d){"Missing" + missXCount});
+
+
+
+    // var keys = missingCount_x
+    //     .map(function(d){ return d.key;});
+    //
+    // var values = missingCount_x
+    //     .map(function(d){ return d.value;});
+    //
+    // console.log("keys",keys);
+    // console.log("values",values);
+
 
     console.log("select_x and select_y", select_x, select_y);
 
@@ -509,7 +571,7 @@ function updateChart() {
         });
 
     d3.selectAll("circle")
-        .filter(function(d){return d[select_x] ===1 || d[select_y] ===1})
+        .filter(function(d){return d[select_x] ===1 || d[select_y] === 1})
         .style("fill","none")
         .style("stroke","none");
 
