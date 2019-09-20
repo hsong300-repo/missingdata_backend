@@ -2,7 +2,7 @@ var circles;
 var labels;
 var clickedCircles = []; // track clicked circles
 var i = 0;
-var totalCount = 79;
+var totalCount = 81;
 
 d3.select("#gene_search_box").on("change paste keyup", function() {
 // d3.select("#txtName").on("change paste keyup", function() {
@@ -283,6 +283,8 @@ function updateChart() {
     select_x = select.select_x;
     select_y = select.select_y;
 
+    console.log('####select_x & select_y',select_x,select_y);
+
 
 
     //*****This is for the showing how many number of data points are missing******
@@ -296,7 +298,7 @@ function updateChart() {
         .rollup(function(v) { return v.length; })
         .entries(whiskey);
 
-    console.log('counts x and y', missingCount_x,missingCount_y, missingCount_x[0].value,missingCount_y[0].value);
+    console.log('**missing counts x and y', missingCount_x,missingCount_y, missingCount_x[0].value,missingCount_y[0].value);
 
     var missXCount = totalCount - missingCount_x[0].value;
     var missYCount = totalCount - missingCount_y[0].value;
