@@ -1,3 +1,6 @@
+//****This code was last updated 09/20/2019
+// it was updated with the new collected data from Yahoo Finance*****
+
 // Remember code outside of the data callback function will run before the data loads
 var rowToHtml = function( row ) {
     var result = "";
@@ -13,7 +16,7 @@ var previewCsvUrl = function( csvUrl ) {
     // d3.csv(csvUrl, function(error, dataset){
     d3.csv(csvUrl,function(row) {
             return {
-                // 'name': row['name'],
+                'name': row['name'],
                 'ticker': row['ticker'],
                 'beta': +row['beta'],
                 'currprice': +row['currprice'],
@@ -21,7 +24,7 @@ var previewCsvUrl = function( csvUrl ) {
                 'avgvol': +row['avgvol'],
                 'peratio': +row['peratio'],
                 'roe': +row['roe'],
-                'marketcap': +row['marketcap'],
+                // 'marketcap': +row['marketcap'],
                 'eps': +row['eps'],
                 'beta_impute': +row['beta_impute'],
                 'currprice_impute': +row['currprice_impute'],
@@ -29,7 +32,7 @@ var previewCsvUrl = function( csvUrl ) {
                 'avgvol_impute': +row['avgvol_impute'],
                 'peratio_impute': +row['peratio_impute'],
                 'roe_impute': +row['roe_impute'],
-                'marketcap_impute': +row['marketcap_impute'],
+                // 'marketcap_impute': +row['marketcap_impute'],
                 'eps_impute': +row['eps_impute'],
 
             };
@@ -118,6 +121,7 @@ var previewCsvUrl = function( csvUrl ) {
 
 
 // previewCsvUrl("./new_data/stock_knn_2.csv");
-previewCsvUrl("./new_data/stock_demo_demo.csv");
+// previewCsvUrl("./new_data/stock_demo_demo.csv");
+previewCsvUrl("./new_data/stock_removed_knn.csv");
 
 

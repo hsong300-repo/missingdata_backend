@@ -172,7 +172,7 @@ function updateChart() {
     yScaleMax = yScale.domain().slice(-1)[0];
     yScaleMin = yScale.domain()[0];
 
-    if(chartScales.x === "marketcap"){
+    if(chartScales.x === "avgvol"){
         xAxisG.transition()
             .duration(750) // Add transition
             .call(d3.axisBottom(xScale)
@@ -184,7 +184,7 @@ function updateChart() {
             .call(d3.axisBottom(xScale));
     }
 
-    if(chartScales.y === "marketcap"){
+    if(chartScales.y === "avgvol"){
         yAxisG.transition()
             .duration(750) // Add transition
             .call(d3.axisLeft(yScale)
@@ -247,7 +247,7 @@ function updateChart() {
     });
 
     function tooltip(d){
-        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps","marketcap"];
+        var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps"];
 
         // var ticker,currprice,beta, pct52, avgvol,peratio,roe,eps = " "," "," "," "," "," "," "," ";
         console.log('ticker',d.ticker);
@@ -262,7 +262,7 @@ function updateChart() {
         var peratio_x = "peratio".concat("_impute");
         var roe_x = "roe".concat("_impute");
         var eps_x = "eps".concat("_impute");
-        var marketcap_x = "marketcap".concat("_impute");
+        // var marketcap_x = "marketcap".concat("_impute");
 
 
         if(d[beta_x] === 1){
@@ -301,13 +301,15 @@ function updateChart() {
             var eps = "EPS" + ": " + d.eps + "<br>"
         }
 
-        if(d[marketcap_x] === 1){
-            var marketcap = "Market Capitalization" + ": " + "<span style='color: #FF0000;'>"+ d3.format(".0s")(d.marketcap) +"</span>" + "<br>"
-        }else if(d[marketcap_x] === 0){
-            var marketcap = "Market Capitalization" + ": " + d3.format(".0s")(d.marketcap) + "<br>"
-        }
+        // if(d[marketcap_x] === 1){
+        //     var marketcap = "Market Capitalization" + ": " + "<span style='color: #FF0000;'>"+ d3.format(".0s")(d.marketcap) +"</span>" + "<br>"
+        // }else if(d[marketcap_x] === 0){
+        //     var marketcap = "Market Capitalization" + ": " + d3.format(".0s")(d.marketcap) + "<br>"
+        // }
 
-        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps + marketcap;
+        // return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps + marketcap;
+        return ticker + currprice + beta + pctchg52wks + avgvol + peratio + roe + eps;
+
     }
 
     // var dotsEnter = dots.enter()
@@ -810,7 +812,7 @@ function updateChart() {
         new_yScale = d3.event.transform.rescaleY(yScale);
 
 
-        if(chartScales.x === "marketcap"){
+        if(chartScales.x === "avgvol"){
             var xAxis = d3.axisBottom(xScale).tickFormat(d3.format(".0s"));
         }else{
             // Update the axes here first
@@ -818,7 +820,7 @@ function updateChart() {
 
         }
 
-        if(chartScales.y === "marketcap"){
+        if(chartScales.y === "avgvol"){
             var yAxis = d3.axisLeft(yScale).tickFormat(d3.format(".0s"));
         }else{
             var yAxis = d3.axisLeft(yScale);
