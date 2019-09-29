@@ -2,7 +2,7 @@ var circles;
 var labels;
 var clickedCircles = []; // track clicked circles
 var i = 0;
-var totalCount = 81;
+var totalCount = 80;
 
 d3.select("#gene_search_box").on("change paste keyup", function() {
 // d3.select("#txtName").on("change paste keyup", function() {
@@ -609,6 +609,12 @@ function updateChart() {
         .style("fill", "none")
         .style("pointer-events", "all")
         .call(zoom);
+
+    d3.select("#reset_zoom").on("click", reset);
+
+    function reset() {
+        svg.call(zoom.transform, d3.zoomIdentity.translate(0, 0).scale(1))
+    }
 
     function zoomed() {
         // create new scale ojects based on event

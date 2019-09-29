@@ -97,6 +97,8 @@ function onYScaleChanged() {
     updateChart();
 }
 
+
+
 // Also, declare global variables for missing amount, total amount, and percentage
 impute_flag = false;
 no_impute_flag = false;
@@ -245,6 +247,9 @@ function updateChart() {
 
         labels.style("opacity", 0);
     });
+
+    d3.select("#reset_zoom").on("click", reset);
+
 
     function tooltip(d){
         var attr = ["beta","pctchg52wks","avgvol","peratio","roe","eps"];
@@ -479,6 +484,10 @@ function updateChart() {
         filter_no_impute();
     }else if(both_flag === true){
         filter_both();
+    }
+
+    function reset() {
+            svg.call(zoom.transform, d3.zoomIdentity.translate(0, 0).scale(1))
     }
 
     function redraw_error() {

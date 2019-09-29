@@ -35,8 +35,8 @@
         <div style="position:absolute;top:375px;left:100px" >
         <label for="categorySelect" class="scale">Y Scale:</label>
         <select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
-            <option value="beta">Beta</option>
-            <option selected value="currprice">Current price per share</option>
+            <option selected value="beta">Beta</option>
+            <option value="currprice">Current price per share</option>
             <option value="pctchg52wks">Price change over 52 weeks</option>
             <option value="avgvol">Average volume</option>
             <option value="peratio">PE Ratio</option>
@@ -47,18 +47,18 @@
     </div>
     <div align="center">
         <!--<svg class ="charts"  id = "scatter_canvas" width="600" height="600" style="border: 1px solid #777;">-->
-        <svg class ="charts"  id = "scatter_canvas" width="650" height="650" style="border: 1px solid #777;">
+        <svg class ="charts"  id = "scatter_canvas" width="650" height="650" style="position:absolute;top:90px;left:400px;border: 1px solid #777;">
             </svg>
     </div>
     <!--<div align="center">-->
     <div style="position:absolute;top:750px;left:570px" >
     <label for="categorySelect" class="scale">X Scale:</label>
         <select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
-            <option selected value="beta">Beta</option>
+            <option value="beta">Beta</option>
             <option value="currprice">Current price per share</option>
             <option value="pctchg52wks">Price change over 52 weeks</option>
             <option value="avgvol">Average volume</option>
-            <option value="peratio">PE Ratio</option>
+            <option selected value="peratio">PE Ratio</option>
             <option value="roe">ROE</option>
             <!--<option value="marketcap">Market Capitalization</option>-->
             <option value="eps">EPS</option>
@@ -73,7 +73,10 @@
                 <input type="radio" name="options" id="" autocomplete="off" checked > Search
             </label>
         </div>
-        <button id="reset" type="reset" value="Reset" class="btn-group" data-toggle="buttons" style="position:absolute;top:630px;left:1030px">Reset</button>
+        <!--<button id="reset" type="reset" value="Reset" class="btn-group" data-toggle="buttons" style="position:absolute;top:630px;left:1030px">Reset</button>-->
+        <button id="reset" type="reset" value="Reset" class="btn-group" data-toggle="buttons" style="position:absolute;top:630px;left:1030px">Clear selection</button>
+        <button id="reset_zoom" type="reset" value="Reset" class="btn-group" data-toggle="buttons" style="position:absolute;top:580px;left:1030px">Reset zoom</button>
+
 
     </div>
 </div>
