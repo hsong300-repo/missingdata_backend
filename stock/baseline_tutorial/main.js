@@ -108,7 +108,9 @@ var previewCsvUrl = function( csvUrl ) {
             //get the percentage of the two
 
             // Create global object called chartScales to keep state
-            chartScales = {x: 'beta', y: 'currprice'};
+            chartScales = {x: 'beta', y: 'peratio'};
+
+            missCountXY = 8;
 
             updateChart();
 

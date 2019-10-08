@@ -2,7 +2,8 @@ var circles;
 var labels;
 var clickedCircles = []; // track clicked circles
 var i = 0;
-var totalCount = 41;
+// var totalCount = 41;
+// var totalCount = dataset.length();
 
 d3.select("#gene_search_box").on("change paste keyup", function() {
 // d3.select("#txtName").on("change paste keyup", function() {
@@ -233,13 +234,15 @@ var transitionScale = d3.transition()
 
 //****scatter plot
 function updateChart() {
+
+    var totalCount = whiskey.length;
+    console.log('**totalCount',totalCount);
     //comute it hear so that it's possible to adjust axis
     std_x = d3.deviation(whiskey, function(d) { return d[chartScales.x]; });
     std_y = d3.deviation(whiskey, function(d) { return d[chartScales.y]; });
 
     console.log("std_x",chartScales.x, std_x);
     console.log("std_y",chartScales.y, std_y);
-
 
     // **** Draw and Update your chart here ****
     // Update the scales based on new data attributes
@@ -286,7 +289,6 @@ function updateChart() {
     console.log('####select_x & select_y',select_x,select_y);
 
 
-
     //*****This is for the showing how many number of data points are missing******
     var missingCount_x = d3.nest()
         .key(function(d){return d[select_x]; }).sortKeys(d3.ascending)
@@ -308,6 +310,8 @@ function updateChart() {
     }else{
         var missXYCount = missXCount + missYCount;
     }
+
+    console.log('**missingXYCount',select_x,select_y,missXYCount);
 
     chartG.append("text")
         .attr("class","missCountLabel")
