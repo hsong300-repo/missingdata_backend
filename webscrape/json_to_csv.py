@@ -5,7 +5,7 @@ import os
 
 def get_list_of_json_files():
 
-    list_of_files = os.listdir('./temp_data')
+    list_of_files = os.listdir('./November_16th_2019')
 
     return list_of_files
 
@@ -56,8 +56,8 @@ def write_csv():
     for file in list_of_files:
         print('file name',file)
         row = create_list_from_json(
-            f'temp_data/{file}')  # create the row to be added to csv for each file (json-file)
-        with open('output.csv', 'a') as c:
+            f'November_16th_2019/{file}')  # create the row to be added to csv for each file (json-file)
+        with open('2months.csv', 'a') as c:
             writer = csv.writer(c)
             print('row',row)
             writer.writerow(row)
