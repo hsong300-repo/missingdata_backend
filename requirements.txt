@@ -6,7 +6,7 @@ Click==7.0
 cvxpy==1.0.14
 dill==0.2.9
 dj-database-url==0.5.0
-Django==2.1.5
+Django==2.2.24
 django-heroku==0.3.1
 docopt==0.6.2
 ecos==2.0.7.post1
